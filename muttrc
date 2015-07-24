@@ -1,0 +1,25 @@
+source ~/.mutt/mail_aliases 
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+set alias_file =~/.mutt/mail_aliases
+
+set editor = vim
+set my_name = 'David Carlos'
+set mail_check = 90
+set timeout = 15
+set folder = imaps://imap.gmail.com/
+set imap_user = 'ddavidcarlos1392'
+set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
+set from = ddavidcarlos1392@gmail.com
+set realname = 'David Carlos'
+
+mailboxes =INBOX
+mailboxes imaps://imap.gmail.com/INBOX 
+unset imap_passive
+set imap_keepalive = 300
+
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
+
+folder-hook INBOX set sort=threads
+
+

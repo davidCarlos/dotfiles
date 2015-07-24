@@ -81,6 +81,7 @@ autocmd FileType c++ set softtabstop=4 tabstop=4
 syntax enable
 set relativenumber
 set term=screen-256color
+
 " Some colorschemes as solarized needs background=light
 set background=dark
 set t_Co=256
@@ -149,8 +150,8 @@ let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
 "Ctags bar
 nmap <F8> :TagbarToggle<CR>
-
 nmap <F6> :Vexplore<CR>
+
 " Use nativa vim buffers, instead of CtrlP
 nmap <LEADER>l :buffers<CR>:buffer<Space>
 
@@ -160,6 +161,8 @@ nmap <LEADER>l :buffers<CR>:buffer<Space>
 "========== LEADER keys ===============
 nmap <LEADER>q :q<CR>
 nmap <LEADER>w :w<CR>
+" Save file with sudo permission
+nmap <LEADER>R :w !sudo tee %<CR>
 nmap <LEADER>x :x<CR>
 nmap <LEADER>p :pwd<CR>
 " set current edit file as default directory NICE
@@ -167,6 +170,8 @@ nmap <LEADER>d :lcd %:p:h<CR>
 nmap <LEADER>m :so $MYVIMRC<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
+
+
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
