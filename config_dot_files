@@ -1,0 +1,40 @@
+#!/bin/bash
+set -x
+
+
+files=(vimrc muttrc bashrc tmux.conf)
+
+if [[ ! -d $HOME/.mutt ]]; then
+    mkdir $HOME/.mutt
+fi
+
+if [[ ! -d $HOME/.tmux ]]; then
+    mkdir $HOME/.tmux
+fi
+
+
+put_files_in_correct_place()
+{
+    echo 'test'
+    echo $1
+    if [ "$1" = "tmux.conf" ]; then
+        cp $1 $HOME/.tmux/
+        return
+    fi
+
+    if [ "$1" = "muttrc" ]; then
+        cp $1 $HOME/.mutt/muttrc
+        cp mail_aliases $HOME/.mutt/mail_aliases
+        return
+    fi
+
+    if [[  -e $HOME/'.'$1 ]]; then
+        cp $HOME/.$1 $HOME/.$1'_bkp'
+    fi
+        cp $1 $HOME/.$1
+}
+
+for file in ${files[@]}
+do
+    put_files_in_correct_place $file
+done
