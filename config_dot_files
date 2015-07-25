@@ -24,7 +24,7 @@ put_files_in_correct_place()
 
     if [ "$1" = "muttrc" ]; then
         cp $1 $HOME/.mutt/muttrc
-        cp mail_aliases $HOME/.mutt/mail_aliases
+        cp mail_aliases_crypto $HOME/.mutt/mail_aliases_crypto
         return
     fi
 
@@ -38,3 +38,10 @@ for file in ${files[@]}
 do
     put_files_in_correct_place $file
 done
+
+#if git is properly configured on machine
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone git@github.com:altercation/mutt-colors-solarized.git
+
+vim -c BundleInstall

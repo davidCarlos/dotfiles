@@ -8,6 +8,7 @@ set mail_check = 90
 set timeout = 15
 set folder = imaps://imap.gmail.com/
 set imap_user = 'ddavidcarlos1392'
+set imap_pass = ''
 set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
 set from = ddavidcarlos1392@gmail.com
 set realname = 'David Carlos'
