@@ -1,37 +1,44 @@
 #!/bin/bash
+
+#Debug flag
 set -x
 
-
-files=(vimrc muttrc bashrc tmux.conf)
+files=(irssi vimrc muttrc bashrc tmux.conf)
 
 if [[ ! -d $HOME/.mutt ]]; then
-    mkdir $HOME/.mutt
+    mkdir $HOME/.mutt $HOME/.cache/mutt/
 fi
 
 if [[ ! -d $HOME/.tmux ]]; then
     mkdir $HOME/.tmux
 fi
 
+if [[ ! -d $HOME/.irssi ]]; then
+    mkdir $HOME/.tmux
+fi
 
 put_files_in_correct_place()
 {
-    echo 'test'
-    echo $1
     if [ "$1" = "tmux.conf" ]; then
-        cp $1 $HOME/.tmux/
+        ln $1 $HOME/.$1
+        return
+    fi
+
+    if [ "$1" = "irssi" ]; then
+        ln $1 $HOME/.irssi/config
         return
     fi
 
     if [ "$1" = "muttrc" ]; then
-        cp $1 $HOME/.mutt/muttrc
-        cp mail_aliases_crypto $HOME/.mutt/mail_aliases_crypto
+        ln $1 $HOME/.mutt/$1
+        ln mail_aliases_crypto $HOME/.mutt/mail_aliases_crypto
         return
     fi
 
-    if [[  -e $HOME/'.'$1 ]]; then
+    if [[  -e $HOME/.$1 ]]; then
         cp $HOME/.$1 $HOME/.$1'_bkp'
     fi
-        cp $1 $HOME/.$1
+        ln $1 $HOME/.$1
 }
 
 for file in ${files[@]}
