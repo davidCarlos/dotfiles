@@ -3,7 +3,12 @@
 #Debug flag
 set -x
 
+
+
+
 files=(irssi vimrc muttrc bashrc tmux.conf)
+
+enviroment=(git mutt irssi tmux vim-nox)
 
 if [[ ! -d $HOME/.mutt ]]; then
     mkdir $HOME/.mutt $HOME/.cache/mutt/
@@ -14,7 +19,7 @@ if [[ ! -d $HOME/.tmux ]]; then
 fi
 
 if [[ ! -d $HOME/.irssi ]]; then
-    mkdir $HOME/.tmux
+    mkdir $HOME/.irssi
 fi
 
 put_files_in_correct_place()
@@ -35,6 +40,7 @@ put_files_in_correct_place()
         return
     fi
 
+    # useful to bashrc and vimrc
     if [[  -e $HOME/.$1 ]]; then
         cp $HOME/.$1 $HOME/.$1'_bkp'
     fi
@@ -46,9 +52,6 @@ do
     put_files_in_correct_place $file
 done
 
-#if git is properly configured on machine
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-git clone git@github.com:altercation/mutt-colors-solarized.git
+./install_programs
 
-vim -c BundleInstall
+control_packages_install
