@@ -20,10 +20,9 @@ set imap_keepalive = 300
 set header_cache = ~/.cache/mutt
 set message_cachedir = ~/.cache/mutt
 
-folder-hook INBOX set sort=threads
+folder-hook INBOX set sort=date-received
 
 ##Pressing Control-b will allow browse and open the URLs in the currently selected message
-
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message
 

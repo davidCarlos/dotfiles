@@ -109,6 +109,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias tmux="TERM=screen-256color-bce tmux"
 alias mutt="TERM=screen-256color-bce mutt"
+alias tmuxinator="TERM=screen-256color-bce tmuxinator"
 
 # # Alias definitions.
 # # You may want to put all your additions into a separate file like
@@ -121,7 +122,7 @@ alias mutt="TERM=screen-256color-bce mutt"
 #
 # # enable programmable completion features (you don't need to enable
 # # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# # sources /etc/bash.bashrc).
+#  sources /etc/bash.bashrc).
 # if ! shopt -oq posix; then
 #   if [ -f /usr/share/bash-completion/bash_completion ]; then
 #     . /usr/share/bash-completion/bash_completion
@@ -157,3 +158,4 @@ add_venv_info () {
   fi
 }
 PROMPT_COMMAND="$PROMPT_COMMAND add_venv_info"
+export EDITOR="vim"

@@ -115,6 +115,8 @@ set wildmenu
 set wildmode=longest,list,full
 set confirm
 set hlsearch
+set columns=80
+set colorcolumn=80
 
 set cursorline
 set enc=utf-8

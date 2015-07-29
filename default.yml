@@ -1,0 +1,20 @@
+# ~/.tmuxinator/default.yml
+
+name: default
+root: ~/
+
+windows:
+  - vim:
+      layout: main-horizontal
+      panes:
+        - vim
+        - 
+        -
+  - mutt:
+      - mutt
+  - irssi:
+      - irssi
+  - auxiliar:
+      -
+    
+
