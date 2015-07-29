@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Debug flag
-set -x
+#Debug flag. uncomment the line below if you want debug messages.
+#set -x
 
 
 control_packages_install()
@@ -46,6 +46,5 @@ clone_repositories()
 
   # install vim plugins
   git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  vim -c BundleInstall
-
+  vim -c BundleInstall -c q -c q
 }

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#Debug flag
-set -x
-
+#Debug flag. uncomment the line below if you want debug messages.
+#set -x
 files=(irssi_conf vimrc muttrc bashrc tmux.conf)
 
 if [[ ! -d $HOME/.mutt ]]; then
@@ -44,6 +43,9 @@ put_files_in_correct_place()
         ln $1 $HOME/.$1
 }
 
+echo "============= Putting config files in the correct places  =============="
+sleep 4
+control_packages_install
 for file in ${files[@]}
 do
     put_files_in_correct_place $file
@@ -51,5 +53,9 @@ done
 
 . install_programs.sh
 
+echo "============= Installing Packages repositories =============="
+sleep 4
 control_packages_install
+echo "============= Cloning repositories =============="
+sleep 4
 clone_repositories
