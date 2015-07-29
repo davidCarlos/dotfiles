@@ -23,12 +23,22 @@ put_files_in_correct_place()
         return
     fi
 
-    if [ "$1" = "irssi" ]; then
+    if [ "$1" = "irssi_conf" ]; then
+        # check if already have some configuration file on the machine,
+        # if so, creates a backup, and creates a hard link between 
+        # the repository's file and the machine's file.
+        if [[  -e $HOME/.irssi/config ]]; then
+            cp $HOME/.irssi/config $HOME/.irssi/'config_bkp' 
+            rm $HOME/.irssi/$1
+        fi
         ln $1 $HOME/.irssi/config
         return
     fi
 
     if [ "$1" = "muttrc" ]; then
+        if [[  -e $HOME/.mutt/$1 ]]; then
+            cp $HOME/.mutt/$1 $HOME/.mutt/$1'_bkp' && rm $HOME/.mutt/$1
+        fi
         ln $1 $HOME/.mutt/$1
         # mail_aliases_crypto is a file with some alias to my mail contacts.
         # This is not useful to others users.
@@ -38,7 +48,7 @@ put_files_in_correct_place()
 
     # useful to bashrc and vimrc
     if [[  -e $HOME/.$1 ]]; then
-        cp $HOME/.$1 $HOME/.$1'_bkp'
+        cp $HOME/.$1 $HOME/.$1'_bkp' && rm $HOME/.$1
     fi
         ln $1 $HOME/.$1
 }
@@ -53,9 +63,16 @@ done
 
 . install_programs.sh
 
-echo "============= Installing Packages repositories =============="
+echo "============= Installing Packages =============="
 sleep 4
 control_packages_install
-echo "============= Cloning repositories =============="
+echo "============= Cloning necessary repositories =============="
 sleep 4
 clone_repositories
+
+echo "============ Please, source your new bashrc ====================="
+echo "============ command: source ~/.bashrc ====================="
+printf "============ If you don't like the new look of your shell, \n 
+changes the current bashrc file  by the bashrc_bkp file ====================="
+sleep 4
+
