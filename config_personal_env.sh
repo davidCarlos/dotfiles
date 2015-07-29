@@ -52,3 +52,4 @@ done
 . install_programs.sh
 
 control_packages_install
+clone_repositories

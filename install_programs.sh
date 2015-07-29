@@ -41,7 +41,7 @@ clone_repositories()
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
   # config mutt's colorscheme
-  git clone git@github.com:altercation/mutt-colors-solarized.git ~/.mutt/
+  git clone git@github.com:altercation/mutt-colors-solarized.git ~/.mutt/mutt-colors-solarized
   ( cd $HOME/.mutt/mutt-colors-solarized && ./mutt-compile-colors.sh)
 
   # install vim plugins
