@@ -3,12 +3,7 @@
 #Debug flag
 set -x
 
-
-
-
-files=(irssi vimrc muttrc bashrc tmux.conf)
-
-enviroment=(git mutt irssi tmux vim-nox)
+files=(irssi_conf vimrc muttrc bashrc tmux.conf)
 
 if [[ ! -d $HOME/.mutt ]]; then
     mkdir $HOME/.mutt $HOME/.cache/mutt/
@@ -36,6 +31,8 @@ put_files_in_correct_place()
 
     if [ "$1" = "muttrc" ]; then
         ln $1 $HOME/.mutt/$1
+        # mail_aliases_crypto is a file with some alias to my mail contacts.
+        # This is not useful to others users.
         ln mail_aliases_crypto $HOME/.mutt/mail_aliases_crypto
         return
     fi
@@ -52,6 +49,6 @@ do
     put_files_in_correct_place $file
 done
 
-./install_programs
+. install_programs.sh
 
 control_packages_install
