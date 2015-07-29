@@ -53,7 +53,9 @@ put_files_in_correct_place()
         ln $1 $HOME/.$1
 }
 
-echo "============= Putting config files in the correct places  =============="
+echo "============================================================"
+echo " Putting config files in the correct places  "
+echo "============================================================"
 sleep 4
 control_packages_install
 for file in ${files[@]}
@@ -63,16 +65,24 @@ done
 
 . install_programs.sh
 
-echo "============= Installing Packages =============="
+echo "============================================================"
+echo " Installing Packages "
+echo "============================================================"
 sleep 4
 control_packages_install
-echo "============= Cloning necessary repositories =============="
+echo
+echo "============================================================"
+echo " Cloning necessary repositories "
+echo "============================================================"
 sleep 4
 clone_repositories
 
-echo "============ Please, source your new bashrc ====================="
-echo "============ command: source ~/.bashrc ====================="
-printf "============ If you don't like the new look of your shell, \n 
-changes the current bashrc file  by the bashrc_bkp file ====================="
+echo
+echo "============================================================"
+echo "Please, source your new bashrc" 
+printf "command: source ~/.bashrc \n"
+printf "If you don't like the new look of your shell, \n 
+change the current bashrc file  by the bashrc_bkp file. \n"
+echo "============================================================"
 sleep 4
 
