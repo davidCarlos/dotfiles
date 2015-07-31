@@ -1,19 +1,19 @@
-# ~/.tmuxinator/default.yml
+# ~/.tmuxinator/default_env.yml
 
 name: default
 root: ~/
 
 windows:
-  - vim:
+  - VIM:
       layout: main-horizontal
       panes:
         - vim
         - 
         -
-  - mutt:
+  - MAIL:
       - mutt
-  - irssi:
-      - irssi
+  - IRC:
+      - weechat
   - auxiliar:
       -
     
