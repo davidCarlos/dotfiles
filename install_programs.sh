@@ -16,7 +16,7 @@ control_packages_install()
   fi
 }
 
-programs=(git mutt irssi tmux vim.nox sudo)
+programs=(git mutt irssi tmux vim.nox sudo weechat)
 
 # Receives sudo or su -c from control_install
 apt_get_install()

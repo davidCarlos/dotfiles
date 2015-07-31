@@ -51,6 +51,13 @@ put_files_in_correct_place()
         cp $HOME/.$1 $HOME/.$1'_bkp' && rm $HOME/.$1
     fi
         ln $1 $HOME/.$1
+
+    if [[ -e $HOME/.weechat/irc.conf ]]; then
+        cp $HOME/.weechat/irc.conf $HOME/.weechat/irc.conf_bkp 
+        rm $HOME/.weechat/irc.conf
+    fi
+        ln irc.conf $HOME/.weechat/irc.conf
+
 }
 
 echo "============================================================"

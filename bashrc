@@ -107,9 +107,10 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-alias tmux="TERM=screen-256color-bce tmux"
-alias mutt="TERM=screen-256color-bce mutt"
-alias tmuxinator="TERM=screen-256color-bce tmuxinator"
+# alias tmux="TERM=screen-256color-bce tmux"
+# alias mutt="TERM=screen-256color-bce mutt"
+# alias tmuxinator="TERM=screen-256color-bce tmuxinator"
+set -g default-terminal "screen-256color"
 
 # # Alias definitions.
 # # You may want to put all your additions into a separate file like
