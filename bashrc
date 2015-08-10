@@ -1,6 +1,6 @@
 # Reset
 Color_Off="\[\033[0m\]"       # Text Reset
- 
+
 # Regular Colors
 Black="\[\033[0;30m\]"        # Black
 Red="\[\033[0;31m\]"          # Red
@@ -107,10 +107,10 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-# alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=screen-256color-bce tmux"
 # alias mutt="TERM=screen-256color-bce mutt"
-# alias tmuxinator="TERM=screen-256color-bce tmuxinator"
-set -g default-terminal "screen-256color"
+alias tmuxinator="TERM=screen-256color-bce tmuxinator"
+#set -g default-terminal "screen-256color"
 
 # # Alias definitions.
 # # You may want to put all your additions into a separate file like
@@ -160,3 +160,5 @@ add_venv_info () {
 }
 PROMPT_COMMAND="$PROMPT_COMMAND add_venv_info"
 export EDITOR="vim"
+alias default_env="tmuxinator start default_env"
+alias packing="tmuxinator start empacotamento"
