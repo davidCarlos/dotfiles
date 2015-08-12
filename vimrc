@@ -43,9 +43,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tomasr/molokai'
+" Colorschemes
 Plugin 'sjl/badwolf'
+Plugin 'whatyouhide/vim-gotham'
 
 " Show undo tree in a better way.
 Plugin 'vim-scripts/Gundo'
@@ -53,9 +53,8 @@ Plugin 'vim-scripts/Gundo'
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
 
-"rails plugins"
-Plugin 'tpope/vim-rails'
-Plugin 'ngmy/vim-rubocop'
+"escentials plugins"
+Plugin 'jiangmiao/auto-pairs'
 
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
@@ -83,7 +82,7 @@ set relativenumber
 set term=screen-256color
 
 " Some colorschemes as solarized needs background=light
-set background=dark
+set background=light
 set t_Co=256
 colorscheme badwolf
 
@@ -154,7 +153,7 @@ let g:NERDTreeWinPos="left"
 nmap <F8> :TagbarToggle<CR>
 nmap <F6> :Vexplore<CR>
 
-" Use nativa vim buffers, instead of CtrlP
+" Use native vim buffers, instead of CtrlP
 nmap <LEADER>l :buffers<CR>:buffer<Space>
 
 "==============================================
@@ -163,7 +162,8 @@ nmap <LEADER>l :buffers<CR>:buffer<Space>
 "========== LEADER keys ===============
 nmap <LEADER>q :q<CR>
 nmap <LEADER>w :w<CR>
-" Save file with sudo permission
+
+" Save file with sudo permission (nice mapping)
 nmap <LEADER>R :w !sudo tee %<CR>
 nmap <LEADER>x :x<CR>
 nmap <LEADER>p :pwd<CR>
@@ -172,8 +172,6 @@ nmap <LEADER>d :lcd %:p:h<CR>
 nmap <LEADER>m :so $MYVIMRC<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
-
-
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -201,35 +199,6 @@ nmap <c-t> :tabnew<CR>
 
 " clean hlsearch
 nnoremap <C-L> :nohl<CR><C-L>
-
-"============ Install Dependencies ====================="
-fun! AmIOnDebian()
-    silent let s:so = system("uname -a")
-    let s:comp = "Debian"
-    if s:so =~ s:comp
-        call InstallDependencies()
-    else
-        echo "You will need to install dependencies manually"
-    endif
-endfun
-
-fun! InstallDependencies()
-    echo "Installing Ctags..."
-    echo system("sudo apt-get install exuberant-ctags")
-    echo "Installing Ag..."
-    echo system("sudo apt-get install silversearcher-ag")
-    call InstallVundle()
-    BundleInstall
-endfun
-
-"https://github.com/justinmk/config/
-fun! InstallVundle()
-    echo "Installing Vundle..."
-    silent call mkdir(expand("~/.vim/bundle", 1), 'p')
-    echo system("git clone https://github.com/gmarik/vundle.git")
-    ~/.vim/bundle/vundle
-endfun
-"========================================================="
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
