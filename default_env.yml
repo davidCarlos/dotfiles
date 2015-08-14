@@ -13,7 +13,7 @@ windows:
   - MAIL:
       - mutt
   - IRC:
-      - ssh david@104.131.114.132
+      - ssh  david@104.131.114.132  -t 'tmux attach'
   - auxiliar:
       -
     

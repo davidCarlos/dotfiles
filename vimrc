@@ -52,6 +52,7 @@ Plugin 'vim-scripts/Gundo'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
 
 "escentials plugins"
 Plugin 'jiangmiao/auto-pairs'
@@ -97,8 +98,7 @@ set expandtab
 set shiftround
 " Always show an status line
 set laststatus=2
-
-set softtabstop=4
+set softtabstop=2
 set shiftwidth=4
 set showmode
 
@@ -120,6 +120,7 @@ set colorcolumn=80
 set cursorline
 set enc=utf-8
 set foldmethod=manual
+set ch=2
 let mapleader=","
 
 " =========== Moves ===============
