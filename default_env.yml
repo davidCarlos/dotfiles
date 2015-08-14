@@ -13,7 +13,7 @@ windows:
   - MAIL:
       - mutt
   - IRC:
-      - weechat
+      - ssh david@104.131.114.132
   - auxiliar:
       -
     

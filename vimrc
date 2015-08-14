@@ -155,6 +155,9 @@ nmap <F6> :Vexplore<CR>
 
 " Use native vim buffers, instead of CtrlP
 nmap <LEADER>l :buffers<CR>:buffer<Space>
+nmap <LEADER>b :b#<CR>
+nmap <LEADER>bn :bnext<CR>
+nmap <LEADER>bp :bprevious<CR>
 
 "==============================================
 
@@ -177,7 +180,6 @@ nmap <LEADER>s :split <CR>
 nnoremap <LEADER>a :Ag
 
 " Tabs
-nmap <LEADER>b :b#<CR>
 nmap <LEADER>r :reg<CR>
 "=======================================
 
@@ -185,6 +187,7 @@ nmap <LEADER>r :reg<CR>
 " ========= Fugitive maps ============
 nmap  gs :Gstatus<CR>
 nmap  gd :Gdiff<CR>
+nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
 "======================================
