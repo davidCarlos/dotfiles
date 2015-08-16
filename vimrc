@@ -80,6 +80,7 @@ autocmd FileType c++ set softtabstop=4 tabstop=4
 
 syntax enable
 set relativenumber
+set number
 set term=screen-256color
 
 " Some colorschemes as solarized needs background=light
@@ -133,6 +134,7 @@ nmap k gk
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
 
 "jump to beginning of the line
 nmap E $
@@ -140,7 +142,7 @@ nmap B ^
 vmap E $
 vmap B ^
 
-"inprove movements, use f{char} or F{char}
+"inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
 "=============================
@@ -191,6 +193,7 @@ nmap  gd :Gdiff<CR>
 nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
+nnoremap gv :Gitv<CR>
 "======================================
 
 
@@ -202,7 +205,32 @@ nmap <F5> :RuboCop<CR>
 nmap <c-t> :tabnew<CR>
 
 " clean hlsearch
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <F12> :nohl<CR><C-L>
+
+" Increase width vertical resize.
+nnoremap <C-W>< :vertical resize +10<CR>
+nnoremap <C-W>> :vertical resize -10<CR>
+
+"reference: "http://vim.wikia.com/wiki/Maximize_window_and_return_to_previous_split_structure
+" Very usefull to use with splits.
+nnoremap <C-W>O :call MaximizeToggle()<CR>
+nnoremap <C-W>o :call MaximizeToggle()<CR>
+nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
+function! MaximizeToggle()
+    if exists("s:maximize_session")
+        exec "source " . s:maximize_session
+        call delete(s:maximize_session)
+        unlet s:maximize_session
+        let &hidden=s:maximize_hidden_save
+        unlet s:maximize_hidden_save
+    else
+        let s:maximize_hidden_save = &hidden
+        let s:maximize_session = tempname()
+        set hidden
+        exec "mksession! " . s:maximize_session
+        only
+    endif
+endfunction
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
