@@ -53,6 +53,7 @@ Plugin 'vim-scripts/Gundo'
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
+Plugin 'jaxbot/github-issues.vim'
 
 "escentials plugins"
 Plugin 'jiangmiao/auto-pairs'
@@ -187,13 +188,17 @@ nmap <LEADER>r :reg<CR>
 "=======================================
 
 
-" ========= Fugitive maps ============
+" ========= Git maps ============
 nmap  gs :Gstatus<CR>
 nmap  gd :Gdiff<CR>
 nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
 nnoremap gv :Gitv<CR>
+
+" Works only for github.
+nnoremap gi :Gissues<CR>
+
 "======================================
 
 
