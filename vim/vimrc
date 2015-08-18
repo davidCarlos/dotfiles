@@ -146,6 +146,7 @@ vmap B ^
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
+
 "=============================
 
 
@@ -182,6 +183,9 @@ nmap <LEADER>s :split <CR>
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
+
+"quick jump to shell
+nnoremap <LEADER>s :sh<CR>
 
 " Tabs
 nmap <LEADER>r :reg<CR>
