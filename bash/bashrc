@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ -f ~/.bash/colors ]]; then
+  . ~/.bash/colors
+fi
+
+if [[ -f ~/.bash/bash_aliases ]]; then
+    . ~/.bash/bash_aliases
+fi
+
+ if [ "$color_prompt" = yes ]; then
+
+if [[ ${EUID} == 0 ]] ; then
+    sq_color=$BRed
+  else
+      sq_color=$BRed
+    fi
+ S1='\[\e[1;32m\]${debian_chroot:+($debian_chroot)}\u::\[\e[m\]\[\e[1;31m\]\h:\[\e[1;33m\]{\w}\[\e[1;37m\] --> '
+ else
+ export PS1="$BWhite\342\224\214\342\224\200\[[\e[1;32m\]${debian_chroot:+($debian_chroot)}\u$sq_color\[\e[1;37m\]]::\[[\e[1;31m\]\h\[\e[1;37m\]]\[\e[1;33m\]\n$BWhite\342\224\224\342\224\200>\[[\e[1;37m\]\[\e[1;33m\]\w\[\e[1;37m\]] "
+  unset sq_color
+ fi
+
+PROMPT_COMMAND="$PROMPT_COMMAND add_venv_info"
+export EDITOR="vim"
