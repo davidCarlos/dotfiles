@@ -1,10 +1,10 @@
+#!/bin/bash
+
 if [[ -f ~/.bash/colors ]]; then
-  #statements
     . ~/.bash/colors
 fi
 
 if [[ -f ~/.bash/bash_aliases ]]; then
-  #statements
     . ~/.bash/bash_aliases
 fi
 
@@ -18,13 +18,21 @@ if [[ ${EUID} == 0 ]] ; then
     fi
  S1='\[\e[1;32m\]${debian_chroot:+($debian_chroot)}\u::\[\e[m\]\[\e[1;31m\]\h:\[\e[1;33m\]{\w}\[\e[1;37m\] --> '
  else
- export PS1="$BWhite\342\224\214\342\224\200\[[\e[1;32m\]${debian_chroot:+($debian_chroot)}\u$sq_color\[\e[1;37m\]]::\[[\e[1;31m\]\h\[\e[1;37m\]]\[\e[1;33m\]\n$BWhite\342\224\224\342\224\200>\[[\e[1;37m\]\[\e[1;33m\]\w\[\e[1;37m\]] "
+ export PS1="$BWhite\342\224\214\342\224\200\[[\e[1;32m\]${debian_chroot:+($debian_chroot)}\u$sq_color\[\e[1;37m\]]::\[[\e[1;31m\]\h\[\e[1;37m\]]\[\e[1;33m\]\n$BWhite\342\224\224\342\224\200>\[[\e[1;37m\]\[\e[1;33m\]\W\[\e[1;37m\]] "
   unset sq_color
  fi
 
- if [ -f bash_aliases ]; then
-     . bash_aliases
+ if [ -f ~/.bash/bash_aliases ]; then
+     . ~/.bash/bash_aliases
  fi
 
- export PATH=$PATH:/home/david/bin
+export PATH=$PATH:/home/david/bin
 export EDITOR="vim"
+
+empacotamento=~/projetos/empacotamentos/softwarepublico/vagrant
+alias pkg="cd $empacotamento/pkg-rpm"
+
+obs()
+{
+  cd $empacotamento/pkg-rpm/.obs/isv:spb:"$1"
+}
