@@ -1,19 +1,48 @@
 #!/bin/bash
+. ./dotf.sh
+bkp=$BKPDIR/bash/
+
+# DF_DIR is dotf.sh path
+path=$DF_DIR/bash/
+dotfile=bashrc
+
+create_bkp()
+{
+    mkdir $bkp > /dev/null
+}
+
 manage_action()
 {
     action=$1
     if [[ $action == 'install' ]]; then
       install
-      echo "ok"
     fi
 }
 
 install()
 {
-    if [[  -e $HOME/.bashrc ]]; then
-        cp "$HOME"/.bashrc "$HOME"/.bashrc'_bkp'
+    if [[  -e $HOME/.$dotfile ]]; then
+        mv "$HOME"/.$dotfile $bkp
     fi
-    ln -f bashrc "$HOME"/.bashrc
+    ln -f $path/$dotfile "$HOME"/.$dotfile
+
+}
+
+install()
+{
+    if [[  -e $HOME/.$dotfile ]]; then
+        mv "$HOME"/.$dotfile $bkp
+    fi
+    ln -f $path/$dotfile "$HOME"/.$dotfile
+
+    mkdir ~/.bash > /dev/null
+    ln -f $path/aliases ~/.bash/aliases
+    ln -f $path/colors ~/.bash/colors
+}
+
+restore()
+{
+  
 }
 
 manage_action "$1"
