@@ -14,19 +14,16 @@ create_bkp()
 manage_action()
 {
     action=$1
-    if [[ $action == 'install' ]]; then
-      install
-    fi
-}
 
-install()
-{
-    if [[  -e $HOME/.$dotfile ]]; then
-        mv "$HOME"/.$dotfile $bkp
-    fi
-    ln -f $path/$dotfile "$HOME"/.$dotfile
+    case $action in
+      'install')
+        install ;;
+      'clean')
+        clean ;;
+    esac
 
 }
+
 
 install()
 {
@@ -38,6 +35,12 @@ install()
     mkdir ~/.bash > /dev/null
     ln -f $path/aliases ~/.bash/aliases
     ln -f $path/colors ~/.bash/colors
+}
+
+clean()
+{
+    rm -rf ~/.bash/
+    mv $bkp/.$dotfile "$HOME"/
 }
 
 create_bkp
