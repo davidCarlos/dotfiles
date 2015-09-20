@@ -4,17 +4,22 @@ bkp=$BKPDIR/vim/
 path=$DF_DIR/vim/
 dotfile=vimrc
 
-create_bkp()
-{
-    mkdir $bkp > /dev/null
-}
-
 manage_action()
 {
     action=$1
-    if [[ $action == 'install' ]]; then
-      install
-    fi
+
+    case $action in
+      'install')
+        install ;;
+      'clean')
+        clean ;;
+    esac
+
+}
+
+create_bkp()
+{
+    mkdir $bkp > /dev/null
 }
 
 install()
@@ -35,25 +40,13 @@ install()
     vim -c BundleInstall
 }
 
-clean()
+restore()
 {
     sudo rm -rf ~/.vim/
     mv $bkp/.$dotfile "$HOME"/
     mv $bkp/.vim/ "$HOME"/
 }
 
-manage_action()
-{
-    action=$1
-
-    case $action in
-      'install')
-        install ;;
-      'clean')
-        clean ;;
-    esac
-
-}
 
 install_dependencies()
 {

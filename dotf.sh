@@ -8,7 +8,7 @@ _help()
 {
     echo "================================================================="
     echo "./dotf.sh install {dotf}       Installs only {dotf}"
-    echo "./dotf.sh clean {dotf}         cleans from machine only {dotf}"
+    echo "./dotf.sh restore {dotf}         cleans from machine only {dotf}"
     echo "================================================================="
 }
 
