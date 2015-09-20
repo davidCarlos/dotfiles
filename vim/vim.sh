@@ -35,7 +35,7 @@ install()
     vim -c BundleInstall
 }
 
-clean()
+restore()
 {
     sudo rm -rf ~/.vim/
     mv $bkp/.$dotfile "$HOME"/

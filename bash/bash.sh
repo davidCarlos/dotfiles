@@ -37,7 +37,7 @@ install()
     ln -f $path/colors ~/.bash/colors
 }
 
-clean()
+restore()
 {
     rm -rf ~/.bash/
     mv $bkp/.$dotfile "$HOME"/
