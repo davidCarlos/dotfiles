@@ -38,7 +38,13 @@ install()
 restore()
 {
     sudo rm -rf ~/.vim/
-    mv $bkp/.$dotfile "$HOME"/
+
+    if [[ ! -e $bkp/.$dotfile ]]; then
+        rm $HOME/.$dotfile
+    else
+      mv $bkp/.$dotfile "$HOME"/
+    fi
+
     mv $bkp/.vim/ "$HOME"/
 }
 
