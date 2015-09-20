@@ -8,7 +8,7 @@ dotfile=bashrc
 
 create_bkp()
 {
-    mkdir $bkp > /dev/null
+    mkdir -p $bkp > /dev/null
 }
 
 manage_action()
@@ -40,9 +40,5 @@ install()
     ln -f $path/colors ~/.bash/colors
 }
 
-restore()
-{
-  
-}
-
+create_bkp
 manage_action "$1"

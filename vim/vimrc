@@ -53,7 +53,6 @@ Plugin 'vim-scripts/Gundo'
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
 Plugin 'gregsexton/gitv'
-Plugin 'jaxbot/github-issues.vim'
 
 "escentials plugins"
 Plugin 'jiangmiao/auto-pairs'
@@ -146,7 +145,6 @@ vmap B ^
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
-
 "=============================
 
 
@@ -184,25 +182,18 @@ nmap <LEADER>s :split <CR>
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
 
-"quick jump to shell
-nnoremap <LEADER>s :sh<CR>
-
 " Tabs
 nmap <LEADER>r :reg<CR>
 "=======================================
 
 
-" ========= Git maps ============
+" ========= Fugitive maps ============
 nmap  gs :Gstatus<CR>
 nmap  gd :Gdiff<CR>
 nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
 nnoremap gv :Gitv<CR>
-
-" Works only for github.
-nnoremap gi :Gissues<CR>
-
 "======================================
 
 
