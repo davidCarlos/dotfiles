@@ -1,9 +1,12 @@
+# Autenticação pela chave gpg ainda não está funfando direito.
+source "gpg2 -dq $HOME/.mutt/passwd.gpg |"
 source ~/.mutt/mail_aliases 
+source ~/.mutt/sidebar 
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
-set alias_file =~/.mutt/mail_aliases
 
 set editor = vim
 set my_name = 'David Carlos'
+set imap_pass=$my_pw_personal
 set mail_check = 90
 set timeout = 15
 set folder = imaps://imap.gmail.com/
@@ -11,18 +14,27 @@ set imap_user = 'ddavidcarlos1392'
 set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
 set from = ddavidcarlos1392@gmail.com
 set realname = 'David Carlos'
+set signature = '~/.mutt/signature'
 
-mailboxes =INBOX
-mailboxes imaps://imap.gmail.com/INBOX 
+set spoolfile=+INBOX
+
+mailboxes =INBOX =sent =spb-dev
 unset imap_passive
 set imap_keepalive = 300
 
 set header_cache = ~/.cache/mutt
 set message_cachedir = ~/.cache/mutt
+set send_charset = "us-ascii:utf-8"
+alternative_order text/plain text/html
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
 
 folder-hook INBOX set sort=date-received
+folder-hook sent set sort=date-received
+
+
 
 ##Pressing Control-b will allow browse and open the URLs in the currently selected message
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message
-
