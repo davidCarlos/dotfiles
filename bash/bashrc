@@ -4,8 +4,8 @@ if [[ -f ~/.bash/colors ]]; then
     . ~/.bash/colors
 fi
 
-if [[ -f ~/.bash/bash_aliases ]]; then
-    . ~/.bash/bash_aliases
+if [[ -f ~/.bash/aliases ]]; then
+    . ~/.bash/aliases
 fi
 
 
@@ -22,15 +22,8 @@ if [[ ${EUID} == 0 ]] ; then
   unset sq_color
  fi
 
- if [ -f ~/.bash/bash_aliases ]; then
-     . ~/.bash/bash_aliases
- fi
-
 export PATH=$PATH:/home/david/bin
 export EDITOR="vim"
-
-empacotamento=~/projetos/empacotamentos/softwarepublico/vagrant
-alias pkg="cd $empacotamento/pkg-rpm"
 
 obs()
 {
