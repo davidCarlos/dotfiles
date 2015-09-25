@@ -1,29 +1,9 @@
 #!/bin/bash
 . ./dotf.sh
-bkp=$BKPDIR/bash/
-
-# DF_DIR is dotf.sh path
-path=$DF_DIR/bash/
+app=bash
+bkp=$BKPDIR/$app/
+path=$DF_DIR/$app/
 dotfile=bashrc
-
-create_bkp()
-{
-    mkdir -p $bkp > /dev/null
-}
-
-manage_action()
-{
-    action=$1
-
-    case $action in
-      'install')
-        install ;;
-      'clean')
-        clean ;;
-    esac
-
-}
-
 
 install()
 {
@@ -32,16 +12,10 @@ install()
     fi
     ln -f $path/$dotfile "$HOME"/.$dotfile
 
-    mkdir ~/.bash > /dev/null
-    ln -f $path/aliases ~/.bash/aliases
-    ln -f $path/colors ~/.bash/colors
+    mkdir ~/.$app > /dev/null
+    ln -f $path/aliases ~/.$app/aliases
+    ln -f $path/colors ~/.$app/colors
 }
 
-restore()
-{
-    rm -rf ~/.bash/
-    mv $bkp/.$dotfile "$HOME"/
-}
-
-create_bkp
+create_bkp "$bkp"
 manage_action "$1"
