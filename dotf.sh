@@ -34,7 +34,7 @@ manage_action()
     case $action in
       'install')
         install ;;
-      'clean')
+      'restore')
         sample_restore ;;
     esac
 }
