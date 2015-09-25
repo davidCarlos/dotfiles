@@ -1,0 +1,13 @@
+# ~/.tmuxinator/dev_env.yml
+
+name: dev_env
+root: ~/
+
+windows:
+    - default:
+        layout: tiled
+        panes:
+            - 
+            - 
+            -
+            -
