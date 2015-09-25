@@ -57,6 +57,9 @@ Plugin 'gregsexton/gitv'
 "escentials plugins"
 Plugin 'jiangmiao/auto-pairs'
 
+"Markdown""
+Plugin 'suan/vim-instant-markdown'
+
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
@@ -118,7 +121,7 @@ set hlsearch
 set columns=80
 set colorcolumn=80
 
-set cursorline
+"set cursorline
 set enc=utf-8
 set foldmethod=manual
 set ch=2
@@ -146,7 +149,6 @@ vmap B ^
 nmap l <nop>
 nmap h <nop>
 "=============================
-
 
 "========= Navigation stuffs ==================
 nmap <F7> :NERDTreeCWD<CR>
@@ -178,6 +180,7 @@ nmap <LEADER>d :lcd %:p:h<CR>
 nmap <LEADER>m :so $MYVIMRC<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
+nmap <LEADER>c :!ctags -R <CR>
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -187,12 +190,14 @@ nmap <LEADER>r :reg<CR>
 "=======================================
 
 
-" ========= Fugitive maps ============
+" ========= Git maps ============
 nmap  gs :Gstatus<CR>
 nmap  gd :Gdiff<CR>
 nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
+nnoremap gl :Git log<CR>
+nnoremap gS :Git show<CR>
 nnoremap gv :Gitv<CR>
 "======================================
 

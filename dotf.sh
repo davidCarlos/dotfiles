@@ -24,3 +24,36 @@ if [[ -d $target ]]; then
   ./$target/$target'.sh' $action
 fi
 
+
+#This functions is executed by the dotfile scripts.
+# manage_action, create_bkp
+manage_action()
+{
+    action=$1
+
+    case $action in
+      'install')
+        install ;;
+      'clean')
+        sample_restore ;;
+    esac
+}
+
+create_bkp()
+{
+    bkp=$1
+    mkdir -p  $bkp > /dev/null
+}
+
+sample_restore()
+{
+    sudo rm -rf ~/.$app/
+
+    if [[ ! -e $bkp/.$dotfile ]]; then
+        rm $HOME/.$dotfile
+    else
+      mv $bkp/.$dotfile "$HOME"/
+    fi
+
+    mv $bkp/.$app/ "$HOME"/
+}
