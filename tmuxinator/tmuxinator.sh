@@ -3,14 +3,14 @@
 app=tmuxinator
 bkp=$BKPDIR/$app/
 path=$DF_DIR/$app/
-dotfiles=(dev2_env.yml deve_env.yml web.yml)
+dotfiles=(dev2_env.yml dev_env.yml web.yml)
 
 install()
 {
     install_tmuxinator
 
     if [[ -d $HOME/.$app ]]; then
-        mv "$HOME"/.$app $bkp/
+        mv "$HOME"/.$app $bkp/ > /dev/null
     fi
 
     mkdir -p "$HOME"/.$app/ > /dev/null
