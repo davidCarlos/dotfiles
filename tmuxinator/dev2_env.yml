@@ -1,6 +1,6 @@
-# ~/.tmuxinator/dev_env.yml
+# ~/.tmuxinator/dev2_env.yml
 
-name: dev_env
+name: dev2_env
 root: ~/
 
 windows:

@@ -41,7 +41,7 @@ install_tmuxinator()
 sample_restore()
 {
     sudo rm -rf ~/.$app/
-    sudo gem remove tmuxinator
+    sudo gem uninstall tmuxinator
     mv $bkp/.$app/ "$HOME"/
 }
 
