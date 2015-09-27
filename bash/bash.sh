@@ -1,5 +1,7 @@
 #!/bin/bash
 . ./dotf.sh
+. ./messages.sh
+
 app=bash
 bkp=$BKPDIR/$app/
 path=$DF_DIR/$app/
@@ -7,6 +9,7 @@ dotfile=bashrc
 
 install()
 {
+    config_files_msg
     if [[  -e $HOME/.$dotfile ]]; then
         mv "$HOME"/.$dotfile "$bkp"
     fi

@@ -1,12 +1,16 @@
 #!/bin/bash
 . ./dotf.sh
-local app=vim
-local bkp=$BKPDIR/$app/
-local path=$DF_DIR/$app/
-local dotfile=vimrc
+. ./messages.sh
+
+app=vim
+bkp=$BKPDIR/$app/
+path=$DF_DIR/$app/
+dotfile=vimrc
 
 install()
 {
+    create_bkp "$bkp"
+    config_files_msg
     if [[ -d $HOME/.$app/ ]]; then
         mv "$HOME"/.$app/ $bkp > /dev/null
     fi
@@ -28,10 +32,12 @@ install()
 
 install_dependencies()
 {
+    install_dependencies_msg $app
     update
     sudo apt-get install silversearcher-ag exuberant-ctags vim-nox -y
+
+    clone_repositories_msg $app
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.$app/bundle/Vundle.vim
 }
 
-create_bkp "$bkp"
 manage_action "$1"
