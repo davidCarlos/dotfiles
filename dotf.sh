@@ -1,6 +1,8 @@
 #!/bin/bash
 DF_DIR=$(pwd)
 BKPDIR=~/.dotf_bkps/
+WILL_UPDATE=0
+
 
 actions=("help" "install" "clean" "restore")
 
@@ -27,9 +29,17 @@ fi
 
 #This functions is executed by the dotfile scripts.
 # manage_action, create_bkp
+update()
+{
+    if [[ $WILL_UPDATE -eq 0 ]]; then
+        sudo apt-get update
+        WILL_UPDATE=1
+    fi
+}
+
 manage_action()
 {
-    action=$1
+    local action=$1
 
     case $action in
       'install')
@@ -41,7 +51,7 @@ manage_action()
 
 create_bkp()
 {
-    bkp=$1
+    local bkp=$1
     mkdir -p  $bkp > /dev/null
 }
 
