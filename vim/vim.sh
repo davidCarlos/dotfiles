@@ -1,9 +1,9 @@
 #!/bin/bash
 . ./dotf.sh
-app=vim
-bkp=$BKPDIR/$app/
-path=$DF_DIR/$app/
-dotfile=vimrc
+local app=vim
+local bkp=$BKPDIR/$app/
+local path=$DF_DIR/$app/
+local dotfile=vimrc
 
 install()
 {
@@ -18,7 +18,7 @@ install()
     install_dependencies
 
     ln -f $path/$dotfile "$HOME"/.$dotfile
-    user=$(whoami)
+    local user=$(whoami)
     sudo chown -R $user:$user ~/.$app/
     
     vim -c BundleInstall -c q -c q
@@ -26,7 +26,7 @@ install()
 
 install_dependencies()
 {
-    sudo apt-get update
+    update
     sudo apt-get install silversearcher-ag exuberant-ctags vim-nox -y
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.$app/bundle/Vundle.vim
 }
