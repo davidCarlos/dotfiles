@@ -1,5 +1,5 @@
 # Autenticação pela chave gpg ainda não está funfando direito.
-source "gpg2 -dq $HOME/.mutt/passwd.gpg |"
+source "gpg2 -dq $HOME/.mutt/mypwd.gpg |"
 source ~/.mutt/mail_aliases 
 source ~/.mutt/sidebar 
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
