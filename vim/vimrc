@@ -60,6 +60,7 @@ Plugin 'jiangmiao/auto-pairs'
 "Markdown""
 Plugin 'suan/vim-instant-markdown'
 
+let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
 endif
@@ -121,7 +122,7 @@ set hlsearch
 set columns=80
 set colorcolumn=80
 
-"set cursorline
+set cursorline
 set enc=utf-8
 set foldmethod=manual
 set ch=2
@@ -164,7 +165,9 @@ nmap <LEADER>b :b#<CR>
 nmap <LEADER>bn :bnext<CR>
 nmap <LEADER>bp :bprevious<CR>
 
-"==============================================
+"==================== Markdown Stuffs =======================
+let g:instant_markdown_autostart = 0
+"=============================================================
 
 
 "========== LEADER keys ===============
@@ -201,6 +204,22 @@ nnoremap gS :Git show<CR>
 nnoremap gv :Gitv<CR>
 "======================================
 
+"================= Synstastic stuffs ================
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 2
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 2
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_signs = 1
+
+" Jump to list errors
+nmap <LEADER>N :lnext<CR>
+nmap <LEADER>P :lprevious<CR>
+
+"===================================================
 
 " ========== Ruby stuffs ==================
 nmap <F5> :RuboCop<CR>
