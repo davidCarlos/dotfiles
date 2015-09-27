@@ -1,4 +1,5 @@
 #!/bin/bash
+. ./messages.sh
 DF_DIR=$(pwd)
 BKPDIR=~/.dotf_bkps/
 WILL_UPDATE=0
@@ -6,20 +7,12 @@ WILL_UPDATE=0
 
 actions=("help" "install" "clean" "restore")
 
-_help()
-{
-    echo "================================================================="
-    echo "./dotf.sh install {dotf}       Installs only {dotf}"
-    echo "./dotf.sh restore {dotf}         cleans from machine only {dotf}"
-    echo "================================================================="
-}
-
 action=$1
 target=$2
 
 
 if [[ $action == "help" ]]; then
-  _help
+  _help_msg
 fi
 
 if [[ -d $target ]]; then
@@ -27,8 +20,10 @@ if [[ -d $target ]]; then
 fi
 
 
-#This functions is executed by the dotfile scripts.
-# manage_action, create_bkp
+# This functions is executed by the dotfile scripts.
+# The variables that are called in the functions , and are not defined here,
+# are defined in dotfile scripts, that calls the function
+
 update()
 {
     if [[ $WILL_UPDATE -eq 0 ]]; then
@@ -52,14 +47,17 @@ manage_action()
 create_bkp()
 {
     local bkp=$1
-    mkdir -p  $bkp > /dev/null
+    create_bkp_msg "$bkp"
+    mkdir -p  "$bkp" > /dev/null
 }
 
 sample_restore()
 {
-    sudo rm -rf ~/.$app/
+    sample_restore_msg $app
 
-    if [[ ! -e $bkp/.$dotfile ]]; then
+    sudo rm -rf ~/."$app"/
+
+    if [[ ! -e $bkp/."$dotfile" ]]; then
         rm $HOME/.$dotfile
     else
       mv $bkp/.$dotfile "$HOME"/

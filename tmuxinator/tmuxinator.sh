@@ -1,5 +1,6 @@
 #!/bin/bash
 . ./dotf.sh
+. ./messages.sh
 app=tmuxinator
 bkp=$BKPDIR/$app/
 path=$DF_DIR/$app/
@@ -7,6 +8,8 @@ dotfiles=(dev2_env.yml dev_env.yml web.yml)
 
 install()
 {
+    config_files_msg $app
+
     install_tmuxinator
 
     if [[ -d $HOME/.$app ]]; then
@@ -23,6 +26,8 @@ install()
 
 install_tmuxinator()
 {
+    install_dependencies_msg $app
+
     which ruby
 
     if [[ 0 -eq $? ]]; then
@@ -40,6 +45,7 @@ install_tmuxinator()
 
 sample_restore()
 {
+    sample_restore_msg $app
     sudo rm -rf ~/.$app/
     sudo gem uninstall tmuxinator
     mv $bkp/.$app/ "$HOME"/

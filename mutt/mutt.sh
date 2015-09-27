@@ -10,6 +10,8 @@ install()
 
     install_dependencies 
 
+    config_files_msg
+
     local dotfiles=(mail_aliases_crypto muttrc mypwd.gpg sidebar signature)
 
     for file in "${dotfiles[@]}"
@@ -20,6 +22,8 @@ install()
 
 install_dependencies()
 {
+    install_dependencies_msg
+
     update
     sudo apt-get install mutt-patched
     git clone git@github.com:altercation/mutt-colors-solarized.git ~/.$app/mutt-colors-solarized
