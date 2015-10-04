@@ -4,6 +4,7 @@ source ~/.mutt/mail_aliases
 source ~/.mutt/sidebar 
 source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
 
+auto_view text/html
 set editor = vim
 set my_name = 'David Carlos'
 set imap_pass=$my_pw_personal

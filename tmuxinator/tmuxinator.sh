@@ -28,6 +28,14 @@ install_tmuxinator()
 {
     install_dependencies_msg $app
 
+    which tmux
+
+
+    if [[ ! $? -eq 0 ]]; then
+      echo "You need to install tmux, to use tmuxinator"
+      return 1
+    fi
+
     which ruby
 
     if [[ 0 -eq $? ]]; then
