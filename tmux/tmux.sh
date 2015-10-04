@@ -25,7 +25,7 @@ install_dependencies()
     which tmux
 
     if [[ ! $? -eq 0 ]]; then
-        sudo apt-get install tmux
+        sudo apt-get install -y tmux
     fi
 }
 
