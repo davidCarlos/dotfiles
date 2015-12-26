@@ -16,6 +16,7 @@ if [[ $action == "help" ]]; then
 fi
 
 if [[ -d $target ]]; then
+   chmod u+x $target/$target'.sh'
   ./$target/$target'.sh' $action
 fi
 
