@@ -1,5 +1,5 @@
 #!/bin/bash
-
+my_home=/home/david
 if [[ -f ~/.bash/colors ]]; then
     . ~/.bash/colors
 fi
@@ -23,7 +23,14 @@ if [[ ${EUID} == 0 ]] ; then
  fi
 
 export PATH=$PATH:/home/david/bin
-export EDITOR="vim"
+export EDITOR="nvim"
+
+# O rofi(i3) precisa desse link simbólico para achar o Telegram
+if [ ! -e /usr/bin/Telegram ]; then
+    if [ -e $my_home/Downloads/Telegram/Telegram ]; then
+        ln -s $my_home/Downloads/Telegram/Telegram /usr/bin/Telegram
+    fi
+fi
 
 obs()
 {
