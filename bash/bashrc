@@ -22,17 +22,18 @@ if [[ ${EUID} == 0 ]] ; then
   unset sq_color
  fi
 
+#Personal stuffs
 export PATH=$PATH:/home/david/bin
 export EDITOR="nvim"
-
 # O rofi(i3) precisa desse link simbólico para achar o Telegram
 if [ ! -e /usr/bin/Telegram ]; then
     if [ -e $my_home/Downloads/Telegram/Telegram ]; then
-        ln -s $my_home/Downloads/Telegram/Telegram /usr/bin/Telegram
+        sudo ln -s $my_home/Downloads/Telegram/Telegram /usr/bin/Telegram
     fi
 fi
 
-obs()
-{
-  cd $empacotamento/pkg-rpm/.obs/isv:spb:"$1"
-}
+if [ ! -e /usr/bin/studio ]; then
+    if [ -e $my_home/Downloads/android-studio/bin/studio.sh ]; then
+        sudo ln -s $my_home/Downloads/android-studio/bin/studio.sh  /usr/bin/studio
+    fi
+fi
