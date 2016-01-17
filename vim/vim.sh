@@ -32,7 +32,8 @@ install_dependencies()
 {
     install_dependencies_msg $app
     update
-    sudo apt-get install silversearcher-ag exuberant-ctags vim-nox -y
+    sudo apt-get install silversearcher-ag \ 
+    exuberant-ctags vim-nox fonts-hack-ttf  -y
 
     clone_repositories_msg $app
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.$app/bundle/Vundle.vim
