@@ -14,7 +14,7 @@ call_dotfile_script()
         local _dotfile=${args[i]}
         if [[ -d $_dotfile ]]; then
             chmod u+x $_dotfile/$_dotfile'.sh'
-            ./$_dotfile/$_dotfile'.sh' $action &
+            ./$_dotfile/$_dotfile'.sh' $action
         fi
         i=$[$i + 1]
     done

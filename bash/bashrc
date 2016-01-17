@@ -24,7 +24,7 @@ if [[ ${EUID} == 0 ]] ; then
 
 #Personal stuffs
 export PATH=$PATH:/home/david/bin
-export EDITOR="nvim"
+export EDITOR="vim"
 # O rofi(i3) precisa desse link simbólico para achar o Telegram
 if [ ! -e /usr/bin/Telegram ]; then
     if [ -e $my_home/Downloads/Telegram/Telegram ]; then
