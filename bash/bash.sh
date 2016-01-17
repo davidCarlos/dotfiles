@@ -22,3 +22,4 @@ install()
 
 create_bkp "$bkp"
 manage_action "$1"
+bash_source_msg
