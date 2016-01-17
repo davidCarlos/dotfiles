@@ -17,6 +17,11 @@ This will do the following steps:
 - Install vim dependencies
 - Install vim plugins
 
+
+You can install more then one dotfile
+
+        ./dotf.sh install vim bash
+
 You can restore your older dotfiles
 
         ./dotf.sh restore vim
