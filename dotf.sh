@@ -4,22 +4,27 @@ DF_DIR=$(pwd)
 BKPDIR=~/.dotf_bkps/
 WILL_UPDATE=0
 
+args=("$@")
+action="${args[0]}"
 
-actions=("help" "install" "clean" "restore")
-
-action=$1
-target=$2
-
+call_dotfile_script()
+{
+    i="1"
+    while [[  ! -z "${args[i]// }"  ]]; do
+        local _dotfile=${args[i]}
+        if [[ -d $_dotfile ]]; then
+            chmod u+x $_dotfile/$_dotfile'.sh'
+            ./$_dotfile/$_dotfile'.sh' $action &
+        fi
+        i=$[$i + 1]
+    done
+}
 
 if [[ $action == "help" ]]; then
-  _help_msg
+    _help_msg
+else
+    call_dotfile_script
 fi
-
-if [[ -d $target ]]; then
-   chmod u+x $target/$target'.sh'
-  ./$target/$target'.sh' $action
-fi
-
 
 # This functions is executed by the dotfile scripts.
 # The variables that are called in the functions , and are not defined here,
@@ -35,21 +40,21 @@ update()
 
 manage_action()
 {
-    local action=$1
+    local _action=$1
 
-    case $action in
-      'install')
-        install ;;
-      'restore')
-        sample_restore ;;
+    case $_action in
+        'install')
+            install ;;
+        'restore')
+            sample_restore ;;
     esac
 }
 
 create_bkp()
 {
-    local bkp=$1
-    create_bkp_msg "$bkp"
-    mkdir -p  "$bkp" > /dev/null
+    local _bkp=$1
+    create_bkp_msg "$_bkp"
+    mkdir -p  "$_bkp" > /dev/null
 }
 
 sample_restore()
@@ -61,7 +66,7 @@ sample_restore()
     if [[ ! -e $bkp/."$dotfile" ]]; then
         rm $HOME/.$dotfile
     else
-      mv $bkp/.$dotfile "$HOME"/
+        mv $bkp/.$dotfile "$HOME"/
     fi
 
     mv $bkp/.$app/ "$HOME"/
