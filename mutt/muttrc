@@ -1,25 +1,23 @@
 # Autenticação pela chave gpg ainda não está funfando direito.
 source "gpg2 -dq $HOME/.mutt/mypwd.gpg |"
-source ~/.mutt/mail_aliases 
-source ~/.mutt/sidebar 
-source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/mail_aliases
+source ~/.mutt/sidebar
 
 auto_view text/html
 set editor = vim
 set my_name = 'David Carlos'
-set imap_pass=$my_pw_personal
 set mail_check = 90
 set timeout = 15
-set folder = imaps://imap.gmail.com/
+set folder = /home/david/Documentos/.Mail/ddavidcarlos1392@gmail.com/
 set imap_user = 'ddavidcarlos1392'
 set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
 set from = ddavidcarlos1392@gmail.com
 set realname = 'David Carlos'
 set signature = '~/.mutt/signature'
 
-set spoolfile=+INBOX
+set spoolfile=+sent
 
-mailboxes =INBOX =sent =spb-dev
+mailboxes +inbox +bak.e-mails_enviados +bak.importante
 unset imap_passive
 set imap_keepalive = 300
 
@@ -31,11 +29,35 @@ alternative_order text/plain text/html
 set date_format="%y-%m-%d %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
 
-folder-hook INBOX set sort=date-received
+folder-hook inbox set sort=date-received
 folder-hook sent set sort=date-received
-
-
 
 ##Pressing Control-b will allow browse and open the URLs in the currently selected message
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message
 macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message
+
+ignore *                                # ignore all headers
+unignore from: to: cc: date: subject:   # show only these
+unhdr_order *                           # some distros order things by default
+hdr_order from: to: cc: date: subject:  # and in this order
+
+set date_format = "%d/%m"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html

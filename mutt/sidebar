@@ -1,11 +1,18 @@
-set sidebar_width=25
+set sidebar_width=20
 set sidebar_visible=yes
-set sidebar_delim='|'
+set sidebar_delim='▍'
 set sidebar_sort=no
 set sidebar_newmail_only=yes   # only show folders with new mail
 
 # color of folders with new mail
-color sidebar_new yellow default
+color sidebar_new white green
+color index  white default ~A
+color index  red default ~D
+color normal white default 
+color status brightyellow cyan
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
 
 # ctrl-n, ctrl-p to select next, prev folder
 # ctrl-o to open selected folder
