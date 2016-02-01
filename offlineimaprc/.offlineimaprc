@@ -1,0 +1,29 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+ui = TTY.TTYUI
+accounts = Gmail
+fsync = false
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = GmailMaildir
+localfolders = ~/Documentos/.Mail/ddavidcarlos1392@gmail.com
+
+[Repository Gmail-Remote]
+type = Gmail
+remoteuser = ddavidcarlos1392@gmail.com
+maxconnections = 3
+nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
+                               re.sub ('sent', 'sent',
+                               re.sub ('starred', 'flagged',
+                               re.sub ('send_to_me', 'imp',
+                               re.sub ('inbox', 'inbox',
+                               re.sub (' ', '_', foldername.lower()))))))
+folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
+folderfilter = lambda f: f not in ['sent', 'fisl', 'inbox']
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
