@@ -50,6 +50,13 @@ Plugin 'gregsexton/gitv'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 
+" Rails stuff
+Plugin 'ngmy/vim-rubocop'
+Plugin 'tpope/vim-rails'
+
+
+
+
 
 "Markdown""
 Plugin 'suan/vim-instant-markdown'
