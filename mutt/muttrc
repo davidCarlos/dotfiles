@@ -8,7 +8,8 @@ set editor = vim
 set my_name = 'David Carlos'
 set mail_check = 90
 set timeout = 15
-set record=""
+set record="~/Documentos/.Mail/ddavidcarlos1392@gmail.com/Sent"
+# set record=""
 set folder = /home/david/Documentos/.Mail/ddavidcarlos1392@gmail.com/
 set imap_user = 'ddavidcarlos1392'
 set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
@@ -18,7 +19,7 @@ set signature = '~/.mutt/signature'
 
 set spoolfile=+inbox
 
-mailboxes +inbox +bak.e-mails_enviados  +bak.importante
+mailboxes +inbox +bak.e-mails_enviados  +bak.importante +Sent
 unset imap_passive
 set imap_keepalive = 300
 

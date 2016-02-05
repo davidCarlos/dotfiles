@@ -2,7 +2,7 @@ set sidebar_width=30
 set sidebar_visible=yes
 set sidebar_delim='▍'
 set sidebar_sort=no
-set sidebar_newmail_only=yes   # only show folders with new mail
+#set sidebar_newmail_only=yes   # only show folders with new mail
 
 # color of folders with new mail
 color sidebar_new white green
