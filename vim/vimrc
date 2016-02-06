@@ -52,6 +52,11 @@ Plugin 'tpope/vim-surround'
 
 " Rails stuff
 Plugin 'ngmy/vim-rubocop'
+let g:vimrubocop_config = '~/.rubocop.yml'
+" Runs RuboCop when save ruby files.
+autocmd BufWritePost *.rb RuboCop
+
+
 Plugin 'tpope/vim-rails'
 
 
@@ -222,9 +227,6 @@ nmap <LEADER>N :lnext<CR>
 nmap <LEADER>P :lprevious<CR>
 
 "===================================================
-
-" ========== Ruby stuffs ==================
-nmap <F5> :RuboCop<CR>
 
 "=========== Other stuffs ===============
 
