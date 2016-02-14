@@ -1,4 +1,3 @@
-
 runtime! debian.vim
 
 
@@ -10,7 +9,6 @@ call vundle#rc()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
-
 Plugin 'gmarik/Vundle.vim'
 
 " Autocomplete to files
@@ -52,10 +50,13 @@ Plugin 'gregsexton/gitv'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 
+" Rails stuff
+Plugin 'ngmy/vim-rubocop'
+let g:vimrubocop_config = '~/.rubocop.yml'
+" Runs RuboCop when save ruby files.
 
-"Markdown""
-Plugin 'suan/vim-instant-markdown'
 
+Plugin 'tpope/vim-rails'
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -80,10 +81,8 @@ autocmd FileType c++ set softtabstop=4 tabstop=4
 
 
 syntax enable
-set mouse=
 set relativenumber
 set number
-"set =$TERM
 
 " Some colorschemes as solarized needs background=light
 set background=light
@@ -124,16 +123,10 @@ set cursorline
 set enc=utf-8
 set foldmethod=manual
 set ch=2
-
-set path+=$HOME/projetos/spb/softwarepublico/**
-nnoremap <LEADER>f :find 
-
 let mapleader=","
 
 " =========== Moves ===============
 nmap <c-t> :tabnew<CR>
-
-"find map
 
 "remove empty spaces
 nmap <F10> :%s/\s\+$//<CR>
@@ -162,6 +155,7 @@ let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
 "Ctags bar
 nmap <F8> :TagbarToggle<CR>
+nmap <F6> :Vexplore<CR>
 
 " Use native vim buffers, instead of CtrlP
 nmap <LEADER>l :buffers<CR>:buffer<Space>
@@ -198,7 +192,7 @@ nmap <LEADER>r :reg<CR>
 
 " ========= Git maps ============
 nmap  gs :Gstatus<CR>
-nmap  gd :Gdiff<CR>
+nmap  gd :Gvdiff<CR>
 nmap <LEADER>gw :Gwrite<CR>
 nnoremap gc :Gcommit
 nnoremap gp :Gpush
@@ -258,6 +252,7 @@ function! MaximizeToggle()
         only
     endif
 endfunction
+
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local

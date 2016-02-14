@@ -32,7 +32,7 @@ install_dependencies()
 {
     install_dependencies_msg $app
     update
-    sudo apt-get install silversearcher-ag \ 
+    sudo apt-get install vim silversearcher-ag \ 
     exuberant-ctags vim-nox fonts-hack-ttf  -y
 
     clone_repositories_msg $app

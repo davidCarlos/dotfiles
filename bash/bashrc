@@ -1,4 +1,8 @@
 #!/bin/bash
+
+#. ~/git-completion.bash
+
+force_color_prompt=yes
 my_home=/home/david
 if [[ -f ~/.bash/colors ]]; then
     . ~/.bash/colors
@@ -37,3 +41,18 @@ if [ ! -e /usr/bin/studio ]; then
         sudo ln -s $my_home/Downloads/android-studio/bin/studio.sh  /usr/bin/studio
     fi
 fi
+
+xrandr_monitor_casa()
+{
+    if [[ $1 == 2 ]]; then
+        xrandr --output HDMI1 --same-as eDP1 --mode 1280x720
+        return
+    fi
+
+    if [[ $1 == 1 ]]; then
+        xrandr --output eDP1 --mode 1280x720
+        return
+    fi
+
+    echo "Informe uma opção valida"
+}
