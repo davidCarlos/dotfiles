@@ -14,6 +14,8 @@ Plugin 'gmarik/Vundle.vim'
 " Autocomplete to files
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'mattn/emmet-vim'
+
 Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
@@ -38,6 +40,9 @@ Plugin 'xolox/vim-misc'
 " Colorschemes
 Plugin 'sjl/badwolf'
 Plugin 'whatyouhide/vim-gotham'
+Plugin 'easysid/mod8.vim'
+Plugin 'fxn/vim-monochrome'
+Plugin 'jpo/vim-railscasts-theme'
 
 " Show undo tree in a better way.
 Plugin 'vim-scripts/Gundo'
@@ -53,8 +58,9 @@ Plugin 'tpope/vim-surround'
 " Rails stuff
 Plugin 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
-" Runs RuboCop when save ruby files.
 
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
 
@@ -83,12 +89,19 @@ autocmd FileType c++ set softtabstop=4 tabstop=4
 syntax enable
 set relativenumber
 set number
+set pastetoggle=<f6>
 
 " Some colorschemes as solarized needs background=light
 set background=light
-set t_Co=256
-colorscheme badwolf
+"set t_Co=256
+colorscheme gotham256
 
+set autochdir
+nmap <Tab> :tabnext<CR>
+nmap <S-Tab> :tabprevious<CR>
+
+" nvim remap
+"nnoremap <C-\>n <C-\><C-N>
 set showmatch
 set ignorecase
 set smartcase
@@ -119,8 +132,8 @@ set hlsearch
 set columns=80
 set colorcolumn=80
 
-set cursorline
-set enc=utf-8
+"set cursorline
+"set enc=utf-8
 set foldmethod=manual
 set ch=2
 let mapleader=","
@@ -147,6 +160,7 @@ vmap B ^
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
+nmap h <nop>
 "=============================
 
 "========= Navigation stuffs ==================
@@ -157,8 +171,7 @@ let g:NERDTreeWinPos="left"
 nmap <F8> :TagbarToggle<CR>
 nmap <F6> :Vexplore<CR>
 
-" Use native vim buffers, instead of CtrlP
-nmap <LEADER>l :buffers<CR>:buffer<Space>
+nmap <LEADER>l :CtrlPBuffer<CR>
 nmap <LEADER>b :b#<CR>
 nmap <LEADER>bn :bnext<CR>
 nmap <LEADER>bp :bprevious<CR>
