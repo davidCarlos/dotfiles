@@ -41,27 +41,37 @@ floating_modifier Mod4
 #bindsym Mod4+Return exec i3-sensible-terminal
 bindsym Mod4+Return exec terminator
 
-bindsym Mod4+o exec i3lock --image=/home/david/Imagens/img1.png
+bindsym Mod4+o exec i3lock --image=/home/david/Imagens/i3.png
 
 exec --no-startup-id nm-applet
 #
 # Control brightness according with time of day
 exec --no-startup-id redshift
 exec --no-startup-id megasync
-exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
 
 
+for_window [class="Thunar"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Evince"] floating enable
+for_window [instance="^eog$" class="^Eog$"] floating enable
+assign [class="^Spotify$" instance="^spotify$"]  
+assign [class="^Telegram$" instance="^Telegram$"]  
+assign [title="^irc$"]  
+assign [title="^mutt$"]  
+assign [title="^google-sync$"]  
+for_window [title="^google-sync$"] floating enable
+assign [class="^Firefox$" instance="^Navigator$"] 
+
 #To use  icon, install fonts-font-awesome package
 
-exec --no-startup-id i3-msg 'workspace   exec terminator; workspace '
-exec --no-startup-id i3-msg 'workspace ; exec iceweasel; workspace '
-exec --no-startup-id i3-msg 'workspace ; exec terminator -T mutt; workspace '
-exec --no-startup-id i3-msg 'workspace ; exec xfce4-terminal -T irc; workspace '
-exec --no-startup-id i3-msg 'workspace ; exec terminator -T google-sync; workspace '
-
+exec --no-startup-id xfce4-terminal
+exec --no-startup-id xfce4-terminal -T mutt
+exec --no-startup-id xfce4-terminal -T google-sync
+exec --no-startup-id firefox
+exec --no-startup-id xfce4-terminal -T irc
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -70,18 +80,15 @@ bindsym Mod4+Shift+q kill
 bindsym Mod4+d exec rofi -show run -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85 -lines 5 -font "Hack 10" -hide-scrollbar
 bindsym Mod4+x exec rofi -show window -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85 -lines 5 -font "Hack 10"  -font "Hack 10" -hide-scrollbar
 
-
-for_window [class="Thunar"] floating enable
-for_window [class="Evince"] floating enable
-assign [class="Spotify"]  
-assign [class="Telegram"]  
-
-workspace_layout tabbed
+workspace_layout default
 
 new_window pixel 4
 
-gaps inner 10
-gaps outer 10
+gaps inner 7
+gaps outer 4
+smart_gaps on
+smart_borders on
+
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -151,11 +158,11 @@ bindsym Mod4+minus scratchpad show
 
 # switch to workspace
 bindsym Mod4+1 workspace 
-bindsym Mod4+2 workspace 
-bindsym Mod4+3 workspace 
-bindsym Mod4+4 workspace 
-bindsym Mod4+5 workspace 5
-bindsym Mod4+6 workspace 6
+bindsym Mod4+2 workspace 
+bindsym Mod4+3 workspace 
+bindsym Mod4+4 workspace 
+bindsym Mod4+5 workspace 
+bindsym Mod4+6 workspace 
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
@@ -163,16 +170,18 @@ bindsym Mod4+0 workspace 10
 
 # move focused container to workspace
 bindsym Mod4+Shift+1 move container to workspace 
-bindsym Mod4+Shift+2 move container to workspace 
-bindsym Mod4+Shift+3 move container to workspace 
-bindsym Mod4+Shift+4 move container to workspace 
-bindsym Mod4+Shift+5 move container to workspace 5
-bindsym Mod4+Shift+6 move container to workspace 6
+bindsym Mod4+Shift+2 move container to workspace 
+bindsym Mod4+Shift+3 move container to workspace 
+bindsym Mod4+Shift+4 move container to workspace 
+bindsym Mod4+Shift+5 move container to workspace 
+bindsym Mod4+Shift+6 move container to workspace 
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
 bindsym Mod4+Shift+9 move container to workspace 9
 bindsym Mod4+Shift+0 move container to workspace 10
 
+
+workspace   output HDMI1
 # reload the configuration file
 bindsym Mod4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -188,16 +197,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
+        bindsym $left       resize shrink width 5 px or 5 ppt
+        bindsym $down       resize grow height 5 px or 5 ppt
+        bindsym $up         resize shrink height 5 px or 5 ppt
+        bindsym $right      resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
+        bindsym Left        resize shrink width 5 px or 5 ppt
+        bindsym Down        resize grow height 5 px or 5 ppt
+        bindsym Up          resize shrink height 5 px or 5 ppt
+        bindsym Right       resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -213,13 +222,14 @@ client.focused          #4c7899 #008B8B  #ffffff #008B8B
 
 bar {
 
+    #i3bar_command i3bar -t
     strip_workspace_numbers yes
     separator_symbol "⛏"
 
     colors{
 
+        background         #1a1a1a
         separator  #CD853F
-        background #000000
         statusline #708090
 
         #################  Border   Background  Text
