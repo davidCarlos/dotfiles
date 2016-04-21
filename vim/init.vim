@@ -96,9 +96,16 @@ set background=light
 "set t_Co=256
 colorscheme gotham256
 
-set autochdir
+
+"============= NEOVIM Stuff ================="
+nmap <LEADER>T :tabnew<CR>:terminal<CR>
+nmap <LEADER>S :vsplit<CR>:terminal<CR>
+nmap <LEADER>V :split<CR>:terminal<CR>
+
+" Moving to tabs usint <TAB> instead of gt
 nmap <Tab> :tabnext<CR>
 nmap <S-Tab> :tabprevious<CR>
+"============================================"
 
 " nvim remap
 "nnoremap <C-\>n <C-\><C-N>
@@ -265,7 +272,6 @@ function! MaximizeToggle()
         only
     endif
 endfunction
-
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
