@@ -13,7 +13,7 @@
 # is used in the bar {} block below.
 
 # https://github.com/supermarin/YosemiteSanFranciscoFont
-font pango:System San Francisco Display 10
+font pango:Hack, FontAwesome 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -37,57 +37,67 @@ set $right l
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
-bindsym Mod4+Return exec terminator
+bindsym Mod4+Return exec xfce4-terminal
 
 bindsym Mod4+o exec i3lock --image=/home/david/Imagens/i3.png
 
 exec --no-startup-id nm-applet
 #
 # Control brightness according with time of day
-exec --no-startup-id redshift
+# exec --no-startup-id redshift
 exec --no-startup-id megasync
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
 
 
-for_window [class="Thunar"] floating enable
 for_window [class="Nitrogen"] floating enable
-for_window [class="Evince"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
+for_window [title="^google-sync$"]  floating enable
+for_window [class=".*"] title_format "<b>%title</b>"
+for_window [instance="^Docky$" class="^Docky$"] floating enable
+
+bindsym Mod4+z bar hidden_state toggle
+
 assign [class="^Spotify$" instance="^spotify$"]  
-assign [class="^Telegram$" instance="^Telegram$"]  
+assign [title="^mutt$"] 
+assign [title="^google-sync$"] 
 assign [title="^irc$"]  
-assign [title="^mutt$"]  
-assign [title="^google-sync$"]  
-for_window [title="^google-sync$"] floating enable
+assign [class="^Telegram$" instance="^Telegram$"]  
+
 assign [class="^Firefox$" instance="^Navigator$"] 
+assign [title="^ranger$"] 
+
 
 #To use  icon, install fonts-font-awesome package
 
 exec --no-startup-id xfce4-terminal
-exec --no-startup-id xfce4-terminal -T mutt
-exec --no-startup-id xfce4-terminal -T google-sync
+exec --no-startup-id xfce4-terminal -T irc -x ssh david@104.131.114.132 -t 'tmux attach; bash -l'
+exec --no-startup-id xfce4-terminal -T mutt -x mutt
+exec --no-startup-id xfce4-terminal -T google-sync -x offlineimap -q -f INBOX
 exec --no-startup-id firefox
-exec --no-startup-id xfce4-terminal -T irc
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod4+d exec rofi -show run  -fg "#FFFFFF" -bg "#151B54" -hlfg "#FFDB58" -hlbg "#151B54" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -width 40 -height 100 bg
-bindsym Mod4+x exec rofi -show window  -fg "#FFFFFF" -bg "#151B54" -hlfg "#FFDB58" -hlbg "#151B54" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -width 40 -height 100
+bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 1366
+
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 1366
 
 workspace_layout default
 
 new_window pixel 4
 
-gaps inner 7
-gaps outer 4
-smart_gaps on
-smart_borders on
+#       gaps inner 5
+#       gaps outer 5
+#       smart_gaps on
+#       smart_borders on
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -152,7 +162,6 @@ bindsym Mod4+a focus parent
 # move the currently focused window to the scratchpad
 bindsym Mod4+Shift+minus move scratchpad
 
-# Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
 
@@ -218,38 +227,38 @@ bindsym Mod4+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-client.focused          #4c7899 #008B8B  #ffffff #008B8B
+set $darkblue  #00195B
+set $blue      #000080
+set $white     #ffffff
+set $darkgrey  #1a1a1a
+set $red       #cc0000
+set $statuscolor  #708090
+set $separatorcolor #ffcc00
+
+                        #BORDER    #BACKGROUND  #TEXT   #INDICATOR  #CHILD_BORDER
+client.focused          $darkblue  $darkblue    $white  $darkblue   $darkblue
 
 bar {
 
-    #i3bar_command i3bar -t
+    status_command i3blocks
+    position top
+    output eDP1
+    tray_padding 1
     strip_workspace_numbers yes
-    separator_symbol "⛏"
+    separator_symbol " ⛏ "
+    height 23
 
     colors{
 
-        background         #1a1a1a
-        separator  #CD853F
-        statusline #708090
+        background $darkgrey
+        separator  $separatorcolor
+        statusline $statuscolor
 
         #################  Border   Background  Text
-        focused_workspace  #008B8B  #008B8B     #FFFFFF
-        urgent_workspace   #FFFFFF  #808080     #FFFFFF
-        inactive_workspace #FFFFFF  #708090     #000000
+        focused_workspace  $darkgrey  $darkgrey     $white
+        urgent_workspace   $white     $red          $white
+        inactive_workspace $darkgrey  $darkgrey     $blue
 
 
     }
-        status_command i3status -c ~/.i3status.conf
 }
-
-#######################################################################
-# automatically start i3-config-wizard to offer the user to create a
-# keysym-based config which used their favorite modifier (alt or windows)
-#
-# i3-config-wizard will not launch if there already is a config file
-# in ~/.i3/config.
-#
-# Please remove the following exec line:
-#######################################################################
-
-exec i3-config-wizard
