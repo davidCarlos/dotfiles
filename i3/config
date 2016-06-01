@@ -42,7 +42,7 @@ workspace_auto_back_and_forth yes
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
-bindsym Mod4+Return exec xfce4-terminal
+bindsym Mod4+Return exec xfce4-terminal -x zsh
 
 bindsym Mod4+o exec i3lock --image=/home/david/Imagens/i3.png
 
@@ -51,6 +51,8 @@ exec --no-startup-id nm-applet
 # Control brightness according with time of day
 # exec --no-startup-id redshift
 exec --no-startup-id megasync
+exec --no-startup-id xchat
+exec --no-startup-id Telegram
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
@@ -60,24 +62,34 @@ for_window [class="Nitrogen"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
 for_window [title="^google-sync$"]  floating enable
 for_window [class=".*"] title_format "<b>%title</b>"
-for_window [instance="^Docky$" class="^Docky$"] floating enable
 
 bindsym Mod4+z bar hidden_state toggle
 
 assign [class="^Spotify$" instance="^spotify$"]  
 assign [title="^mutt$"] 
 assign [title="^google-sync$"] 
-assign [title="^irc$"]  
 assign [class="^Telegram$" instance="^Telegram$"]  
 
 assign [class="^Firefox$" instance="^Navigator$"] 
 assign [title="^ranger$"] 
+assign [instance="^xchat$" class="^Xchat$"] 
+
+bindsym Mod4+q mode "$home_monitor"
+
+mode "$home_monitor" {
+
+bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 100 -width 100
+
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 100 -width 100
+
+bindsym Mod4+q mode "default"
+
+}
 
 
 #To use  icon, install fonts-font-awesome package
 
 exec --no-startup-id xfce4-terminal
-exec --no-startup-id xfce4-terminal -T irc -x ssh david@104.131.114.132 -t 'tmux attach; bash -l'
 exec --no-startup-id xfce4-terminal -T mutt -x mutt
 exec --no-startup-id xfce4-terminal -T google-sync -x offlineimap -q -f INBOX
 exec --no-startup-id firefox
@@ -86,18 +98,18 @@ exec --no-startup-id firefox
 bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 1366
+bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
 
-bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 1366
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
 
 workspace_layout default
 
 new_window pixel 4
 
-#       gaps inner 5
-#       gaps outer 5
-#       smart_gaps on
-#       smart_borders on
+#gaps inner 5
+#gaps outer 5
+#smart_gaps on
+#smart_borders on
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -170,8 +182,8 @@ bindsym Mod4+1 workspace 
 bindsym Mod4+2 workspace 
 bindsym Mod4+3 workspace 
 bindsym Mod4+4 workspace 
-bindsym Mod4+5 workspace 
-bindsym Mod4+6 workspace 
+bindsym Mod4+5 workspace 
+bindsym Mod4+6 workspace 
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
@@ -182,8 +194,8 @@ bindsym Mod4+Shift+1 move container to workspace 
 bindsym Mod4+Shift+2 move container to workspace 
 bindsym Mod4+Shift+3 move container to workspace 
 bindsym Mod4+Shift+4 move container to workspace 
-bindsym Mod4+Shift+5 move container to workspace 
 bindsym Mod4+Shift+6 move container to workspace 
+bindsym Mod4+Shift+5 move container to workspace 
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
 bindsym Mod4+Shift+9 move container to workspace 9

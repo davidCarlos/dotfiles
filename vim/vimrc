@@ -5,7 +5,7 @@ runtime! debian.vim
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.

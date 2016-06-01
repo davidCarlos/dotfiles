@@ -43,6 +43,7 @@ Plugin 'whatyouhide/vim-gotham'
 Plugin 'easysid/mod8.vim'
 Plugin 'fxn/vim-monochrome'
 Plugin 'jpo/vim-railscasts-theme'
+Plugin 'ptrr/proton-vim'
 
 " Show undo tree in a better way.
 Plugin 'vim-scripts/Gundo'
@@ -120,8 +121,6 @@ set expandtab
 set shiftround
 " Always show an status line
 set laststatus=2
-set softtabstop=2
-set shiftwidth=4
 set showmode
 
 " Ignore some extensions
@@ -171,7 +170,7 @@ nmap h <nop>
 "=============================
 
 "========= Navigation stuffs ==================
-nmap <F7> :NERDTreeCWD<CR>
+nmap <LEADER>f :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
 "Ctags bar
