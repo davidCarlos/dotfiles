@@ -13,7 +13,6 @@
 # is used in the bar {} block below.
 
 # https://github.com/supermarin/YosemiteSanFranciscoFont
-font pango:Hack, FontAwesome 10
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -34,38 +33,52 @@ set $down j
 set $left h
 set $right l
 
+set $i3lock /home/david/projetos/i3-extras/i3lock-wrapper
+set $i3exit /home/david/projetos/i3-extras/i3lock-exit
+
+bindsym Mod4+Shift+e exec $i3exit
+bindsym Mod4+o exec $i3lock
+
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
+font pango:Hack, FontAwesome 10
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
 bindsym Mod4+Return exec xfce4-terminal -x zsh
 
-bindsym Mod4+o exec i3lock --image=/home/david/Imagens/i3.png
 
-exec --no-startup-id nm-applet
+# start a terminal in float mode
+bindsym Mod4+i exec xfce4-terminal -T float-term
+
+#exec --no-startup-id nm-applet
+exec --no-startup-id wicd-gtk
 #
 # Control brightness according with time of day
-# exec --no-startup-id redshift
+exec --no-startup-id redshift
 exec --no-startup-id megasync
 exec --no-startup-id xchat
 exec --no-startup-id Telegram
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id guake
 
 
 for_window [class="Nitrogen"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
+for_window [instance="^thunar$" class="^Thunar$"] floating enable
+for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
 for_window [title="^google-sync$"]  floating enable
-for_window [class=".*"] title_format "<b>%title</b>"
+for_window [title="^float-term$"]  floating enable
+for_window [class=".*"] title_format "<b>~ %title ~ </b>"
 
 bindsym Mod4+z bar hidden_state toggle
 
-assign [class="^Spotify$" instance="^spotify$"]  
+assign [class="^spotify$" instance="^Spotify$"]  
 assign [title="^mutt$"] 
 assign [title="^google-sync$"] 
 assign [class="^Telegram$" instance="^Telegram$"]  
@@ -78,9 +91,9 @@ bindsym Mod4+q mode "$home_monitor"
 
 mode "$home_monitor" {
 
-bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 100 -width 100
+bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -lines 3 -font "Hack 10" -hide-scrollbar -separator-style "none" -line-margin 7 -padding 100 -width 100 -opacity "75"
 
-bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 100 -width 100
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -separator-style "none" -line-margin 7 -padding 100 -width 100
 
 bindsym Mod4+q mode "default"
 
@@ -98,18 +111,18 @@ exec --no-startup-id firefox
 bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
+bindsym Mod4+d exec rofi -show run -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
 
-bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -lines 3 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
 
 workspace_layout default
 
-new_window pixel 4
+new_window pixel 5
 
-#gaps inner 5
-#gaps outer 5
-#smart_gaps on
-#smart_borders on
+gaps inner 6
+gaps outer 2
+smart_gaps on
+smart_borders on
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -208,7 +221,7 @@ bindsym Mod4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -239,38 +252,46 @@ bindsym Mod4+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-set $darkblue  #00195B
-set $blue      #000080
-set $white     #ffffff
-set $darkgrey  #1a1a1a
-set $red       #cc0000
-set $statuscolor  #708090
-set $separatorcolor #ffcc00
+set $focused_client #b8b8b8
+set $focused_text #b8b8b8
+set $focused_background #282828
+set $focused_border $focused_client
 
-                        #BORDER    #BACKGROUND  #TEXT   #INDICATOR  #CHILD_BORDER
-client.focused          $darkblue  $darkblue    $white  $darkblue   $darkblue
+set $unfocused_text #007399
+set $unfocused_workspace #007399
+set $unfocused_client  #007399
+set $unfocused_text #007399
+set $unfocused_border #181818
+
+
+set $darkgrey  #1a1a1a
+
+                          #BORDER            #BACKGROUND            #TEXT                   #INDICATOR        #CHILD_BORDER
+client.focused            $focused_border    $focused_background    $focused_text           #282828           $focused_client
+client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.urgent             $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 
 bar {
-
-    status_command i3blocks
+    separator_symbol " "
+    font pango:Hack, FontAwesome 10
     position top
     output eDP1
-    tray_padding 1
+    tray_output none
     strip_workspace_numbers yes
-    separator_symbol " ⛏ "
-    height 23
+    height 29
 
     colors{
 
         background $darkgrey
-        separator  $separatorcolor
         statusline $statuscolor
 
-        #################  Border   Background  Text
-        focused_workspace  $darkgrey  $darkgrey     $white
-        urgent_workspace   $white     $red          $white
-        inactive_workspace $darkgrey  $darkgrey     $blue
-
+        #################  Border            Background    Text
+        focused_workspace  $focused_border   $darkgrey     $focused_client
+        urgent_workspace   $focused_text     $red          $focused_client
+        inactive_workspace $unfocused_border $darkgrey     $unfocused_workspace
 
     }
+
+    status_command i3blocks
 }
