@@ -12,7 +12,8 @@ call vundle#rc()
 Plugin 'gmarik/Vundle.vim'
 
 " Autocomplete to files
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 Plugin 'mattn/emmet-vim'
 
@@ -44,9 +45,7 @@ Plugin 'easysid/mod8.vim'
 Plugin 'fxn/vim-monochrome'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'ptrr/proton-vim'
-
-" Show undo tree in a better way.
-Plugin 'vim-scripts/Gundo'
+Plugin 'altercation/vim-colors-solarized'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
@@ -64,6 +63,9 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
+
+Plugin 'PotatoesMaster/i3-vim-syntax'
+
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -83,20 +85,19 @@ endif
 " ============= SETS/LETS =================
 
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
-autocmd FileType c set softtabstop=4 tabstop=4
-autocmd FileType c++ set softtabstop=4 tabstop=4
-
+autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
+autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4
 
 syntax enable
 set relativenumber
 set number
-set pastetoggle=<f6>
 
 " Some colorschemes as solarized needs background=light
 set background=light
-"set t_Co=256
-colorscheme gotham256
-
+set t_Co=256
+let g:solarized_termcolors=256
+" colorscheme gotham256
+colorscheme solarized
 
 "============= NEOVIM Stuff ================="
 nmap <LEADER>T :tabnew<CR>:terminal<CR>
@@ -108,8 +109,6 @@ nmap <Tab> :tabnext<CR>
 nmap <S-Tab> :tabprevious<CR>
 "============================================"
 
-" nvim remap
-"nnoremap <C-\>n <C-\><C-N>
 set showmatch
 set ignorecase
 set smartcase
@@ -119,12 +118,10 @@ set autoindent
 set autowrite
 set expandtab
 set shiftround
-" Always show an status line
-set laststatus=2
 set showmode
 
 " Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.png,*.md,*.pyc,*.swp,*.html,*.tar.*,*.pdf
+set wildignore=*.class,*.zip,*.gif,*.png,*.md,*.pyc,*.swp,*.tar.*,*.pdf
 
 set showfulltag
 set nobackup
@@ -144,18 +141,31 @@ set foldmethod=manual
 set ch=2
 let mapleader=","
 
-" =========== Moves ===============
-nmap <c-t> :tabnew<CR>
-
 "remove empty spaces
 nmap <F10> :%s/\s\+$//<CR>
 
+"Open vimrc/init.vim in a split window
+nmap <leader>vs :vs $MYVIMRC<CR>
+
+" =========== Moves ===============
 nmap j gj
 nmap k gk
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
+
+" Delete line in insert mode
+imap <c-d> <esc>ddi
+
+"Surround with ""
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>
+
+"Surround with ()
+nnoremap <leader>) viw<esc>a) <esc>hbi(<esc>f<space>x
+
+"Surround with []
+nnoremap <leader>] viw<esc>a] <esc>hbi[<esc>f<space>x
 
 "jump to beginning of the line
 nmap E $
@@ -166,26 +176,25 @@ vmap B ^
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
-nmap h <nop>
 "=============================
 
 "========= Navigation stuffs ==================
 nmap <LEADER>f :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=30
 let g:NERDTreeWinPos="left"
-"Ctags bar
-nmap <F8> :TagbarToggle<CR>
-nmap <F6> :Vexplore<CR>
 
-nmap <LEADER>l :CtrlPBuffer<CR>
+"Ctags bar
+nmap <LEADER>c :!ctags -R <CR>
+nmap <LEADER>C :TagbarToggle<CR>
+
+"Buffer stuffs
 nmap <LEADER>b :b#<CR>
 nmap <LEADER>bn :bnext<CR>
 nmap <LEADER>bp :bprevious<CR>
 
-"==================== Markdown Stuffs =======================
-let g:instant_markdown_autostart = 0
-"=============================================================
-
+" Better then vim native buffers
+" List buffered files
+nmap <LEADER>l :CtrlPBuffer<CR>
 
 "========== LEADER keys ===============
 nmap <LEADER>q :q<CR>
@@ -195,12 +204,15 @@ nmap <LEADER>w :w<CR>
 nmap <LEADER>R :w !sudo tee %<CR>
 nmap <LEADER>x :x<CR>
 nmap <LEADER>p :pwd<CR>
+
 " set current edit file as default directory NICE
 nmap <LEADER>d :lcd %:p:h<CR>
+
+"Reload vimrc
 nmap <LEADER>m :so $MYVIMRC<CR>
+
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
-nmap <LEADER>c :!ctags -R <CR>
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -276,3 +288,4 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 "========================================
+
