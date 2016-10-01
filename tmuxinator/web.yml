@@ -4,11 +4,13 @@ name: web
 root: ~/
 
 windows:
+  - default:
+        layout: tiled
+        panes:
+         -
   - MAIL:
       - mutt
-  - IRC:
-      - ssh  david@104.131.114.132  -t 'tmux attach'
-  - auxiliar:
+  - DEV:
       - tmuxinator start dev_env
     
 

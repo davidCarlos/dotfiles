@@ -13,13 +13,16 @@ Plugin 'gmarik/Vundle.vim'
 
 " Autocomplete to files
 Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
 
 Plugin 'mattn/emmet-vim'
 
 Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+let g:airline#extensions#tabline#enabled = 1
 
 " To use this plugin you will have to install in your machine thd
 " silver-search lib.
@@ -34,10 +37,6 @@ Plugin 'Shougo/neocomplete.vim'
 " file tree
 Plugin 'scrooloose/nerdtree'
 
-" Plugin to write notes in vim. vim-notes depends vim-misc plugin to work.
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
-
 " Colorschemes
 Plugin 'sjl/badwolf'
 Plugin 'whatyouhide/vim-gotham'
@@ -49,7 +48,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
-Plugin 'gregsexton/gitv'
 
 "escentials plugins"
 Plugin 'jiangmiao/auto-pairs'
@@ -85,6 +83,7 @@ endif
 " ============= SETS/LETS =================
 
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
+autocmd FileType python set softtabstop=4 tabstop=8  shiftwidth=4 expandtab
 autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4
 
@@ -96,8 +95,8 @@ set number
 set background=light
 set t_Co=256
 let g:solarized_termcolors=256
-" colorscheme gotham256
-colorscheme solarized
+colorscheme gotham256
+" colorscheme solarized
 
 "============= NEOVIM Stuff ================="
 nmap <LEADER>T :tabnew<CR>:terminal<CR>
@@ -214,6 +213,9 @@ nmap <LEADER>m :so $MYVIMRC<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
 
+"Copy to clipboard
+noremap YY "+y<CR>
+
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
 
@@ -283,6 +285,21 @@ function! MaximizeToggle()
         only
     endif
 endfunction
+
+nnoremap <LEADER>1 :call ChangeCs('day')<CR>
+nnoremap <LEADER>2 :call ChangeCs('night')<CR>
+
+function ChangeCs(time)
+        if a:time == 'day'
+                execute "colorscheme solarized"
+        else
+                execute "colorscheme gotham256"
+        endif
+endfunction
+
+
+
+
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
