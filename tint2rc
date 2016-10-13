@@ -18,7 +18,7 @@ border_color_pressed = #000000 30
 rounded = 0
 border_width = 1
 border_sides = TBLR
-background_color = #7B7D7D 70
+background_color = #7B7D7D 100
 border_color = #7B7D7D 100
 background_color_hover = #c0392b 22
 border_color_hover = #c0392b 44
@@ -37,11 +37,11 @@ background_color_pressed = #555555 4
 border_color_pressed = #eaeaea 44
 
 # Background 4: Inactive task
-rounded = 10
+rounded = 0
 border_width = 1
 border_sides = TBLR
-background_color =     #566573  100
-border_color = #566573  100
+background_color =  #7B7D7D 15
+border_color = #7B7D7D 15
 background_color_hover = #566573 100
 border_color_hover = #566573 100
 background_color_pressed = #566573 4
@@ -93,7 +93,7 @@ border_color_pressed = #F9E79F  100
 
 #-------------------------------------
 # Panel
-panel_items = TCBE
+panel_items = TCEE
 panel_size = 100% 30
 panel_margin = 0 0
 panel_padding = 0 0 0
@@ -184,21 +184,22 @@ launcher_item_app = /usr/share/applications/google-chrome.desktop
 
 # Memory usage
 execp = new
-execp_command = conky -t 'Used Memory: $memperc%'
+execp_command = conky -t ' $memperc%'
 execp_continuous = 1
 execp_interval = 1
-execp_font = sans 10
+execp_font = Roboto Light 11
 execp_font_color =   #58D68D 100
 execp_background_id = 1
+execp_padding = 20 20
 
 #-------------------------------------
 # Clock
-time1_format = %H:%M %A %d %B
+time1_format =   %H:%M %A %d %B
+time1_font = Roboto Light 11
 time2_format = 
 time1_timezone = 
 time2_timezone = 
 clock_font_color =   #ECF0F1 70
-clock_padding = 2 0
 clock_tooltip = 
 clock_tooltip_timezone = 
 clock_lclick_command = 
@@ -209,22 +210,16 @@ clock_dwheel_command =
 clock_background_id = 1
 
 #-------------------------------------
-# Battery
-battery_tooltip = 1
-battery_low_status = 10
-battery_low_cmd = notify-send "battery low"
-battery_font_color = #dc9656 100
-battery_padding = 15 15
-battery_background_id = 1
-battery_hide = 101
-battery_lclick_command = 
-battery_rclick_command = 
-battery_mclick_command = 
-battery_uwheel_command = 
-battery_dwheel_command = 
-ac_connected_cmd = 
-ac_disconnected_cmd = 
 
+# Battery
+execp = new
+execp_command = conky -t '⚡ $battery'
+execp_continuous = 1
+execp_interval = 1
+execp_font = Roboto Light 11
+execp_font_color =  #CA6F1E 100
+execp_background_id = 1
+execp_padding = 3 3
 #-------------------------------------
 # Tooltip
 tooltip_show_timeout = 0.5
