@@ -1,19 +1,16 @@
 runtime! debian.vim
+set shell=/bin/bash
 
 
 " ============= Plugins==========================
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
 Plugin 'gmarik/Vundle.vim'
-
-" Autocomplete to files
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 Plugin 'mattn/emmet-vim'
 
@@ -30,9 +27,6 @@ Plugin 'majutsushi/tagbar'
 
 " Autocomplete plugin
 Plugin 'Shougo/neocomplete.vim'
-
-" file tree
-Plugin 'scrooloose/nerdtree'
 
 " Colorschemes
 Plugin 'sjl/badwolf'
@@ -61,6 +55,8 @@ Plugin 'tpope/vim-rails'
 
 Plugin 'PotatoesMaster/i3-vim-syntax'
 
+call vundle#end()
+filetype plugin indent on
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -88,11 +84,9 @@ set relativenumber
 set number
 
 " Some colorschemes as solarized needs background=light
-set background=light
+" set background=light
 set t_Co=256
-let g:solarized_termcolors=256
-colorscheme gotham256
-" colorscheme solarized
+colorscheme badwolf
 
 "============= NEOVIM Stuff ================="
 nmap <LEADER>T :tabnew<CR>:terminal<CR>
@@ -130,6 +124,7 @@ set hlsearch
 set columns=80
 set colorcolumn=80
 
+
 "set cursorline
 "set enc=utf-8
 set foldmethod=manual
@@ -142,6 +137,16 @@ nmap <F10> :%s/\s\+$//<CR>
 "Open vimrc/init.vim in a split window
 nmap <leader>vs :vs $MYVIMRC<CR>
 
+"Use find command instead of CtrlP plugin"
+set path+=**
+nmap <leader>f :find 
+
+let g:netrw_banner=0
+let g:netrw_browse_split=2
+let g:netrw_ctags="ctags"
+let g:netrw_liststyle=3
+let g:netrw_winsize=20
+let g:netrw_browse_split = 4
 " =========== Moves ===============
 nmap j gj
 nmap k gk
@@ -174,9 +179,7 @@ nmap h <nop>
 "=============================
 
 "========= Navigation stuffs ==================
-nmap <LEADER>f :NERDTreeToggle<CR>
-let g:NERDTreeWinSize=30
-let g:NERDTreeWinPos="left"
+nmap <leader>F :Lexplore<CR>
 
 "Ctags bar
 nmap <LEADER>c :!ctags -R <CR>
@@ -189,7 +192,7 @@ nmap <LEADER>bp :bprevious<CR>
 
 " Better then vim native buffers
 " List buffered files
-nmap <LEADER>l :CtrlPBuffer<CR>
+nmap <LEADER>l :buffer 
 
 "========== LEADER keys ===============
 nmap <LEADER>q :q<CR>
