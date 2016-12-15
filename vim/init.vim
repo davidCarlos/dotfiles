@@ -1,69 +1,61 @@
+
 runtime! debian.vim
+set shell=/bin/bash
 
 
 " ============= Plugins==========================
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
 Plugin 'gmarik/Vundle.vim'
 
-" Autocomplete to files
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_user_command = ['.git', 'cd %s; git ls-files -co --exclude-standard']
-
-Plugin 'mattn/emmet-vim'
-
 Plugin 'msanders/snipmate.vim'
 Plugin 'scrooloose/syntastic'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'rking/ag.vim'
 
-let g:airline#extensions#tabline#enabled = 1
 
 " To use this plugin you will have to install in your machine thd
 " silver-search lib.
-Plugin 'rking/ag.vim'
+" Plugin 'rking/ag.vim'
 
 " Status bar plugin
 Plugin 'majutsushi/tagbar'
 
 " Autocomplete plugin
-Plugin 'Shougo/neocomplete.vim'
-
-" file tree
-Plugin 'scrooloose/nerdtree'
+" Plugin 'Shougo/neocomplete.vim'
 
 " Colorschemes
 Plugin 'sjl/badwolf'
+Plugin 'morhetz/gruvbox'
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'easysid/mod8.vim'
 Plugin 'fxn/vim-monochrome'
 Plugin 'jpo/vim-railscasts-theme'
 Plugin 'ptrr/proton-vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'neomake/neomake'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
 
-"escentials plugins"
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 
 " Rails stuff
 Plugin 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
 
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'gregsexton/MatchTag'
+" Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
 
-Plugin 'PotatoesMaster/i3-vim-syntax'
-
+call vundle#end()
+filetype plugin indent on
 
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
@@ -82,21 +74,22 @@ endif
 
 " ============= SETS/LETS =================
 
-autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
-autocmd FileType python set softtabstop=4 tabstop=8  shiftwidth=4 expandtab
-autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2
-autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4
+autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType python set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
+autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
 
 syntax enable
 set relativenumber
 set number
+set termguicolors
 
 " Some colorschemes as solarized needs background=light
-set background=light
-set t_Co=256
-let g:solarized_termcolors=256
+" set background=light
+ set t_Co=256
+" colorscheme gruvbox
+" let g:solarized_termcolors=256
 colorscheme gotham256
-" colorscheme solarized
 
 "============= NEOVIM Stuff ================="
 nmap <LEADER>T :tabnew<CR>:terminal<CR>
@@ -104,8 +97,9 @@ nmap <LEADER>S :vsplit<CR>:terminal<CR>
 nmap <LEADER>V :split<CR>:terminal<CR>
 
 " Moving to tabs usint <TAB> instead of gt
-nmap <Tab> :tabnext<CR>
-nmap <S-Tab> :tabprevious<CR>
+nmap <tab> :tabnext<cr>
+nmap <s-tab> :tabprevious<cr>
+" vmap <leader>u <S->> :echo a
 "============================================"
 
 set showmatch
@@ -115,12 +109,12 @@ set incsearch
 set autoindent
 
 set autowrite
-set expandtab
+
 set shiftround
 set showmode
 
 " Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.png,*.md,*.pyc,*.swp,*.tar.*,*.pdf
+set wildignore=*.class,*.zip,*.gif,*.png,*.pyc,*.swp,*.tar.*,*.pdf
 
 set showfulltag
 set nobackup
@@ -134,6 +128,7 @@ set hlsearch
 set columns=80
 set colorcolumn=80
 
+
 "set cursorline
 "set enc=utf-8
 set foldmethod=manual
@@ -146,6 +141,16 @@ nmap <F10> :%s/\s\+$//<CR>
 "Open vimrc/init.vim in a split window
 nmap <leader>vs :vs $MYVIMRC<CR>
 
+"Use find command instead of CtrlP plugin"
+set path+=**
+nmap <leader>f :find 
+
+let g:netrw_banner=0
+let g:netrw_browse_split=2
+let g:netrw_ctags="ctags"
+let g:netrw_liststyle=3
+let g:netrw_winsize=20
+let g:netrw_browse_split = 4
 " =========== Moves ===============
 nmap j gj
 nmap k gk
@@ -159,6 +164,9 @@ imap <c-d> <esc>ddi
 
 "Surround with ""
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>
+
+"Surround with $$
+nnoremap <leader>$ viw<esc>a$<esc>hbi$<esc>
 
 "Surround with ()
 nnoremap <leader>) viw<esc>a) <esc>hbi(<esc>f<space>x
@@ -178,9 +186,7 @@ nmap h <nop>
 "=============================
 
 "========= Navigation stuffs ==================
-nmap <LEADER>f :NERDTreeToggle<CR>
-let g:NERDTreeWinSize=30
-let g:NERDTreeWinPos="left"
+nmap <leader>F :NERDTreeToggle<CR>
 
 "Ctags bar
 nmap <LEADER>c :!ctags -R <CR>
@@ -193,16 +199,19 @@ nmap <LEADER>bp :bprevious<CR>
 
 " Better then vim native buffers
 " List buffered files
-nmap <LEADER>l :CtrlPBuffer<CR>
+nmap <LEADER>l :buffer 
+nmap <LEADER>L :buffers<CR>
+map <LEADER>M :m 
 
-"========== LEADER keys ===============
+"========== File commands ===============
 nmap <LEADER>q :q<CR>
 nmap <LEADER>w :w<CR>
+nmap <LEADER>x :x<CR>
+nmap <LEADER>p :pwd<CR>
+"=========================================
 
 " Save file with sudo permission (nice mapping)
 nmap <LEADER>R :w !sudo tee %<CR>
-nmap <LEADER>x :x<CR>
-nmap <LEADER>p :pwd<CR>
 
 " set current edit file as default directory NICE
 nmap <LEADER>d :lcd %:p:h<CR>
@@ -219,19 +228,19 @@ noremap YY "+y<CR>
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
 
-" Tabs
+" Show registers
 nmap <LEADER>r :reg<CR>
 "=======================================
 
 " ========= Git maps ============
-nmap  gs :Gstatus<CR>
-nmap  gd :Gvdiff<CR>
-nmap <LEADER>gw :Gwrite<CR>
-nnoremap gc :Gcommit
-nnoremap gp :Gpush
-nnoremap gl :Git log<CR>
-nnoremap gS :Git show<CR>
-nnoremap gv :Gitv<CR>
+nmap gs :Gstatus<CR>
+nmap gd :Gvdiff<CR>
+nmap gw :Gwrite<CR>
+nmap gc :Gcommit
+nmap gp :Gpush
+nmap gl :Git log<CR>
+nmap gS :Git show<CR>
+nmap gv :Gitv<CR>
 "======================================
 
 "================= Synstastic stuffs ================
@@ -265,6 +274,9 @@ nnoremap <F12> :nohl<CR><C-L>
 nnoremap <C-W>< :vertical resize +10<CR>
 nnoremap <C-W>> :vertical resize -10<CR>
 
+" Signed-off-by snipet
+nmap <LEADER>S :read ~/.vim/signed_off_by_template.txt<CR>fNve
+
 "reference: "http://vim.wikia.com/wiki/Maximize_window_and_return_to_previous_split_structure
 " Very usefull to use with splits.
 nnoremap <C-W>O :call MaximizeToggle()<CR>
@@ -286,23 +298,19 @@ function! MaximizeToggle()
     endif
 endfunction
 
-nnoremap <LEADER>1 :call ChangeCs('day')<CR>
-nnoremap <LEADER>2 :call ChangeCs('night')<CR>
-
-function ChangeCs(time)
-        if a:time == 'day'
-                execute "colorscheme solarized"
-        else
-                execute "colorscheme gotham256"
-        endif
-endfunction
-
-
-
-
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-"========================================
 
+
+autocmd! BufWritePost * Neomake!
+"========================================

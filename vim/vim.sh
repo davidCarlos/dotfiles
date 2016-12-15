@@ -21,10 +21,10 @@ install()
 
     install_dependencies
 
-    ln -f $path/$dotfile "$HOME"/.$dotfile
+    ln -s $path/$dotfile "$HOME"/.$dotfile
     local user=$(whoami)
     sudo chown -R $user:$user ~/.$app/
-    
+
     vim -c BundleInstall -c q -c q
 }
 
@@ -32,7 +32,7 @@ install_dependencies()
 {
     install_dependencies_msg $app
     update
-    sudo apt-get install vim silversearcher-ag \ 
+    sudo apt-get install vim silversearcher-ag \
     exuberant-ctags vim-nox fonts-hack-ttf  -y
 
     clone_repositories_msg $app
