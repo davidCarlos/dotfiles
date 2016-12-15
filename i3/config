@@ -60,36 +60,35 @@ exec --no-startup-id wicd-gtk
 # Control brightness according with time of day
 # exec --no-startup-id redshift
 exec --no-startup-id megasync
-exec --no-startup-id xchat
 exec --no-startup-id Telegram
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id guake
 exec --no-startup-id tint2
+
+# Configure touchpad. Pass this to a definitive config file.
+exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
 
 
 for_window [class="Nitrogen"] floating enable
 for_window [instance="^Docky$" class="^Docky$"] floating enable
+for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
 for_window [instance="^thunar$" class="^Thunar$"] floating enable
 for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
 for_window [instance="^wicd-client.py$" class="^Wicd-client.py$"] floating enable
 for_window [title="^google-sync$"]  floating enable
+for_window [title="^code$"]  floating enable
 for_window [title="^float-term$"]  floating enable
 for_window [title="^google-sync$"]  floating enable
-# for_window [class=".*"] title_format "<b>~ %title ~ </b>"
-# for_window [class="^.*"] border pixel 0
 
-# bindsym Mod4+z bar hidden_state toggle
-
-assign [title="^mutt$"] mutt
-assign [title="^google-sync$"] mutt
-assign [class="^Telegram$" instance="^Telegram$"]  chats
-assign [class="^Firefox$" instance="^Navigator$"] web
-assign [instance="^xchat$" class="^Xchat$"] chats
-assign [instance="calibre-gui" class="^libprs500$"] web
-assign [instance="spotify" class="^Spotify$"] web
+assign [title="^mutt$"] 
+assign [title="^google-sync$"] 
+assign [title="^code$"] 
+assign [class="^Telegram$" instance="^Telegram$"]  
+assign [class="^Firefox$" instance="^Navigator$"] 
+assign [instance="calibre-gui" class="^libprs500$"] 
+assign [instance="spotify" class="^Spotify$"] 
 
 bindsym Mod4+q mode "$home_monitor"
 
@@ -106,7 +105,7 @@ bindsym Mod4+q mode "default"
 
 #To use  icon, install fonts-font-awesome package
 
-exec --no-startup-id xfce4-terminal -x fish
+exec --no-startup-id xfce4-terminal -x fish -T code -x tmux
 exec --no-startup-id xfce4-terminal -T mutt -x mutt
 exec --no-startup-id xfce4-terminal -T google-sync -x offlineimap -q -f INBOX
 exec --no-startup-id firefox
@@ -123,10 +122,10 @@ workspace_layout default
 
 new_window pixel 3
 
-gaps inner 6
-gaps outer 2
-smart_gaps on
-smart_borders on
+# gaps inner 6
+# gaps outer 2
+# smart_gaps on
+# smart_borders on
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -195,30 +194,23 @@ bindsym Mod4+Shift+minus move scratchpad
 bindsym Mod4+minus scratchpad show
 
 # switch to workspace
-bindsym Mod4+1 workspace code
-bindsym Mod4+2 workspace mutt
-bindsym Mod4+3 workspace chats
-bindsym Mod4+4 workspace web
-bindsym Mod4+5 workspace aux
+bindsym Mod4+1 workspace 
+bindsym Mod4+2 workspace 
+bindsym Mod4+3 workspace 
+bindsym Mod4+4 workspace 
+bindsym Mod4+5 workspace 
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
 bindsym Mod4+0 workspace 10
 
-# move focused container to workspace
-#       bindsym Mod4+Shift+1 move container to workspace 
-#       bindsym Mod4+Shift+2 move container to workspace 
-#       bindsym Mod4+Shift+3 move container to workspace 
-#       bindsym Mod4+Shift+4 move container to workspace 
-#       bindsym Mod4+Shift+6 move container to workspace 
-#       bindsym Mod4+Shift+5 move container to workspace 
-bindsym Mod4+Shift+1 move container to workspace code
-bindsym Mod4+Shift+2 move container to workspace mutt
-bindsym Mod4+Shift+3 move container to workspace chats
-bindsym Mod4+Shift+4 move container to workspace web
-bindsym Mod4+Shift+6 move container to workspace aux
-bindsym Mod4+Shift+5 move container to workspace 
+bindsym Mod4+Shift+1 move container to workspace 
+bindsym Mod4+Shift+2 move container to workspace 
+bindsym Mod4+Shift+3 move container to workspace 
+bindsym Mod4+Shift+4 move container to workspace 
+bindsym Mod4+Shift+5 move container to workspace 
+bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
 bindsym Mod4+Shift+9 move container to workspace 9
@@ -281,28 +273,3 @@ client.focused            $focused_border    $focused_background    $focused_tex
 client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 client.urgent             $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-
-      #bar {
-      #status_command tint2
-      #i3bar_command tint2
-
-      #separator_symbol " "
-      #font pango:Hack, FontAwesome 10
-      #position top
-      ## output eDP1
-      #tray_output none
-      #strip_workspace_numbers yes
-      #height 29
-
-      #colors{
-
-      #        background $darkgrey
-      #        statusline $statuscolor
-
-      #        #################  Border            Background    Text
-      #        focused_workspace  $focused_border   $darkgrey     $focused_client
-      #        urgent_workspace   $focused_text     $red          $focused_client
-      #        inactive_workspace $unfocused_border $darkgrey     $unfocused_workspace
-
-      #}
-      #}
