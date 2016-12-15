@@ -41,5 +41,4 @@ In this moment, the following dotfiles are supported:
 ## ScreenShots
 
 ![Vim](screenshots/vim.png "Vim")
-![Bash](screenshots/bash.png "Bash")
 ![Tmux](screenshots/tmux.png "Tmux")
