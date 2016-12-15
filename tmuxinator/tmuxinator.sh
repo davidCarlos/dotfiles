@@ -45,12 +45,16 @@ install_tmuxinator()
         echo "Do you want we install it for you[y|N]?"
         read opt
         if [[ $opt == 'y' ]]; then
-          sudo apt-get install ruby
+          sudo apt install ruby
           sudo gem install tmuxinator
         fi
     fi
 }
 
+copy_envs()
+{
+    ln -s 
+}
 sample_restore()
 {
     sample_restore_msg $app
