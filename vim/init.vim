@@ -107,6 +107,7 @@ set ignorecase
 set smartcase
 set incsearch
 set autoindent
+set mouse=
 
 set autowrite
 
@@ -115,6 +116,11 @@ set showmode
 
 " Ignore some extensions
 set wildignore=*.class,*.zip,*.gif,*.png,*.pyc,*.swp,*.tar.*,*.pdf
+
+" Ignore virtualenv generated directories
+set wildignore+=**bin/**
+set wildignore+=**lib/python3.4/**
+set wildignore+=**lib/python2.7/**
 
 set showfulltag
 set nobackup
@@ -207,7 +213,6 @@ map <LEADER>M :m
 nmap <LEADER>q :q<CR>
 nmap <LEADER>w :w<CR>
 nmap <LEADER>x :x<CR>
-nmap <LEADER>p :pwd<CR>
 "=========================================
 
 " Save file with sudo permission (nice mapping)
@@ -222,8 +227,11 @@ nmap <LEADER>m :so $MYVIMRC<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
 
-"Copy to clipboard
+"Yank to clipboard
 noremap YY "+y<CR>
+
+"Yank paragraph
+nmap <LEADER>p yip<CR>
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
