@@ -265,11 +265,7 @@ set $unfocused_client  #007399
 set $unfocused_text #007399
 set $unfocused_border #181818
 
-
-set $darkgrey  #1a1a1a
-
-                          #BORDER            #BACKGROUND            #TEXT                   #INDICATOR        #CHILD_BORDER
-client.focused            $focused_border    $focused_background    $focused_text           #282828           $focused_client
-client.unfocused          $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.placeholder        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.urgent             $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.focused          $focused_border    $focused_background    $focused_text           $focused_client   $focused_client
+client.unfocused        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.urgent           $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
