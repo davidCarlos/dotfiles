@@ -37,6 +37,8 @@ set $i3lock /home/david/projetos/i3-extras/i3lock-wrapper
 set $i3exit /home/david/projetos/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec $i3exit
+bindsym Mod4+Shift+p exec pavucontrol
+bindsym Mod4+Shift+n exec wicd-gtk
 bindsym Mod4+o exec $i3lock
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
@@ -44,7 +46,7 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
-font pango:Roboto, Thin 9
+font pango:Roboto, Bold 10
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
@@ -54,9 +56,29 @@ bindsym Mod4+Return exec xfce4-terminal -x fish
 # start a terminal in float mode
 bindsym Mod4+i exec xfce4-terminal -T float-term -x fish
 
-#exec --no-startup-id nm-applet
-exec --no-startup-id wicd-gtk
 #
+# Configure touchpad. Pass this to a definitive config file.
+exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
+
+assign [title="^mutt$"] mail
+assign [title="^google-sync$"] mail
+assign [title="^code$"] 
+assign [class="^TelegramDesktop$" instance="^Telegram$"]  chat
+assign [class="^Firefox$" instance="^Navigator$"] web
+assign [instance="^calibre-gui$" class="^libprs500$"] web
+
+for_window [class="Nitrogen"] floating enable
+for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
+for_window [instance="^eog$" class="^Eog$"] floating enable
+for_window [instance="^thunar$" class="^Thunar$"] floating enable
+for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
+for_window [title="^google-sync$"]  floating enable
+for_window [title="^code$"]  floating enable
+for_window [title="^float-term$"]  floating enable
+for_window [title="^google-sync$"]  floating enable
+
+bindsym Mod4+q mode "$home_monitor"
+
 # Control brightness according with time of day
 # exec --no-startup-id redshift
 exec --no-startup-id megasync
@@ -64,33 +86,6 @@ exec --no-startup-id Telegram
 exec --no-startup-id compton
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id tint2
-
-# Configure touchpad. Pass this to a definitive config file.
-exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
-
-
-for_window [class="Nitrogen"] floating enable
-for_window [instance="^Docky$" class="^Docky$"] floating enable
-for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
-for_window [instance="^eog$" class="^Eog$"] floating enable
-for_window [instance="^thunar$" class="^Thunar$"] floating enable
-for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
-for_window [instance="^wicd-client.py$" class="^Wicd-client.py$"] floating enable
-for_window [title="^google-sync$"]  floating enable
-for_window [title="^code$"]  floating enable
-for_window [title="^float-term$"]  floating enable
-for_window [title="^google-sync$"]  floating enable
-
-assign [title="^mutt$"] 
-assign [title="^google-sync$"] 
-assign [title="^code$"] 
-assign [class="^Telegram$" instance="^Telegram$"]  
-assign [class="^Firefox$" instance="^Navigator$"] 
-assign [instance="calibre-gui" class="^libprs500$"] 
-assign [instance="spotify" class="^Spotify$"] 
-
-bindsym Mod4+q mode "$home_monitor"
 
 mode "$home_monitor" {
 
@@ -122,10 +117,10 @@ workspace_layout default
 
 new_window pixel 3
 
-# gaps inner 6
-# gaps outer 2
-# smart_gaps on
-# smart_borders on
+gaps inner 6
+gaps outer 2
+smart_gaps on
+smart_borders on
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -194,10 +189,10 @@ bindsym Mod4+Shift+minus move scratchpad
 bindsym Mod4+minus scratchpad show
 
 # switch to workspace
-bindsym Mod4+1 workspace 
-bindsym Mod4+2 workspace 
-bindsym Mod4+3 workspace 
-bindsym Mod4+4 workspace 
+bindsym Mod4+1 workspace code
+bindsym Mod4+2 workspace mail
+bindsym Mod4+3 workspace chat
+bindsym Mod4+4 workspace web
 bindsym Mod4+5 workspace 
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
@@ -205,10 +200,10 @@ bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
 bindsym Mod4+0 workspace 10
 
-bindsym Mod4+Shift+1 move container to workspace 
-bindsym Mod4+Shift+2 move container to workspace 
-bindsym Mod4+Shift+3 move container to workspace 
-bindsym Mod4+Shift+4 move container to workspace 
+bindsym Mod4+Shift+1 move container to workspace code
+bindsym Mod4+Shift+2 move container to workspace mail
+bindsym Mod4+Shift+3 move container to workspace chat
+bindsym Mod4+Shift+4 move container to workspace web
 bindsym Mod4+Shift+5 move container to workspace 
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
@@ -217,22 +212,11 @@ bindsym Mod4+Shift+9 move container to workspace 9
 bindsym Mod4+Shift+0 move container to workspace 10
 
 
-workspace   output HDMI1
-# reload the configuration file
+# workspace   output HDMI1
 bindsym Mod4+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym Mod4+Shift+r restart
-# exit i3 (logs you out of your X session)
-# bindsym Mod4+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym $left       resize shrink width 5 px or 5 ppt
         bindsym $down       resize grow height 5 px or 5 ppt
         bindsym $up         resize shrink height 5 px or 5 ppt
@@ -258,7 +242,6 @@ set $focused_client #b8b8b8
 set $focused_text #b8b8b8
 set $focused_background #282828
 set $focused_border $focused_client
-
 set $unfocused_text #007399
 set $unfocused_workspace #007399
 set $unfocused_client  #007399
@@ -269,3 +252,26 @@ client.focused          $focused_border    $focused_background    $focused_text 
 client.unfocused        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 client.urgent           $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+
+set_from_resource $darkwhite   color7  #ffffff
+set_from_resource $black   color6  #000000
+set_from_resource $red   color5  #ff8080
+set $transparent #00000000
+
+bar {
+	font pango:Roboto, Bold 10
+	position top
+	height 25
+	status_command i3blocks
+        i3bar_command i3bar -t
+	tray_output none
+ colors {
+		background #17202A 
+		#BORDER       BACKGROUND   TEXT
+		focused_workspace  $transparent $transparent $darkwhite
+		inactive_workspace $transparent $transparent #3f5873
+		active_workspace   $red $transparent $red
+		urgent_workspace   $red $transparent $red
+		binding_mode       $red     $red     $transparent
+	}
+}
