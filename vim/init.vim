@@ -1,7 +1,4 @@
-
-runtime! debian.vim
-set shell=/bin/bash
-
+set shell=/bin/zsh
 
 " ============= Plugins==========================
 set nocompatible
@@ -22,24 +19,16 @@ Plugin 'rking/ag.vim'
 
 " To use this plugin you will have to install in your machine thd
 " silver-search lib.
-" Plugin 'rking/ag.vim'
 
 " Status bar plugin
 Plugin 'majutsushi/tagbar'
 
-" Autocomplete plugin
-" Plugin 'Shougo/neocomplete.vim'
-
 " Colorschemes
-Plugin 'sjl/badwolf'
-Plugin 'morhetz/gruvbox'
 Plugin 'whatyouhide/vim-gotham'
-Plugin 'easysid/mod8.vim'
-Plugin 'fxn/vim-monochrome'
-Plugin 'jpo/vim-railscasts-theme'
-Plugin 'ptrr/proton-vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'neomake/neomake'
+Plugin 'freitass/todo.txt-vim'
+Plugin 'nvie/vim-flake8'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
@@ -50,7 +39,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
 
-" Plugin 'gregsexton/MatchTag'
+Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
 
@@ -75,9 +64,9 @@ endif
 " ============= SETS/LETS =================
 
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType python set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
+autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
+autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 
 syntax enable
 set relativenumber
@@ -87,7 +76,6 @@ set termguicolors
 " Some colorschemes as solarized needs background=light
 " set background=light
  set t_Co=256
-" colorscheme gruvbox
 " let g:solarized_termcolors=256
 colorscheme gotham256
 
@@ -151,12 +139,6 @@ nmap <leader>vs :vs $MYVIMRC<CR>
 set path+=**
 nmap <leader>f :find 
 
-let g:netrw_banner=0
-let g:netrw_browse_split=2
-let g:netrw_ctags="ctags"
-let g:netrw_liststyle=3
-let g:netrw_winsize=20
-let g:netrw_browse_split = 4
 " =========== Moves ===============
 nmap j gj
 nmap k gk
@@ -232,6 +214,7 @@ noremap YY "+y<CR>
 
 "Yank paragraph
 nmap <LEADER>p yip<CR>
+vmap <LEADER>p d<CR>
 
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -239,6 +222,9 @@ nnoremap <LEADER>a :Ag
 " Show registers
 nmap <LEADER>r :reg<CR>
 "=======================================
+"
+nmap <LEADER>dd :r ~/.vim/due_date_todo.txt<CR>kEJf<vf>
+
 
 " ========= Git maps ============
 nmap gs :Gstatus<CR>
@@ -252,15 +238,15 @@ nmap gv :Gitv<CR>
 "======================================
 
 "================= Synstastic stuffs ================
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 2
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 2
-let g:syntastic_check_on_wq = 1
-let g:syntastic_enable_signs = 1
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 2
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 2
+"let g:syntastic_check_on_wq = 1
+"let g:syntastic_enable_signs = 1
 
 " Jump to list errors
 nmap <LEADER>N :lnext<CR>
