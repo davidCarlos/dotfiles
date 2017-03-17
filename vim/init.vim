@@ -1,6 +1,7 @@
 set shell=/bin/zsh
 
 " ============= Plugins==========================
+
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,10 +12,10 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'msanders/snipmate.vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rking/ag.vim'
+Plugin 'vim-scripts/LanguageTool'
 
 
 " To use this plugin you will have to install in your machine thd
@@ -28,7 +29,6 @@ Plugin 'whatyouhide/vim-gotham'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'neomake/neomake'
 Plugin 'freitass/todo.txt-vim'
-Plugin 'nvie/vim-flake8'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
@@ -62,6 +62,9 @@ endif
 
 
 " ============= SETS/LETS =================
+
+let g:neomake_python_enabled_makers = ['pylint', 'pep8']
+autocmd! BufWritePost * Neomake
 
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
@@ -237,17 +240,6 @@ nmap gS :Git show<CR>
 nmap gv :Gitv<CR>
 "======================================
 
-"================= Synstastic stuffs ================
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 2
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 2
-"let g:syntastic_check_on_wq = 1
-"let g:syntastic_enable_signs = 1
-
 " Jump to list errors
 nmap <LEADER>N :lnext<CR>
 nmap <LEADER>P :lprevious<CR>
@@ -306,5 +298,4 @@ if filereadable("/etc/vim/vimrc.local")
 endif
 
 
-autocmd! BufWritePost * Neomake!
 "========================================
