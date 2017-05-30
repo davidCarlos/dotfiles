@@ -1,25 +1,47 @@
-# Autenticação pela chave gpg ainda não está funfando direito.
-source ~/.gpgrc
 source ~/.mutt/mail_aliases
 source ~/.mutt/sidebar
+
 
 auto_view text/html
 set editor = vim
 set my_name = 'David Carlos'
 set mail_check = 90
 set timeout = 15
-set record="~/Documentos/.Mail/ddavidcarlos1392@gmail.com/Sent"
-# set record=""
-set folder = /home/david/Documentos/.Mail/ddavidcarlos1392@gmail.com/
+
+set folder="~/MEGA/Mail/ddavidcarlos1392@gmail.com/"
+set record="+sent"
+set record="+others"
+set record="+fedora"
+set record="+gsoc"
+set record="+inbox"
+
+# Check for new emails in inbox folder
+mailboxes +inbox +sent +fedora +others +gsoc
+
+set my_fedora_list='devel@lists.fedoraproject.org'
+save-hook ~tddavidcarlos1392@gmail.com +fedora
+# save-hook '~tdevel@lists.fedoraproject.org' +fedora
+# folder-hook inbox push 'D~tdevel@lists.fedoraproject.org<enter>'
+
+save-hook '~tgoogle-summer-of-code-students-list@googlegroups.com' +gsoc
+# folder-hook inbox push 'D~tgoogle-summer-of-code-students-list@googlegroups.com<enter>'
+
+folder-hook inbox set sort=date-received
+folder-hook sent set sort=date-received
+set my_pattern = "color index white color235 ~U"
+set my_messages = "color index black color239 ~tddavidcarlos1392@gmail.com"
+set my_readed_messages = "color index white color232 ~R"
+folder-hook inbox $my_pattern
+folder-hook inbox $my_messages
+folder-hook inbox $my_readed_messages
+
 set imap_user = 'ddavidcarlos1392'
-set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/
-set from = ddavidcarlos1392@gmail.com
+set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/"
+set from = "ddavidcarlos1392@gmail.com"
 set realname = 'David Carlos'
 set signature = '~/.mutt/signature'
 
-set spoolfile=+inbox
 
-mailboxes +inbox +bak.e-mails_enviados  +bak.importante +Sent
 unset imap_passive
 set imap_keepalive = 300
 
@@ -30,9 +52,6 @@ alternative_order text/plain text/html
 
 set date_format="%y-%m-%d %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
-
-folder-hook inbox set sort=date-received
-folder-hook sent set sort=date-received
 
 ##Pressing Control-b will allow browse and open the URLs in the currently selected message
 macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message
@@ -50,12 +69,11 @@ bind index,pager <down>   sidebar-next
 bind index,pager <up>     sidebar-prev
 bind index,pager <right>  sidebar-open
 
-set sidebar_delim   = '  │'
 set sidebar_visible = yes
 set sidebar_width   = 24
 color sidebar_new color221 color233
 color status color221 default
-color indicator white color235
+color indicator white color94
 color tree color221 default
 
 bind index <tab>    sync-mailbox
@@ -74,8 +92,13 @@ alternative_order text/plain text/enriched text/html
 
 set pgp_use_gpg_agent = yes
 set pgp_sign_as = C2C66F72
+source ~/.gpgrc
 set pgp_timeout = 3600
 set crypt_autosign = yes
 set crypt_replyencrypt = yes
 set pgp_good_sign="^gpg: Good signature from"
 set crypt_verify_sig=yes
+set crypt_use_gpgme=yes
+set pgp_getkeys_command="gpg --recv-keys %r"
+alias Prof_Thiago Tiago Alves <fonsecafga@unb.br>
+alias Eu Eu <ddavidcarlos1392@gmail.com>

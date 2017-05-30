@@ -1,0 +1,1 @@
+--output eDP-1 --rate 60 --mode 1366x768 --fb 1920x1080 --panning 1920x1080 --output HDMI-1 --mode 1920x1080 --same-as eDP-1

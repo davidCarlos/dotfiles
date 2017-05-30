@@ -11,11 +11,15 @@ call vundle#begin()
 "machine to install the other plugins.
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'msanders/snipmate.vim'
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rking/ag.vim'
 Plugin 'vim-scripts/LanguageTool'
+Plugin 'Valloric/YouCompleteMe'
 
 
 " To use this plugin you will have to install in your machine thd
@@ -27,8 +31,10 @@ Plugin 'majutsushi/tagbar'
 " Colorschemes
 Plugin 'whatyouhide/vim-gotham'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'zaki/zazen'
+
+
 Plugin 'neomake/neomake'
-Plugin 'freitass/todo.txt-vim'
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
@@ -43,9 +49,11 @@ Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
 
+Plugin 'junegunn/fzf'
 call vundle#end()
-filetype plugin indent on
 
+
+filetype plugin indent on
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
 let g:airline_symbols = {}
@@ -60,16 +68,30 @@ if has("autocmd")
 endif
 "=====================================
 
+let g:UltiSnipsExpandTrigger = "<nop>"
+let g:ulti_expand_or_jump_res = 0
+function ExpandSnippetOrCarriageReturn()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<CR>"
+    endif
+endfunction
+inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
 
 " ============= SETS/LETS =================
 
 let g:neomake_python_enabled_makers = ['pylint', 'pep8']
 autocmd! BufWritePost * Neomake
+autocmd BufWritePost * Neomake!
 
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
+autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
+autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 
 syntax enable
 set relativenumber
@@ -80,18 +102,7 @@ set termguicolors
 " set background=light
  set t_Co=256
 " let g:solarized_termcolors=256
-colorscheme gotham256
-
-"============= NEOVIM Stuff ================="
-nmap <LEADER>T :tabnew<CR>:terminal<CR>
-nmap <LEADER>S :vsplit<CR>:terminal<CR>
-nmap <LEADER>V :split<CR>:terminal<CR>
-
-" Moving to tabs usint <TAB> instead of gt
-nmap <tab> :tabnext<cr>
-nmap <s-tab> :tabprevious<cr>
-" vmap <leader>u <S->> :echo a
-"============================================"
+colorscheme zazen
 
 set showmatch
 set ignorecase
@@ -140,7 +151,7 @@ nmap <leader>vs :vs $MYVIMRC<CR>
 
 "Use find command instead of CtrlP plugin"
 set path+=**
-nmap <leader>f :find 
+nmap <leader>f :FZF<CR>
 
 " =========== Moves ===============
 nmap j gj
@@ -284,15 +295,7 @@ function! MaximizeToggle()
     endif
 endfunction
 
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
+set omnifunc=syntaxcomplete#Complete
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif

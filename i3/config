@@ -16,7 +16,7 @@
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+# font pango:DejaVu Sans Mono 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -32,6 +32,7 @@ set $up k
 set $down j
 set $left h
 set $right l
+set $terminal urxvt
 
 set $i3lock /home/david/projetos/i3-extras/i3lock-wrapper
 set $i3exit /home/david/projetos/i3-extras/i3-exit
@@ -39,6 +40,7 @@ set $i3exit /home/david/projetos/i3-extras/i3-exit
 bindsym Mod4+Shift+e exec $i3exit
 bindsym Mod4+Shift+p exec pavucontrol
 bindsym Mod4+Shift+n exec wicd-gtk
+bindsym Mod4+Shift+f exec $terminal -name ranger -e ranger
 bindsym Mod4+o exec $i3lock
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
@@ -46,25 +48,25 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
-font pango:Roboto, Bold 10
+font pango:Roboto, Bold 9
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
-bindsym Mod4+Return exec xfce4-terminal -x fish
+bindsym Mod4+Return exec $terminal
 
 
 # start a terminal in float mode
-bindsym Mod4+i exec xfce4-terminal -T float-term -x fish
+bindsym Mod4+i exec $terminal -name float-term
 
 #
 # Configure touchpad. Pass this to a definitive config file.
 exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
 
+assign [title="^code$"] code
+assign [class="^Google-chrome$" instance="^google-chrome$"] web
+assign [class="^TelegramDesktop$" instance="^Telegram$"]  telegram
 assign [title="^mutt$"] mail
 assign [title="^google-sync$"] mail
-assign [title="^code$"] 
-assign [class="^TelegramDesktop$" instance="^Telegram$"]  chat
-assign [class="^Firefox$" instance="^Navigator$"] web
 assign [instance="^calibre-gui$" class="^libprs500$"] web
 
 for_window [class="Nitrogen"] floating enable
@@ -72,20 +74,23 @@ for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
 for_window [instance="^thunar$" class="^Thunar$"] floating enable
 for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
+for_window [instance="^wicd-client.py$" class="^Wicd-client.py$"] floating enable
 for_window [title="^google-sync$"]  floating enable
-for_window [title="^code$"]  floating enable
 for_window [title="^float-term$"]  floating enable
 for_window [title="^google-sync$"]  floating enable
+for_window [title="^ranger$"]  floating enable
+# for_window [title="^mutt$"] floating enable
+# for_window [class="^TelegramDesktop$" instance="^Telegram$"]  floating enable
 
 bindsym Mod4+q mode "$home_monitor"
 
 # Control brightness according with time of day
 # exec --no-startup-id redshift
 exec --no-startup-id megasync
-exec --no-startup-id Telegram
-exec --no-startup-id compton
+exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id polybar -c /home/david/.config/polybar/config example
 
 mode "$home_monitor" {
 
@@ -100,10 +105,8 @@ bindsym Mod4+q mode "default"
 
 #To use  icon, install fonts-font-awesome package
 
-exec --no-startup-id xfce4-terminal -x fish -T code -x tmux
-exec --no-startup-id xfce4-terminal -T mutt -x mutt
-exec --no-startup-id xfce4-terminal -T google-sync -x offlineimap -q -f INBOX
-exec --no-startup-id firefox
+exec --no-startup-id $terminal -title code
+exec --no-startup-id google-chrome
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -117,10 +120,8 @@ workspace_layout default
 
 new_window pixel 3
 
-gaps inner 6
-gaps outer 2
-smart_gaps on
-smart_borders on
+# gaps inner 6
+# gaps outer 2
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -190,10 +191,10 @@ bindsym Mod4+minus scratchpad show
 
 # switch to workspace
 bindsym Mod4+1 workspace code
-bindsym Mod4+2 workspace mail
-bindsym Mod4+3 workspace chat
-bindsym Mod4+4 workspace web
-bindsym Mod4+5 workspace 
+bindsym Mod4+2 workspace web
+bindsym Mod4+3 workspace telegram
+bindsym Mod4+4 workspace mail
+bindsym Mod4+5 workspace other
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
@@ -201,10 +202,10 @@ bindsym Mod4+9 workspace 9
 bindsym Mod4+0 workspace 10
 
 bindsym Mod4+Shift+1 move container to workspace code
-bindsym Mod4+Shift+2 move container to workspace mail
-bindsym Mod4+Shift+3 move container to workspace chat
-bindsym Mod4+Shift+4 move container to workspace web
-bindsym Mod4+Shift+5 move container to workspace 
+bindsym Mod4+Shift+2 move container to workspace web
+bindsym Mod4+Shift+3 move container to workspace telegram
+bindsym Mod4+Shift+4 move container to workspace mail
+bindsym Mod4+Shift+5 move container to workspace other
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
@@ -256,22 +257,23 @@ client.urgent           $unfocused_border  $unfocused_border      $unfocused_tex
 set_from_resource $darkwhite   color7  #ffffff
 set_from_resource $black   color6  #000000
 set_from_resource $red   color5  #ff8080
-set $transparent #00000000
+set $transparent #0017202A
 
-bar {
-	font pango:Roboto, Bold 10
-	position top
-	height 25
-	status_command i3blocks
-        i3bar_command i3bar -t
-	tray_output none
- colors {
-		background #17202A 
-		#BORDER       BACKGROUND   TEXT
-		focused_workspace  $transparent $transparent $darkwhite
-		inactive_workspace $transparent $transparent #3f5873
-		active_workspace   $red $transparent $red
-		urgent_workspace   $red $transparent $red
-		binding_mode       $red     $red     $transparent
-	}
-}
+#bar {
+#	font pango:Roboto, Bold 10
+#	position top
+#	height 24
+#	status_command i3blocks
+#	i3bar_command i3bar -t
+#	tray_output none
+#	output eDP-1
+# colors {
+#		background #0017202A
+#		#BORDER       BACKGROUND   TEXT
+#		focused_workspace  $transparent $transparent #ffffff
+#		inactive_workspace $transparent $transparent #ABB8C2
+#		active_workspace   $red $transparent $red
+#		urgent_workspace   $red $transparent $red
+#		binding_mode       $red     $red     $transparent
+#	}
+#}
