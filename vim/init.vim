@@ -1,7 +1,8 @@
-set shell=/bin/zsh
+"set shell=/bin/zsh
 
 " ============= Plugins==========================
 
+set encoding=utf8
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -9,12 +10,16 @@ call vundle#begin()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
-Plugin 'gmarik/Vundle.vim'
+"Plugin 'gmarik/Vundle.vim'
 
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<C-w>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rking/ag.vim'
@@ -29,12 +34,13 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 
 " Colorschemes
-Plugin 'whatyouhide/vim-gotham'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'zaki/zazen'
 
-
 Plugin 'neomake/neomake'
+let g:neomake_python_enabled_makers = ['pylint', 'pep8']
+autocmd! BufWritePost * Neomake
+autocmd BufWritePost * Neomake!
+
 
 " Integrate vim with git
 Plugin 'tpope/vim-fugitive'
@@ -48,8 +54,15 @@ let g:vimrubocop_config = '~/.rubocop.yml'
 Plugin 'gregsexton/MatchTag'
 
 Plugin 'tpope/vim-rails'
-
 Plugin 'junegunn/fzf'
+Plugin 'Townk/vim-autoclose'
+Plugin 'alvan/vim-closetag'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
+
+Plugin 'janko-m/vim-test'
 call vundle#end()
 
 
@@ -68,30 +81,17 @@ if has("autocmd")
 endif
 "=====================================
 
-let g:UltiSnipsExpandTrigger = "<nop>"
-let g:ulti_expand_or_jump_res = 0
-function ExpandSnippetOrCarriageReturn()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<CR>"
-    endif
-endfunction
-inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>"
-
 " ============= SETS/LETS =================
 
-let g:neomake_python_enabled_makers = ['pylint', 'pep8']
-autocmd! BufWritePost * Neomake
-autocmd BufWritePost * Neomake!
-
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType js set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType html set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
+autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+
 
 syntax enable
 set relativenumber
@@ -295,10 +295,9 @@ function! MaximizeToggle()
     endif
 endfunction
 
+
 set omnifunc=syntaxcomplete#Complete
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
-
 "========================================
