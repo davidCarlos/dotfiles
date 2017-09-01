@@ -1,14 +1,13 @@
 source ~/.mutt/mail_aliases
 source ~/.mutt/sidebar
 
-
 auto_view text/html
-set editor = vim
+set editor = /usr/bin/nvim
 set my_name = 'David Carlos'
 set mail_check = 90
 set timeout = 15
 
-set folder="~/MEGA/Mail/ddavidcarlos1392@gmail.com/"
+set folder="~/MEGAsync/Mail/ddavidcarlos1392@gmail.com/"
 set record="+sent"
 set record="+others"
 set record="+fedora"
@@ -90,15 +89,25 @@ unset markers              # no ugly plus signs
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
 alternative_order text/plain text/enriched text/html
 
-set pgp_use_gpg_agent = yes
+set mailcap_path = ~/.mutt/mailcap
+set sort=threads
+set sort_browser=reverse-date
+set sort_aux=last-date-received
+
+source ~/.gpg.rc
+
 set pgp_sign_as = C2C66F72
-source ~/.gpgrc
+set pgp_use_gpg_agent = yes
 set pgp_timeout = 3600
 set crypt_autosign = yes
 set crypt_replyencrypt = yes
 set pgp_good_sign="^gpg: Good signature from"
 set crypt_verify_sig=yes
-set crypt_use_gpgme=yes
+#set crypt_use_gpgme=yes
 set pgp_getkeys_command="gpg --recv-keys %r"
 alias Prof_Thiago Tiago Alves <fonsecafga@unb.br>
 alias Eu Eu <ddavidcarlos1392@gmail.com>
+alias athos Athos Ribeiro <athoscribeiro@gmail.com>
+alias prof_mauricio Prof Mauricio <serr.mau@gmail.com>
+
+alias bexelbie Brian <bexelbie@redhat.com>

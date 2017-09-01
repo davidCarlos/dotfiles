@@ -32,15 +32,16 @@ set $up k
 set $down j
 set $left h
 set $right l
-set $terminal urxvt
+#set $terminal xterm -fa Hack-10
+set $terminal gnome-terminal
 
-set $i3lock /home/david/projetos/i3-extras/i3lock-wrapper
-set $i3exit /home/david/projetos/i3-extras/i3-exit
+set $i3lock /home/davidcarlos/projects/i3-extras/i3lock-wrapper
+set $i3exit /home/davidcarlos/projects/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec $i3exit
 bindsym Mod4+Shift+p exec pavucontrol
 bindsym Mod4+Shift+n exec wicd-gtk
-bindsym Mod4+Shift+f exec $terminal -name ranger -e ranger
+bindsym Mod4+Shift+f exec $terminal --title="ranger" -e ranger
 bindsym Mod4+o exec $i3lock
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
@@ -52,11 +53,11 @@ font pango:Roboto, Bold 9
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
-bindsym Mod4+Return exec $terminal
+bindsym Mod4+Return exec $terminal --title="code"
 
 
 # start a terminal in float mode
-bindsym Mod4+i exec $terminal -name float-term
+bindsym Mod4+i exec $terminal --title="float-term"
 
 #
 # Configure touchpad. Pass this to a definitive config file.
@@ -64,7 +65,6 @@ exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeSc
 
 assign [title="^code$"] code
 assign [class="^Google-chrome$" instance="^google-chrome$"] web
-assign [class="^TelegramDesktop$" instance="^Telegram$"]  telegram
 assign [title="^mutt$"] mail
 assign [title="^google-sync$"] mail
 assign [instance="^calibre-gui$" class="^libprs500$"] web
@@ -88,9 +88,8 @@ bindsym Mod4+q mode "$home_monitor"
 # exec --no-startup-id redshift
 exec --no-startup-id megasync
 exec --no-startup-id compton --config ~/.compton.conf
-exec --no-startup-id volumeicon
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id polybar -c /home/david/.config/polybar/config example
+exec --no-startup-id polybar -c /home/davidcarlos/.config/polybar/config example
 
 mode "$home_monitor" {
 
@@ -105,7 +104,7 @@ bindsym Mod4+q mode "default"
 
 #To use  icon, install fonts-font-awesome package
 
-exec --no-startup-id $terminal -title code
+exec --no-startup-id $terminal
 exec --no-startup-id google-chrome
 
 # kill focused window
@@ -118,7 +117,7 @@ bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFF
 
 workspace_layout default
 
-new_window pixel 3
+new_window pixel 2
 
 # gaps inner 6
 # gaps outer 2
@@ -192,9 +191,8 @@ bindsym Mod4+minus scratchpad show
 # switch to workspace
 bindsym Mod4+1 workspace code
 bindsym Mod4+2 workspace web
-bindsym Mod4+3 workspace telegram
-bindsym Mod4+4 workspace mail
-bindsym Mod4+5 workspace other
+bindsym Mod4+3 workspace mail
+bindsym Mod4+4 workspace other
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
@@ -203,9 +201,9 @@ bindsym Mod4+0 workspace 10
 
 bindsym Mod4+Shift+1 move container to workspace code
 bindsym Mod4+Shift+2 move container to workspace web
-bindsym Mod4+Shift+3 move container to workspace telegram
-bindsym Mod4+Shift+4 move container to workspace mail
-bindsym Mod4+Shift+5 move container to workspace other
+bindsym Mod4+Shift+3 move container to workspace mail
+bindsym Mod4+Shift+4 move container to workspace other
+bindsym Mod4+Shift+5 move container to workspace 5
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
@@ -262,7 +260,7 @@ set $transparent #0017202A
 #bar {
 #	font pango:Roboto, Bold 10
 #	position top
-#	height 24
+#	#height 24
 #	status_command i3blocks
 #	i3bar_command i3bar -t
 #	tray_output none
