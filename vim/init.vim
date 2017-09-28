@@ -20,7 +20,8 @@ let g:UltiSnipsExpandTrigger="<C-w>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
 Plugin 'rking/ag.vim'
 Plugin 'vim-scripts/LanguageTool'
@@ -35,6 +36,7 @@ Plugin 'majutsushi/tagbar'
 
 " Colorschemes
 Plugin 'zaki/zazen'
+Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint', 'pep8']
@@ -62,7 +64,7 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-Plugin 'janko-m/vim-test'
+Plugin 'szw/vim-maximizer'
 call vundle#end()
 
 
@@ -86,7 +88,7 @@ endif
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType js set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType html set softtabstop=4 tabstop=4 laststatus=4 shiftwidth=4 expandtab
+autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
@@ -96,13 +98,15 @@ autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftw
 syntax enable
 set relativenumber
 set number
-set termguicolors
+"set termguicolors
 
 " Some colorschemes as solarized needs background=light
-" set background=light
- set t_Co=256
 " let g:solarized_termcolors=256
-colorscheme zazen
+set t_Co=256
+let g:solarized_termcolors=256
+set background=light
+colorscheme solarized
+"colorscheme zazen
 
 set showmatch
 set ignorecase

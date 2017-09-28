@@ -28,7 +28,6 @@ export PATH=$PATH:$HOME/.rvm/bin
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 GREEN="\[$(tput setaf 2)\]"
 RESET="\[$(tput sgr0)\]"
@@ -36,8 +35,10 @@ export PS1="\[\e[33m\][\u${RESET} ${GREEN}\W]${RESET}\$(parse_git_branch)\[\033[
 
 export EDITOR=nvim
 export GOPATH="/home/davidcarlos/projects/go"
-alias npm="/home/davidcarlos/projects/node/bin/npm"
+#alias npm="/home/davidcarlos/projects/node/bin/npm"
+alias acervos_api_docker="docker run -it -p 4040:4040 -v ~/projects/pencillabs/acervos-api/:/src/acervos-api/acervos-api acervos_api_docker"
 alias noosfero_docker="docker run -i -t -p 3000:3000 -v ~/projects/noosfero:/src/noosfero noosfero"
+alias night_mode="redshift -r -O 3300 -b 0.9"
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
