@@ -10,7 +10,7 @@ call vundle#begin()
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
-"Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
@@ -23,13 +23,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdtree'
-Plugin 'rking/ag.vim'
+
+Plugin 'mileszs/ack.vim'
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev Ag Ack
+
 Plugin 'vim-scripts/LanguageTool'
 Plugin 'Valloric/YouCompleteMe'
-
-
-" To use this plugin you will have to install in your machine thd
-" silver-search lib.
 
 " Status bar plugin
 Plugin 'majutsushi/tagbar'
@@ -64,22 +64,13 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-Plugin 'szw/vim-maximizer'
 call vundle#end()
 
-
 filetype plugin indent on
+
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-let g:airline_symbols = {}
-endif
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-if has("autocmd")
-  filetype plugin indent on
+    let g:airline_symbols = {}
 endif
 "=====================================
 
@@ -94,11 +85,9 @@ autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expan
 autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
-
 syntax enable
 set relativenumber
 set number
-"set termguicolors
 
 " Some colorschemes as solarized needs background=light
 " let g:solarized_termcolors=256
@@ -153,10 +142,7 @@ nmap <F10> :%s/\s\+$//<CR>
 "Open vimrc/init.vim in a split window
 nmap <leader>vs :vs $MYVIMRC<CR>
 
-"Use find command instead of CtrlP plugin"
-set path+=**
 nmap <leader>f :FZF<CR>
-
 " =========== Moves ===============
 nmap j gj
 nmap k gk
@@ -166,7 +152,7 @@ nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
 
 " Delete line in insert mode
-imap <c-d> <esc>ddi
+imap <c-d> <esc>ddko
 
 "Surround with ""
 nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>
@@ -203,11 +189,9 @@ nmap <LEADER>b :b#<CR>
 nmap <LEADER>bn :bnext<CR>
 nmap <LEADER>bp :bprevious<CR>
 
-" Better then vim native buffers
 " List buffered files
-nmap <LEADER>l :buffer 
+nmap <LEADER>l :buffer
 nmap <LEADER>L :buffers<CR>
-map <LEADER>M :m 
 
 "========== File commands ===============
 nmap <LEADER>q :q<CR>
@@ -235,7 +219,7 @@ nmap <LEADER>p yip<CR>
 vmap <LEADER>p d<CR>
 
 "Silver search, better then ack.
-nnoremap <LEADER>a :Ag
+nnoremap <LEADER>a :Ack
 
 " Show registers
 nmap <LEADER>r :reg<CR>
@@ -266,17 +250,12 @@ nmap <F5> :RuboCop<CR>
 
 "=========== Other stuffs ===============
 
-nmap <c-t> :tabnew<CR>
-
 " clean hlsearch
 nnoremap <F12> :nohl<CR><C-L>
 
 " Increase width vertical resize.
 nnoremap <C-W>< :vertical resize +10<CR>
 nnoremap <C-W>> :vertical resize -10<CR>
-
-" Signed-off-by snipet
-nmap <LEADER>S :read ~/.vim/signed_off_by_template.txt<CR>fNve
 
 "reference: "http://vim.wikia.com/wiki/Maximize_window_and_return_to_previous_split_structure
 " Very usefull to use with splits.
