@@ -1,0 +1,11 @@
+# ~/.tmuxinator/fedora.yml
+
+name: fedora
+root: ~/projects/fedora
+
+windows:
+  - packaging:
+        layout: even-horizontal
+        panes:
+         - vim
+         -

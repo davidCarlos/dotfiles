@@ -1,0 +1,12 @@
+# ~/.tmuxinator/package.yml
+
+name: package
+windows:
+  - pack:
+        root: ~/rpmbuild
+        layout: 21b0,170x41,0,0{85x41,0,0[85x20,0,0,70,85x20,0,21,73],84x41,86,0[84x20,86,0,71,84x20,86,21,72]}]
+        panes:
+          - (cd SPECS && vim)
+          - cd ~/rpmbuild/SPECS
+          - cd ~/rpmbuild/SOURCES
+          - cd ~/rpmbuild

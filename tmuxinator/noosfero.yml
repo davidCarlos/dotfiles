@@ -1,0 +1,15 @@
+# ~/.tmuxinator/noosfero.yml
+
+name: noosfero
+root: ~/projects/noosfero
+
+windows:
+  - noosfero_code:
+        layout: even-horizontal
+        panes:
+         - vim
+         - 
+  - noosfero_server:
+        layout: even-horizontal
+        panes:
+         - 

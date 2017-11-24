@@ -1,0 +1,29 @@
+# ~/.tmuxinator/kiskadee.yml
+
+name: kiskadee
+root: ~/projects/kiskadee
+
+windows:
+  - kiskadee:
+        root: ~/projects/kiskadee/
+        layout: even-horizontal
+        panes:
+         - vim
+         - workon kiskadee
+  - kiskadee_vm:
+        root: ~/projects/kiskadee/
+        layout: even-horizontal
+        panes:
+         - ssh kiskadee
+  - kiskadee_front:
+        root: ~/projects/kiskadee_ui/
+        layout: even-horizontal
+        panes:
+         - vim
+         - npm run dev
+  - firehose:
+        root: ~/projects/firehose/
+        layout: even-horizontal
+        panes:
+         - vim
+         - source bin/activate

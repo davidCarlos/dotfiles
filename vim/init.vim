@@ -54,17 +54,21 @@ Plugin 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
 
 Plugin 'gregsexton/MatchTag'
+Plugin 'ryanoasis/vim-devicons'
 
 Plugin 'tpope/vim-rails'
 Plugin 'junegunn/fzf'
 Plugin 'Townk/vim-autoclose'
 Plugin 'alvan/vim-closetag'
+"Plugin 'fatih/vim-go'
+
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 call vundle#end()
+filetype on
 
 filetype plugin indent on
 
@@ -72,17 +76,23 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 "=====================================
 
 " ============= SETS/LETS =================
 
+filetype plugin indent on
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType js set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType python set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
+autocmd FileType eruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType spec set softtabstop=8 tabstop=8 laststatus=8 shiftwidth=8 expandtab
+autocmd FileType yaml set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType javascript set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType python set softtabstop=4 tabstop=8 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
+autocmd FileType go set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
 syntax enable
@@ -103,6 +113,7 @@ set smartcase
 set incsearch
 set autoindent
 set mouse=
+set list
 
 set autowrite
 
@@ -177,6 +188,7 @@ nmap l <nop>
 nmap h <nop>
 "=============================
 
+nmap <c-q> %
 "========= Navigation stuffs ==================
 nmap <leader>F :NERDTreeToggle<CR>
 
@@ -192,6 +204,8 @@ nmap <LEADER>bp :bprevious<CR>
 " List buffered files
 nmap <LEADER>l :buffer
 nmap <LEADER>L :buffers<CR>
+nmap lw :lwindow<CR>
+nmap lc :lclose<CR>
 
 "========== File commands ===============
 nmap <LEADER>q :q<CR>

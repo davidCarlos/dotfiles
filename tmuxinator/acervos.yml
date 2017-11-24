@@ -1,0 +1,18 @@
+# ~/.tmuxinator/acervos.yml
+
+name: acervos
+root: ~/projects/pencillabs
+
+windows:
+  - app:
+        root: ~/projects/pencillabs/acervos-app/
+        layout: even-horizontal
+        panes:
+         - vim
+         - polymer serve
+  - api:
+        root: ~/projects/pencillabs/acervos-api/
+        layout: even-horizontal
+        panes:
+         - vim
+         - acervos_api_docker

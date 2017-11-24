@@ -1,0 +1,11 @@
+# ~/.tmuxinator/blog.yml
+
+name: blog
+root: ~/projects/blog
+
+windows:
+  - blog:
+        layout: even-horizontal
+        panes:
+         - vim
+         - 

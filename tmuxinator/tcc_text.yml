@@ -1,0 +1,13 @@
+
+# ~/.tmuxinator/tcc_text.yml
+
+name: tcc_text
+root: ~/
+
+windows:
+  - text:
+        root: ~/projects/tcc/
+        layout: even-horizontal
+        panes:
+         - vim
+         - 
