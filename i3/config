@@ -102,7 +102,6 @@ bindsym Mod4+q mode "default"
 }
 
 exec --no-startup-id $terminal --title="code"
-exec --no-startup-id google-chrome
 
 # kill focused window
 bindsym Mod4+Shift+q kill

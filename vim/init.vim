@@ -238,9 +238,6 @@ nnoremap <LEADER>a :Ack
 " Show registers
 nmap <LEADER>r :reg<CR>
 "=======================================
-"
-nmap <LEADER>dd :r ~/.vim/due_date_todo.txt<CR>kEJf<vf>
-
 
 " ========= Git maps ============
 nmap gs :Gstatus<CR>
