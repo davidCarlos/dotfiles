@@ -115,8 +115,8 @@ workspace_layout default
 
 new_window pixel 2
 
-# gaps inner 6
-# gaps outer 2
+gaps inner 6
+gaps outer 2
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

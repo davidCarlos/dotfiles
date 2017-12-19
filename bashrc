@@ -35,10 +35,15 @@ export PS1="\[\e[33m\][\u${RESET} ${GREEN}\W]${RESET}\$(parse_git_branch)\[\033[
 
 export EDITOR=nvim
 export GOPATH="/home/davidcarlos/projects/go"
-#alias npm="/home/davidcarlos/projects/node/bin/npm"
 alias acervos_api_docker="docker run -it -p 4040:4040 -v ~/projects/pencillabs/acervos-api/:/src/acervos-api/acervos-api acervos_api_docker"
 alias noosfero_docker="docker run -i -t -p 3000:3000 -v ~/projects/noosfero:/src/noosfero noosfero"
 alias night_mode="redshift -r -O 3300 -b 0.9"
+alias gpull="git pull --rebase"
+alias gpush="git push"
+alias gfetch="git fetch -p"
+alias gstatus="git status"
+alias glog="git log"
+alias gck="git checkout"
 
 NPM_PACKAGES="${HOME}/.npm-packages"
 
@@ -49,3 +54,12 @@ unset MANPATH # delete if you already modified MANPATH elsewhere in your config
 export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3"
+source ~/.local/bin/virtualenvwrapper.sh
+
+###-tns-completion-start-###
+if [ -f /home/davidcarlos/.tnsrc ]; then 
+    source /home/davidcarlos/.tnsrc 
+fi
+###-tns-completion-end-###

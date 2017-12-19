@@ -83,10 +83,12 @@ set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 filetype plugin indent on
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType gitcommit set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType eruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType spec set softtabstop=8 tabstop=8 laststatus=8 shiftwidth=8 expandtab
 autocmd FileType yaml set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType javascript set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType scss set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType python set softtabstop=4 tabstop=8 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
@@ -165,17 +167,11 @@ nmap <c-l> <c-w>l
 " Delete line in insert mode
 imap <c-d> <esc>ddko
 
-"Surround with ""
-nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>
+"Add a empty line below on normal mode
+nnoremap <leader>j o<esc>
 
-"Surround with $$
-nnoremap <leader>$ viw<esc>a$<esc>hbi$<esc>
-
-"Surround with ()
-nnoremap <leader>) viw<esc>a) <esc>hbi(<esc>f<space>x
-
-"Surround with []
-nnoremap <leader>] viw<esc>a] <esc>hbi[<esc>f<space>x
+"Add a empty line below on normal mode
+nnoremap <leader>k ko<esc>
 
 "jump to beginning of the line
 nmap E $
@@ -287,6 +283,11 @@ function! MaximizeToggle()
         exec "mksession! " . s:maximize_session
         only
     endif
+endfunction
+
+
+function! OpenHelpFull(arg)
+	exec "help" a:arg | only
 endfunction
 
 
