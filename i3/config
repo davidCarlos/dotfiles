@@ -35,10 +35,10 @@ set $right l
 #set $terminal xterm -fa Hack-10
 set $terminal gnome-terminal
 
-set $i3lock /home/davidcarlos/projects/i3-extras/i3lock-wrapper
-set $i3exit /home/davidcarlos/projects/i3-extras/i3-exit
+set $i3lock /home2/david/projects/i3-extras/i3lock-wrapper > /dev/null
+set $i3exit /home2/david/projects/i3-extras/i3-exit
 
-bindsym Mod4+Shift+e exec $i3exit
+bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
 bindsym Mod4+Shift+p exec pavucontrol
 bindsym Mod4+Shift+n exec wicd-gtk
 bindsym Mod4+Shift+f exec $terminal --title="ranger" -e ranger
@@ -48,8 +48,8 @@ bindsym Mod4+o exec $i3lock
 floating_modifier Mod4
 
 focus_follows_mouse no
-workspace_auto_back_and_forth yes
-font pango:Roboto, Bold 9
+workspace_auto_back_and_forth no
+font pango:Knack Nerd, Bold 9
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
@@ -89,7 +89,7 @@ bindsym Mod4+q mode "$home_monitor"
 exec --no-startup-id megasync
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id polybar -c /home/davidcarlos/.config/polybar/config example
+exec --no-startup-id polybar -c /home2/david/.config/polybar/config example
 
 mode "$home_monitor" {
 

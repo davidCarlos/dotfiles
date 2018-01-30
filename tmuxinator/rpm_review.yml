@@ -1,4 +1,4 @@
-# ~/.tmuxinator/package.yml
+# ~/.tmuxinator/rpm_review.yml
 
 name: package
 windows:
@@ -6,6 +6,6 @@ windows:
         root: ~/rpmbuild
         layout: main-vertical
         panes:
-          - (cd SPECS && vim)
+          - (cd REVISIONS && vim)
           - cd REVISIONS
-          - cd SOURCES
+          -

@@ -37,6 +37,7 @@ Plugin 'majutsushi/tagbar'
 " Colorschemes
 Plugin 'zaki/zazen'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'wolverian/minimal'
 
 Plugin 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint', 'pep8']
@@ -62,6 +63,8 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'alvan/vim-closetag'
 "Plugin 'fatih/vim-go'
 
+Plugin 'KabbAmine/vCoolor.vim'
+
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
@@ -73,6 +76,7 @@ filetype on
 filetype plugin indent on
 
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'minimalist'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -106,7 +110,7 @@ set number
 set t_Co=256
 let g:solarized_termcolors=256
 set background=light
-colorscheme solarized
+colorscheme minimal
 "colorscheme zazen
 
 set showmatch
@@ -286,8 +290,12 @@ function! MaximizeToggle()
 endfunction
 
 
-function! OpenHelpFull(arg)
+function! HelpFull(arg)
 	exec "help" a:arg | only
+endfunction
+
+function! CleanRegisters()
+    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"' | let i=0 | while (i<strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
 endfunction
 
 

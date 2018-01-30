@@ -2,17 +2,21 @@
 # get started fast.
 
 [general]
-ui = TTY.TTYUI
+ui = ttyui
 accounts = Gmail
-fsync = false
+maxsyncaccounts = 1
 
 [Account Gmail]
 localrepository = Gmail-Local
 remoterepository = Gmail-Remote
+autorefresh = 0.5
+quick = 10
 
 [Repository Gmail-Local]
 type = GmailMaildir
-localfolders = ~/Documentos/.Mail/ddavidcarlos1392@gmail.com
+localfolders = ~/.Mail/ddavidcarlos1392@gmail.com
+keepalive = 60
+holdconnectionopen = yes
 
 [Repository Gmail-Remote]
 type = Gmail
@@ -26,4 +30,4 @@ nametrans = lambda foldername: re.sub ('^\[gmail\]', 'bak',
                                re.sub (' ', '_', foldername.lower()))))))
 folderfilter = lambda foldername: foldername not in ['[Gmail]/All Mail']
 folderfilter = lambda f: f not in ['sent', 'fisl', 'inbox']
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+sslcacertfile = /etc/ssl/certs/ca-bundle.crt
