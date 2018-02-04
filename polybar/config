@@ -144,12 +144,12 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = " %d/%m/%Y"
 
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 #format-underline = #0a6cf5
 
@@ -289,7 +289,7 @@ format-packetloss = <animation-packetloss> <label-connected>
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
 ; Default: %ifname% %local_ip%
-label-connected =  
+label-connected =  
 label-connected-foreground = #000000
 
 ; Available tokens:
