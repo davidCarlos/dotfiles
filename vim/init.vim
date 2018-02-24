@@ -1,91 +1,102 @@
 "set shell=/bin/zsh
-
-" ============= Plugins==========================
-
+"-------------- Vundle --------------"
 set encoding=utf8
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=~/.config/nvim/plugins/fzf
+call plug#begin('~/.config/nvim/plugins')
 
 "Vundle is the plugin manager used by this vimrc. Install vundle in your
 "machine to install the other plugins.
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-w>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'scrooloose/nerdtree'
 
-Plugin 'mileszs/ack.vim'
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev Ag Ack
+"Plug 'mileszs/ack.vim'
+"let g:ackprg = 'ag'
+"cnoreabbrev Ag Ack
 
-Plugin 'vim-scripts/LanguageTool'
-Plugin 'Valloric/YouCompleteMe'
+Plug 'vim-scripts/LanguageTool'
+Plug 'Valloric/YouCompleteMe'
 
 " Status bar plugin
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " Colorschemes
-Plugin 'zaki/zazen'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'wolverian/minimal'
+Plug 'zaki/zazen'
+Plug 'altercation/vim-colors-solarized'
+Plug 'wolverian/minimal'
+Plug 'owickstrom/vim-colors-paramount'
 
-Plugin 'neomake/neomake'
+Plug 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint', 'pep8']
 autocmd! BufWritePost * Neomake
 autocmd BufWritePost * Neomake!
 
-
 " Integrate vim with git
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Rails stuff
-Plugin 'ngmy/vim-rubocop'
+Plug 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
 
-Plugin 'gregsexton/MatchTag'
-Plugin 'ryanoasis/vim-devicons'
+Plug 'gregsexton/MatchTag'
+Plug 'ryanoasis/vim-devicons'
 
-Plugin 'tpope/vim-rails'
-Plugin 'junegunn/fzf'
-Plugin 'Townk/vim-autoclose'
-Plugin 'alvan/vim-closetag'
-"Plugin 'fatih/vim-go'
+Plug 'tpope/vim-rails'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'Townk/vim-autoclose'
+Plug 'alvan/vim-closetag'
 
-Plugin 'KabbAmine/vCoolor.vim'
+"Simple color selector/picker plugin for Vim.
+Plug 'KabbAmine/vCoolor.vim'
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
 let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
-call vundle#end()
+call plug#end()
+
+"-------------- general configurations --------------"
 filetype on
-
 filetype plugin indent on
+filetype plugin indent on
+syntax enable
 
+"-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'minimalist'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'hybrid'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 set guifont=DroidSansMono\ Nerd\ Font\ 11
-"=====================================
 
-" ============= SETS/LETS =================
+"-------------- Color Schemes --------------"
+" Some colorschemes as solarized needs background=light
+" let g:solarized_termcolors=256
+"set t_Co=256
+"let g:solarized_termcolors=256
+set background=light
+colorscheme paramount
+"colorscheme zazen
 
-filetype plugin indent on
+"-------------- Sets --------------"
+"
+"==== file extension sets ===="
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType gitcommit set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType eruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
@@ -101,18 +112,9 @@ autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandt
 autocmd FileType go set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
-syntax enable
+"==== General sets ===="
 set relativenumber
 set number
-
-" Some colorschemes as solarized needs background=light
-" let g:solarized_termcolors=256
-set t_Co=256
-let g:solarized_termcolors=256
-set background=light
-colorscheme minimal
-"colorscheme zazen
-
 set showmatch
 set ignorecase
 set smartcase
@@ -120,20 +122,17 @@ set incsearch
 set autoindent
 set mouse=
 set list
-
 set autowrite
-
 set shiftround
 set showmode
-
+" Show a preview of the regex result
+set inccommand=nosplit
 " Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.png,*.pyc,*.swp,*.tar.*,*.pdf
-
+set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf
 " Ignore virtualenv generated directories
 set wildignore+=**bin/**
 set wildignore+=**lib/python3.4/**
 set wildignore+=**lib/python2.7/**
-
 set showfulltag
 set nobackup
 set nowritebackup
@@ -145,128 +144,121 @@ set confirm
 set hlsearch
 set columns=80
 set colorcolumn=80
-
-
 "set cursorline
 "set enc=utf-8
 set foldmethod=manual
 set ch=2
 let mapleader=","
 
+"-------------- Maps --------------"
+"==== Regex maps ===="
 "remove empty spaces
 nmap <F10> :%s/\s\+$//<CR>
 
-"Open vimrc/init.vim in a split window
-nmap <leader>vs :vs $MYVIMRC<CR>
+"==== Commands maps ===="
+nmap <leader>f :FZF <CR>
+nmap <leader>F :NERDTreeToggle<CR>
+"Ctags bar
+nmap <LEADER>c :!ctags -R <CR>
+nmap <LEADER>C :TagbarToggle<CR>
+"Silver search, better then ack.
+nnoremap <LEADER>a :Ag
 
-nmap <leader>f :FZF<CR>
-" =========== Moves ===============
+"==== Movimentation maps ===="
 nmap j gj
 nmap k gk
 nmap <c-j> <c-w>j
 nmap <c-k> <c-w>k
 nmap <c-h> <c-w>h
 nmap <c-l> <c-w>l
-
-" Delete line in insert mode
-imap <c-d> <esc>ddko
-
-"Add a empty line below on normal mode
-nnoremap <leader>j o<esc>
-
-"Add a empty line below on normal mode
-nnoremap <leader>k ko<esc>
-
 "jump to beginning of the line
 nmap E $
 nmap B ^
 vmap E $
 vmap B ^
-
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
-"=============================
-
 nmap <c-q> %
-"========= Navigation stuffs ==================
-nmap <leader>F :NERDTreeToggle<CR>
 
-"Ctags bar
-nmap <LEADER>c :!ctags -R <CR>
-nmap <LEADER>C :TagbarToggle<CR>
+"==== Editing maps ===="
+" Delete line in insert mode
+imap <c-d> <esc>ddko
+"Add a empty line below on normal mode
+nnoremap <leader>j o<esc>
+"Add a empty line below on normal mode
+nnoremap <leader>k ko<esc>
 
-"Buffer stuffs
+"==== Buffer maps ===="
 nmap <LEADER>b :b#<CR>
-nmap <LEADER>bn :bnext<CR>
-nmap <LEADER>bp :bprevious<CR>
-
+nmap <C-N> :bnext<CR>
+nmap <C-P> :bprevious<CR>
 " List buffered files
 nmap <LEADER>l :buffer
 nmap <LEADER>L :buffers<CR>
 nmap lw :lwindow<CR>
 nmap lc :lclose<CR>
 
-"========== File commands ===============
+"==== File maps ===="
 nmap <LEADER>q :q<CR>
 nmap <LEADER>w :w<CR>
 nmap <LEADER>x :x<CR>
-"=========================================
-
 " Save file with sudo permission (nice mapping)
 nmap <LEADER>R :w !sudo tee %<CR>
-
 " set current edit file as default directory NICE
 nmap <LEADER>d :lcd %:p:h<CR>
-
 "Reload vimrc
 nmap <LEADER>m :so $MYVIMRC<CR>
+"Open vimrc/init.vim in a split window
+nmap <leader>vs :vs $MYVIMRC<CR>
 
+"==== Split maps ===="
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
 
+"==== Yank maps ===="
 "Yank to clipboard
 noremap YY "+y<CR>
+"Yank from clipboard
+nmap <leader>p "*p<CR>
 
-"Yank paragraph
-nmap <LEADER>p yip<CR>
-vmap <LEADER>p d<CR>
-
-"Silver search, better then ack.
-nnoremap <LEADER>a :Ack
-
+"==== Registers maps ===="
 " Show registers
 nmap <LEADER>r :reg<CR>
-"=======================================
 
-" ========= Git maps ============
+"==== Fugitive maps ===="
 nmap gs :Gstatus<CR>
 nmap gd :Gvdiff<CR>
 nmap gw :Gwrite<CR>
 nmap gc :Gcommit
+nmap gik :Git checkout %<CR>
 nmap gp :Gpush
 nmap gl :Git log<CR>
 nmap gS :Git show<CR>
 nmap gv :Gitv<CR>
-"======================================
 
-" Jump to list errors
+"==== list maps ===="
 nmap <LEADER>N :lnext<CR>
 nmap <LEADER>P :lprevious<CR>
-
-"===================================================
-
-" ========== Ruby stuffs ==================
-nmap <F5> :RuboCop<CR>
-
-"=========== Other stuffs ===============
-
 " clean hlsearch
 nnoremap <F12> :nohl<CR><C-L>
-
 " Increase width vertical resize.
 nnoremap <C-W>< :vertical resize +10<CR>
 nnoremap <C-W>> :vertical resize -10<CR>
+
+"-------------- Functions --------------"
+function! HelpFull(arg)
+	exec "help" a:arg | only
+endfunction
+
+function! CleanRegisters()
+    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"' | let i=0 | while (i<strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
+endfunction
+
+set omnifunc=syntaxcomplete#Complete
+if filereadable("/etc/vim/vimrc.local")
+  source /etc/vim/vimrc.local
+endif
 
 "reference: "http://vim.wikia.com/wiki/Maximize_window_and_return_to_previous_split_structure
 " Very usefull to use with splits.
@@ -289,18 +281,3 @@ function! MaximizeToggle()
     endif
 endfunction
 
-
-function! HelpFull(arg)
-	exec "help" a:arg | only
-endfunction
-
-function! CleanRegisters()
-    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"' | let i=0 | while (i<strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
-endfunction
-
-
-set omnifunc=syntaxcomplete#Complete
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
-"========================================

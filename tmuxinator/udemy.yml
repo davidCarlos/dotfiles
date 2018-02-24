@@ -1,0 +1,14 @@
+# ~/.tmuxinator/udemy.yml
+
+name: udemy
+root: ~/projects/courses/udemy/html5_css3/ominifood
+
+windows:
+  - code:
+        layout: even-horizontal
+        panes:
+         - vim index.html
+  - site:
+        layout: even-horizontal
+        panes:
+         - google-chrome index.html

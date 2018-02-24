@@ -49,7 +49,7 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth no
-font pango:Knack Nerd, Bold 9
+font pango:Liberation Mono, Regular 9
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
@@ -91,25 +91,15 @@ exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar -c /home2/david/.config/polybar/config example
 
-mode "$home_monitor" {
-
-bindsym Mod4+d exec rofi -show drun -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b"  -lines 6 -font "Hack 10" -hide-scrollbar -separator-style "none" -line-margin 7 -padding 100 -width 100 -opacity "75"
-
-bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -o 85 -lines 6 -font "Hack 10" -hide-scrollbar -separator-style "none" -line-margin 7 -padding 100 -width 100
-
-bindsym Mod4+q mode "default"
-
-}
-
 exec --no-startup-id $terminal --title="code"
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym Mod4+d exec rofi -show drun -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -lines 6 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
+bindsym Mod4+d exec rofi -show drun -fg "#f7f9f9" -bg "#f7f9f9" -hlfg "#f7f9f9" -hlbg "#f7f9f9" -bgalt "#f7f9f9" -lines 4 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 20 -width 30 -location 0  -m primary
 
-bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -lines 6 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 340 -width 100
+bindsym Mod4+x exec rofi  -show window  -fg "#FFFFFF" -bg "#14121b" -hlfg "#FFFFFF" -hlbg "#02813d" -bgalt "#14121b" -lines 6 -font "Hack 10" -hide-scrollbar -opacity "85" -separator-style "none" -line-margin 7 -padding 40 -width 30
 
 workspace_layout default
 
