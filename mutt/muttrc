@@ -2,6 +2,8 @@ source ~/.mutt/mail_aliases
 source ~/.mutt/sidebar
 
 auto_view text/html
+alternative_order text/plain text/html
+
 set editor = /usr/bin/nvim
 set my_name = 'David Carlos'
 set mail_check = 90
@@ -30,9 +32,6 @@ folder-hook sent set sort=date-received
 set my_pattern = "color index white color235 ~U"
 set my_messages = "color index black color239 ~tddavidcarlos1392@gmail.com"
 set my_readed_messages = "color index white color232 ~R"
-folder-hook inbox $my_pattern
-folder-hook inbox $my_messages
-folder-hook inbox $my_readed_messages
 
 set imap_user = 'ddavidcarlos1392'
 set smtp_url = "smtp://ddavidcarlos1392@smtp.gmail.com:587/"
@@ -47,7 +46,6 @@ set imap_keepalive = 300
 set header_cache = ~/.cache/mutt
 set message_cachedir = ~/.cache/mutt
 set send_charset = "us-ascii:utf-8"
-alternative_order text/plain text/html
 
 set date_format="%y-%m-%d %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
@@ -71,10 +69,16 @@ bind index,pager <right>  sidebar-open
 set sidebar_visible = yes
 set sidebar_width   = 24
 color sidebar_new color221 color233
-color status color221 default
+color status black white
 color indicator white color94
-color tree color221 default
-color normal white black
+color tree black white
+color normal black white
+
+# unreded messages
+color index  color102 white  ~R
+
+# readed messages
+color index black color245 ~U
 
 bind index <tab>    sync-mailbox
 bind index <space>  collapse-thread

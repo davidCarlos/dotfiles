@@ -1,5 +1,5 @@
 "set shell=/bin/zsh
-"-------------- Vundle --------------"
+"-------------- Plug --------------"
 set encoding=utf8
 set nocompatible
 set rtp+=~/.config/nvim/plugins/fzf
@@ -20,10 +20,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-
-"Plug 'mileszs/ack.vim'
-"let g:ackprg = 'ag'
-"cnoreabbrev Ag Ack
 
 Plug 'vim-scripts/LanguageTool'
 Plug 'Valloric/YouCompleteMe'
@@ -198,6 +194,7 @@ nmap <LEADER>l :buffer
 nmap <LEADER>L :buffers<CR>
 nmap lw :lwindow<CR>
 nmap lc :lclose<CR>
+nmap <LEADER>d :bd!<CR>
 
 "==== File maps ===="
 nmap <LEADER>q :q<CR>
@@ -205,12 +202,12 @@ nmap <LEADER>w :w<CR>
 nmap <LEADER>x :x<CR>
 " Save file with sudo permission (nice mapping)
 nmap <LEADER>R :w !sudo tee %<CR>
-" set current edit file as default directory NICE
-nmap <LEADER>d :lcd %:p:h<CR>
 "Reload vimrc
 nmap <LEADER>m :so $MYVIMRC<CR>
 "Open vimrc/init.vim in a split window
-nmap <leader>vs :vs $MYVIMRC<CR>
+nmap <leader>vs :e $MYVIMRC<CR>
+"reopen current file
+nmap <leader>e :e!<CR>
 
 "==== Split maps ===="
 nmap <LEADER>v :vsplit <CR>
@@ -221,6 +218,7 @@ nmap <LEADER>s :split <CR>
 noremap YY "+y<CR>
 "Yank from clipboard
 nmap <leader>p "*p<CR>
+"nmap <leader>P "+p<CR>
 
 "==== Registers maps ===="
 " Show registers
