@@ -12,10 +12,9 @@ Plug 'VundleVim/Vundle.vim'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
+
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-w>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -38,10 +37,12 @@ let g:neomake_python_enabled_makers = ['pylint', 'pep8']
 autocmd! BufWritePost * Neomake
 autocmd BufWritePost * Neomake!
 
-" Integrate vim with git
+" Integrates vim with git
 Plug 'tpope/vim-fugitive'
-
-Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_terminal_reports_focus=0
+let g:gitgutter_enabled = 1
+set updatetime=100
 
 " Rails stuff
 Plug 'ngmy/vim-rubocop'
@@ -69,12 +70,10 @@ call plug#end()
 "-------------- general configurations --------------"
 filetype on
 filetype plugin indent on
-filetype plugin indent on
 syntax enable
 
 "-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'hybrid'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
@@ -91,7 +90,7 @@ colorscheme paramount
 "colorscheme zazen
 
 "-------------- Sets --------------"
-"
+
 "==== file extension sets ===="
 autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType gitcommit set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
@@ -109,44 +108,56 @@ autocmd FileType go set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expand
 autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
 "==== General sets ===="
+"Show relative line numbers
 set relativenumber
+"Show absolute line numbers
 set number
-set showmatch
+"Ignore upercase or downcase
 set ignorecase
+"If ignorecase is false, smartcase override it when use vim search
 set smartcase
+"Highlight the the searched pattern
 set incsearch
 set autoindent
+"Disable mouse
 set mouse=
+" Highlight white spaces
 set list
+" Saves file modifications when moves to another file.
 set autowrite
+" Ident using > and < (visual mode).
 set shiftround
+" Show current vim mode
 set showmode
 " Show a preview of the regex result
 set inccommand=nosplit
 " Ignore some extensions
 set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf
-" Ignore virtualenv generated directories
-set wildignore+=**bin/**
-set wildignore+=**lib/python3.4/**
-set wildignore+=**lib/python2.7/**
-set showfulltag
+" Not backup files
 set nobackup
-set nowritebackup
+" Not create swap files
 set noswapfile
-set title
+" Enhanced view of command autocomplete options
 set wildmenu
-set wildmode=longest,list,full
+" When autocomplete some vim command, complete the next full match.
+set wildmode=full
+" Ask for confirm when executes a command operation.
 set confirm
+" Highlight all search pattern matches.
 set hlsearch
+" Sets max columns.
 set columns=80
+" Add a vertical bar showing the column limit.
 set colorcolumn=80
-"set cursorline
-"set enc=utf-8
+" The kind of folding used for the current window
 set foldmethod=manual
+" set the command line height.
 set ch=2
+" Defines the mapleader key.
 let mapleader=","
 
 "-------------- Maps --------------"
+
 "==== Regex maps ===="
 "remove empty spaces
 nmap <F10> :%s/\s\+$//<CR>
@@ -163,11 +174,6 @@ nnoremap <LEADER>a :Ag
 "==== Movimentation maps ===="
 nmap j gj
 nmap k gk
-nmap <c-j> <c-w>j
-nmap <c-k> <c-w>k
-nmap <c-h> <c-w>h
-nmap <c-l> <c-w>l
-"jump to beginning of the line
 nmap E $
 nmap B ^
 vmap E $
@@ -184,6 +190,11 @@ imap <c-d> <esc>ddko
 nnoremap <leader>j o<esc>
 "Add a empty line below on normal mode
 nnoremap <leader>k ko<esc>
+" Insert line above on insert mode
+imap <c-k> <esc>O
+" Insert line bellow on insert mode
+imap <c-j> <esc>o
+"jump to beginning of the line
 
 "==== Buffer maps ===="
 nmap <LEADER>b :b#<CR>
