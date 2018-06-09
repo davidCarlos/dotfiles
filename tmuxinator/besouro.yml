@@ -1,10 +1,10 @@
-# ~/.tmuxinator/fedora.yml
+# ~/.tmuxinator/besouro.yml
 
-name: fedora
-root: ~/projects/fedora
+name: besouro
+root: ~/projects/ej-server
 
 windows:
-  - packaging:
+  - app:
         layout: even-horizontal
         panes:
          - vim

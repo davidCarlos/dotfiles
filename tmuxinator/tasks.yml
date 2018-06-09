@@ -1,0 +1,12 @@
+# ~/.tmuxinator/task.yml
+
+name: task
+root: ~/
+
+windows:
+  - taskwarrior:
+        layout: main-horizontal
+        panes:
+         - task
+         - task calendar
+         - task burndown

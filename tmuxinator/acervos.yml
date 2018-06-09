@@ -15,4 +15,4 @@ windows:
         layout: even-horizontal
         panes:
          - vim
-         - acervos_api_docker
+         - acervos_api

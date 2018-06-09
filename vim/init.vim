@@ -1,26 +1,37 @@
 "set shell=/bin/zsh
+
 "-------------- Plug --------------"
 set encoding=utf8
 set nocompatible
 set rtp+=~/.config/nvim/plugins/fzf
 call plug#begin('~/.config/nvim/plugins')
 
-"Vundle is the plugin manager used by this vimrc. Install vundle in your
-"machine to install the other plugins.
-Plug 'VundleVim/Vundle.vim'
+"A solid language pack for Vim.
+Plug 'sheerun/vim-polyglot'
 
+" Preview colours in source code while editing
+Plug 'ap/vim-css-color'
+
+" plug-in which provides support for expanding abbreviations
+Plug 'mattn/emmet-vim'
+
+" Snippets engine
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<C-w>"
 
+"vim status bar.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Tree explorer.
 Plug 'scrooloose/nerdtree'
 
+" Grammar checker.
 Plug 'vim-scripts/LanguageTool'
+
 Plug 'Valloric/YouCompleteMe'
 
 " Status bar plugin
@@ -31,7 +42,11 @@ Plug 'zaki/zazen'
 Plug 'altercation/vim-colors-solarized'
 Plug 'wolverian/minimal'
 Plug 'owickstrom/vim-colors-paramount'
+Plug 'reedes/vim-colors-pencil'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'chriskempson/base16-vim'
 
+" Run commands assync.
 Plug 'neomake/neomake'
 let g:neomake_python_enabled_makers = ['pylint', 'pep8']
 autocmd! BufWritePost * Neomake
@@ -44,33 +59,35 @@ let g:gitgutter_terminal_reports_focus=0
 let g:gitgutter_enabled = 1
 set updatetime=100
 
+" Match html tags.
+Plug 'gregsexton/MatchTag'
+
+"Custom font icons.
+Plug 'ryanoasis/vim-devicons'
+
 " Rails stuff
+Plug 'tpope/vim-rails'
 Plug 'ngmy/vim-rubocop'
 let g:vimrubocop_config = '~/.rubocop.yml'
 
-Plug 'gregsexton/MatchTag'
-Plug 'ryanoasis/vim-devicons'
-
-Plug 'tpope/vim-rails'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Fuzzy search plugin
 Plug 'junegunn/fzf.vim'
+"Fuzzy search engine
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+"Auto close (), {} etc.
 Plug 'Townk/vim-autoclose'
-Plug 'alvan/vim-closetag'
 
 "Simple color selector/picker plugin for Vim.
 Plug 'KabbAmine/vCoolor.vim'
 
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.html.erb'
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
-
+Plug 'tpope/vim-surround'
 call plug#end()
 
 "-------------- general configurations --------------"
 filetype on
+syntax on
 filetype plugin indent on
-syntax enable
 
 "-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
@@ -83,28 +100,28 @@ set guifont=DroidSansMono\ Nerd\ Font\ 11
 "-------------- Color Schemes --------------"
 " Some colorschemes as solarized needs background=light
 " let g:solarized_termcolors=256
-"set t_Co=256
+set t_Co=256
 "let g:solarized_termcolors=256
 set background=light
-colorscheme paramount
+"let base16colorspace=256
+colorscheme PaperColor
 "colorscheme zazen
 
 "-------------- Sets --------------"
 
 "==== file extension sets ===="
-autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType gitcommit set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType eruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType bolt set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType javascript set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType css set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType scss set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
+autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType spec set softtabstop=8 tabstop=8 laststatus=8 shiftwidth=8 expandtab
 autocmd FileType yaml set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType javascript set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType scss set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType python set softtabstop=4 tabstop=8 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType c set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType go set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
 autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
 "==== General sets ===="
@@ -166,7 +183,7 @@ nmap <F10> :%s/\s\+$//<CR>
 nmap <leader>f :FZF <CR>
 nmap <leader>F :NERDTreeToggle<CR>
 "Ctags bar
-nmap <LEADER>c :!ctags -R <CR>
+nmap <LEADER>c :!ctags -R .<CR>
 nmap <LEADER>C :TagbarToggle<CR>
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -202,7 +219,7 @@ nmap <C-N> :bnext<CR>
 nmap <C-P> :bprevious<CR>
 " List buffered files
 nmap <LEADER>l :buffer
-nmap <LEADER>L :buffers<CR>
+nmap <LEADER>L :Buffers<CR>
 nmap lw :lwindow<CR>
 nmap lc :lclose<CR>
 nmap <LEADER>d :bd!<CR>
@@ -254,7 +271,6 @@ nnoremap <F12> :nohl<CR><C-L>
 " Increase width vertical resize.
 nnoremap <C-W>< :vertical resize +10<CR>
 nnoremap <C-W>> :vertical resize -10<CR>
-
 "-------------- Functions --------------"
 function! HelpFull(arg)
 	exec "help" a:arg | only
@@ -289,4 +305,3 @@ function! MaximizeToggle()
         only
     endif
 endfunction
-

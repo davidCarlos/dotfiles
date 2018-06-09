@@ -1,0 +1,15 @@
+# ~/.tmuxinator/tamojunto.yml
+
+name: tamojunto
+root: ~/projects/TamoJunto
+
+windows:
+  - app:
+        layout: even-horizontal
+        panes:
+         - vim
+         - polymer serve
+  - server:
+        layout: even-horizontal
+        panes:
+          -
