@@ -1,6 +1,6 @@
-# ~/.tmuxinator/acervos.yml
+# ~/.tmuxinator/collectar.yml
 
-name: acervos
+name: collectar
 root: ~/projects/pencillabs
 
 windows:
@@ -8,11 +8,11 @@ windows:
         root: ~/projects/pencillabs/acervos-app/
         layout: even-horizontal
         panes:
-         - vim
+         - git fetch -p
          - polymer serve
   - api:
         root: ~/projects/pencillabs/acervos-api/
         layout: even-horizontal
         panes:
-         - vim
-         - acervos_api
+         - git fetch -p
+         - sudo systemctl start docker && sudo chmod 777 /var/run/docker.sock && collectar_api

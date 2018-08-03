@@ -4,12 +4,14 @@ name: noosfero
 root: ~/projects/noosfero
 
 windows:
+  - noosfero_server:
+        layout: 39f1,193x46,0,0[193x13,0,0,41,193x32,0,14{96x32,0,14,42,96x32,97,14,58}]
+        panes:
+         - git fetch -p && noosfero_docker
+         - docker ps
+         -
   - noosfero_code:
         layout: even-horizontal
         panes:
-         - vim
-         - 
-  - noosfero_server:
-        layout: even-horizontal
-        panes:
-         - 
+         -
+         -

@@ -9,6 +9,8 @@ call plug#begin('~/.config/nvim/plugins')
 "A solid language pack for Vim.
 Plug 'sheerun/vim-polyglot'
 
+Plug 'equalsraf/neovim-gui-shim'
+
 " Preview colours in source code while editing
 Plug 'ap/vim-css-color'
 
@@ -32,6 +34,9 @@ Plug 'scrooloose/nerdtree'
 " Grammar checker.
 Plug 'vim-scripts/LanguageTool'
 
+" Auto complete engine. REMEMBER TO INSTALL THE PROVIDERS
+" cd ~/.vim/bundle/YouCompleteMe
+" ./install.py --all
 Plug 'Valloric/YouCompleteMe'
 
 " Status bar plugin
@@ -45,6 +50,11 @@ Plug 'owickstrom/vim-colors-paramount'
 Plug 'reedes/vim-colors-pencil'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'rakr/vim-two-firewatch'
+
+" plugin to lit-html.
+Plug 'Quramy/vim-js-pretty-template'
 
 " Run commands assync.
 Plug 'neomake/neomake'
@@ -82,12 +92,15 @@ Plug 'Townk/vim-autoclose'
 Plug 'KabbAmine/vCoolor.vim'
 
 Plug 'tpope/vim-surround'
+
+Plug 'yuttie/comfortable-motion.vim'
 call plug#end()
 
 "-------------- general configurations --------------"
 filetype on
 syntax on
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 
 "-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
@@ -95,18 +108,9 @@ let g:airline_theme = 'hybrid'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 "-------------- Color Schemes --------------"
-" Some colorschemes as solarized needs background=light
-" let g:solarized_termcolors=256
-set t_Co=256
-"let g:solarized_termcolors=256
-set background=light
-"let base16colorspace=256
 colorscheme PaperColor
-"colorscheme zazen
-
 "-------------- Sets --------------"
 
 "==== file extension sets ===="
@@ -175,15 +179,30 @@ let mapleader=","
 
 "-------------- Maps --------------"
 
+
+"==== nerdtree maps ====="
+nmap <leader>F :NERDTreeToggle<CR>
+
+"==== js maps ====="
+"Insert console.log and put the cursor inside ().
+imap <leader>K console.log()<esc>i
+
+" Paste line on insert mode
+imap <leader>p <esc>pkdd
+
+" Move current directory
+nmap cd :cd ~/projects/
+
 "==== Regex maps ===="
 "remove empty spaces
 nmap <F10> :%s/\s\+$//<CR>
 
 "==== Commands maps ===="
 nmap <leader>f :FZF <CR>
-nmap <leader>F :NERDTreeToggle<CR>
 "Ctags bar
-nmap <LEADER>c :!ctags -R .<CR>
+let g:tagbar_ctags_bin="/usr/bin/ctags"
+nmap gt :tag <c-r><c-w><CR>
+nmap <LEADER>c :!ctags  -R --options=/home2/david/.ctags.cnf .<CR>
 nmap <LEADER>C :TagbarToggle<CR>
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
@@ -218,8 +237,7 @@ nmap <LEADER>b :b#<CR>
 nmap <C-N> :bnext<CR>
 nmap <C-P> :bprevious<CR>
 " List buffered files
-nmap <LEADER>l :buffer
-nmap <LEADER>L :Buffers<CR>
+nmap <LEADER>l :Buffers<CR>
 nmap lw :lwindow<CR>
 nmap lc :lclose<CR>
 nmap <LEADER>d :bd!<CR>
@@ -249,7 +267,7 @@ nmap <leader>p "*p<CR>
 "nmap <leader>P "+p<CR>
 
 "==== Registers maps ===="
-" Show registers
+"Show registers
 nmap <LEADER>r :reg<CR>
 
 "==== Fugitive maps ===="
@@ -262,6 +280,11 @@ nmap gp :Gpush
 nmap gl :Git log<CR>
 nmap gS :Git show<CR>
 nmap gv :Gitv<CR>
+
+"==== Tabs maps ===="
+nmap <C-T> :tabnew<CR>
+nmap <A-1> :tabnext<CR>
+nmap <A-2> :tabprevious<CR>
 
 "==== list maps ===="
 nmap <LEADER>N :lnext<CR>
@@ -305,3 +328,13 @@ function! MaximizeToggle()
         only
     endif
 endfunction
+
+" Do not search on paths listed on .gitignore.
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+let g:taggedtemplate#tagSyntaxMap = {
+  \ "html": "html",
+  \ "md":   "markdown",
+  \ "css":  "css" }
+
+autocmd FileType javascript.jsx JsPreTmpl html

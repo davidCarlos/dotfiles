@@ -5,10 +5,11 @@ root: ~/projects/TamoJunto
 
 windows:
   - app:
-        layout: even-horizontal
+        layout: 8be6,193x46,0,0{126x46,0,0,49,66x46,127,0[66x23,127,0,51,66x22,127,24,52]}
         panes:
          - vim
-         - polymer serve
+         - git fetch -p && node_modules/polymer-cli/bin/polymer.js serve
+         -
   - server:
         layout: even-horizontal
         panes:

@@ -1,0 +1,15 @@
+# ~/.tmuxinator/infra.yml
+
+name: infra
+root: ~/projects
+
+windows:
+  - besouro:
+        panes:
+         - ssh besouro
+  - collectar_1:
+        panes:
+         - ssh collectar_1
+  - collectar_2:
+        panes:
+         - ssh collectar_2
