@@ -6,11 +6,6 @@ set nocompatible
 set rtp+=~/.config/nvim/plugins/fzf
 call plug#begin('~/.config/nvim/plugins')
 
-"A solid language pack for Vim.
-Plug 'sheerun/vim-polyglot'
-
-Plug 'equalsraf/neovim-gui-shim'
-
 " Preview colours in source code while editing
 Plug 'ap/vim-css-color'
 
@@ -21,46 +16,23 @@ Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<C-w>"
+let g:UltiSnipsExpandTrigger="<tab>"
 
 "vim status bar.
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Tree explorer.
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
 
 " Grammar checker.
 Plug 'vim-scripts/LanguageTool'
 
-" Auto complete engine. REMEMBER TO INSTALL THE PROVIDERS
-" cd ~/.vim/bundle/YouCompleteMe
-" ./install.py --all
-Plug 'Valloric/YouCompleteMe'
-
-" Status bar plugin
-Plug 'majutsushi/tagbar'
-
 " Colorschemes
-Plug 'zaki/zazen'
-Plug 'altercation/vim-colors-solarized'
-Plug 'wolverian/minimal'
-Plug 'owickstrom/vim-colors-paramount'
-Plug 'reedes/vim-colors-pencil'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'rakr/vim-two-firewatch'
+Plug 'whatyouhide/vim-gotham'
 
-" plugin to lit-html.
 Plug 'Quramy/vim-js-pretty-template'
-
-" Run commands assync.
-Plug 'neomake/neomake'
-let g:neomake_python_enabled_makers = ['pylint', 'pep8']
-autocmd! BufWritePost * Neomake
-autocmd BufWritePost * Neomake!
 
 " Integrates vim with git
 Plug 'tpope/vim-fugitive'
@@ -70,63 +42,82 @@ let g:gitgutter_enabled = 1
 set updatetime=100
 
 " Match html tags.
-Plug 'gregsexton/MatchTag'
+Plug 'tmhedberg/matchit'
+Plug 'Valloric/MatchTagAlways'
+let g:mta_filetypes = {
+    \ 'html' : 1,
+    \ 'xhtml' : 1,
+    \ 'xml' : 1,
+    \ 'javascript' : 1,
+    \}
 
 "Custom font icons.
 Plug 'ryanoasis/vim-devicons'
 
-" Rails stuff
-Plug 'tpope/vim-rails'
-Plug 'ngmy/vim-rubocop'
-let g:vimrubocop_config = '~/.rubocop.yml'
-
-"Fuzzy search plugin
-Plug 'junegunn/fzf.vim'
 "Fuzzy search engine
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 "Auto close (), {} etc.
 Plug 'Townk/vim-autoclose'
 
-"Simple color selector/picker plugin for Vim.
-Plug 'KabbAmine/vCoolor.vim'
-
 Plug 'tpope/vim-surround'
 
-Plug 'yuttie/comfortable-motion.vim'
+Plug 'gregsexton/MatchTag'
+
+Plug 'sheerun/vim-polyglot'
+
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
+Plug 'vimwiki/vimwiki'
+
+Plug 'suan/vim-instant-markdown'
+
+Plug 'davidhalter/jedi-vim'
+
+Plug 'chr4/nginx.vim'
 call plug#end()
 
 "-------------- general configurations --------------"
-filetype on
 syntax on
 filetype plugin indent on
-set omnifunc=syntaxcomplete#Complete
+let g:python_host_prog="/usr/bin/python3"
+" Highlight ES6 template strings
+hi link javaScriptTemplateDelim String
+hi link javaScriptTemplateVar Text
+hi link javaScriptTemplateString String
+
+"-------------- Color Schemes --------------"
+set background=light
+colorscheme PaperColor
 
 "-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'hybrid'
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
 
-"-------------- Color Schemes --------------"
-colorscheme PaperColor
 "-------------- Sets --------------"
+autocmd FileType gitcommit set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType eruby set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType ruby set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType go set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+"autocmd FileType javascript.jsx JsPreTmpl html
+autocmd FileType javascript set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType typescript set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType Jenkinsfile set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType python set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
+autocmd FileType  dockerfile set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
+autocmd FileType css set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType scss set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType html set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType spec set softtabstop=8 tabstop=8 shiftwidth=8 expandtab
+autocmd FileType yaml set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd FileType sh set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
+autocmd FileType cpp set softtabstop=4 tabstop=4 shiftwidth=4 expandtab
+autocmd FileType md set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd BufNewFile,BufRead *.jinja2 set filetype=html softtabstop=2 tabstop=2 shiftwidth=2 expandtab
+autocmd BufNewFile,BufRead *.conf set ft=nginx
 
-"==== file extension sets ===="
-autocmd FileType gitcommit set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType eruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType ruby set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType bolt set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType javascript set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType css set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType scss set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType html set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType spec set softtabstop=8 tabstop=8 laststatus=8 shiftwidth=8 expandtab
-autocmd FileType yaml set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
-autocmd FileType sh set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd FileType cpp set softtabstop=4 tabstop=4 laststatus=2 shiftwidth=4 expandtab
-autocmd BufNewFile,BufRead *.vue set softtabstop=2 tabstop=2 laststatus=2 shiftwidth=2 expandtab
 
 "==== General sets ===="
 "Show relative line numbers
@@ -153,7 +144,7 @@ set showmode
 " Show a preview of the regex result
 set inccommand=nosplit
 " Ignore some extensions
-set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf
+set wildignore=*.class,*.zip,*.gif,*.pyc,*.swp,*.tar.*,*.pdf,node_modules/**
 " Not backup files
 set nobackup
 " Not create swap files
@@ -187,11 +178,8 @@ nmap <leader>F :NERDTreeToggle<CR>
 "Insert console.log and put the cursor inside ().
 imap <leader>K console.log()<esc>i
 
-" Paste line on insert mode
-imap <leader>p <esc>pkdd
-
 " Move current directory
-nmap cd :cd ~/projects/
+nmap cd :cd ~/projects/pencillabs/
 
 "==== Regex maps ===="
 "remove empty spaces
@@ -200,28 +188,29 @@ nmap <F10> :%s/\s\+$//<CR>
 "==== Commands maps ===="
 nmap <leader>f :FZF <CR>
 "Ctags bar
+
 let g:tagbar_ctags_bin="/usr/bin/ctags"
-nmap gt :tag <c-r><c-w><CR>
-nmap <LEADER>c :!ctags  -R --options=/home2/david/.ctags.cnf .<CR>
-nmap <LEADER>C :TagbarToggle<CR>
+nmap <C-]> g<c-]>
+nmap <LEADER>c :!ctags  -R --options=/home/david/.ctags.cnf .<CR>
+nmap <LEADER>C :Tags<CR>
 "Silver search, better then ack.
 nnoremap <LEADER>a :Ag
 
 "==== Movimentation maps ===="
 nmap j gj
 nmap k gk
-nmap E $
+" g_ get the line without the new line char.
+nmap E g_
 nmap B ^
 vmap E $
 vmap B ^
 "inprove movements, use f{char}, F{char}, t{char} or T{char}
 nmap l <nop>
 nmap h <nop>
+"use <c-q> to match tags.
 nmap <c-q> %
 
 "==== Editing maps ===="
-" Delete line in insert mode
-imap <c-d> <esc>ddko
 "Add a empty line below on normal mode
 nnoremap <leader>j o<esc>
 "Add a empty line below on normal mode
@@ -244,7 +233,7 @@ nmap <LEADER>d :bd!<CR>
 
 "==== File maps ===="
 nmap <LEADER>q :q<CR>
-nmap <LEADER>w :w<CR>
+nmap ll :w<CR>
 nmap <LEADER>x :x<CR>
 " Save file with sudo permission (nice mapping)
 nmap <LEADER>R :w !sudo tee %<CR>
@@ -273,18 +262,19 @@ nmap <LEADER>r :reg<CR>
 "==== Fugitive maps ===="
 nmap gs :Gstatus<CR>
 nmap gd :Gvdiff<CR>
-nmap gw :Gwrite<CR>
 nmap gc :Gcommit
 nmap gik :Git checkout %<CR>
 nmap gp :Gpush
-nmap gl :Git log<CR>
+nmap gl :call OpenGitLog()<CR>
+nmap gq :call CloseGitLog()<CR>
+nmap gq :call CloseGitLog()<CR>
 nmap gS :Git show<CR>
 nmap gv :Gitv<CR>
 
 "==== Tabs maps ===="
 nmap <C-T> :tabnew<CR>
-nmap <A-1> :tabnext<CR>
-nmap <A-2> :tabprevious<CR>
+nmap <C-h> :tabprevious<CR>
+nmap <C-l> :tabnext<CR>
 
 "==== list maps ===="
 nmap <LEADER>N :lnext<CR>
@@ -294,47 +284,58 @@ nnoremap <F12> :nohl<CR><C-L>
 " Increase width vertical resize.
 nnoremap <C-W>< :vertical resize +10<CR>
 nnoremap <C-W>> :vertical resize -10<CR>
-"-------------- Functions --------------"
-function! HelpFull(arg)
-	exec "help" a:arg | only
-endfunction
 
-function! CleanRegisters()
-    let regs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/-"' | let i=0 | while (i<strlen(regs)) | exec 'let @'.regs[i].'=""' | let i=i+1 | endwhile | unlet regs
-endfunction
+" go to command mode
+nmap hh :
+" list command window
+nmap qq q:
+" open terminal on split
+nmap <leader>tv :call OpenTerminalOnSplit()<CR>
+nmap tt :terminal<CR>
+
+"-------------- Functions --------------"
 
 set omnifunc=syntaxcomplete#Complete
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 
-"reference: "http://vim.wikia.com/wiki/Maximize_window_and_return_to_previous_split_structure
-" Very usefull to use with splits.
-nnoremap <C-W>O :call MaximizeToggle()<CR>
-nnoremap <C-W>o :call MaximizeToggle()<CR>
-nnoremap <C-W><C-O> :call MaximizeToggle()<CR>
-function! MaximizeToggle()
-    if exists("s:maximize_session")
-        exec "source " . s:maximize_session
-        call delete(s:maximize_session)
-        unlet s:maximize_session
-        let &hidden=s:maximize_hidden_save
-        unlet s:maximize_hidden_save
-    else
-        let s:maximize_hidden_save = &hidden
-        let s:maximize_session = tempname()
-        set hidden
-        exec "mksession! " . s:maximize_session
-        only
-    endif
-endfunction
+" Open split on a new tab, an keep the layout.
+nnoremap <C-W>o :tab split<CR>
 
 " Do not search on paths listed on .gitignore.
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
-let g:taggedtemplate#tagSyntaxMap = {
-  \ "html": "html",
-  \ "md":   "markdown",
-  \ "css":  "css" }
+let g:instant_markdown_autostart = 0
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
-autocmd FileType javascript.jsx JsPreTmpl html
+function! OpenGitLog()
+    execute(":tabnew % | Glog -- | copen")
+endfunction
+
+function! CloseGitLog()
+   execute(":cclose | q! | tabprevious")
+endfunction
+
+function! OpenTerminalOnSplit()
+	execute(":vsplit | terminal")
+endfunction
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Better display for messages
+set cmdheight=2
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+imap <expr> <leader><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

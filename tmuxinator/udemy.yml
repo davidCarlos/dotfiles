@@ -1,0 +1,14 @@
+# ~/.tmuxinator/udemy.yml
+
+name: udemy
+root: ~/projects/courses/udemy/data_science/
+
+windows:
+  - git:
+        layout: even-horizontal
+        panes:
+         - vim
+         - workon udemy
+  - udemy:
+        panes:
+         -

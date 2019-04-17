@@ -8,91 +8,70 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #f7f9f9
-background-alt = #d5d8dc
+background = #000000
+background-alt = #000000
 ;foreground = ${xrdb:color7:#222}
-foreground =  #2c3e50
-foreground-alt = #555
+foreground =  #FFFFFF
+foreground-alt = #B0B0B0
 primary = #222
 secondary = #cce60053
 alert = #ccbd2c40
+wk-underline=#FFC300
 
-[bar/example]
-monitor = ${env:MONITOR:eDP-1}
+[bar/default]
+monitor = eDP1
 width = 100%
-height = 23
+height = 22
 #offset-x = 100%
 ;offset-y = 1%
 radius = 1.0
 fixed-center = true
-margin-bottom = 20
-#border-size = 10
 border-top = 0
 border-bottom = 0
 border-left = 0
 border-right = 0
-
 background = ${colors.background}
 foreground = ${colors.foreground}
-
+foreground-alt = ${colors.foreground-alt}
 line-size = 3
 line-color = #f00
-
 border-size = 0
-border-color = #00000000
-
+border-color = #ffffff
 padding-left = 0
 padding-right = 2
-
 module-margin-left = 1
 module-margin-right = 2
-
 font-0 = Liberation:size=10:weight=regular;2
-font-1 = siji:pixelsize=10;1
-font-2 = siji:pixelsize=10;1
-
-modules-left = powermenu i3
+font-1 = Siji:pixelsize=10;1
+font-2 = Siji:pixelsize=10;1
+modules-left = i3
 modules-center = date
-modules-right = wireless-network battery
-
-#tray-position = right
-#tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
-
-;wm-restack = bspwm
+modules-right = wireless-network volume battery
+tray-position = right
+tray-padding = 2
 wm-restack = i3
-
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
-
 ws-icon-0 = code;♚
 ws-icon-1 = code;♚
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
 
 [module/bspwm]
 type = internal/bspwm
-
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
+label-focused-foreground = ${colors.foreground-alt}
 label-focused-underline=
 label-focused-padding = 2
-
 label-occupied = %index%
 label-occupied-padding = 2
-
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-
 label-empty = %index%
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
@@ -103,58 +82,48 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
-
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-foreground = #000
+label-mode-foreground = #fff
 label-mode-background = ${colors.primary}
-
 ; focused = Active workspace on focused monitor
 label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-underline = ${colors.wk-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
-
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-
+label-unfocused-foreground = ${colors.foreground-alt}
 ; visible = Active workspace on unfocused monitor
 label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
-
 ; urgent = Workspace with urgency hint set
 label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
 ws-icon-0 = code;code
 ws-icon-1 = web;web
-ws-icon-2 = telegram;telegram
+ws-icon-2 = chat;chat
 ws-icon-3 = mail;mail
-ws-icon-4 = other;other
+ws-icon-4 = kanban;kanban
+ws-icon-5 = other;other
 
 [module/date]
 type = internal/date
 interval = 5
-
 date =
 date-alt = " %d/%m/%Y"
-
 time = %H:%M
 time-alt = %H:%M:%S
-
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 #format-underline = #0a6cf5
-
 label = %date% %time%
-
 
 [module/battery]
 type = internal/battery
@@ -162,57 +131,19 @@ battery = BAT0
 adapter = AC0
 full-at = 98
 format-background = #fff
-
 format-charging = <animation-charging> <label-charging>
-#format-charging-underline = #ffb52a
-
 format-discharging = <ramp-capacity> <label-discharging>
-# format-discharging-underline = ${self.format-charging-underline}
-
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
-# format-full-underline = ${self.format-charging-underline}
-
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
-
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
-
-[module/powermenu]
-type = custom/menu
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = #222
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = suspend
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-format-background = #f7f9f9
-
 
 [settings]
 screenchange-reload = true
@@ -224,15 +155,14 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-
 ; vim:ft=dosini
 ;
 ;
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
-master-soundcard = "Capture"
+master-soundcard = hw:1
 label-muted = 🔇 muted
 label-muted-foreground = #66
 ramp-volume-0 = 🔈
@@ -240,86 +170,3 @@ ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
 ramp-headphones-0 = 
 ramp-headphones-1 = 
-
-[module/wireless-network]
-type = internal/network
-interface = wlp3s0
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-
-; Test connectivity every Nth update
-; A value of 0 disables the feature
-; NOTE: Experimental (needs more testing)
-; Default: 0
-;ping-interval = 3
-
-; @deprecated: Define min width using token specifiers (%downspeed:min% and %upspeed:min%)
-; Minimum output width of upload/download rate
-; Default: 3
-udspeed-minwidth = 5
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = true
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
-format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-; Default: %ifname% %local_ip%
-label-connected =  
-label-connected-foreground = #000000
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-; Default: (none)
-label-disconnected = not connected
-label-disconnected-foreground = #66ffffff
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %linkspeed% [wired]
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-ramp-signal-0 = 😱
-ramp-signal-1 = 😠
-ramp-signal-2 = 😒
-ramp-signal-3 = 😊
-ramp-signal-4 = 😃
-ramp-signal-5 = 😈
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 📶
-animation-packetloss-1-foreground = #000000
-; Framerate in milliseconds
-animation-packetloss-framerate = 500

@@ -40,9 +40,15 @@ set $i3exit /home2/david/projects/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
 bindsym Mod4+Shift+p exec pavucontrol
-bindsym Mod4+Shift+n exec wicd-gtk
-bindsym Mod4+Shift+f exec $terminal --title="ranger" -e ranger
 bindsym Mod4+o exec $i3lock
+
+# move workspace to monitor
+bindsym Mod4+Shift+m move workspace to output left
+
+#decrease brightness
+bindsym Mod4+Shift+x exec xbacklight -dec 20
+#increase brightness
+bindsym Mod4+Shift+z exec xbacklight -inc 20
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
@@ -65,8 +71,6 @@ bindsym Mod4+i exec $terminal --title="float-term"
 
 assign [title="^code$"] code
 assign [class="^Google-chrome$" instance="^google-chrome$"] web
-assign [title="^mutt$"] mail
-assign [title="^google-sync$"] mail
 assign [instance="^calibre-gui$" class="^libprs500$"] web
 
 for_window [class="Nitrogen"] floating enable
@@ -86,10 +90,9 @@ bindsym Mod4+q mode "$home_monitor"
 
 # Control brightness according with time of day
 # exec --no-startup-id redshift
-exec --no-startup-id megasync
 exec --no-startup-id compton --config ~/.compton.conf
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id polybar -c /home2/david/.config/polybar/config example
+#exec --no-startup-id polybar -c /home2/david/.config/polybar/config example
 
 exec --no-startup-id $terminal --title="code"
 
@@ -105,8 +108,8 @@ workspace_layout default
 
 new_window pixel 2
 
-gaps inner 6
-gaps outer 2
+#gaps inner 6
+#gaps outer 2
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -177,24 +180,25 @@ bindsym Mod4+minus scratchpad show
 # switch to workspace
 bindsym Mod4+1 workspace code
 bindsym Mod4+2 workspace web
-bindsym Mod4+3 workspace mail
-bindsym Mod4+4 workspace other
+bindsym Mod4+3 workspace chat
+bindsym Mod4+4 workspace kanban
+bindsym Mod4+5 workspace mail
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
-bindsym Mod4+0 workspace 10
+bindsym Mod4+10 workspace 10
 
 bindsym Mod4+Shift+1 move container to workspace code
 bindsym Mod4+Shift+2 move container to workspace web
-bindsym Mod4+Shift+3 move container to workspace mail
-bindsym Mod4+Shift+4 move container to workspace other
-bindsym Mod4+Shift+5 move container to workspace 5
+bindsym Mod4+Shift+3 move container to workspace chat
+bindsym Mod4+Shift+4 move container to workspace kanban
+bindsym Mod4+Shift+5 move container to workspace mail
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
 bindsym Mod4+Shift+9 move container to workspace 9
-bindsym Mod4+Shift+0 move container to workspace 10
+bindsym Mod4+Shift+10 move container to workspace 10
 
 
 # workspace   output HDMI1
@@ -243,21 +247,20 @@ set_from_resource $black   color6  #000000
 set_from_resource $red   color5  #ff8080
 set $transparent #0017202A
 
-#bar {
-#	font pango:Roboto, Bold 10
-#	position top
-#	#height 24
-#	status_command i3blocks
-#	i3bar_command i3bar -t
-#	tray_output none
-#	output eDP-1
-# colors {
-#		background #0017202A
-#		#BORDER       BACKGROUND   TEXT
-#		focused_workspace  $transparent $transparent #ffffff
-#		inactive_workspace $transparent $transparent #ABB8C2
-#		active_workspace   $red $transparent $red
-#		urgent_workspace   $red $transparent $red
-#		binding_mode       $red     $red     $transparent
-#	}
-#}
+bar {
+	font pango:Roboto, Bold 10
+	position bottom
+	#height 24
+	status_command i3status --config ~/.i3status.conf
+	tray_output primary
+	separator_symbol " | "
+ colors {
+		background #0017202A
+		#BORDER       BACKGROUND   TEXT
+		focused_workspace  $transparent $transparent #ffffff
+		inactive_workspace $transparent $transparent #ABB8C2
+		active_workspace   $red $transparent $red
+		urgent_workspace   $red $transparent $red
+		binding_mode       $red     $red     $transparent
+	}
+}

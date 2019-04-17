@@ -1,15 +1,17 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
-root: ~/projects
+root: /home/david/projects/Go/src/gitlab.com/pencillabs/infrastructure
 
 windows:
-  - besouro:
+  - git:
+        layout: even-horizontal
         panes:
-         - ssh besouro
-  - collectar_1:
+         - vim
+         -
+  - ejserver:
         panes:
-         - ssh collectar_1
-  - collectar_2:
+         -
+  - aws:
         panes:
-         - ssh collectar_2
+         - ssh -i "etc/besouro/besouro_aws.pem" admin@ec2-18-222-20-172.us-east-2.compute.amazonaws.com
