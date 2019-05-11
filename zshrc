@@ -96,7 +96,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim="nvim"
-# Put on /home/david/bin david specific binaries like nvim
-export PATH=/home/david/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
+alias gvim="nvim-gtk"
+# Put on /home/david/local/bin david specific binaries like nvim
+export PATH=/home/david/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=/home/david/projects/Go/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,13 +1,13 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
-root: /home/david/projects/Go/src/gitlab.com/pencillabs/infrastructure
+root: /home/david/projects/Go/src/core
 
 windows:
   - git:
         layout: even-horizontal
         panes:
-         - vim
+         - gvim
          -
   - ejserver:
         panes:

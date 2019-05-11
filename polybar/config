@@ -18,8 +18,8 @@ secondary = #cce60053
 alert = #ccbd2c40
 wk-underline=#FFC300
 
-[bar/default]
-monitor = eDP1
+[bar/example]
+monitor = eDP-1
 width = 100%
 height = 22
 #offset-x = 100%
