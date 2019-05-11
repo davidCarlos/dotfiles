@@ -5,13 +5,15 @@ root: /home/david/projects/Go/src/core
 
 windows:
   - git:
-        layout: even-horizontal
+        layout: main-vertical
         panes:
          - gvim
+         - htop
          -
   - ejserver:
+        layout: tiled
         panes:
+         - ssh infra
+         - ssh -i "confs/etc/besouro/besouro_aws.pem" admin@ec2-18-222-20-172.us-east-2.compute.amazonaws.com
          -
-  - aws:
-        panes:
-         - ssh -i "etc/besouro/besouro_aws.pem" admin@ec2-18-222-20-172.us-east-2.compute.amazonaws.com
+         -
