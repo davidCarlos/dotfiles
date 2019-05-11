@@ -57,7 +57,7 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth no
-font pango:Liberation Mono, Regular 9
+font pango:Inconsolata Nerd Font, Regular 12
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
