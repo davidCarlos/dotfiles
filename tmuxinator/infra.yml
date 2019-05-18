@@ -1,16 +1,17 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
-root: /home/david/projects/Go/src/core
 
 windows:
   - git:
+        root: /home/david/projects/Go/src/core
         layout: main-vertical
         panes:
          - gvim
          - htop
          -
-  - ejserver:
+  - panes:
+        root: /home/david/projects/pencillabs
         layout: tiled
         panes:
          - ssh infra

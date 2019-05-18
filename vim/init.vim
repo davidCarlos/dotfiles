@@ -4,78 +4,80 @@
 set encoding=utf8
 set nocompatible
 set rtp+=~/.config/nvim/plugins/fzf
+" This is necessary to load ~/.zshrc when runinig shell commands from vim
+set shell=zsh\ -i
 call plug#begin('~/.config/nvim/plugins')
 
 " Preview colours in source code while editing
-Plug 'ap/vim-css-color'
+   Plug 'ap/vim-css-color'
+"
+"   " plug-in which provides support for expanding abbreviations
+   Plug 'mattn/emmet-vim'
+"
+"   " Snippets engine
+"   Plug 'SirVer/ultisnips'
+"   " Snippets are separated from the engine. Add this if you want them:
+"   Plug 'honza/vim-snippets'
+"   let g:UltiSnipsExpandTrigger="<tab>"
+"
+"   "vim status bar.
+   Plug 'vim-airline/vim-airline'
+   Plug 'vim-airline/vim-airline-themes'
+"
+"   " Tree explorer.
+   Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
+"
+"   " Grammar checker.
+   Plug 'vim-scripts/LanguageTool'
+"
+"   " Colorschemes
+   Plug 'NLKNguyen/papercolor-theme'
+   Plug 'whatyouhide/vim-gotham'
+"
+"   Plug 'Quramy/vim-js-pretty-template'
+"
+"   " Integrates vim with git
+   Plug 'tpope/vim-fugitive'
+   Plug 'airblade/vim-gitgutter'
+   let g:gitgutter_terminal_reports_focus=0
+   let g:gitgutter_enabled = 1
+   set updatetime=100
 
-" plug-in which provides support for expanding abbreviations
-Plug 'mattn/emmet-vim'
+   " Match html tags.
+   "Plug 'tmhedberg/matchit'
+   "Plug 'Valloric/MatchTagAlways'
+   "let g:mta_filetypes = {
+   "    \ 'html' : 1,
+   "    \ 'xhtml' : 1,
+   "    \ 'xml' : 1,
+   "    \ 'javascript' : 1,
+   "    \}
 
-" Snippets engine
-Plug 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="<tab>"
+   "Custom font icons.
+   Plug 'ryanoasis/vim-devicons'
 
-"vim status bar.
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+   "Fuzzy search engine
+   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+   Plug 'junegunn/fzf.vim'
 
-" Tree explorer.
-Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
+   "Auto close (), {} etc.
+   Plug 'Townk/vim-autoclose'
 
-" Grammar checker.
-Plug 'vim-scripts/LanguageTool'
+   Plug 'tpope/vim-surround'
 
-" Colorschemes
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'whatyouhide/vim-gotham'
+   Plug 'gregsexton/MatchTag'
 
-Plug 'Quramy/vim-js-pretty-template'
+   Plug 'sheerun/vim-polyglot'
 
-" Integrates vim with git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-let g:gitgutter_terminal_reports_focus=0
-let g:gitgutter_enabled = 1
-set updatetime=100
+   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
-" Match html tags.
-Plug 'tmhedberg/matchit'
-Plug 'Valloric/MatchTagAlways'
-let g:mta_filetypes = {
-    \ 'html' : 1,
-    \ 'xhtml' : 1,
-    \ 'xml' : 1,
-    \ 'javascript' : 1,
-    \}
+   Plug 'vimwiki/vimwiki'
 
-"Custom font icons.
-Plug 'ryanoasis/vim-devicons'
+   Plug 'suan/vim-instant-markdown'
 
-"Fuzzy search engine
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+   Plug 'davidhalter/jedi-vim'
 
-"Auto close (), {} etc.
-Plug 'Townk/vim-autoclose'
-
-Plug 'tpope/vim-surround'
-
-Plug 'gregsexton/MatchTag'
-
-Plug 'sheerun/vim-polyglot'
-
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-
-Plug 'vimwiki/vimwiki'
-
-Plug 'suan/vim-instant-markdown'
-
-Plug 'davidhalter/jedi-vim'
-
-Plug 'chr4/nginx.vim'
+   Plug 'chr4/nginx.vim'
 call plug#end()
 
 "-------------- general configurations --------------"
@@ -339,3 +341,9 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 imap <expr> <leader><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" use esc to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+" when nerdtree is open, <C-c>c will jump to it
+noremap <C-c>c <Nop>

@@ -65,7 +65,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode zshmarks)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +100,9 @@ alias gvim="nvim-gtk"
 # Put on /home/david/local/bin david specific binaries like nvim
 export PATH=/home/david/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/david/.local/go/bin
 export GOPATH=/home/david/projects/Go/
+export WORKON_HOME=$HOME/.virtualenvs
+source /home/david/.local/bin/virtualenvwrapper.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
