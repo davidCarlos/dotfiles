@@ -9,3 +9,4 @@ rofi.separator-style:                none
 rofi.hide-scrollbar:                 true
 rofi.color-normal:                   #000000,#686868,#000000,#000000
 rofi.color-window:                   #161616,#161616,#161616
+rofi.show-icons:                     true

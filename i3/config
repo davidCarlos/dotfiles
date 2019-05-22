@@ -74,7 +74,7 @@ bindsym Mod4+i exec $terminal --title="float-term"
 assign [title="^code$"] code
 assign [class="^Firefox-esr$" instance="^Navigator$"] web
 assign [instance="^calibre-gui$" class="^libprs500$"] web
-assign [instance="^nautilus$" class="^Nautilus$"] arquivos
+assign [instance="^Thunar$" class="^Thunar$"] arquivos
 
 for_window [class="Nitrogen"] floating enable
 for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable

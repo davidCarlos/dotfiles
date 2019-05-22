@@ -11,10 +11,9 @@ windows:
          - htop
          -
   - panes:
-        root: /home/david/projects/pencillabs
+        root: /home/david/projects/Go/src/core
         layout: tiled
         panes:
-         - ssh infra
+         -
          - ssh -i "confs/etc/besouro/besouro_aws.pem" admin@ec2-18-222-20-172.us-east-2.compute.amazonaws.com
-         -
-         -
+         - ssh infra
