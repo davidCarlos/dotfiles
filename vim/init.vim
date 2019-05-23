@@ -69,7 +69,9 @@ call plug#begin('~/.config/nvim/plugins')
 
    Plug 'sheerun/vim-polyglot'
 
-   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+   Plug 'neoclide/coc-snippets'
+   Plug 'neoclide/coc-python'
 
    Plug 'vimwiki/vimwiki'
 
@@ -323,8 +325,15 @@ endfunction
 " if hidden is not set, TextEdit might fail.
 set hidden
 
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
 " Better display for messages
 set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -332,18 +341,27 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
-imap <expr> <leader><cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " use esc to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 
 " when nerdtree is open, <C-c>c will jump to it
 noremap <C-c>c <Nop>
+"
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
