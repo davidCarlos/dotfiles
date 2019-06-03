@@ -58,7 +58,12 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'neoclide/coc-python'
    Plug 'neoclide/coc-sources'
 
-   " Instant Markdown previews from VIm! 
+   " Instant Markdown previews from VIm!
    " Plug 'suan/vim-instant-markdown'
 
+   " Vim plugin that displays tags in a window, ordered by scope
+   Plug 'majutsushi/tagbar'
+
+   " A vim plugin to display the indention levels with thin vertical lines
+   Plug 'Yggdroot/indentLine'
 call plug#end()

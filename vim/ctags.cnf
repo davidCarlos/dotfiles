@@ -3,6 +3,7 @@
 --exclude=plugins
 --exclude=resources
 --exclude=gulp
+--exclude=www
 
 --languages=javascript
 --languages=python
