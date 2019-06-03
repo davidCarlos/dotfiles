@@ -100,7 +100,11 @@ alias gvim="nvim-gtk"
 # Put on /home/david/local/bin david specific binaries like nvim
 export PATH=/home/david/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/david/.local/go/bin
+export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/bin
+export PATH=$PATH:/home/david/projects/courses/udemy/data_science/anaconda3/bin
+export PATH=$PATH:/usr/java/jre1.8.0_211/bin:/usr/java/jdk1.8.0_211/bin
+export JAVA_HOME=/usr/java/jdk1.8.0_211/
+export ANDROID_HOME=/home/david/Android/Sdk/
 export GOPATH=/home/david/projects/Go/
 export WORKON_HOME=$HOME/.virtualenvs
 source /home/david/.local/bin/virtualenvwrapper.sh
