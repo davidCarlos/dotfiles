@@ -1,0 +1,21 @@
+# ~/.tmuxinator/bora.yml
+
+name: bora
+
+windows:
+  - git:
+        root: ~/projects/freelas/bora/ionic.bora
+        layout: main-vertical
+        panes:
+         - ionic serve
+         -
+         -
+  - panes:
+        root: ~/projects/freelas/bora/beat.bora
+
+        layout: tiled
+        panes:
+         -
+         -
+         -
+         -

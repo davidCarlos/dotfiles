@@ -7,8 +7,8 @@ windows:
   - git:
         layout: even-horizontal
         panes:
-         - vim
-         - workon udemy
+         -
+         -
   - udemy:
         panes:
          -

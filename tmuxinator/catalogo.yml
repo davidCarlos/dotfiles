@@ -1,0 +1,20 @@
+# ~/.tmuxinator/catalogo.yml
+
+name: catalogo
+
+windows:
+  - git:
+        root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
+        layout: main-vertical
+        panes:
+         -
+         -
+         -
+  - panes:
+        root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
+        layout: tiled
+        panes:
+         -
+         -
+         -
+         -
