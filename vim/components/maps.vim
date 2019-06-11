@@ -69,7 +69,7 @@ nmap <LEADER>R :w !sudo tee %<CR>
 "Reload vimrc
 nmap <LEADER>m :so $MYVIMRC<CR>
 "Open vimrc/init.vim in a split window
-nmap <leader>vs :e $MYVIMRC<CR>
+nmap <leader>vs :call OpenConfig("
 "reopen current file
 nmap <leader>e :e!<CR>
 
@@ -124,3 +124,7 @@ nmap tt :terminal<CR>
 
 " Open split on a new tab, an keep the layout.
 nnoremap <C-W>o :tab split<CR>
+
+" Open split on a new tab, an keep the layout.
+nnoremap <leader>z <c-w>_ \| <c-w>\|
+nnoremap <leader>Z <c-w>=

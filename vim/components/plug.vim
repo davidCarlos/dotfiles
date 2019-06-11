@@ -6,9 +6,6 @@ call plug#begin('~/.config/nvim/plugins')
    " plug-in which provides support for expanding abbreviations
    Plug 'mattn/emmet-vim'
 
-   " Snippets engine
-   Plug 'SirVer/ultisnips'
-
   " vim status bar.
    Plug 'vim-airline/vim-airline'
    Plug 'vim-airline/vim-airline-themes'
@@ -22,6 +19,7 @@ call plug#begin('~/.config/nvim/plugins')
   " Colorschemes
    Plug 'NLKNguyen/papercolor-theme'
    Plug 'whatyouhide/vim-gotham'
+   Plug 'morhetz/gruvbox'
 
    " highlights JavaScript's Template Strings in other FileType syntax rule
    " Plug 'Quramy/vim-js-pretty-template'
@@ -58,12 +56,14 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'neoclide/coc-python'
    Plug 'neoclide/coc-sources'
 
-   " Instant Markdown previews from VIm!
-   " Plug 'suan/vim-instant-markdown'
-
-   " Vim plugin that displays tags in a window, ordered by scope
-   Plug 'majutsushi/tagbar'
+   Plug 'liuchengxu/vista.vim'
+   
+   " Gutentags is a plugin that takes care of the much needed management of tags files in Vim
+   Plug 'ludovicchabant/vim-gutentags'
 
    " A vim plugin to display the indention levels with thin vertical lines
-   Plug 'Yggdroot/indentLine'
+   " Plug 'Yggdroot/indentLine'
+
+   "  commentary.vim: comment stuff out
+   " Plug 'tpope/vim-commentary'
 call plug#end()

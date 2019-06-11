@@ -6,6 +6,8 @@ let g:python_host_prog="/usr/bin/python3"
 "-------------- Color Schemes --------------"
 set background=light
 colorscheme PaperColor
+"set background=dark
+"colorscheme gruvbox
 
 set encoding=utf8
 set nocompatible
@@ -27,8 +29,8 @@ set incsearch
 set autoindent
 "Disable mouse
 set mouse=
-" Highlight white spaces
-set list
+" hide hidden chars, like tabs
+set nolist
 " Saves file modifications when moves to another file.
 set autowrite
 " Ident using > and < (visual mode).
@@ -90,3 +92,24 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
+
+"let g:typescript_indent_disable = 1
+au FileType typescript :set tabstop=2 shiftwidth=2
+
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+let g:NERDTreeDirArrowExpandable = '📁'
+let g:NERDTreeDirArrowCollapsible = '📂'
