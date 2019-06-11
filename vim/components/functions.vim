@@ -17,6 +17,17 @@ function! OpenConfig(config)
 	execute(config_path)
 endfunction
 
+function! InstallCocExtensions()
+	execute(":CocInstall coc-angular")
+	" coc-python depends on jedi binary. If the code runs in virtualenv, jedi
+	" must be installed on virtualenv, and not globally.
+	" With CocCommand python.setInterpreter it's possible to change coc-python
+	" python binary.
+	execute(":CocInstall coc-python")
+	"coc-gocode depends on https://github.com/mdempsky/gocode binary.
+	execute(":CocInstall coc-gocode")
+endfunction
+
 
 " use <tab> for trigger completion and navigate to the next complete item
 inoremap <silent><expr> <TAB>
