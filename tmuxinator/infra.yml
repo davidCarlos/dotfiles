@@ -7,7 +7,7 @@ windows:
         root: /home/david/projects/Go/src/core
         layout: main-vertical
         panes:
-         - gvim
+         - vim
          - htop
          -
   - panes:

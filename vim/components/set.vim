@@ -1,7 +1,3 @@
-"-------------- general configurations --------------"
-syntax on
-filetype plugin indent on
-let g:python_host_prog="/usr/bin/python3"
 
 "-------------- Color Schemes --------------"
 set background=light
@@ -67,6 +63,7 @@ let mapleader=","
 "-------------- airline configuration --------------"
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'hybrid'
+let g:airline#extensions#tabline#enabled = 1
 
 " Do not search on paths listed on .gitignore.
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'
@@ -94,7 +91,6 @@ set shortmess+=c
 set signcolumn=yes
 
 "let g:typescript_indent_disable = 1
-au FileType typescript :set tabstop=2 shiftwidth=2
 
 " Use <C-l> for trigger snippet expand.
 imap <C-l> <Plug>(coc-snippets-expand)
@@ -111,5 +107,15 @@ let g:coc_snippet_prev = '<c-k>'
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+" Use a folder icon as nerdtree arrow
 let g:NERDTreeDirArrowExpandable = '📁'
 let g:NERDTreeDirArrowCollapsible = '📂'
+
+let g:jsx_ext_required = 0
+
+au FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+au FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+au FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+au FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
+au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au FileType javascript.jsx setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab

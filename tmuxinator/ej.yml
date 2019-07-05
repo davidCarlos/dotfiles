@@ -7,7 +7,7 @@ windows:
         root: ~/projects/pencillabs/ejplatform/ej-server
         layout: main-vertical
         panes:
-         - gvim
+         - vim
          - htop
          -
   - panes:

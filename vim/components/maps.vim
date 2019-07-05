@@ -16,14 +16,15 @@ nmap <F10> :%s/\s\+$//<CR>
 
 "==== Commands maps ===="
 nmap <leader>f :FZF <CR>
-"Ctags bar
 
-let g:tagbar_ctags_bin="/usr/bin/ctags"
+" Use C-] to go to tag definition
 nmap <C-]> g<c-]>
-nmap <LEADER>c :!ctags  -R --options=/home/david/.ctags.cnf .<CR>
-nmap <LEADER>C :Tags<CR>
-"Silver search, better then ack.
-nnoremap <LEADER>a :Ag
+
+" Open tag bar using coc symbols.
+nmap <LEADER>C :Vista coc<CR>
+
+"Ripgrep, better then Ag.
+nnoremap <LEADER>a :Rg
 
 "==== Movimentation maps ===="
 nmap j gj
@@ -127,4 +128,4 @@ nnoremap <C-W>o :tab split<CR>
 
 " Open split on a new tab, an keep the layout.
 nnoremap <leader>z <c-w>_ \| <c-w>\|
-nnoremap <leader>Z <c-w>=
+nnoremap <leader>zz <c-w>=

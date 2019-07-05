@@ -26,6 +26,8 @@ function! InstallCocExtensions()
 	execute(":CocInstall coc-python")
 	"coc-gocode depends on https://github.com/mdempsky/gocode binary.
 	execute(":CocInstall coc-gocode")
+
+	execute(":CocInstall coc-snippets")
 endfunction
 
 

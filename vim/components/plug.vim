@@ -55,15 +55,16 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'neoclide/coc-snippets'
    Plug 'neoclide/coc-python'
    Plug 'neoclide/coc-sources'
-
-   Plug 'liuchengxu/vista.vim'
    
+   " Vim snippets loaded by coc-snippets
+   Plug 'honza/vim-snippets'
+
+   "View and search LSP symbols, tags in Vim/NeoVim
+   Plug 'liuchengxu/vista.vim'
+
    " Gutentags is a plugin that takes care of the much needed management of tags files in Vim
    Plug 'ludovicchabant/vim-gutentags'
 
-   " A vim plugin to display the indention levels with thin vertical lines
-   " Plug 'Yggdroot/indentLine'
-
-   "  commentary.vim: comment stuff out
-   " Plug 'tpope/vim-commentary'
+   " The React syntax highlighting and indenting plugin for vim. Also supports the typescript tsx file.
+   Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
