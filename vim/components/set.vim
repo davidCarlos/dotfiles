@@ -113,9 +113,12 @@ let g:NERDTreeDirArrowCollapsible = '📂'
 
 let g:jsx_ext_required = 0
 
-au FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-au FileType json setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-au FileType scss setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-au FileType html setlocal tabstop=2 shiftwidth=2 softtabstop=2 noexpandtab
-au FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au FileType typescript setlocal tabstop=2 softtabstop=2 noexpandtab
+au FileType json setlocal tabstop=2 softtabstop=2 noexpandtab
+au FileType scss setlocal tabstop=2 softtabstop=2 noexpandtab
+au FileType html setlocal tabstop=2 softtabstop=2 noexpandtab
+au FileType javascript setlocal tabstop=4 softtabstop=4 noexpandtab
 au FileType javascript.jsx setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+au FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
+"open terminal on insert mode
+au TermOpen term://* startinsert

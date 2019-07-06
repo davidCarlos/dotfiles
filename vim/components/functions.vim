@@ -8,7 +8,7 @@ function! CloseGitLog()
 endfunction
 
 function! OpenTerminalOnSplit()
-	execute(":vsplit | terminal")
+	execute(":set splitbelow | 10split | set nosplitbelow | terminal")
 endfunction
 
 function! OpenConfig(config)

@@ -120,8 +120,9 @@ nmap hh :
 " list command window
 nmap qq q:
 " open terminal on split
-nmap <leader>tv :call OpenTerminalOnSplit()<CR>
-nmap tt :terminal<CR>
+nmap mm :call OpenTerminalOnSplit()<CR>
+tnoremap <C-]> <C-\><C-n>
+
 
 " Open split on a new tab, an keep the layout.
 nnoremap <C-W>o :tab split<CR>
