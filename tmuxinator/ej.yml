@@ -7,14 +7,11 @@ windows:
         root: ~/projects/pencillabs/ejplatform/ej-server
         layout: main-vertical
         panes:
-         - vim
+         - sudo systemctl start docker && sudo chmod 777 /var/run/docker.sock && (cd docker && docker-compose up) 
          - htop
-         -
   - panes:
         root: ~/projects/pencillabs/ejplatform/ej-server
         layout: tiled
         panes:
-         - (cd docker && docker-compose up)
-         -
          -
          -

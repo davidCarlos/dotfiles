@@ -1,0 +1,15 @@
+# ~/.tmuxinator/indulgeme.yml
+
+name: indulgeme
+root: ~/projects/pencillabs/indulgme/
+
+windows:
+  - app:
+        layout: main-vertical
+        panes:
+         - cd indulge-app && ionic serve --no-open
+         - htop
+  - panes:
+        layout: tiled
+        panes:
+         -

@@ -34,23 +34,24 @@ set $left h
 set $right l
 #set $terminal xterm -fa Hack-10
 set $terminal kitty
-set $browser firefox
+set $browser google-chrome
 set $editor nvim-gtk
 
-set $i3lock /home/david/projects/workflow/i3-extras/i3lock-wrapper > /dev/null
 set $i3exit /home/david/projects/workflow/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
-bindsym Mod4+Shift+p exec pavucontrol
-bindsym Mod4+o exec $i3lock
+bindsym Mod4+o exec i3lock-fancy
+# select an area and take a printscreen. The selection will be possible
+# after the command execution.
+bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
 
 # move workspace to monitor
 bindsym Mod4+Shift+m move workspace to output left
 
 #decrease brightness
-bindsym Mod4+Shift+x exec xbacklight -dec 20
+bindsym Mod4+Shift+x exec xbacklight -dec 10
 #increase brightness
-bindsym Mod4+Shift+z exec xbacklight -inc 20
+bindsym Mod4+Shift+z exec xbacklight -inc 10
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
@@ -74,7 +75,6 @@ bindsym Mod4+i exec $terminal --title="float-term"
 assign [title="^code$"] code
 assign [class="^Firefox-esr$" instance="^Navigator$"] web
 assign [instance="^calibre-gui$" class="^libprs500$"] web
-assign [instance="^thunar$" class="^Thunar$"] arquivos
 
 for_window [class="Nitrogen"] floating enable
 for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
@@ -87,20 +87,21 @@ exec --no-startup-id compton -Cf -D 2
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar -c /home/david/.config/polybar/config example
 exec --no-startup-id nm-applet
+# https://github.com/sagb/alttab
+# exec --no-startup-id alttab &
 
-exec --no-startup-id $terminal --title="code"
 exec --no-startup-id $editor
 exec --no-startup-id $browser
 
 # kill focused window
 bindsym Mod4+Shift+q kill
 
-#bindsym Mod4+d exec rofi -modi combi -show combi -color-window "#161616,#161616,#161616" -color-normal "#000000,#ffffff,#000000,#000000" -lines 10 -font "Hack 10" -separator-style "none" -line-margin 7 -padding 20 -hide-scrollbar
-bindsym Mod4+d exec rofi -show combi
+bindsym Mod4+d exec "rofi -combi-modi window,drun -show combi -modi combi"
+#bindsym Mod4+d exec "rofi -show run"
 
 workspace_layout default
 
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 0
 
 gaps inner 6
 gaps outer 2
@@ -221,21 +222,21 @@ bindsym Mod4+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-set $focused_client #b8b8b8
-set $focused_text #000000
-set $focused_background #efefef
+set $focused_client #333847
+set $focused_text #d4d5d9
+set $focused_background #333847
 set $focused_border $focused_client
 set $unfocused_text #ffffff
 set $unfocused_workspace #007399
 set $unfocused_client  #007399
 set $unfocused_text #007399
-set $unfocused_border #181818
-set $focused_indicator #f4f4f4
+set $unfocused_border #333847
+set $focused_indicator #333847
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $focused_border    $focused_background    $focused_text           $focused_client   $focused_indicator
 client.unfocused        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         ffffff         $unfocused_border
 client.urgent           $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 
 set_from_resource $darkwhite   color7  #ffffff

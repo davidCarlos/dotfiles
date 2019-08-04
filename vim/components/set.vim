@@ -1,9 +1,9 @@
 
 "-------------- Color Schemes --------------"
 set background=light
-colorscheme PaperColor
+"colorscheme PaperColor
 "set background=dark
-"colorscheme gruvbox
+colorscheme solarized8_low
 
 set encoding=utf8
 set nocompatible
@@ -108,16 +108,16 @@ let g:coc_snippet_prev = '<c-k>'
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 " Use a folder icon as nerdtree arrow
-let g:NERDTreeDirArrowExpandable = '📁'
-let g:NERDTreeDirArrowCollapsible = '📂'
+" let g:NERDTreeDirArrowExpandable = '📁'
+" let g:NERDTreeDirArrowCollapsible = '📂'
 
 let g:jsx_ext_required = 0
 
-au FileType typescript setlocal tabstop=2 softtabstop=2 noexpandtab
-au FileType json setlocal tabstop=2 softtabstop=2 noexpandtab
-au FileType scss setlocal tabstop=2 softtabstop=2 noexpandtab
-au FileType html setlocal tabstop=2 softtabstop=2 noexpandtab
-au FileType javascript setlocal tabstop=4 softtabstop=4 noexpandtab
+au FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+au FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+au FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au FileType javascript.jsx setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 au FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 "open terminal on insert mode

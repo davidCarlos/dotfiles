@@ -7,7 +7,6 @@ windows:
         root: ~/projects/freelas/bora/ionic.bora
         layout: main-vertical
         panes:
-         - vim
          - ionic serve --no-open
          - htop
   - panes:
@@ -15,7 +14,5 @@ windows:
 
         layout: tiled
         panes:
-         -
-         -
          -
          -

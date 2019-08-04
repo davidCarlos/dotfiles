@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'NLKNguyen/papercolor-theme'
    Plug 'whatyouhide/vim-gotham'
    Plug 'morhetz/gruvbox'
+   Plug 'lifepillar/vim-solarized8'
 
    " highlights JavaScript's Template Strings in other FileType syntax rule
    " Plug 'Quramy/vim-js-pretty-template'

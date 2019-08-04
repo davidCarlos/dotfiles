@@ -1,19 +1,15 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
+root: /home/david/projects/Go/src/core
 
 windows:
   - git:
-        root: /home/david/projects/Go/src/core
         layout: main-vertical
         panes:
-         - vim
-         - htop
          -
+         - htop
   - panes:
-        root: /home/david/projects/Go/src/core
         layout: tiled
         panes:
          -
-         - ssh -i "confs/etc/besouro/besouro_aws.pem" admin@ec2-18-222-20-172.us-east-2.compute.amazonaws.com
-         - ssh infra

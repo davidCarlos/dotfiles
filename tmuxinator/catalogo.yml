@@ -7,14 +7,10 @@ windows:
         root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
         layout: main-vertical
         panes:
-         -
-         -
-         -
+         - sudo systemctl stop nginx && sudo systemctl stop apache2 && sudo php -S 127.0.0.1:80
+         - htop
   - panes:
         root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
         layout: tiled
         panes:
-         -
-         -
-         -
          -

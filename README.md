@@ -1,3 +1,3 @@
 # David's dotfiles :pencil: :blue_heart:
 
-![Tmux](screenshots/tmux.png "Tmux")
+![Tmux](screenshots/workspace.png "Workspace")

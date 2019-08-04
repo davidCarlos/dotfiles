@@ -8,8 +8,8 @@
 ;=====================================================
 
 [colors]
-background = #000000
-background-alt = #000000
+background = #4D000000
+background-alt = #4D000000
 ;foreground = ${xrdb:color7:#222}
 foreground =  #FFFFFF
 foreground-alt = #B0B0B0
@@ -44,8 +44,8 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 font-0 = Inconsolata Nerd Font:size=12:weight=regular;2
-font-1 = Siji:pixelsize=10;1
-font-2 = Siji:pixelsize=10;1
+font-1 = Siji:style=Regular:pixelsize=10;1
+font-2 = Siji:style=Regular:pixelsize=10;1
 modules-left = i3
 modules-center = date
 modules-right = volume battery
@@ -123,7 +123,7 @@ date =
 date-alt = " %d/%m/%Y"
 time = %H:%M
 time-alt = %H:%M:%S
-format-prefix = 
+format-prefix = 📅
 format-prefix-foreground = ${colors.foreground-alt}
 #format-underline = #0a6cf5
 label = %date% %time%

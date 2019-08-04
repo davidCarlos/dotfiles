@@ -121,7 +121,7 @@ nmap hh :
 nmap qq q:
 " open terminal on split
 nmap mm :call OpenTerminalOnSplit()<CR>
-tnoremap <C-]> <C-\><C-n>
+tnoremap <C-]> <C-\><C-n><C-w>k
 
 
 " Open split on a new tab, an keep the layout.
