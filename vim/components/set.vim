@@ -3,7 +3,7 @@
 set background=light
 "colorscheme PaperColor
 "set background=dark
-colorscheme solarized8_low
+colorscheme nord
 
 set encoding=utf8
 set nocompatible
