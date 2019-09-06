@@ -43,6 +43,7 @@ padding-left = 0
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
+;Nerd Fonts
 font-0 = terminus:pixelsize=10;1
 font-1 = Siji:pixelsize=10;1
 font-2 = Siji:pixelsize=10;1

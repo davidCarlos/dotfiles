@@ -2,7 +2,9 @@
 "-------------- Color Schemes --------------"
 set background=light
 "colorscheme PaperColor
-"set background=dark
+"set background=light
+"colorscheme solarized8_low
+set background=dark
 colorscheme nord
 
 set encoding=utf8
@@ -118,6 +120,7 @@ au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+au FileType jinja setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au FileType javascript.jsx setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 au FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 "open terminal on insert mode
