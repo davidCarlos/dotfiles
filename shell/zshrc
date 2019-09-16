@@ -113,4 +113,27 @@ export GOPATH=/home/david/projects/Go/
 export WORKON_HOME=$HOME/.virtualenvs
 source /home/david/.local/bin/virtualenvwrapper.sh
 
+function dcexec() {
+	container_to_exec=$(docker container ls | fzf | awk '{print $1}')
+	if [ ! -z "$container_to_exec" ]; then
+		docker exec -it $container_to_exec bash
+	fi
+}
+function dirm() {
+	image_to_remove=$(docker image ls --format "table {{.Repository}}\t{{ .ID }}" | fzf | sed 's#.*\s##')
+	if [ ! -z "$image_to_remove" ]; then
+		docker image rm $image_to_remove --force
+	fi
+}
+
+function dvrm() {
+	volume_to_remove=$(docker volume ls | fzf | sed 's#.*\s##')
+	if [ ! -z "$image_to_remove" ]; then
+		docker volume rm $volume_to_remove --force
+	fi
+}
+function dils() {
+	docker image ls | fzf
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
