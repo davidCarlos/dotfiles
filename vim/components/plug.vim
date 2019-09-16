@@ -53,10 +53,11 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'sheerun/vim-polyglot'
 
    " LSP Engine implementation
-   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+   Plug 'neoclide/coc.nvim', {'branch': 'release'}
    Plug 'neoclide/coc-snippets'
    Plug 'neoclide/coc-python'
    Plug 'neoclide/coc-sources'
+   Plug 'neoclide/coc-prettier'
    
    " Vim snippets loaded by coc-snippets
    Plug 'honza/vim-snippets'

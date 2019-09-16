@@ -1,0 +1,4 @@
+{
+	"suggest.snippetIndicator": "►",
+	"coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript"]
+}
