@@ -1,0 +1,14 @@
+# ~/.tmuxinator/lappis.yml
+
+name: lappis
+root: /home/david/projects/lappis/
+
+windows:
+  - root:
+      layout: main-vertical
+      panes:
+        -
+  - lappisudo:
+      layout: tiled
+      panes:
+        -

@@ -58,7 +58,9 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'neoclide/coc-python'
    Plug 'neoclide/coc-sources'
    Plug 'neoclide/coc-prettier'
-   
+   Plug 'neoclide/coc-yaml'
+   Plug 'iamcco/coc-angular'
+
    " Vim snippets loaded by coc-snippets
    Plug 'honza/vim-snippets'
 

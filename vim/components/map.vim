@@ -91,7 +91,7 @@ nmap <LEADER>r :reg<CR>
 
 "==== Fugitive maps ===="
 nmap gs :Gstatus<CR>
-nmap gd :Gvdiff<CR>
+"nmap gd :Gvdiff<CR>
 nmap gc :Gcommit
 nmap gik :Git checkout %<CR>
 nmap gp :Gpush
@@ -130,3 +130,7 @@ nnoremap <C-W>o :tab split<CR>
 " Open split on a new tab, an keep the layout.
 nnoremap <leader>z <c-w>_ \| <c-w>\|
 nnoremap <leader>zz <c-w>=
+
+nmap <silent> gd <Plug>(coc-definition)
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)

@@ -1,9 +1,10 @@
 
 "-------------- Color Schemes --------------"
-set background=light
 "colorscheme PaperColor
 "set background=light
 "colorscheme solarized8_low
+set termguicolors
+set t_Co=256
 set background=dark
 colorscheme nord
 
@@ -91,6 +92,9 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
+
+" always center the cursor on page
+set scrolloff=1000
 
 "let g:typescript_indent_disable = 1
 

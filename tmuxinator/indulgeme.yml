@@ -4,12 +4,18 @@ name: indulgeme
 root: ~/projects/pencillabs/indulgme/
 
 windows:
+  - vim:
+      root: ~/projects/pencillabs/indulgme/
+      layout: main-vertical
+      panes:
+        - vim
   - app:
-        layout: main-vertical
-        panes:
-         - cd indulge-app && ionic serve --no-open
-         - htop
-  - panes:
-        layout: tiled
-        panes:
-         -
+      layout: tiled
+      root: ~/projects/pencillabs/indulgme/indulge-app
+      panes:
+        - ionic serve --no-open
+  - api:
+      layout: tiled
+      root: ~/projects/pencillabs/indulgme/indulge-api
+      panes:
+        - docker-compose up

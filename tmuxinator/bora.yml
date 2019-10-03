@@ -1,18 +1,21 @@
 # ~/.tmuxinator/bora.yml
 
 name: bora
+root: ~/projects/freelas/bora/
 
 windows:
-  - git:
-        root: ~/projects/freelas/bora/ionic.bora
-        layout: main-vertical
-        panes:
-         - ionic serve --no-open
-         - htop
-  - panes:
-        root: ~/projects/freelas/bora/beat.bora
-
-        layout: tiled
-        panes:
-         -
-         -
+  - vim:
+      root: ~/projects/freelas/bora
+      layout: tiled
+      panes:
+        - vim
+  - ionic:
+      root: ~/projects/freelas/bora/ionic.bora/
+      layout: tiled
+      panes:
+        -
+  - plone:
+      root: ~/projects/freelas/bora/Plone/zinstance
+      layout: tiled
+      panes:
+        -

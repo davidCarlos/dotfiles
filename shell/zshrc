@@ -128,7 +128,7 @@ function dirm() {
 
 function dvrm() {
 	volume_to_remove=$(docker volume ls | fzf | sed 's#.*\s##')
-	if [ ! -z "$image_to_remove" ]; then
+	if [ ! -z "$volume_to_remove" ]; then
 		docker volume rm $volume_to_remove --force
 	fi
 }
