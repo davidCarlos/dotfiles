@@ -60,6 +60,8 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'neoclide/coc-prettier'
    Plug 'neoclide/coc-yaml'
    Plug 'iamcco/coc-angular'
+   Plug 'marlonfan/coc-phpls'
+   Plug 'neoclide/coc-tsserver'
 
    " Vim snippets loaded by coc-snippets
    Plug 'honza/vim-snippets'

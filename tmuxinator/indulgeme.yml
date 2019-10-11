@@ -18,4 +18,4 @@ windows:
       layout: tiled
       root: ~/projects/pencillabs/indulgme/indulge-api
       panes:
-        - docker-compose up
+        - sudo chmod 777 /var/run/docker.sock && docker-compose up
