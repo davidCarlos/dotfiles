@@ -1,17 +1,19 @@
 # ~/.tmuxinator/ej.yml
 
 name: ej
+root: ~/projects/pencillabs/ej/
 
 windows:
   - git:
-        root: ~/projects/pencillabs/ejplatform/ej-server
-        layout: main-vertical
-        panes:
-         - sudo systemctl start docker && sudo chmod 777 /var/run/docker.sock && (cd docker && docker-compose up) 
-         - htop
+      root: ~/projects/pencillabs/ej/ej-server
+      layout: main-vertical
+      panes:
+        - vim
+        -
+        -
   - panes:
-        root: ~/projects/pencillabs/ejplatform/ej-server
-        layout: tiled
-        panes:
-         -
-         -
+      root: ~/projects/pencillabs/ej/ej-server
+      layout: tiled
+      panes:
+        -
+        -

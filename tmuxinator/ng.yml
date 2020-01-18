@@ -1,0 +1,17 @@
+
+# ~/.tmuxinator/ng.yml
+
+name: ng
+root: ~/projects/pencillabs/ng/
+
+windows:
+  - vim:
+      root: ~/projects/pencillabs/ng/
+      layout: main-vertical
+      panes:
+        - vim
+  - api:
+      layout: tiled
+      root: ~/projects/pencillabs/ng/ng-credits/
+      panes:
+        -

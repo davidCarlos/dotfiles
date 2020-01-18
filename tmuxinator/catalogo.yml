@@ -1,16 +1,17 @@
 # ~/.tmuxinator/catalogo.yml
 
 name: catalogo
+root: ~/projects/pencillabs/catalogo/catalogo-das-artes/
 
 windows:
   - git:
-        root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
+        root: ~/projects/pencillabs/catalogo/catalogo-das-artes/
         layout: main-vertical
         panes:
-         - sudo systemctl stop nginx && sudo systemctl stop apache2 && sudo php -S 127.0.0.1:80
-         - htop
+         - vim
   - panes:
-        root: ~/projects/pencillabs/catalogodasartes/catalogo-das-artes/
+        root: ~/projects/pencillabs/catalogo/catalogo-das-artes/
         layout: tiled
         panes:
+         - sudo systemctl stop nginx && sudo php -S 127.0.0.1:80
          -

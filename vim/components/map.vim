@@ -18,7 +18,10 @@ nmap <F10> :%s/\s\+$//<CR>
 nmap <leader>f :FZF <CR>
 
 " Use C-] to go to tag definition
-nmap <C-]> g<c-]>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> <C-]> <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " Open tag bar using coc symbols.
 nmap <LEADER>C :Vista coc<CR>

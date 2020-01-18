@@ -1,21 +1,21 @@
 # ~/.tmuxinator/indulgeme.yml
 
 name: indulgeme
-root: ~/projects/pencillabs/indulgme/
+root: ~/projects/pencillabs/indulgeme/
 
 windows:
   - vim:
-      root: ~/projects/pencillabs/indulgme/
+      root: ~/projects/pencillabs/indulgeme/
       layout: main-vertical
       panes:
         - vim
   - app:
       layout: tiled
-      root: ~/projects/pencillabs/indulgme/indulge-app
+      root: ~/projects/pencillabs/indulgeme/indulge-app
       panes:
         - ionic serve --no-open
   - api:
       layout: tiled
-      root: ~/projects/pencillabs/indulgme/indulge-api
+      root: ~/projects/pencillabs/indulgeme/indulge-api
       panes:
         - sudo chmod 777 /var/run/docker.sock && docker-compose up

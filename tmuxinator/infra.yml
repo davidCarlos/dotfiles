@@ -8,7 +8,6 @@ windows:
       layout: main-vertical
       panes:
         -
-        - htop
   - panes:
       layout: tiled
       panes:

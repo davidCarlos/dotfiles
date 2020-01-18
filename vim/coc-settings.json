@@ -1,4 +1,6 @@
 {
-	"suggest.snippetIndicator": "►",
-	"coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript"]
+  "suggest.snippetIndicator": "►",
+  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript", "yaml"],
+  "yaml.format.enable": true,
+  "yaml.validate": true
 }

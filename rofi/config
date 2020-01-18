@@ -1,3 +1,4 @@
 rofi.combi-modi:                     window,drun
 rofi.modi:                           combi
 rofi.show:                           combi
+rofi.theme:                          gruvbox-dark

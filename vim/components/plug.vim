@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'NLKNguyen/papercolor-theme'
    Plug 'whatyouhide/vim-gotham'
    Plug 'morhetz/gruvbox'
+   Plug 'dracula/vim', { 'as': 'dracula' }
    Plug 'lifepillar/vim-solarized8'
    Plug 'arcticicestudio/nord-vim'
 
@@ -47,7 +48,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'tpope/vim-surround'
 
    " Vim's MatchParen for HTML tags
-   Plug 'gregsexton/MatchTag'
+   " Plug 'gregsexton/MatchTag'
 
    " A collection of language packs for Vim.
    Plug 'sheerun/vim-polyglot'
@@ -74,4 +75,9 @@ call plug#begin('~/.config/nvim/plugins')
 
    " The React syntax highlighting and indenting plugin for vim. Also supports the typescript tsx file.
    Plug 'maxmellon/vim-jsx-pretty'
+
+   Plug 'chr4/nginx.vim'
+
+   " Go development plugin for Vim
+   " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()

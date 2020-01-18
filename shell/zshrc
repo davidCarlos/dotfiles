@@ -65,7 +65,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zshmarks)
+plugins=(git vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,22 +95,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias vim="nvim"
+alias vim="nvim.appimage"
 alias gvim="nvim-gtk"
 # Put on /home/david/local/bin david specific binaries like nvim
-export PATH=/home/david/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
+export PATH=/home/david/.usr/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
 export PATH=$PATH:/home/david/.local/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/bin
 export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/src/core/bin
-export PATH=$PATH:/home/david/projects/courses/udemy/data_science/anaconda3/bin
-export PATH=/usr/java/jre1.8.0_211/bin:/usr/java/jdk1.8.0_211/bin:$PATH
-export PATH=$PATH:/home/david/projects/android-studio/gradle/gradle-5.1.1/bin
-export JAVA_HOME=/usr/java/jdk1.8.0_211/
+export PATH=$PATH:/home/david/projects/learning/datascience/anaconda3/bin
+export PATH=/home/david/.java/jdk1.8.0_231/bin:/home/david/.gradle/gradle-5.6.3/bin:$PATH
+export PATH=/home/david/projects/pencillabs/ej/ej-components/conversations/node_modules/@stencil/core/bin:$PATH
+export JAVA_HOME=~/.java/jdk1.8.0_231/
 export ANDROID_HOME=/home/david/Android/Sdk/
 export ANDROID_SDK_ROOT=/home/david/Android/Sdk/
 export GOPATH=/home/david/projects/Go/
-export WORKON_HOME=$HOME/.virtualenvs
+export WORKON_HOME=$HOME/projects/.virtualenvs
 source /home/david/.local/bin/virtualenvwrapper.sh
 
 function dcexec() {

@@ -1,14 +1,14 @@
 # ~/.tmuxinator/udemy.yml
 
 name: udemy
-root: ~/projects/courses/udemy/data_science/
+root: ~/projects/learning/datascience/
 
 windows:
   - git:
-        layout: even-horizontal
-        panes:
-         -
-         -
+      layout: even-horizontal
+      panes:
+        -
+        -
   - udemy:
-        panes:
-         -
+      panes:
+        -

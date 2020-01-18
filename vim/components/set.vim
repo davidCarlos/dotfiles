@@ -1,12 +1,10 @@
 
 "-------------- Color Schemes --------------"
-"colorscheme PaperColor
-"set background=light
-"colorscheme solarized8_low
-set termguicolors
-set t_Co=256
 set background=dark
-colorscheme nord
+"set termguicolors
+" set t_Co=256
+"colorscheme default
+colorscheme gruvbox
 
 set encoding=utf8
 set nocompatible
@@ -120,13 +118,16 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 let g:jsx_ext_required = 0
 
 au FileType typescript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+"au FileType typescript.tsx setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
 au FileType json setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+au FileType nginx setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
+au FileType css setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType php setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType javascript setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
+au FileType go setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au FileType jinja setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 au FileType javascript.jsx setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
-au FileType go setlocal tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 "open terminal on insert mode
 au TermOpen term://* startinsert
