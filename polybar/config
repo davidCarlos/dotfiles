@@ -8,7 +8,7 @@
 ;=====================================================
 
 [colors]
-background = #4D000000
+background = #000000
 background-alt = #CC7a7a7a
 ;foreground = ${xrdb:color7:#222}
 foreground =  #FFFFFF
@@ -42,10 +42,10 @@ padding-left = 0
 padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
-font-0 = terminus:pixelsize=10;1
+font-0 = Overpass Nerd Font:size=10:weight=bold;2
 font-1 = Siji:pixelsize=10;1
-font-2 = Siji:pixelsize=10;1
-font-3 = Inconsolata Nerd Font:size=12:weight=bold;2
+font-2 = terminus:pixelsize=10;1
+
 modules-left = i3
 modules-center = date
 modules-right = memory volume battery
@@ -111,10 +111,10 @@ label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 ws-icon-0 = code;code
 ws-icon-1 = web;web
-ws-icon-2 = arquivos;files
-ws-icon-3 = 3;3
-ws-icon-4 = 4;4
-ws-icon-5 = 5;5
+ws-icon-2 = slack;slack
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
 
 [module/date]
 type = internal/date
@@ -135,15 +135,15 @@ full-at = 98
 format-background = #fff
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = "  " 
+ramp-capacity-1 = "  " 
+ramp-capacity-2 = "  " 
 ramp-capacity-foreground = ${colors.foreground-alt}
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -154,15 +154,15 @@ master-mixer = Master
 label-volume = %percentage%%
 label-volume-foreground = #ff
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = #66
 label-muted = sound muted
 label-muted-foreground = #99ffffff
 
 ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+ramp-volume-1 = " "
+ramp-volume-2 = " "
+ramp-volume-3 = " "
 ramp-volume-foreground = #9f78e1
 
 ramp-headphones-0 = 
@@ -172,23 +172,8 @@ ramp-headphones-foreground = #9f78e1
 [module/memory]
 type = internal/memory
 interval = 0.2
-format = <label> <bar-used>
+format = <label>
 
-label = RAM
+label = RAM %gb_used%
 label-font = 5
 label-foreground = #99
-
-bar-used-width = 15
-bar-used-gradient = true
-bar-used-foreground-0 = #449f3d
-bar-used-foreground-1 = #2f8419
-bar-used-foreground-2 = #f5a70a
-bar-used-foreground-3 = #ed5456
-bar-used-indicator = █
-bar-used-indicator-font = 5
-bar-used-indicator-foreground = #fff
-bar-used-fill = █
-bar-used-fill-font = 5
-bar-used-empty = █
-bar-used-empty-font = 5
-bar-used-empty-foreground = #44

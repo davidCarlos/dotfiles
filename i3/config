@@ -40,7 +40,7 @@ set $i3exit /home/david/projects/workflow/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
 bindsym Mod4+o exec i3lock-fancy
-bindsym Mod4+Shift+f exec thunar
+bindsym Mod4+Shift+f exec nautilus
 # select an area and take a printscreen. The selection will be possible
 # after the command execution.
 bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
@@ -58,7 +58,7 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth no
-font pango:Inconsolata Nerd Font, Regular 12
+font pango:Overpass Regular Nerd Font Complete 10
 
 # start a terminal
 #bindsym Mod4+Return exec i3-sensible-terminal
@@ -75,14 +75,14 @@ bindsym Mod4+i exec $terminal --title="float-term"
 assign [title="^code$"] code
 assign [class="^Firefox-esr$" instance="^Navigator$"] web
 assign [instance="^calibre-gui$" class="^libprs500$"] web
-assign [instance="^Slack$" class="^slack$"] files
+assign [instance="^Slack$" class="^slack$"] slack
 
 for_window [class="Nitrogen"] floating enable
-for_window [class="Thunar"] floating enable
+for_window [class="Org.gnome.Nautilus"] floating enable
+for_window [class="Org.gnome.Nautilus"] resize set 640 480
 for_window [class="Slack"] floating enable
 for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
 for_window [instance="^eog$" class="^Eog$"] floating enable
-#for_window [instance="^nautilus$" class="^Nautilus$"] floating enable
 for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
 for_window  [class="^Gnome-calculator$" instance="^gnome-calculator$"] floating enable
 
@@ -90,18 +90,12 @@ exec --no-startup-id compton -Cf -D 2
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar -c /home/david/.config/polybar/config example
 exec --no-startup-id nm-applet
-# manage notifications
 exec --no-startup-id dunst
-# https://github.com/sagb/alttab
-# exec --no-startup-id alttab &
-
 exec --no-startup-id $browser
 
 # kill focused window
 bindsym Mod4+Shift+q kill
-
 bindsym Mod4+d exec "rofi -combi-modi window,drun -show combi -modi combi"
-#bindsym Mod4+d exec "rofi -show run"
 
 workspace_layout default
 
@@ -179,8 +173,8 @@ bindsym Mod4+minus scratchpad show
 # switch to workspace
 bindsym Mod4+1 workspace code
 bindsym Mod4+2 workspace web
-bindsym Mod4+3 workspace arquivos
-bindsym Mod4+4 workspace aux
+bindsym Mod4+3 workspace slack
+bindsym Mod4+4 workspace 4
 bindsym Mod4+5 workspace 5
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
@@ -190,8 +184,8 @@ bindsym Mod4+10 workspace 10
 
 bindsym Mod4+Shift+1 move container to workspace code
 bindsym Mod4+Shift+2 move container to workspace web
-bindsym Mod4+Shift+3 move container to workspace arquivos
-bindsym Mod4+Shift+4 move container to workspace aux
+bindsym Mod4+Shift+3 move container to workspace slack
+bindsym Mod4+Shift+4 move container to workspace 4
 bindsym Mod4+Shift+5 move container to workspace 5
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
@@ -227,21 +221,20 @@ bindsym Mod4+r mode "resize"
 # finds out, if available)
 
 set $focused_client #5F677D
-set $focused_text #5F677D
-set $focused_background #5F677D
+set $focused_text #DCDCDC
+set $focused_background #333847
 set $focused_border #5F677D
 set $focused_indicator #5F677D
 
-set $unfocused_text #ffffff
+set $unfocused_text #909090
 set $unfocused_workspace #007399
 set $unfocused_client  #333847
-set $unfocused_text #333847
 set $unfocused_border #333847
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $focused_border    $focused_background    $focused_text           $focused_client   $focused_indicator
 client.unfocused        $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
-client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         ffffff         $unfocused_border
+client.placeholder      $unfocused_border  $unfocused_border      $unfocused_text         $unfocused_text         $unfocused_border
 client.urgent           $unfocused_border  $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
 
 set_from_resource $darkwhite   color7  #ffffff

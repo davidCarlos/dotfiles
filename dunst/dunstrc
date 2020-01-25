@@ -1,0 +1,66 @@
+[global]
+    monitor = 0
+    follow = mouse
+    geometry = "400x5-5+5"
+    indicate_hidden = yes
+    shrink = yes
+    notification_height = 0
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 8
+    frame_width = 3
+    frame_color = "#5F677D"
+    separator_color = frame
+    sort = yes
+    idle_threshold = 120
+    font = Hack 9
+    line_height = 0
+    show_indicators = yes
+    sticky_history = yes
+    history_length = 20
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/firefox -new-tab
+    always_run_script = true
+    title = Dunst
+    class = Dunst
+    startup_notification = false
+    force_xinerama = false
+
+[experimental]
+    per_monitor_dpi = false
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 5
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 5
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+
+[base16_low]
+    msg_urgency = low
+    background = "#3a3a3a"
+    foreground = "#8a8a8a"
+
+[base16_normal]
+    msg_urgency = normal
+    background = "#333847"
+    foreground = "#ffffff"
+
+[base16_critical]
+    msg_urgency = critical
+    background = "#d75f5f"
+    foreground = "#d5c4a1"

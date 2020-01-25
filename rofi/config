@@ -2,3 +2,4 @@ rofi.combi-modi:                     window,drun
 rofi.modi:                           combi
 rofi.show:                           combi
 rofi.theme:                          gruvbox-dark
+rofi.font:                           Overpass Regular Nerd Font Complete 9

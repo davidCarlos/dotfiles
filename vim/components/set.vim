@@ -1,8 +1,8 @@
 
 "-------------- Color Schemes --------------"
 set background=dark
-"set termguicolors
-" set t_Co=256
+set termguicolors
+set t_Co=256
 "colorscheme default
 colorscheme gruvbox
 
