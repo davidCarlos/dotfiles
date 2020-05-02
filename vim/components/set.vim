@@ -1,7 +1,6 @@
 "-------------- colorscheme configuration  --------------"
 " enables 24-bit RGB colors.
 set termguicolors
-colorscheme ayu
 "-------------- colorscheme configuration  --------------"
 
 

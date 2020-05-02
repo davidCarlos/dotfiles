@@ -12,6 +12,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'junegunn/fzf.vim'
    nmap <LEADER>l :Buffers<CR>
    nmap <leader>f :FZF <CR>
+   nmap <leader>a :Ag <CR>
 
    " Preview colours in source code while editing
    Plug 'ap/vim-css-color'
@@ -43,16 +44,20 @@ call plug#begin('~/.config/nvim/plugins')
    " A collection of language packs for Vim.
    Plug 'sheerun/vim-polyglot'
 
+   Plug 'vim-airline/vim-airline'
+   Plug 'vim-airline/vim-airline-themes'
+
    " Plug stuff
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-   Plug 'neoclide/coc-snippets'
-   Plug 'neoclide/coc-python'
-   Plug 'neoclide/coc-sources'
-   Plug 'neoclide/coc-prettier'
-   Plug 'neoclide/coc-yaml'
-   Plug 'iamcco/coc-angular'
-   Plug 'marlonfan/coc-phpls'
-   Plug 'neoclide/coc-tsserver'
+   " Plug 'neoclide/coc-snippets'
+   " Plug 'neoclide/coc-python'
+   " Plug 'neoclide/coc-sources'
+   " Plug 'neoclide/coc-prettier'
+   " Plug 'neoclide/coc-yaml'
+   " Plug 'iamcco/coc-angular'
+   " Plug 'marlonfan/coc-phpls'
+   "Plug 'neoclide/coc-tsserver'
+   
    " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
    " delays and poor user experience.
    set updatetime=300
@@ -86,3 +91,5 @@ call plug#begin('~/.config/nvim/plugins')
 
    nmap <silent> <C-]> <Plug>(coc-definition)
 call plug#end()
+
+colorscheme ayu

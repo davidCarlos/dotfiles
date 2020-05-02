@@ -73,6 +73,8 @@ nmap <C-M> :bprevious<CR>
 
 " Move current directory
 nmap cd :cd ~/projects/pencillabs/
+
+nmap <C-q> %
 "-------------- normal mode maps  --------------"
 
 "-------------- visual mode maps  --------------"
@@ -89,4 +91,6 @@ imap <c-k> <esc>O
 " Insert line bellow on insert mode
 imap <c-j> <esc>o
 "jump to beginning of the line
+imap <leader>K console.log()<C-c>i
 "-------------- insert mode maps  --------------"
+
