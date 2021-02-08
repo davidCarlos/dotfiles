@@ -38,4 +38,8 @@ set cmdheight=2
 " Defines the mapleader key.
 let mapleader=","
 "open terminal on insert mode
+
+"always center the cursor vertically
+set so=999
+
 au TermOpen term://* startinsert

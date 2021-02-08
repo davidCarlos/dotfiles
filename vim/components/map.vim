@@ -65,16 +65,21 @@ nmap <C-l> <C-w>l
 nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 
+nmap <C-c> <C-[>
+
 
 " buffer maps
 nmap <LEADER>b :b#<CR>
 nmap <C-N> :bnext<CR>
 nmap <C-M> :bprevious<CR>
+nmap <CR> <CR>
 
 " Move current directory
 nmap cd :cd ~/projects/pencillabs/
 
 nmap <C-q> %
+"
+nmap <LEADER>o :only<CR>
 "-------------- normal mode maps  --------------"
 
 "-------------- visual mode maps  --------------"
@@ -93,4 +98,4 @@ imap <c-j> <esc>o
 "jump to beginning of the line
 imap <leader>K console.log()<C-c>i
 "-------------- insert mode maps  --------------"
-
+"

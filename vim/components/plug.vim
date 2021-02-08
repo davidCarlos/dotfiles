@@ -1,6 +1,9 @@
 call plug#begin('~/.config/nvim/plugins')
   " Colorschemes
    Plug 'ayu-theme/ayu-vim'
+   Plug 'morhetz/gruvbox'
+   Plug 'lifepillar/vim-solarized8'
+   Plug 'dracula/vim'
    let ayucolor="dark"
 
    " Tree explorer.
@@ -57,7 +60,10 @@ call plug#begin('~/.config/nvim/plugins')
    " Plug 'iamcco/coc-angular'
    " Plug 'marlonfan/coc-phpls'
    "Plug 'neoclide/coc-tsserver'
+   " Plug 'liuchengxu/vista.vim'
    
+   Plug 'szw/vim-maximizer'
+   nmap <leader>z :MaximizerToggle!<CR>
    " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
    " delays and poor user experience.
    set updatetime=300
@@ -90,6 +96,10 @@ call plug#begin('~/.config/nvim/plugins')
    endif
 
    nmap <silent> <C-]> <Plug>(coc-definition)
+   nmap <silent> gi <Plug>(coc-implementation)
+   nmap <silent> gr <Plug>(coc-references)
+
+   Plug 'airblade/vim-gitgutter'
 call plug#end()
 
-colorscheme ayu
+colorscheme dracula
