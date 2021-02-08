@@ -8,13 +8,13 @@
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="amuse"
+# ZSH_THEME="avit"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+# ZSH_THEME_RANDOM_CANDIDATES=("af-magic")
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -65,7 +65,7 @@ ZSH_THEME="amuse"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode zsh-syntax-highlighting docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -76,12 +76,12 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ #Preferred editor for local and remote sessions
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='nvim'
+ fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -97,6 +97,7 @@ source $ZSH/oh-my-zsh.sh
 
 alias vim="nvim.appimage"
 alias gvim="nvim-gtk"
+alias yarn="yarnpkg"
 # Put on /home/david/local/bin david specific binaries like nvim
 export PATH=/home/david/.usr/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
 export PATH=$PATH:/home/david/.local/bin
@@ -106,11 +107,17 @@ export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/src/core/bi
 export PATH=$PATH:/home/david/projects/learning/datascience/anaconda3/bin
 export PATH=/home/david/.java/jdk1.8.0_231/bin:/home/david/.gradle/gradle-5.6.3/bin:$PATH
 export PATH=/home/david/projects/pencillabs/ej/ej-components/conversations/node_modules/@stencil/core/bin:$PATH
+
+#pyenv configuration
+export PATH=/home/david/.pyenv/bin:$PATH
+eval "$(pyenv init -)"
+
 export JAVA_HOME=~/.java/jdk1.8.0_231/
 export ANDROID_HOME=/home/david/Android/Sdk/
 export ANDROID_SDK_ROOT=/home/david/Android/Sdk/
 export GOPATH=/home/david/projects/Go/
 export WORKON_HOME=$HOME/projects/.virtualenvs
+export AIRFLOW_HOME=~/projects/pencillabs/ej/ds-stack/
 source /home/david/.local/bin/virtualenvwrapper.sh
 
 function dcexec() {
@@ -137,3 +144,8 @@ function dils() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zsh theme: https://github.com/sindresorhus/pure
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
