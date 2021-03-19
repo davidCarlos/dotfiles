@@ -55,9 +55,11 @@ nmap hh :
 nmap qq q:
 
 " terminal maps
-nmap mm :call OpenTerminalOnHorizontalSplit()<CR>
-nmap mv :call OpenTerminalOnVerticalSplit()<CR>
+nmap <leader>os :call OpenTerminalOnHorizontalSplit()<CR>
+nmap <leader>ov :call OpenTerminalOnVerticalSplit()<CR>
 tnoremap <C-]> <C-\><C-n>
+
+
 
 " split movement maps
 nmap <C-h> <C-w>h
@@ -99,3 +101,9 @@ imap <c-j> <esc>o
 imap <leader>K console.log()<C-c>i
 "-------------- insert mode maps  --------------"
 "
+"
+nmap <leader>tf :TestFile<CR>
+nmap <leader>ts :TestSuite<CR>
+nmap <C-T> :tabnew<CR>
+nmap <A-l> :tabnext<CR>
+nmap <A-h> :tabprevious<CR>

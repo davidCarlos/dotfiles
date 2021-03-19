@@ -16,13 +16,13 @@ foreground-alt = #B0B0B0
 primary = #222
 secondary = #cce60053
 alert = #ccbd2c40
-wk-underline=#FFC300
+wk-underline=#65659C
 wk-unfocused-underline=
 
 [bar/example]
 monitor = eDP-1
 width = 100%
-height = 23
+height = 25
 underline-size=2
 #offset-x = 100%
 ;offset-y = 1%
@@ -35,7 +35,7 @@ border-right = 0
 background = ${colors.background}
 foreground = ${colors.foreground}
 foreground-alt = ${colors.foreground-alt}
-line-size = 3
+line-size = 4
 line-color = #f00
 border-color = #ffffff
 padding-left = 0
@@ -48,10 +48,51 @@ font-2 = terminus:pixelsize=10;1
 
 modules-left = i3
 modules-center = date
-modules-right = memory volume battery
+modules-right = backlight memory volume battery 
 tray-position = right
 tray-padding = 2
-tray-background = #D3A100
+tray-background = #6A6C95
+wm-restack = i3
+;override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+ws-icon-0 = code;♚
+ws-icon-1 = code;♚
+
+
+[bar/example-hdmi-1]
+monitor = HDMI-1
+width = 100%
+height = 25
+underline-size=2
+#offset-x = 100%
+;offset-y = 1%
+radius = 1.0
+fixed-center = true
+border-top = 0
+border-bottom = 0
+border-left = 0
+border-right = 0
+background = ${colors.background}
+foreground = ${colors.foreground}
+foreground-alt = ${colors.foreground-alt}
+line-size = 4
+line-color = #f00
+border-color = #ffffff
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+font-0 = Overpass Nerd Font:size=10:weight=bold;2
+font-1 = Siji:pixelsize=10;1
+font-2 = terminus:pixelsize=10;1
+
+modules-left = i3
+modules-center = date
+modules-right = backlight memory volume battery 
+tray-position = right
+tray-padding = 2
+tray-background = #65659C
 wm-restack = i3
 ;override-redirect = true
 scroll-up = i3wm-wsnext
@@ -66,7 +107,7 @@ label = %title:0:30:...%
 [module/bspwm]
 type = internal/bspwm
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+label-focused-background = #000000
 label-focused-foreground = ${colors.foreground-alt}
 label-focused-padding = 3
 label-occupied = %index%
@@ -109,12 +150,13 @@ label-visible-padding = ${self.label-focused-padding}
 label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
-ws-icon-0 = code;code
-ws-icon-1 = web;web
-ws-icon-2 = slack;slack
-ws-icon-3 = 4;4
-ws-icon-4 = 5;5
-ws-icon-5 = 6;6
+
+ws-icon-0 = code;
+ws-icon-1 = web;
+ws-icon-2 = slack;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
 
 [module/date]
 type = internal/date
@@ -133,7 +175,7 @@ battery = BAT1
 adapter = AC1
 full-at = 98
 format-background = #fff
-format-charging = <animation-charging> <label-charging>
+format-charging = <animation-charging>  <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -177,3 +219,26 @@ format = <label>
 label = RAM %gb_used%
 label-font = 5
 label-foreground = #99
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+enable-scroll = true
+format = <ramp> <label>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─

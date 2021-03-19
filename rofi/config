@@ -1,5 +1,8 @@
 rofi.combi-modi:                     window,drun
 rofi.modi:                           combi
 rofi.show:                           combi
-rofi.theme:                          gruvbox-dark
-rofi.font:                           Overpass Regular Nerd Font Complete 9
+rofi.theme:                          dracula
+rofi.font:                           Overpass Regular Nerd Font Complete 10
+rofi.lines: 15
+rofi.width: 40
+rofi.yoffset: -25

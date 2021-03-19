@@ -100,6 +100,12 @@ call plug#begin('~/.config/nvim/plugins')
    nmap <silent> gr <Plug>(coc-references)
 
    Plug 'airblade/vim-gitgutter'
+
+   Plug 'thinca/vim-localrc'
+   Plug 'vim-test/vim-test'
+   let test#strategy = "neovim"
+
+   Plug 'Yggdroot/indentLine'
 call plug#end()
 
 colorscheme dracula

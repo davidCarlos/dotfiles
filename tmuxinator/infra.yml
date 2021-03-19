@@ -5,10 +5,12 @@ root: /home/david/projects/Go/src/core
 
 windows:
   - git:
-      layout: main-vertical
       panes:
-        -
+        - vim
   - panes:
       layout: tiled
       panes:
+        -
+        -
+        -
         -
