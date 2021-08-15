@@ -1,13 +1,14 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
-root: /home/david/projects/Go/src/core
 
 windows:
-  - git:
+  - vim:
+      root: ~/projects/Go/src/core
       panes:
         - vim
-  - panes:
+  - git:
+      root: ~/projects/Go/src/core
       layout: tiled
       panes:
         -

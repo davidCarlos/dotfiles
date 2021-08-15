@@ -8,7 +8,7 @@ set termguicolors
 " vim will search this path to load fzf binary
 set rtp+=~/.config/nvim/plugins/fzf
 " use zsh on neovim terminal
-set shell=zsh\ -i
+" set shell=zsh\ -i
 "-------------- runtime configuration  --------------"
 
 
@@ -41,5 +41,7 @@ let mapleader=","
 
 "always center the cursor vertically
 set so=999
+
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 au TermOpen term://* startinsert

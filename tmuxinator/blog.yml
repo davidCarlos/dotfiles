@@ -7,5 +7,5 @@ windows:
   - blog:
         layout: even-horizontal
         panes:
-         - vim
-         - 
+         - python3 -m venv . && source bin/activate && pelican --listen --port 8090
+         - python3 -m venv . && source bin/activate

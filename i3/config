@@ -99,7 +99,7 @@ exec --no-startup-id dunst
 # chrome
 exec --no-startup-id $browser
 # bar
-exec --no-startup-id polybar -c /home/david/.config/polybar/config example
+exec --no-startup-id polybar -c /home/davidcarlos/.config/polybar/config example
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -112,8 +112,8 @@ title_align center
 #for_window [class="^.*"] border pixel 2
 #hide_edge_borders smart
 default_border pixel 1
-gaps inner 4
-gaps outer 1
+#gaps inner 4
+#gaps outer 1
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that

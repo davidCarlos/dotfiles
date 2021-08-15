@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/davidcarlos/projects/dotfiles/nvim/plugins/vim-fugitive'
+let g:netrw_dirhist_3='/home/davidcarlos/projects/pencillabs/ng/ngcredits'
+let g:netrw_dirhist_2='/home/davidcarlos/projects/pencillabs/ej/ej-server'
+let g:netrw_dirhist_1='/tmp/conf.d/prod'
+let g:netrw_dirhist_0='/home/davidcarlos/projects/Go/src/core'
+let g:netrw_dirhist_9='/tmp/conf.d'
+let g:netrw_dirhist_8='/home/davidcarlos/projects/pencillabs/ej/ej-server/src/ej_conversations/jinja2/ej_conversations_tools'
+let g:netrw_dirhist_7='/home/davidcarlos/projects/pencillabs/ej/ej-server/src/ej_analysis/jinja2/ej_conversations_analysis'
+let g:netrw_dirhist_6='/home/davidcarlos/projects/pencillabs/ej/ej-server/src/ej_conversations/jinja2/ej_conversations_analysis'
+let g:netrw_dirhist_5='/home/davidcarlos/projects/pencillabs/ng/ngcredits/source/server/typeform/api/tests'

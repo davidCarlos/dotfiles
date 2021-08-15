@@ -4,7 +4,13 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'morhetz/gruvbox'
    Plug 'lifepillar/vim-solarized8'
    Plug 'dracula/vim'
-   let ayucolor="dark"
+   Plug 'sjl/badwolf'
+   Plug 'tomasr/molokai'
+   Plug 'drewtempelmeyer/palenight.vim'
+   Plug 'arcticicestudio/nord-vim'
+   Plug 'chriskempson/base16-vim'
+   Plug 'sonph/onehalf', { 'rtp': 'vim' }
+   "let ayucolor="dark"
 
    " Tree explorer.
    Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
@@ -52,8 +58,8 @@ call plug#begin('~/.config/nvim/plugins')
 
    " Plug stuff
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+   " Plug 'neoclide/coc-pyright'
    " Plug 'neoclide/coc-snippets'
-   " Plug 'neoclide/coc-python'
    " Plug 'neoclide/coc-sources'
    " Plug 'neoclide/coc-prettier'
    " Plug 'neoclide/coc-yaml'
@@ -108,4 +114,6 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'Yggdroot/indentLine'
 call plug#end()
 
-colorscheme dracula
+set termguicolors
+colorscheme onehalfdark
+let g:airline_theme='onehalfdark'

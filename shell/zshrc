@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/david/.oh-my-zsh"
+  export ZSH="/home/davidcarlos/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -65,7 +65,7 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode zsh-syntax-highlighting docker)
+plugins=(git vi-mode docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,27 +98,30 @@ source $ZSH/oh-my-zsh.sh
 alias vim="nvim.appimage"
 alias gvim="nvim-gtk"
 alias yarn="yarnpkg"
-# Put on /home/david/local/bin david specific binaries like nvim
-export PATH=/home/david/.usr/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
-export PATH=$PATH:/home/david/.local/bin
+alias keepass="~/.local/bin/KeePassXC-2.6.4-x86_64.AppImage"
+# Put on /home/davidcarlos/local/bin davidcarlos specific binaries like nvim
+export PATH=/home/davidcarlos/.usr/local/bin:/usr/local/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin/:$PATH
+export PATH=$PATH:/home/davidcarlos/.local/bin
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/bin
-export PATH=$PATH:/home/david/.local/go/bin/:/home/david/projects/Go/src/core/bin
-export PATH=$PATH:/home/david/projects/learning/datascience/anaconda3/bin
-export PATH=/home/david/.java/jdk1.8.0_231/bin:/home/david/.gradle/gradle-5.6.3/bin:$PATH
-export PATH=/home/david/projects/pencillabs/ej/ej-components/conversations/node_modules/@stencil/core/bin:$PATH
+export PATH=$PATH:/home/davidcarlos/.local/go/bin/:/home/davidcarlos/projects/Go/bin
+export PATH=$PATH:/home/davidcarlos/.local/go/bin/:/home/davidcarlos/projects/Go/src/core/bin
+export PATH=$PATH:/home/davidcarlos/projects/learning/datascience/anaconda3/bin
+export PATH=/home/davidcarlos/.java/jdk1.8.0_231/bin:/home/davidcarlos/.gradle/gradle-5.6.3/bin:$PATH
+export PATH=/home/davidcarlos/projects/pencillabs/ej/ej-components/conversations/node_modules/@stencil/core/bin:$PATH
+export PATH=/home/davidcarlos/Ferramentas/diff-so-fancy/:$PATH
 
 #pyenv configuration
-export PATH=/home/david/.pyenv/bin:$PATH
-eval "$(pyenv init -)"
+#export PATH=/home/davidcarlos/.pyenv/bin:$PATH
+#eval "$(pyenv init -)"
 
 export JAVA_HOME=~/.java/jdk1.8.0_231/
-export ANDROID_HOME=/home/david/Android/Sdk/
-export ANDROID_SDK_ROOT=/home/david/Android/Sdk/
-export GOPATH=/home/david/projects/Go/
+export ANDROID_HOME=/home/davidcarlos/Android/Sdk/
+export ANDROID_SDK_ROOT=/home/davidcarlos/Android/Sdk/
+export GOPATH=/home/davidcarlos/projects/Go/
 export WORKON_HOME=$HOME/projects/.virtualenvs
 export AIRFLOW_HOME=~/projects/pencillabs/ej/ds-stack/
-source /home/david/.local/bin/virtualenvwrapper.sh
+export GO111MODULE=auto
+#source /home/davidcarlos/.local/bin/virtualenvwrapper.sh
 
 function dcexec() {
 	container_to_exec=$(docker container ls | fzf | awk '{print $1}')
@@ -149,3 +152,8 @@ function dils() {
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
+
+# Remaps Altgr + R to print |. 
+# Logitech k380 does not have a pipe key if you use an abnt2 layout
+# more infos: https://dev.to/nfo94/como-remapear-teclas-no-linux-46p8
+xmodmap -e "keycode 27 = r R r R bar"

@@ -38,7 +38,7 @@ nmap <leader>e :e!<CR>
 nmap <LEADER>v :vsplit <CR>
 nmap <LEADER>s :split <CR>
 
-" yank maps
+" yank maps. Depends on xclip package 
 noremap YY "+y<CR>
 nmap <leader>p "*p<CR>
 

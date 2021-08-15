@@ -1,3 +1,0 @@
-application/pdf; evince %s;
-# press m to open content on firefox
-text/html; firefox %s  >/dev/null 2>&1;

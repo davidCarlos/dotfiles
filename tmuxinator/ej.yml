@@ -7,12 +7,23 @@ windows:
   - vim:
       root: ~/projects/pencillabs/ej/ej-server
       panes:
-        - workon ej-osf && vim
-  - panes:
+        - vim
+  - ej-server:
       root: ~/projects/pencillabs/ej/ej-server
       layout: tiled
       panes:
+        - 
+        -
+        - inv docker-up && inv docker-logs
+  - ej-bot:
+      root: ~/projects/pencillabs/ej/ej-bot
+      layout: tiled
+      panes:
+        - make run-api
+        - make run-actions
         -
         -
-        -
-        -
+  - ngrok:
+      root: ~/Ferramentas
+      panes:
+        - ./ngrok http 5006

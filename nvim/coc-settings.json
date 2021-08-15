@@ -1,0 +1,7 @@
+{
+  "suggest.snippetIndicator": "►",
+  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript", "typescriptreact"],
+  "yaml.format.enable": true,
+  "yaml.validate": true,
+  "python.formatting.provider": "black"
+}

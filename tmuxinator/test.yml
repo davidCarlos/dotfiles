@@ -1,9 +1,0 @@
-# ~/.tmuxinator/test.yml
-
-name: test
-windows:
-  - window_1:
-        layout: even-horizontal
-        panes:
-         - ssh participa-mais.colivre.net
-         - ssh redeot.colivre.net

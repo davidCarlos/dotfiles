@@ -5,15 +5,16 @@ root: ~/projects/pencillabs/ng/
 
 windows:
   - vim:
-      root: ~/projects/pencillabs/ng/
-      layout: 7ff8,170x43,0,0[170x31,0,0,9,170x11,0,32{85x11,0,32,11,84x11,86,32,12}]
+      root: ~/projects/pencillabs/ng/ngcredits
+      layout: tiled
       panes:
-        - vim
-        -
+        - make run
         -
   - api:
-      root: ~/projects/pencillabs/ng/ng-credits/
-      layout: even-horizontal
+      root: ~/projects/pencillabs/ng/
+      layout: tiled
       panes:
+        -
+        -
         -
         -
