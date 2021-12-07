@@ -39,9 +39,16 @@ set cmdheight=2
 let mapleader=","
 "open terminal on insert mode
 
-"always center the cursor vertically
-set so=999
+set textwidth=100
+set colorcolumn=100
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
-au TermOpen term://* startinsert
+" https://github.com/vim/vim/issues/2790
+set redrawtime=10000
+
+"always center the cursor vertically
+set so=999
+
+set nocompatible
+autocmd FileType css setlocal ts=3 sw=2 expandtab

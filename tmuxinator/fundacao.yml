@@ -1,0 +1,20 @@
+# ~/.tmuxinator/fundacao.yml
+
+name: transforma
+root: ~/projects/pencillabs/fundacao_lehmann/
+
+windows:
+  - fl-hub:
+      root: ~/projects/pencillabs/fundacao_lehmann/fl-hub
+      layout: 9dbd,210x60,0,0[210x39,0,0,0,210x20,0,40{104x20,0,40,4,105x20,105,40,5}]
+      panes:
+        - vim
+        -
+        -
+  - transforma:
+      root: ~/projects/pencillabs/fundacao_lehmann/transforma_minas
+      layout: 9dbd,210x60,0,0[210x39,0,0,0,210x20,0,40{104x20,0,40,4,105x20,105,40,5}]
+      panes:
+        - vim
+        -
+        -

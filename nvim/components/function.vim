@@ -14,4 +14,13 @@ function OpenTerminalOnHorizontalSplit()
 	execute("terminal")
 endfunction
 
+function InstallCocExtensions()
+	CocInstall coc-pyright
+	CocInstall coc-jedi
+	CocInstall coc-tsserver
+	CocInstall coc-yaml
+	CocInstall coc-snippets
+	CocInstall coc-html
+endfunction
+
 call localrc#load('.local.vimrc', "./")

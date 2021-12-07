@@ -157,3 +157,6 @@ prompt pure
 # Logitech k380 does not have a pipe key if you use an abnt2 layout
 # more infos: https://dev.to/nfo94/como-remapear-teclas-no-linux-46p8
 xmodmap -e "keycode 27 = r R r R bar"
+
+# Better replacement for ls -> https://github.com/ogham/exa
+alias ll="exa -lahgFr"

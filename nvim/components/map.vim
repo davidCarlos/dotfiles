@@ -1,4 +1,8 @@
 "-------------- normal mode maps  --------------"
+
+" copy the line and not add empty line after paste
+" nmap yY vEy
+
 nmap j gj
 nmap k gk
 
@@ -40,7 +44,8 @@ nmap <LEADER>s :split <CR>
 
 " yank maps. Depends on xclip package 
 noremap YY "+y<CR>
-nmap <leader>p "*p<CR>
+nmap <leader>p "*p
+vmap <leader>p "*p
 
 "Show registers
 nmap <LEADER>r :reg<CR>
@@ -81,7 +86,7 @@ nmap cd :cd ~/projects/pencillabs/
 
 nmap <C-q> %
 "
-nmap <LEADER>o :only<CR>
+"nmap <LEADER>o :only<CR>
 "-------------- normal mode maps  --------------"
 
 "-------------- visual mode maps  --------------"
@@ -104,6 +109,10 @@ imap <leader>K console.log()<C-c>i
 "
 nmap <leader>tf :TestFile<CR>
 nmap <leader>ts :TestSuite<CR>
+let test#neovim#term_position = "vert"
+
 nmap <C-T> :tabnew<CR>
 nmap <A-l> :tabnext<CR>
 nmap <A-h> :tabprevious<CR>
+
+imap <C-c> <esc><esc>
