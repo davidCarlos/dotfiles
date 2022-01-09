@@ -51,4 +51,5 @@ set redrawtime=10000
 set so=999
 
 set nocompatible
+set cursorline
 autocmd FileType css setlocal ts=3 sw=2 expandtab

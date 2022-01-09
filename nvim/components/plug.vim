@@ -86,9 +86,11 @@ call plug#begin('~/.config/nvim/plugins')
    " Preview markdown files inside terminal/gui with a floating window
    " Depends on glow cli
    Plug 'ellisonleao/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+
+   Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 set termguicolors
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+colorscheme dracula
+let g:airline_theme='dracula'
 set signcolumn=yes

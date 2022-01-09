@@ -23,4 +23,10 @@ function InstallCocExtensions()
 	CocInstall coc-html
 endfunction
 
+" helper function to easily replace text
+function Replace(foo, bla)
+	execute(":%s#".a:foo."#".a:bla."#gc")
+endfunction
+map <leader>r :call Replace('
+
 call localrc#load('.local.vimrc', "./")

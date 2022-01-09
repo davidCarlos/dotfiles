@@ -159,4 +159,4 @@ prompt pure
 xmodmap -e "keycode 27 = r R r R bar"
 
 # Better replacement for ls -> https://github.com/ogham/exa
-alias ll="exa -lahgFr"
+alias ls="exa -a --sort=modified"

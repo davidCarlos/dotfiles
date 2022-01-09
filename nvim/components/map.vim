@@ -86,7 +86,7 @@ nmap cd :cd ~/projects/pencillabs/
 
 nmap <C-q> %
 "
-"nmap <LEADER>o :only<CR>
+nmap <LEADER>o :only<CR>
 "-------------- normal mode maps  --------------"
 
 "-------------- visual mode maps  --------------"
@@ -116,3 +116,5 @@ nmap <A-l> :tabnext<CR>
 nmap <A-h> :tabprevious<CR>
 
 imap <C-c> <esc><esc>
+
+nmap <LEADER>G :Git 
