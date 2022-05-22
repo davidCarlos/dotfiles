@@ -4,28 +4,28 @@ name: ej
 root: ~/projects/pencillabs/ej/
 
 windows:
-  - ej-server:
+  - vim:
       root: ~/projects/pencillabs/ej/ej-server
-      layout: 9dbd,210x60,0,0[210x39,0,0,0,210x20,0,40{104x20,0,40,4,105x20,105,40,5}]
       panes:
         - vim
+  - ej-server:
+      root: ~/projects/pencillabs/ej/ej-server
+      layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
+      panes:
         - inv docker-up && inv docker-logs
+        - inv docker-exec "inv sass --watch"
         -
   - ej-bot:
       root: ~/projects/pencillabs/ej/ej-bot
-      layout: 9dbd,210x60,0,0[210x39,0,0,0,210x20,0,40{104x20,0,40,4,105x20,105,40,5}]
+      layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
-        - vim
         - make run-api
         - make run-actions
+        -
   - ej-poll:
       root: ~/projects/pencillabs/ej/ej-telegram-groups-bot
-      layout: 9dbd,210x60,0,0[210x39,0,0,0,210x20,0,40{104x20,0,40,4,105x20,105,40,5}]
+      layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
-        - vim
         -
         -
-  - ngrok:
-      root: ~/Ferramentas
-      panes:
-        - ./ngrok http 5006
+        -

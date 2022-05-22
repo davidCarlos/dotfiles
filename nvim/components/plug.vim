@@ -11,7 +11,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'chriskempson/base16-vim'
    Plug 'sonph/onehalf', { 'rtp': 'vim' }
    Plug 'git@github.com:joshdick/onedark.vim.git'
-   "let ayucolor="dark"
+   Plug 'rakr/vim-one'
 
    " Tree explorer.
    Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
@@ -25,13 +25,14 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'junegunn/fzf.vim'
    nmap <LEADER>l :Buffers<CR>
    nmap <leader>f :FZF <CR>
+   nmap <leader>g :GFiles <CR>
    nmap <leader>a :Ag <CR>
 
    " Preview colours in source code while editing
-   Plug 'ap/vim-css-color'
+   Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'jinja2', 'html'] }
 
    " plug-in which provides support for expanding abbreviations
-   Plug 'mattn/emmet-vim'
+   Plug 'mattn/emmet-vim', { 'for': ['html', 'jinja2', 'tsx'] }
 
    " Integrates vim with git
    Plug 'tpope/vim-fugitive'
@@ -60,7 +61,6 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'vim-airline/vim-airline-themes'
 
    " Plug stuff
-   Plug 'liuchengxu/vista.vim'
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
    " Code snippets for several languages
@@ -83,14 +83,16 @@ call plug#begin('~/.config/nvim/plugins')
    " Display a thin vertical lines at each indentation level for code indented with spaces
    Plug 'Yggdroot/indentLine'
 
-   " Preview markdown files inside terminal/gui with a floating window
-   " Depends on glow cli
-   Plug 'ellisonleao/glow.nvim', {'do': ':GlowInstall', 'branch': 'main'}
+   " code auto formatting
+   Plug 'dense-analysis/ale'
+   let b:ale_fixers = {'javascript': ['prettier'], 'python': ['black']}
+   let g:ale_fix_on_save = 1
 
-   Plug 'skywind3000/asyncrun.vim'
+   " Great plugin for Distraction-free writing
+   Plug 'junegunn/goyo.vim'
+
+   " Integrates vim and tmux statusline
+   Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
-set termguicolors
-colorscheme dracula
-let g:airline_theme='dracula'
-set signcolumn=yes
+colorscheme solarized8_high

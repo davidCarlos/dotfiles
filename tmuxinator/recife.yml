@@ -1,0 +1,15 @@
+# ~/.tmuxinator/fundacao.yml
+
+name: recife
+root: ~/projects/pencillabs/institutogesto/
+
+windows:
+  - vim:
+      root: ~/projects/pencillabs/institutogesto/secretariaderecife
+      panes:
+        - vim
+  - relatorio:
+      root: ~/projects/pencillabs/institutogesto/secretariaderecife
+      panes:
+        - poetry shell
+        -

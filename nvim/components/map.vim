@@ -44,8 +44,6 @@ nmap <LEADER>s :split <CR>
 
 " yank maps. Depends on xclip package 
 noremap YY "+y<CR>
-nmap <leader>p "*p
-vmap <leader>p "*p
 
 "Show registers
 nmap <LEADER>r :reg<CR>
@@ -85,8 +83,9 @@ nmap <CR> <CR>
 nmap cd :cd ~/projects/pencillabs/
 
 nmap <C-q> %
-"
-nmap <LEADER>o :only<CR>
+
+" Creates new tab from current buffer
+map <LEADER>t :tabnew %<CR>
 "-------------- normal mode maps  --------------"
 
 "-------------- visual mode maps  --------------"

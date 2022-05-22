@@ -1,6 +1,8 @@
+
 "-------------- colorscheme configuration  --------------"
 " enables 24-bit RGB colors.
 set termguicolors
+set background=dark
 "-------------- colorscheme configuration  --------------"
 
 
@@ -10,7 +12,6 @@ set rtp+=~/.config/nvim/plugins/fzf
 " use zsh on neovim terminal
 " set shell=zsh\ -i
 "-------------- runtime configuration  --------------"
-
 
 "Show relative line numbers
 set relativenumber
@@ -37,9 +38,7 @@ set foldmethod=manual
 set cmdheight=2
 " Defines the mapleader key.
 let mapleader=","
-"open terminal on insert mode
 
-set textwidth=100
 set colorcolumn=100
 
 let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
@@ -52,4 +51,9 @@ set so=999
 
 set nocompatible
 set cursorline
+
 autocmd FileType css setlocal ts=3 sw=2 expandtab
+autocmd FileType css set ts=2 sts=2 sw=2
+
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
