@@ -35,5 +35,5 @@ if exists('g:Gui')
     call GuiWindowFullScreen(1)
 endif
 
-autocmd VimEnter * Tmuxline
+autocmd VimEnter * AirlineTheme minimalist
 set signcolumn=yes

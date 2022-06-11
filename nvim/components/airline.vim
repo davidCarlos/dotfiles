@@ -38,4 +38,4 @@ let g:airline#extensions#tabline#tab_min_count = 2     " minimum of 2 tabs neede
 let g:airline#extensions#tabline#show_splits = 0       " disables the buffer name that displays on the right of the tabline
 let g:airline#extensions#tabline#show_tab_nr = 0       " disable tab numbers
 let g:airline#extensions#tabline#show_tab_type = 0     " disables the weird ornage arrow on the tabline
-let g:airline_theme='solarized'
+let g:airline_theme='onedark'

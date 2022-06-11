@@ -117,3 +117,6 @@ nmap <A-h> :tabprevious<CR>
 imap <C-c> <esc><esc>
 
 nmap <LEADER>G :Git 
+
+" list file tags using LSP
+nmap <leader>V :Vista!!<CR>

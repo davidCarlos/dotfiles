@@ -32,13 +32,14 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'jinja2', 'html'] }
 
    " plug-in which provides support for expanding abbreviations
-   Plug 'mattn/emmet-vim', { 'for': ['html', 'jinja2', 'tsx'] }
+   Plug 'mattn/emmet-vim', { 'for': ['html', 'jinja2', 'tsx', 'htmldjango'] }
+
 
    " Integrates vim with git
    Plug 'tpope/vim-fugitive'
    nmap gs :Git<CR>
    nmap <leader>gd :Git diff %<CR>
-   nmap gc :Git commit
+   nmap <leader>gc :Git commit
    nmap gik :Git checkout %<CR>
    nmap gp :Git push
    nmap gl :Git log<CR>
@@ -93,6 +94,11 @@ call plug#begin('~/.config/nvim/plugins')
 
    " Integrates vim and tmux statusline
    Plug 'edkolev/tmuxline.vim'
+
+   Plug 'liuchengxu/vista.vim'
+
+   Plug 'tpope/vim-commentary'
+
 call plug#end()
 
-colorscheme solarized8_high
+colorscheme onedark
