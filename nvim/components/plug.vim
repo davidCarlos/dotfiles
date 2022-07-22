@@ -32,7 +32,7 @@ call plug#begin('~/.config/nvim/plugins')
    Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'jinja2', 'html'] }
 
    " plug-in which provides support for expanding abbreviations
-   Plug 'mattn/emmet-vim', { 'for': ['html', 'jinja2', 'tsx', 'htmldjango'] }
+   Plug 'mattn/emmet-vim', { 'for': ['html', 'jinja2', 'tsx', 'htmldjango', 'typescriptreact'] }
 
 
    " Integrates vim with git
@@ -86,7 +86,8 @@ call plug#begin('~/.config/nvim/plugins')
 
    " code auto formatting
    Plug 'dense-analysis/ale'
-   let b:ale_fixers = {'javascript': ['prettier'], 'python': ['black']}
+   let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black'], 'htmldjango': ['djhtml'], 'html': ['prettier']}
+   let g:ale_linters = {'javascript': ['prettier'], 'python': ['black'], 'htmldjango': ['djhtml'], 'html': ['prettier']}
    let g:ale_fix_on_save = 1
 
    " Great plugin for Distraction-free writing
