@@ -1,8 +1,8 @@
-
 "-------------- colorscheme configuration  --------------"
 " enables 24-bit RGB colors.
 set termguicolors
 set background=dark
+colorscheme onedark
 "-------------- colorscheme configuration  --------------"
 
 
@@ -46,14 +46,8 @@ let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 " https://github.com/vim/vim/issues/2790
 set redrawtime=10000
 
-"always center the cursor vertically
-set so=999
-
 set nocompatible
 set cursorline
-
-autocmd FileType css setlocal ts=3 sw=2 expandtab
-autocmd FileType css set ts=2 sts=2 sw=2
 
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0

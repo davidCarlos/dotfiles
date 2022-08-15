@@ -1,7 +1,7 @@
 # /home/davidcarlos/.tmuxinator/pencil-site.yml
 
 name: pencil-site
-root: ~/projects/pencillabs/pencillabs
+root: ~/Projetos/pencillabs/pencillabs
 
 # Optional tmux socket
 # socket_name: foo

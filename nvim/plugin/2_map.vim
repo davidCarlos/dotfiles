@@ -62,8 +62,6 @@ nmap <leader>os :call OpenTerminalOnHorizontalSplit()<CR>
 nmap <leader>ov :call OpenTerminalOnVerticalSplit()<CR>
 tnoremap <C-]> <C-\><C-n>
 
-
-
 " split movement maps
 nmap <C-h> <C-w>h
 nmap <C-l> <C-w>l
@@ -118,5 +116,40 @@ imap <C-c> <esc><esc>
 
 nmap <LEADER>G :Git 
 
-" list file tags using LSP
+" Vista maps
 nmap <leader>V :Vista!!<CR>
+
+" Nerdtree maps
+nmap <leader>F :NERDTreeToggle<CR>
+nmap <leader>IF :NERDTreeFind<CR>
+map <leader>FB :NERDTreeFromBookmark<Space>
+
+" FZF maps
+nmap <LEADER>l :Buffers<CR>
+nmap <leader>f :FZF <CR>
+nmap <leader>g :GFiles <CR>
+nmap <leader>a :Ag <CR>
+
+" Fugitive maps
+nmap gs :Git<CR>
+nmap <leader>gd :Git diff %<CR>
+nmap <leader>gc :Git commit
+nmap gik :Git checkout %<CR>
+nmap gp :Git push
+nmap gl :Git log<CR>
+nmap <leader>gw :Git show<CR>
+nmap <leader>gpl :Git pull
+
+" Polyglot maps
+let g:polyglot_disabled = ['markdown']
+
+" Maximazer maps
+nmap <leader>z :MaximizerToggle!<CR>
+
+" Vim-test maps
+let test#strategy = "neovim"
+
+" Ale maps
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['black'], 'html': ['prettier']}
+let g:ale_linters = {'javascript': ['prettier'], 'python': ['black'], 'html': ['prettier']}
+let g:ale_fix_on_save = 1

@@ -1,15 +1,15 @@
 # ~/.tmuxinator/kehind.yml
 
 name: zip
-root: ~/projects/zip
+root: ~/Projetos/zipfinancas/
 
 windows:
   - vim:
-      root: ~/projects/zip/zip-app/zip
+      root: ~/Projetos/zipfinancas/zip-app/zip
       panes:
         - vim
   - app:
-      root: ~/projects/zip/zip-app/zip
+      root: ~/Projetos/zipfinancas/zip-app/zip
       layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
         - ionic serve
