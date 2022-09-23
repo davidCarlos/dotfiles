@@ -1,9 +1,18 @@
 {
   "suggest.snippetIndicator": "►",
-  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript", "typescriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript", "javascript", "typescriptreact", "htmldjango", "html"],
   "yaml.format.enable": true,
   "yaml.validate": true,
   "python.formatting.provider": "black",
+  "htmldjango.formatting.provider": "djhtml",
+  "html.filetypes": [
+    "html",
+    "handlebars",
+    "htmldjango",
+    "blade"
+  ],
+  "html.enable": true,
+  "html.format.enable": true,
   "jedi.enable": true,
   "jedi.startupMessage": false,
   "jedi.markupKindPreferred": "plaintext",

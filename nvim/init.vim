@@ -1,6 +1,9 @@
 call plug#begin("~/.config/nvim/plugged")
   " Colorschemes
    Plug 'git@github.com:joshdick/onedark.vim.git'
+   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+   Plug 'Mofiqul/dracula.nvim'
+   Plug 'morhetz/gruvbox'
 
    " Tree explorer.
    Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle' }
@@ -32,6 +35,8 @@ call plug#begin("~/.config/nvim/plugged")
 
    Plug 'vim-airline/vim-airline'
    Plug 'vim-airline/vim-airline-themes'
+   " Integrates vim and tmux statusline
+   Plug 'edkolev/tmuxline.vim'
 
    " Plug stuff
    Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -52,9 +57,6 @@ call plug#begin("~/.config/nvim/plugged")
 
    " code auto formatting
    Plug 'dense-analysis/ale'
-
-   " Integrates vim and tmux statusline
-   Plug 'edkolev/tmuxline.vim'
 
    Plug 'liuchengxu/vista.vim'
    Plug 'tpope/vim-commentary'

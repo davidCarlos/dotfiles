@@ -1,8 +1,9 @@
 "-------------- colorscheme configuration  --------------"
-" enables 24-bit RGB colors.
+
+" italics will works fine on gnome-terminal
+let g:gruvbox_italic=1
 set termguicolors
-set background=dark
-colorscheme onedark
+colorscheme gruvbox
 "-------------- colorscheme configuration  --------------"
 
 
