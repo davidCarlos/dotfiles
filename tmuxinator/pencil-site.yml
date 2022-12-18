@@ -3,53 +3,14 @@
 name: pencil-site
 root: ~/Projetos/pencillabs/pencillabs
 
-# Optional tmux socket
-# socket_name: foo
-
-# Note that the pre and post options have been deprecated and will be replaced by
-# project hooks.
-
-# Project hooks
-
-# Runs on project start, always
-# on_project_start: command
-
-# Run on project start, the first time
-# on_project_first_start: command
-
-# Run on project start, after the first time
-# on_project_restart: command
-
-# Run on project exit ( detaching from tmux session )
-# on_project_exit: command
-
-# Run on project stop
-# on_project_stop: command
-
-# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
-
-# Pass command line options to tmux. Useful for specifying a different tmux.conf.
-# tmux_options: -f ~/.tmux.mac.conf
-
-# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
-# tmux_command: byobu
-
-# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: editor
-
-# Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
-# startup_pane: 1
-
-# Controls whether the tmux session should be attached to automatically. Defaults to true.
-# attach: false
-
 windows:
   - vim:
+      layout: dfd1,213x55,0,0[213x41,0,0,3,213x13,0,42,7]
       panes:
         - vim
+        -
   - server: 
-      layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
+      layout: bcc2,213x55,0,0[213x38,0,0,4,213x16,0,39{106x16,0,39,5,106x16,107,39,6}]
       panes:
         - make up
         -

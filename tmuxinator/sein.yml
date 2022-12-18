@@ -1,15 +1,15 @@
-# /home/davidcarlos/.tmuxinator/sein.yml
+# /home/davidcarlos/.tmuxinator/plin.yml
 
-name: sein
-root: ~/Projetos/pencillabs/SEDUC/sein/
+name: plin
+root: ~/Projetos/pencillabs/SEDUC/plin
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/SEDUC/sein/
+      root: ~/Projetos/pencillabs/SEDUC/plin/
       panes:
         - vim
   - server:
-      root: ~/Projetos/pencillabs/SEDUC/sein/
+      root: ~/Projetos/pencillabs/SEDUC/plin/
       layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
         -

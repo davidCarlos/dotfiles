@@ -1,15 +1,17 @@
-# ~/.tmuxinator/infra.yml
+# /home/davidcarlos/.tmuxinator/plin.yml
 
-name: infra
-root: ~/Projetos/pencillabs/infra/src/core
+name: plin
+root: ~/Projetos/pencillabs/SEDUC/plin
 
 windows:
   - vim:
+      root: ~/Projetos/pencillabs/SEDUC/plin/
       layout: dfd1,213x55,0,0[213x41,0,0,3,213x13,0,42,7]
       panes:
         - vim
         -
-  - git:
+  - server:
+      root: ~/Projetos/pencillabs/SEDUC/plin/
       layout: bcc2,213x55,0,0[213x38,0,0,4,213x16,0,39{106x16,0,39,5,106x16,107,39,6}]
       panes:
         -

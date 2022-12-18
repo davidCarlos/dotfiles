@@ -1,0 +1,12 @@
+# /home/davidcarlos/.tmuxinator/seduc.yml
+
+name: seduc
+root: ~/Projetos/pencillabs/SEDUC/secretariaderecife/
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/SEDUC/secretariaderecife/
+      layout: dfd1,213x55,0,0[213x41,0,0,3,213x13,0,42,7]
+      panes:
+        - vim
+        -

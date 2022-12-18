@@ -1,7 +1,7 @@
-# ~/.tmuxinator/infra.yml
+# ~/.tmuxinator/transforma.yml
 
-name: infra
-root: ~/Projetos/pencillabs/infra/src/core
+name: transforma
+root: ~/Projetos/pencillabs/transforma/transformagov
 
 windows:
   - vim:
@@ -9,9 +9,9 @@ windows:
       panes:
         - vim
         -
-  - git:
+  - server:
       layout: bcc2,213x55,0,0[213x38,0,0,4,213x16,0,39{106x16,0,39,5,106x16,107,39,6}]
       panes:
-        -
+        - make up
         -
         -

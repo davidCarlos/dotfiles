@@ -1,20 +1,17 @@
 # ~/.tmuxinator/ng.yml
 
 name: ng
-root: ~/projects/pencillabs/ng/
+root: ~/Projetos/ng/
 
 windows:
   - vim:
-      root: ~/projects/pencillabs/ng/ngcredits
-      layout: tiled
+      root: ~/Projetos/ng/ngcredits
       panes:
-        - make run
-        -
-  - api:
-      root: ~/projects/pencillabs/ng/
-      layout: tiled
+        - vim
+  - server:
+      root: ~/Projetos/ng/ngcredits
+      layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
-        -
         -
         -
         -
