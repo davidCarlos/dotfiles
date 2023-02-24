@@ -45,7 +45,6 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'morhetz/gruvbox' -- Theme inspired by Atom
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -66,7 +65,15 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  use { 'ray-x/lsp_signature.nvim' }
+  -- improved tabs
+  use {"kdheepak/tabline.nvim"}
+
+  -- improved hover documentation
+  use {"lewis6991/hover.nvim"}
+
+  -- gruvbox port for lua
+  use { "ellisonleao/gruvbox.nvim" }
+
 
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
@@ -273,7 +280,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+  --nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -366,6 +373,7 @@ require('lspconfig').pylsp.setup({
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -390,6 +398,7 @@ cmp.setup({
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
   }),
+
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     -- { name = 'vsnip' }, -- For vsnip users.
@@ -401,14 +410,14 @@ cmp.setup({
     })
 })
 
--- -- Set configuration for specific filetype.
--- cmp.setup.filetype('gitcommit', {
---   sources = cmp.config.sources({
---     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
---   }, {
---     { name = 'buffer' },
---   })
--- })
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+  sources = cmp.config.sources({
+    { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+  }, {
+    { name = 'buffer' },
+  })
+})
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
@@ -419,20 +428,21 @@ cmp.setup.cmdline({ '/', '?' }, {
 })
 
 
-  -- `:` cmdline setup.
-    cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'path' }
-      }, {
-        {
-          name = 'cmdline',
-          option = {
-            ignore_cmds = { 'Man', '!' }
-          }
-        }
-      })
-    })
+-- `:` cmdline setup.
+-- This setup depends on cmp-cmdline plugin https://github.com/hrsh7th/cmp-cmdline
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = {}
+      }
+    }
+  })
+})
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`

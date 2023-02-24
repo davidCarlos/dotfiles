@@ -62,13 +62,13 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 	callback = function() vim.api.nvim_command(":Tmuxline vim_statusline_1") end
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.tsx", "*.ts", "*.css", "*.js", "*.html", "*.yaml" },
-	callback = function() vim.api.nvim_command(":PrettierAsync") end
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	pattern = { "*.tsx", "*.ts", "*.css", "*.js", "*.html", "*.yaml" },
+-- 	callback = function() vim.api.nvim_command(":PrettierAsync") end
+-- })
 
--- autoformat on save using LSP function
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.py", "*.go", "*.jinja2" },
-	callback = function() vim.api.nvim_command(":Format") end
-})
+-- -- autoformat on save using LSP function
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+-- 	pattern = { "*.py", "*.go", "*.jinja2" },
+-- 	callback = function() vim.api.nvim_command(":Format") end
+-- })
