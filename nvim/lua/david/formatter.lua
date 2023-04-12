@@ -17,14 +17,18 @@ require("formatter").setup({
 			require("formatter.filetypes.lua").stylua,
 		},
 		typescript = {
-			require("formatter.filetypes.typescript").prettier
+			require("formatter.filetypes.typescript").prettier,
 		},
 		typescriptreact = {
-			require("formatter.filetypes.typescriptreact").prettier
+			require("formatter.filetypes.typescriptreact").prettier,
 		},
 		python = {
-			require("formatter.filetypes.python").black
+			require("formatter.filetypes.python").black,
 		},
+		html = {
+			require("formatter.filetypes.html").prettier,
+		},
+
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
 		["*"] = {
