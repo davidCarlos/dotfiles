@@ -51,11 +51,3 @@ vim.keymap.set("n", "<leader>gl", ":vert Git log<cr>")
 vim.keymap.set("n", "<C-q>", "%", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>V", ":SymbolsOutline<cr>")
-
--- [[ NerdTree maps ]]
-vim.keymap.set("n", "<leader>F", function()
-	vim.api.nvim_command(":NERDTreeToggle")
-end)
-vim.keymap.set("n", "<leader>IF", function()
-	vim.api.nvim_command(":NERDTreeFind")
-end)
