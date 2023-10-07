@@ -317,7 +317,6 @@ local on_attach = function(_, bufnr)
 		if desc then
 			desc = "LSP: " .. desc
 		end
-		print(desc)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
