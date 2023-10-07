@@ -40,7 +40,6 @@ vim.keymap.set("n", "<leader>e", ":e!<cr>")
 vim.keymap.set("v", "yy", '"+y')
 
 -- [[ Fugitive maps ]]
-vim.keymap.set("n", "<leader>gi", ":Git ")
 vim.keymap.set("n", "gs", ":vert Git<cr>")
 vim.keymap.set("n", "<leader>gc", ":vert Git commit<cr>")
 vim.keymap.set("n", "<leader>gpl", ":Git pull ")
@@ -55,12 +54,3 @@ vim.keymap.set("n", "<leader>V", ":SymbolsOutline<cr>")
 vim.keymap.set("n", "<leader>o", ":only<cr>")
 vim.keymap.set("n", "gq", ":vimgrep  %<C-left><Left>")
 vim.keymap.set("n", "co", ":copen<cr>")
-
--- https://vimtricks.com/p/vimtrick-moving-lines/
--- move lines and block of lines with <c-j> and <c-k>
-vim.keymap.set("n", "<leader>x", ":m .+1<CR>==")
-vim.keymap.set("n", "<leader>z", ":m .-2<CR>==")
-vim.keymap.set("i", "<leader>x", "<Esc>:m .+1<CR>==gi")
-vim.keymap.set("i", "<leader>z", "<Esc>:m .-2<CR>==gi")
-vim.keymap.set("v", "<leader>x", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<leader>z", ":m '<-2<CR>gv=gv")

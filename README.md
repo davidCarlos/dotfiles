@@ -13,5 +13,3 @@ Para instalar as configurações do neovim, siga os passos:
 4. Com os plugins instalados, execute o comando `:checkhealth`, para identificar quais dependências adicionais precisam ser instaladas no seu ambiente.
 
 > Os arquivos de configuração do Neovim foram validados para a versão 0.8.1 do editor.
-
-

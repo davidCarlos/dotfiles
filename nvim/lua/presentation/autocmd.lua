@@ -4,14 +4,6 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 		vim.api.nvim_command(":set filetype=html")
 	end,
 })
-
--- pylsp server does not format automatically on save.
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.py" },
-	callback = function()
-		vim.api.nvim_command(":Black")
-	end,
-})
 vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 	pattern = { "*.jinja2" },
 	callback = function()

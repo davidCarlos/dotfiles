@@ -1,0 +1,14 @@
+# ~/.tmuxinator/ieducar.yml
+
+name: ieducar
+root: ~/Projetos/pencillabs/i-educar
+
+windows:
+  - vim:
+      layout: 5fca,213x55,0,0[213x41,0,0,0,213x13,0,42,4]
+      panes:
+        - vim
+        -
+  - app:
+      panes:
+        -

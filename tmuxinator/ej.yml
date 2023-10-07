@@ -10,18 +10,22 @@ windows:
         - vim
   - ej-server:
       root: ~/Projetos/pencillabs/ej/ej-application
+      layout: 17d7,174x44,0,0{86x44,0,0,13,87x44,87,0[87x22,87,0,14,87x21,87,23,29]}
+      panes:
+        - inv docker-up
+        -
+        -
+  - component:
+      root: ~/Projetos/pencillabs/ej/conversation-component/conversations
       layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
-        - inv docker-up && inv docker-logs
-        - inv docker-exec "inv sass --watch"
-        -
+        - npm start
   - ej-bot:
       root: ~/Projetos/pencillabs/ej/ej-bot
       layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]
       panes:
         - make run-api
         - make run-actions
-        -
   - ej-poll:
       root: ~/Projetos/pencillabs/ej/ej-telegram-groups-bot
       layout: 0182,213x52,0,0[213x26,0,0,25,213x25,0,27{106x25,0,27,32,106x25,107,27,33}]

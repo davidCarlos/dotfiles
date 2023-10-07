@@ -1,0 +1,16 @@
+# ~/.tmuxinator/licitacoes.yml
+
+name: licitacoes
+root: ~/Projetos/pencillabs/comprasnet/bot-licitacoes
+
+windows:
+  - vim:
+      layout: 5fca,213x55,0,0[213x41,0,0,0,213x13,0,42,4]
+      panes:
+        - vim
+  - app:
+      layout: 17d7,174x44,0,0{86x44,0,0,13,87x44,87,0[87x22,87,0,14,87x21,87,23,29]}
+      panes:
+        - poetry shell
+        -
+        -

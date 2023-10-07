@@ -1,7 +1,6 @@
 require("david.set")
 require("david.keymap")
 require("david.signatures")
-require("david.tabline")
 require("david.formatter")
 require("lualine").setup({
 	options = { theme = "gruvbox_dark" },
@@ -9,3 +8,5 @@ require("lualine").setup({
 require("david.filetree")
 require("david.autocmd")
 require("david.symbols-outline")
+require("david.telescope")
+require("david.tabline")

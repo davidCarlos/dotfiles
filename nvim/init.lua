@@ -19,7 +19,7 @@ require("packer").startup(function(use)
 			"williamboman/mason-lspconfig.nvim",
 
 			-- Useful status updates for LSP
-			"j-hui/fidget.nvim",
+			{ "j-hui/fidget.nvim", tag = "legacy" },
 		},
 	})
 
@@ -57,7 +57,6 @@ require("packer").startup(function(use)
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
-	use("preservim/nerdtree")
 	use({
 		"nvim-lualine/lualine.nvim", -- Fancier statusline
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -68,13 +67,14 @@ require("packer").startup(function(use)
 	use("prettier/vim-prettier")
 
 	-- Fuzzy Finder (files, lsp, etc)
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.1", requires = { "nvim-lua/plenary.nvim" } })
 
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
 
 	-- improved tabs
-	use({ "kdheepak/tabline.nvim" })
+	use("nvim-tree/nvim-web-devicons")
+	use("kdheepak/tabline.nvim")
 
 	-- improved hover documentation
 	use({ "lewis6991/hover.nvim" })
@@ -85,9 +85,49 @@ require("packer").startup(function(use)
 	-- A format runner for Neovim.
 	use({ "mhartington/formatter.nvim" })
 
-	-- A tree like view for symbols in Neovim using the Language Server Protocol. 
+	-- A tree like view for symbols in Neovim using the Language Server Protocol.
 	-- Supports all your favourite languages.
-	use({'simrat39/symbols-outline.nvim'})
+	use({ "simrat39/symbols-outline.nvim" })
+
+	-- treefile explorer writen in lua
+	use({ "nvim-tree/nvim-tree.lua" })
+
+	-- CSS color preview
+	use({ "NvChad/nvim-colorizer.lua" })
+
+	-- Helper to add (), {} and other surrounding pairs
+	-- example: on normal mode, executes ysw", to add "word"
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	})
+
+	-- Automatically adds (), {} and ""
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+
+	-- syntax highlight for nginx conf files
+	use({ "chr4/nginx.vim" })
+
+	-- This is the latest version of the Jinja2 syntax file for vim with the ability to detect either HTML or Jinja.
+	use({ "Glench/Vim-Jinja2-Syntax" })
+
+	-- This is the oficial Black plugin to vim/neovim. I tried to
+	-- configure autoformating with python-lsp-black, but the integration with
+	-- python-lsp-server was not working well.
+	-- Check david.autocmd.lua, to see how i am formating python files on save.
+	use({ "psf/black", branch = "stable" })
+
+	use({ "junegunn/vim-easy-align" })
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
@@ -134,24 +174,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
--- Set lualine as statusline
--- See `:help lualine.txt`
-require("lualine").setup({
-	options = {
-		icons_enabled = false,
-		theme = "gruvbox",
-		component_separators = "|",
-		section_separators = "",
-	},
-})
+-- Enable nvim-colorizer.lua
+require("colorizer").setup()
 
 -- Enable Comment.nvim
 require("Comment").setup()
 
 -- Enable `lukas-reineke/indent-blankline.nvim`
 -- See `:help indent_blankline.txt`
-require("indent_blankline").setup({
-	char = "┊",
+require("ibl").setup({
 	show_trailing_blankline_indent = false,
 })
 
@@ -167,38 +198,25 @@ require("gitsigns").setup({
 	},
 })
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
-require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<C-u>"] = false,
-				["<C-d>"] = false,
-			},
-		},
-	},
-})
-
--- Enable telescope fzf native, if installed
-pcall(require("telescope").load_extension, "fzf")
-
--- See `:help telescope.builtin`
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader>l", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
-vim.keymap.set("n", "<leader>/", function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "[/] Fuzzily search in current buffer]" })
-
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = { "go", "lua", "python", "rust", "typescript", "help", "javascript", "html", "css" },
+	ensure_installed = {
+		"go",
+		"lua",
+		"python",
+		"rust",
+		"typescript",
+		"help",
+		"javascript",
+		"html",
+		"css",
+		"dockerfile",
+		"json",
+		"markdown",
+		"toml",
+	},
 
 	highlight = { enable = true },
 	indent = { enable = true },
@@ -279,6 +297,12 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float)
 
+-- https://neovim.io/doc/user/lsp.html#lsp-handlers
+-- Show border on documentation float window
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+	-- Use a sharp border with `FloatBorder` highlights
+	border = "rounded",
+})
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -293,7 +317,7 @@ local on_attach = function(_, bufnr)
 		if desc then
 			desc = "LSP: " .. desc
 		end
-
+		print(desc)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
@@ -303,12 +327,12 @@ local on_attach = function(_, bufnr)
 	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+	-- nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
 	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 	-- See `:help K` for why this keymap
-	--nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
 
 	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -333,17 +357,15 @@ local on_attach = function(_, bufnr)
 		buffer = bufnr,
 		callback = function()
 			local opts = {
-			focusable = false,
-			close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-			border = 'rounded',
-			source = 'always',
-			prefix = ' ',
-			scope = 'cursor',
+				focusable = false,
+				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+				border = "rounded",
+				source = "always",
+				prefix = " ",
+				scope = "cursor",
 			}
-			vim.diagnostic.open_float(nil, opts)
-		end
+		end,
 	})
-
 end
 
 -- Setup mason so it can manage external tooling
@@ -351,7 +373,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "tsserver", "lua_ls", "gopls", "pylsp" }
+local servers = { "tsserver", "lua_ls", "gopls", "pyright", "ruby_ls", "yamlls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
@@ -365,7 +387,6 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 for _, lsp in ipairs(servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
-		capabilities = capabilities,
 	})
 end
 
@@ -397,23 +418,9 @@ require("lspconfig").lua_ls.setup({
 	},
 })
 
-require("lspconfig").pylsp.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {
-		pylsp = {
-			plugins = {
-				autopep8 = {
-					enabled = false,
-				},
-				black = {
-					enabled = true,
-				},
-			},
-		},
-	},
-})
-
+-- https://github.com/neovim/nvim-lspconfig
+-- Client Config for LSP Servers
+-- For autoformatting, I am using psf/black plugin + autocmd.
 -- nvim-cmp setup
 local cmp = require("cmp")
 
@@ -495,5 +502,5 @@ vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc
 vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>a", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
-
+vim.keymap.set("n", "<leader>a", ":Telescope live_grep search=<cr>")
 require("david")

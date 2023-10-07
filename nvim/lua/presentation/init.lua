@@ -1,0 +1,8 @@
+require("presentation.set")
+require("presentation.keymap")
+require("presentation.signatures")
+require("presentation.formatter")
+require("presentation.filetree")
+require("presentation.autocmd")
+require("presentation.symbols-outline")
+require("presentation.telescope")

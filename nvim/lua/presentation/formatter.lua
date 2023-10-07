@@ -31,6 +31,9 @@ require("formatter").setup({
 		json = {
 			require("formatter.filetypes.json").prettier,
 		},
+		yaml = {
+			require("formatter.filetypes.yaml").prettier,
+		},
 
 		-- Use the special "*" filetype for defining formatter configurations on
 		-- any filetype
