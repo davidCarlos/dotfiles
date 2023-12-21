@@ -6,11 +6,12 @@ root: ~/Projetos/zipfinancas/
 windows:
   - vim:
       root: ~/Projetos/zipfinancas/zip-app/zip
-      layout: 5fca,213x55,0,0[213x41,0,0,0,213x13,0,42,4]
       panes:
         - vim
-        - 
   - app:
       root: ~/Projetos/zipfinancas/zip-app/zip
+      layout: 24e4,192x45,0,0[192x29,0,0,1,192x15,0,30,4]
       panes:
         - ionic serve
+        - 
+
