@@ -38,15 +38,16 @@ vim.keymap.set("n", "<leader>r", ":so<cr>")
 
 vim.keymap.set("n", "<leader>e", ":e!<cr>")
 vim.keymap.set("v", "yy", '"+y')
+vim.keymap.set("v", "yy", '"+y')
 
 -- [[ Fugitive maps ]]
-vim.keymap.set("n", "<leader>gi", ":Git ")
-vim.keymap.set("n", "gs", ":vert Git<cr>")
-vim.keymap.set("n", "<leader>gc", ":vert Git commit<cr>")
+vim.keymap.set("n", "<leader>G", ":Git ")
+vim.keymap.set("n", "<leader>gs", ":Git<cr>")
+vim.keymap.set("n", "<leader>gc", ":Git commit<cr>")
 vim.keymap.set("n", "<leader>gpl", ":Git pull ")
 vim.keymap.set("n", "gik", ":Git checkout %<cr>")
 vim.keymap.set("n", "gp", ":Git push origin")
-vim.keymap.set("n", "<leader>gl", ":vert Git log<cr>")
+vim.keymap.set("n", "<leader>gl", ":Git log<cr>")
 
 vim.keymap.set("n", "<C-q>", "%", { noremap = true, silent = true })
 

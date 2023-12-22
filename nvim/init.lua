@@ -6,7 +6,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
 	vim.cmd([[packadd packer.nvim]])
 end
-
+--
 require("packer").startup(function(use)
 	-- Package manager
 	use("wbthomason/packer.nvim")
@@ -26,13 +26,16 @@ require("packer").startup(function(use)
 	use({ -- Autocompletion
 		"hrsh7th/nvim-cmp",
 		requires = {
+			"neovim/nvim-lspconfig",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
 			"SirVer/ultisnips",
 			"quangnguyen30192/cmp-nvim-ultisnips",
-			"honza/vim-snippets",
-			"hrsh7th/cmp-cmdline",
 		},
 	})
 
@@ -53,7 +56,6 @@ require("packer").startup(function(use)
 	use("tpope/vim-rhubarb")
 	use("lewis6991/gitsigns.nvim")
 
-	use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
 	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
@@ -61,13 +63,12 @@ require("packer").startup(function(use)
 		"nvim-lualine/lualine.nvim", -- Fancier statusline
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
-	use("edkolev/tmuxline.vim")
 
 	use("mattn/emmet-vim")
 	use("prettier/vim-prettier")
 
 	-- Fuzzy Finder (files, lsp, etc)
-	use({ "nvim-telescope/telescope.nvim", tag = "0.1.1", requires = { "nvim-lua/plenary.nvim" } })
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.3", requires = { "nvim-lua/plenary.nvim" } })
 
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
@@ -84,6 +85,8 @@ require("packer").startup(function(use)
 
 	-- A format runner for Neovim.
 	use({ "mhartington/formatter.nvim" })
+
+	use({ "lukas-reineke/indent-blankline.nvim" })
 
 	-- A tree like view for symbols in Neovim using the Language Server Protocol.
 	-- Supports all your favourite languages.
@@ -128,6 +131,11 @@ require("packer").startup(function(use)
 	use({ "psf/black", branch = "stable" })
 
 	use({ "junegunn/vim-easy-align" })
+
+	-- https://github.com/preservim/vim-markdown#installation
+	-- Markdown support
+	use({ "godlygeek/tabular" })
+	use({ "preservim/vim-markdown" })
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
@@ -180,10 +188,8 @@ require("colorizer").setup()
 -- Enable Comment.nvim
 require("Comment").setup()
 
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
 require("ibl").setup({
-	show_trailing_blankline_indent = false,
+	scope = { enabled = false },
 })
 
 -- Gitsigns
@@ -372,57 +378,19 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "tsserver", "lua_ls", "gopls", "pyright", "ruby_ls", "yamlls" }
+local servers = { "tsserver", "lua_ls", "gopls", "pyright", "yamlls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
 })
 
--- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-for _, lsp in ipairs(servers) do
-	require("lspconfig")[lsp].setup({
-		on_attach = on_attach,
-	})
-end
-
--- Turn on lsp status information
-require("fidget").setup()
-
--- Example custom configuration for lua
 --
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-require("lspconfig").lua_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT)
-				version = "LuaJIT",
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = { enable = false },
-		},
-	},
-})
-
 -- https://github.com/neovim/nvim-lspconfig
 -- Client Config for LSP Servers
 -- For autoformatting, I am using psf/black plugin + autocmd.
 -- nvim-cmp setup
 local cmp = require("cmp")
-
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -437,7 +405,7 @@ cmp.setup({
 		completion = cmp.config.window.bordered(),
 		documentation = cmp.config.window.bordered(),
 	},
-	mapping = cmp.mapping({
+	mapping = cmp.mapping.preset.insert({
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete(),
@@ -492,9 +460,59 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
+-- nvim-cmp supports additional completion capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+for _, lsp in ipairs(servers) do
+	require("lspconfig")[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+end
+
+-- :help lspconfig-setup
+require("lspconfig").solargraph.setup({
+	settings = {
+		solargraph = {
+			autoformat = true,
+			formatting = true,
+		},
+	},
+	on_attach = on_attach,
+})
+
+require("lspconfig").lua_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT)
+				version = "LuaJIT",
+				-- Setup your lua path
+				path = runtime_path,
+			},
+			workspace = { library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false },
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = { enable = false },
+		},
+	},
+})
+
+-- Turn on lsp status information
+require("fidget").setup()
+
+-- Example custom configuration for lua
+-- Make runtime files discoverable to the server
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
+--
 vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
 vim.keymap.set("n", "<leader>f", require("telescope.builtin").git_files, { desc = "Search Git Files" })
 vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })

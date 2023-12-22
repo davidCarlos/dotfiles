@@ -74,3 +74,7 @@ vim.o.cursorline = true
 
 -- show search preview
 vim.o.incsearch = true
+
+-- Markdown configuration
+vim.o.conceallevel = 2
+vim.g.vim_markdown_folding_disabled = 1
