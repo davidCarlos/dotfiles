@@ -137,6 +137,9 @@ require("packer").startup(function(use)
 	use({ "godlygeek/tabular" })
 	use({ "preservim/vim-markdown" })
 
+	-- Snippets for UltiSnips engine
+	use({ "honza/vim-snippets" })
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
@@ -460,15 +463,19 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
--- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- -- nvim-cmp supports additional completion capabilities
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+-- for _, lsp in ipairs(servers) do
+-- 	require("lspconfig")[lsp].setup({
+-- 		on_attach = on_attach,
+-- 		capabilities = capabilities,
+-- 	})
+-- end
 
 for _, lsp in ipairs(servers) do
-	require("lspconfig")[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
+	require("lspconfig")[lsp].setup({})
 end
 
 -- :help lspconfig-setup
