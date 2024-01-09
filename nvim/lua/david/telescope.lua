@@ -7,6 +7,11 @@ require("telescope").setup({
 				["<C-u>"] = false,
 				["<C-d>"] = false,
 			},
+			-- delete buffer from list in normal mode
+			-- https://github.com/nvim-telescope/telescope.nvim/pull/828
+			n = {
+				["d"] = "delete_buffer",
+			},
 		},
 		wrap_results = true,
 	},
