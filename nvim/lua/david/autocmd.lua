@@ -9,7 +9,8 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "*.py" },
 	callback = function()
-		vim.api.nvim_command(":Black")
+		local notify = require("notify")
+		notify(vim.api.nvim_command(":Black"))
 	end,
 })
 vim.api.nvim_create_autocmd({ "BufNewFile" }, {

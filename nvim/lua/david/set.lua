@@ -1,6 +1,8 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+vim.g.mapleader = ","
+
 -- colorscheme configuration
 vim.g.gruvbox_italic = 1
 vim.o.termguicolors = true
