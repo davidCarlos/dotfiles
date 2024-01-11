@@ -93,11 +93,12 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "tsserver", "lua_ls", "gopls", "pyright", "yamlls" }
+local default_servers = { "tsserver", "lua_ls", "gopls", "pylsp", "yamlls" }
+local generic_servers = { "tsserver", "lua_ls", "gopls", "yamlls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
-	ensure_installed = servers,
+	ensure_installed = default_servers,
 })
 
 --
@@ -113,12 +114,29 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-for _, lsp in ipairs(servers) do
+for _, lsp in ipairs(generic_servers) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
+
+require("lspconfig").pylsp.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		pylsp = {
+			plugins = {
+				rope_autoimport = {
+					enabled = true,
+				},
+				autopep8 = {
+					enabled = false,
+				},
+			},
+		},
+	},
+})
 
 -- :help lspconfig-setup
 require("lspconfig").solargraph.setup({
@@ -136,6 +154,7 @@ require("lspconfig").solargraph.setup({
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
+
 require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,

@@ -1,7 +1,23 @@
+notify = require("notify")
+
 vim.api.nvim_create_autocmd({ "BufRead" }, {
 	pattern = { "*.jinja2" },
 	callback = function()
-		vim.api.nvim_command(":set filetype=html")
+		-- https://neovim.io/doc/user/api.html#nvim_exec2()
+		local result = vim.api.nvim_exec2(":set filetype=html", { output = true })
+		if result then
+			notify("set filetype as html")
+		end
+	end,
+})
+vim.api.nvim_create_autocmd({ "BufNewFile" }, {
+	pattern = { "*.jinja2" },
+	callback = function()
+		-- https://neovim.io/doc/user/api.html#nvim_exec2()
+		local result = vim.api.nvim_exec2(":set filetype=html", { output = true })
+		if result then
+			notify("set filetype as html")
+		end
 	end,
 })
 
@@ -9,22 +25,7 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 	pattern = { "*.py" },
 	callback = function()
-		local notify = require("notify")
-		notify(vim.api.nvim_command(":Black"))
+		-- https://neovim.io/doc/user/api.html#nvim_exec2()
+		vim.api.nvim_command(":Black")
 	end,
 })
-vim.api.nvim_create_autocmd({ "BufNewFile" }, {
-	pattern = { "*.jinja2" },
-	callback = function()
-		vim.api.nvim_command(":set filetype=html")
-	end,
-})
-vim.api.nvim_create_autocmd({ "BufNew" }, {
-	pattern = { "*.jinja2" },
-	callback = function()
-		vim.api.nvim_command(":set filetype=html")
-	end,
-})
-
--- -- fixes filetree custom  configurations
--- vim.cmd([[ autocmd FileType * :lua setup_tabs() ]])
