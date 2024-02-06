@@ -7,7 +7,7 @@ windows:
   - vim:
       root: ~/Projetos/pencillabs/ej/hacklab/ej-application
       panes:
-        - vim
+        - pyenv activate ej-application && vim
   - ej-server:
       root: ~/Projetos/pencillabs/ej/hacklab/ej-application
       layout: 24e4,192x45,0,0[192x29,0,0,1,192x15,0,30,4]
