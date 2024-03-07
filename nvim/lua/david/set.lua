@@ -80,3 +80,6 @@ vim.o.incsearch = true
 -- Markdown configuration
 vim.o.conceallevel = 2
 vim.g.vim_markdown_folding_disabled = 1
+
+-- set colorcolumn
+vim.cmd([[set colorcolumn=90]])

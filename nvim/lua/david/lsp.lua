@@ -93,12 +93,11 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local default_servers = { "tsserver", "lua_ls", "gopls", "pylsp", "yamlls" }
-local generic_servers = { "tsserver", "lua_ls", "gopls", "yamlls" }
+local servers = { "tsserver", "lua_ls", "gopls", "pylsp", "yamlls", "pyright" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
-	ensure_installed = default_servers,
+	ensure_installed = servers,
 })
 
 --
@@ -114,29 +113,32 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-for _, lsp in ipairs(generic_servers) do
+for _, lsp in ipairs({ "tsserver", "lua_ls", "gopls", "yamlls", "pyright" }) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
 
-require("lspconfig").pylsp.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		pylsp = {
-			plugins = {
-				rope_autoimport = {
-					enabled = true,
-				},
-				autopep8 = {
-					enabled = false,
-				},
-			},
-		},
-	},
-})
+-- require("lspconfig").pylsp.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		pylsp = {
+-- 			plugins = {
+-- 				rope_autoimport = {
+-- 					enabled = true,
+-- 				},
+-- 				rope_completion = {
+-- 					enabled = true,
+-- 				},
+-- 				autopep8 = {
+-- 					enabled = false,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 -- :help lspconfig-setup
 require("lspconfig").solargraph.setup({
