@@ -1,7 +1,7 @@
 # ~/.tmuxinator/hacklab.yml
 
 name: hacklab
-root: ~/Projetos/pencillabs/ej/hacklab/
+root: ~/Projetos/pencillabs/ej/hacklab/ej-application
 
 windows:
   - vim:

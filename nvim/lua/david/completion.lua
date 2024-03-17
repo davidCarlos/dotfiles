@@ -45,19 +45,3 @@ cmp.setup.cmdline({ "/", "?" }, {
 		{ name = "buffer" },
 	},
 })
-
--- `:` cmdline setup.
--- This setup depends on cmp-cmdline plugin https://github.com/hrsh7th/cmp-cmdline
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{
-			name = "cmdline",
-			option = {
-				ignore_cmds = {},
-			},
-		},
-	}),
-})
