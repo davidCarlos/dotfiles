@@ -33,9 +33,9 @@ set $left h
 set $right l
 #set $terminal xterm -fa Hack-10
 set $terminal kitty
-set $browser brave
+set $browser firefox
 
-set $i3exit /home/david/projects/workflow/i3-extras/i3-exit
+set $i3exit ~/Projetos/workflow/i3-extras/i3-exit
 
 bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
 bindsym Mod4+o exec i3lock-fancy
@@ -46,11 +46,6 @@ bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
 
 # move workspace to monitor
 bindsym Mod4+Shift+m move workspace to output left
-
-#decrease brightness
-bindsym Mod4+Shift+x exec xbacklight -dec 10
-#increase brightness
-bindsym Mod4+Shift+z exec xbacklight -inc 10
 
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4

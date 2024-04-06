@@ -42,12 +42,12 @@ vim.keymap.set("v", "yy", '"+y')
 
 -- [[ Fugitive maps ]]
 vim.keymap.set("n", "<leader>G", ":Git ")
-vim.keymap.set("n", "<leader>gs", ":Git<cr>")
+vim.keymap.set("n", "<leader>gs", ":vertical Git<cr>")
 vim.keymap.set("n", "<leader>gc", ":Git commit<cr>")
 vim.keymap.set("n", "<leader>gpl", ":Git pull ")
 vim.keymap.set("n", "gik", ":Git checkout %<cr>")
 vim.keymap.set("n", "gp", ":Git push origin")
-vim.keymap.set("n", "<leader>gl", ":Git log<cr>")
+vim.keymap.set("n", "<leader>gl", ":vertical Git log<cr>")
 
 vim.keymap.set("n", "<C-q>", "%", { noremap = true, silent = true })
 

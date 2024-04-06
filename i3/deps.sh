@@ -6,7 +6,7 @@ git clone https://github.com/stark/siji ~/projects/siji
 
 # i3-extras
 pip install i3-py
-git clone git@github.com:ashinkarov/i3-extras.git ~/projects/i3-extras
+# git clone git@github.com:ashinkarov/i3-extras.git ~/projects/i3-extras
 
 # rofi themes
 mkdir ~/.config/rofi/
