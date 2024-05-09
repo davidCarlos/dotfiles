@@ -1,0 +1,19 @@
+# ~/.tmuxinator/ej-pencillabs.yml
+
+name: ej-pencillabs
+root: ~/Projetos/pencillabs/ej/pencillabs/ej-application
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/ej/pencillabs/ej-application
+      layout: d338,192x44,0,0[192x31,0,0,0,192x12,0,32,15]
+      panes:
+        # https://github.com/pyenv/pyenv-virtualenv
+        - pyenv local 3.8.18 && pyenv activate ej-application && vim
+        - pyenv local 3.8.18 && pyenv activate ej-application
+  - ej-server:
+      root: ~/Projetos/pencillabs/ej/pencillabs/ej-application
+      layout: 24e4,192x45,0,0[192x29,0,0,1,192x15,0,30,4]
+      panes:
+        - inv docker-up
+        -

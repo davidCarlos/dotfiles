@@ -5,10 +5,10 @@ root: ~/Projetos/pencillabs/infra/src/core
 
 windows:
   - vim:
+      layout: d338,192x44,0,0[192x31,0,0,0,192x12,0,32,15]
       panes:
         - vim
-  - git:
-      layout: 24e4,192x45,0,0[192x29,0,0,1,192x15,0,30,4]
-      panes:
         -
+  - files:
+      panes:
         -

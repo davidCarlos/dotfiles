@@ -120,26 +120,6 @@ for _, lsp in ipairs({ "tsserver", "lua_ls", "gopls", "yamlls", "pyright" }) do
 	})
 end
 
--- require("lspconfig").pylsp.setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	settings = {
--- 		pylsp = {
--- 			plugins = {
--- 				rope_autoimport = {
--- 					enabled = true,
--- 				},
--- 				rope_completion = {
--- 					enabled = true,
--- 				},
--- 				autopep8 = {
--- 					enabled = false,
--- 				},
--- 			},
--- 		},
--- 	},
--- })
-
 -- :help lspconfig-setup
 require("lspconfig").solargraph.setup({
 	settings = {
@@ -177,3 +157,6 @@ require("lspconfig").lua_ls.setup({
 
 -- Turn on lsp status information
 require("fidget").setup()
+
+-- LSP signature hint as you type
+require("lsp_signature").setup()

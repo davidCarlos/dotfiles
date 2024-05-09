@@ -5,12 +5,12 @@ root: ~/Projetos/pencillabs/brparticipativo
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/brparticipativo/rancher/
+      root: ~/Projetos/pencillabs/brparticipativo/decidim-ej-site/
+      layout: d338,192x44,0,0[192x31,0,0,0,192x12,0,32,15]
       panes:
         - vim
-  - infra:
-      root: ~/Projetos/pencillabs/brparticipativo/rancher/
-      layout: 24e4,192x45,0,0[192x29,0,0,1,192x15,0,30,4]
-      panes:
         -
+  - site:
+      root: ~/Projetos/pencillabs/brparticipativo/decidim-ej-site/
+      panes:
         -

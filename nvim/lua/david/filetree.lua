@@ -10,8 +10,10 @@ vim.opt.termguicolors = true
 -- OR setup with some options
 require("nvim-tree").setup({
 	sort_by = "case_sensitive",
+	-- changes nvim-tree root when neovim root changes.
+	sync_root_with_cwd = true,
 	view = {
-		width = 30,
+		width = 35,
 	},
 	renderer = {
 		group_empty = true,
