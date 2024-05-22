@@ -1,0 +1,18 @@
+# ~/.tmuxinator/conecta.yml
+
+name: conecta
+root: ~/Projetos/pencillabs/ej/its/ej-application
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/ej/its/ej-application
+      layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
+      panes:
+        - pyenv activate ej-application && vim
+        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-up
+        - pyenv local 3.8.18 && pyenv activate ej-application
+        -
+  - ej-server:
+      root: ~/Projetos/pencillabs/ej/its/ej-application
+      panes:
+        -

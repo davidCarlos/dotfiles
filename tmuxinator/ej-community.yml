@@ -6,12 +6,19 @@ root: ~/Projetos/pencillabs/ej/oficial/ej-application
 windows:
   - vim:
       root: ~/Projetos/pencillabs/ej/oficial/ej-application
-      layout: d338,192x44,0,0[192x31,0,0,0,192x12,0,32,15]
+      layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
       panes:
         # https://github.com/pyenv/pyenv-virtualenv
         - pyenv local 3.8.18 && pyenv activate ej-application && vim
+        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-up
         - pyenv local 3.8.18 && pyenv activate ej-application
-  - server:
-      root: ~/Projetos/pencillabs/ej/oficial/ej-application
+        -
+  - chatbot:
+      root: ~/Projetos/pencillabs/ej/oficial/ej-bot/
+      layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
       panes:
-        - inv docker-up
+        # https://github.com/pyenv/pyenv-virtualenv
+        - pyenv local 3.8.18 && pyenv activate ej-application && vim
+        - make run-api
+        - make run-actions
+        -
