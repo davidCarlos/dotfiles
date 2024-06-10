@@ -8,4 +8,13 @@ require("lualine").setup({
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "packer", "NVimTree" },
 	},
+	tabline = {
+		lualine_a = {
+			{
+				"tabs",
+				mode = 1,
+				use_mode_colors = true,
+			},
+		},
+	},
 })
