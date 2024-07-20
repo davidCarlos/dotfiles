@@ -1,11 +1,11 @@
 # ~/.tmuxinator/empreenda.yml
 
 name: empreenda
-root: ~/Projetos/pencillabs/plataforma-empreenda/
+root: ~/Projetos/pencillabs/unb/plataforma-empreenda/
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/plataforma-empreenda/website/
+      root: ~/Projetos/pencillabs/unb/plataforma-empreenda/website/
       layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
       panes:
         - vim
@@ -13,7 +13,7 @@ windows:
         -
         -
   - moodle:
-      root: ~/Projetos/pencillabs/plataforma-empreenda/moodle/
+      root: ~/Projetos/pencillabs/unb/plataforma-empreenda/moodle/
       layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
       panes:
         - vim

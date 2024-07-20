@@ -5,12 +5,18 @@ root: ~/Projetos/pencillabs/brparticipativo
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/brparticipativo/decidim-ej-site/
-      layout: d338,192x44,0,0[192x31,0,0,0,192x12,0,32,15]
+      root: ~/Projetos/pencillabs/brparticipativo/decidim-govbr/
+      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
       panes:
         - vim
         -
+        -
+        -
   - site:
+      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
       root: ~/Projetos/pencillabs/brparticipativo/decidim-ej-site/
       panes:
+        - vim
+        -
+        -
         -
