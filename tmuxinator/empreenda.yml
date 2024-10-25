@@ -6,17 +6,12 @@ root: ~/Projetos/pencillabs/unb/plataforma-empreenda/
 windows:
   - vim:
       root: ~/Projetos/pencillabs/unb/plataforma-empreenda/website/
-      layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
       panes:
         - vim
-        - 
-        -
-        -
   - moodle:
       root: ~/Projetos/pencillabs/unb/plataforma-empreenda/moodle/
-      layout: c51d,192x46,0,0{110x46,0,0,30,81x46,111,0[81x16,111,0,36,81x18,111,17,37,81x10,111,36,38]}
+      layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
       panes:
-        - vim
         -
         -
         -

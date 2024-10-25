@@ -1,15 +1,21 @@
 # ~/.tmuxinator/ambientevirtual.yml
 
 name: ambientevirtual
-root: ~/Projetos/pencillabs/fundacaolemann/
+root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/fundacaolemann/platataforma-rede-de-lideres/
-      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
+      root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/platataforma-rede-de-lideres/
       panes:
         # https://github.com/pyenv/pyenv-virtualenv
         - vim
+  - server:
+      root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/platataforma-rede-de-lideres/
+      layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
+      panes:
+        - 
         - 
         -
+  - others:
+      panes:
         -

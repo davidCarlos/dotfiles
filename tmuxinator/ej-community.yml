@@ -1,24 +1,28 @@
 # ~/.tmuxinator/ej-community.yml
 
 name: ej-community
-root: ~/Projetos/pencillabs/ej/oficial/ej-application
+root: ~/Projetos/pencillabs/ej/oficial/
 
 windows:
   - vim:
       root: ~/Projetos/pencillabs/ej/oficial/ej-application
-      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
       panes:
         # https://github.com/pyenv/pyenv-virtualenv
         - pyenv local 3.8.18 && pyenv activate ej-application && vim
-        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-up
-        - pyenv local 3.8.18 && pyenv activate ej-application
+  - ej-application:
+      root: ~/Projetos/pencillabs/ej/oficial/ej-application
+      layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
+      panes:
+        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-up -d
+        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-attach
         -
-  - chatbot:
+  - ej-chatbot:
       root: ~/Projetos/pencillabs/ej/oficial/ej-bot/
-      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
+      layout: 9354,192x46,0,0[192x23,0,0,17,192x22,0,24{61x22,0,24,19,61x22,62,24,21,68x22,124,24,22}]
       panes:
-        # https://github.com/pyenv/pyenv-virtualenv
-        - pyenv local 3.8.18 && pyenv activate ej-application && vim
+        -
         - make run-api
         - make run-actions
-        -
+        - make run-store
+  - others:
+    -
