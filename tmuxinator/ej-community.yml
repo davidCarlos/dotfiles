@@ -8,13 +8,13 @@ windows:
       root: ~/Projetos/pencillabs/ej/oficial/ej-application
       panes:
         # https://github.com/pyenv/pyenv-virtualenv
-        - pyenv local 3.8.18 && pyenv activate ej-application && vim
+        - pyenv local 3.9.18 && source .venv/bin/activate && vim
   - ej-application:
       root: ~/Projetos/pencillabs/ej/oficial/ej-application
       layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
       panes:
-        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-up -d
-        - pyenv local 3.8.18 && pyenv activate ej-application && inv docker-attach
+        - pyenv local 3.9.18 && source .venv/bin/activate && inv docker-up -d
+        - pyenv local 3.9.18 && source .venv/bin/activate && inv docker-attach
         -
   - ej-chatbot:
       root: ~/Projetos/pencillabs/ej/oficial/ej-bot/
@@ -25,4 +25,4 @@ windows:
         - make run-actions
         - make run-store
   - others:
-    -
+      -
