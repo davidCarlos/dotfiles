@@ -6,14 +6,21 @@
 /*     	border-bottom: 1px solid #5e81ac; */
 /* } */
 
-.xfce4-panel widget grid button.flat.toggle { 
-    color: #8a909e;
+.xfce4-panel {
+  font-family: "Fira Sans Medium";
+  font-size: 13px;
 }
 
-.xfce4-panel widget grid button.flat.toggle:checked { 
-    all: unset;
-    color: #81a1c1;
-    font-weight: bold;
-    border-bottom: 3px solid #81a1c1;
-    background-color: shade(#3b4252, 1.2);
+.xfce4-panel widget grid button.flat.toggle {
+  color: #8a909e;
+}
+
+.xfce4-panel widget grid button.flat.toggle:checked {
+  all: unset;
+  font-family: "Fira Sans Medium";
+  font-size: 13px;
+  color: #81a1c1;
+  font-weight: bold;
+  border-bottom: 3px solid #81a1c1;
+  background-color: shade(#3b4252, 1.2);
 }
