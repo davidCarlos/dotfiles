@@ -58,7 +58,7 @@ mainbox {
 
 message {
     color: @nord0;
-    padding: 5;
+    padding: 0;
     border-color: @foreground;
     border:  0px 2px 2px 2px;
     background-color: @nord7;
@@ -80,11 +80,11 @@ entry, prompt, case-indicator {
 }
 
 prompt {
-    margin: 0px 1em 0em 0em ;
+    margin: 0px 10px 0em 0em ;
 }
 
 listview {
-    padding: 8px;
+    padding: 20px;
     border-radius: 0px 0px 6px 6px;
     border-color: @nord10;
     border: 0px 1px 1px 1px;

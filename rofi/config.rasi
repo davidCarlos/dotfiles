@@ -1,10 +1,10 @@
 configuration {
-    font: "Roboto Regular 12";
+    font: "Fira Sans Medium 12";
     line-margin: 10;
 
     display-ssh:    "";
     display-run:    "";
-    display-drun:   "";
+    display-drun:   "";
     display-window: "";
     display-combi:  "";
     show-icons:     true;
@@ -14,9 +14,9 @@ configuration {
 @theme "~/.config/rofi/nord.rasi"
 
 listview {
-	lines: 6;
+	lines: 10;
 }
 
 window {
-	width: 30%;
+	width: 35%;
 }
