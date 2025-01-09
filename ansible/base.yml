@@ -1,0 +1,16 @@
+---
+- name: Install packages
+  hosts: localhost
+
+  tasks:
+    - name: Install git
+      ansible.builtin.dnf:
+        name: git
+
+    - name: Install curl
+      ansible.builtin.dnf:
+        name: curl
+
+    - name: Install tmux
+      ansible.builtin.dnf:
+        name: tmux

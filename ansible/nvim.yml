@@ -1,0 +1,10 @@
+---
+- name: Install nvim
+  hosts: localhost
+
+  tasks:
+    - name: Download the package
+      ansible.builtin.uri:
+        url: https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
+        dest: ~/.local/bin/nvim.appimage
+        mode: "755"
