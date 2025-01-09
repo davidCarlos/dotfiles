@@ -22,3 +22,13 @@
       become: true
       ansible.builtin.dnf:
         name: htop
+
+    - name: Install alacrity
+      become: true
+      ansible.builtin.dnf:
+        name: alacrity
+
+    - name: Install keepassxc
+      become: true
+      ansible.builtin.dnf:
+        name: keepassxc
