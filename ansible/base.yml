@@ -4,13 +4,21 @@
 
   tasks:
     - name: Install git
+      become: true
       ansible.builtin.dnf:
         name: git
 
     - name: Install curl
+      become: true
       ansible.builtin.dnf:
         name: curl
 
     - name: Install tmux
+      become: true
       ansible.builtin.dnf:
         name: tmux
+
+    - name: Install htop
+      become: true
+      ansible.builtin.dnf:
+        name: htop

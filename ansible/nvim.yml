@@ -3,8 +3,18 @@
   hosts: localhost
 
   tasks:
-    - name: Download the package
+    - name: Install packer
+      ansible.builtin.git:
+        repo: "https://github.com/wbthomason/packer.nvim"
+        dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+    - name: Download nvim appimage
       ansible.builtin.uri:
         url: https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
         dest: ~/.local/bin/nvim.appimage
         mode: "755"
+
+    - name: Copy nvim dotfiles
+      ansible.builtin.copy:
+        src: nvim/
+        dest: ~/.config/nvim/
