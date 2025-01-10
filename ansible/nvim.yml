@@ -8,11 +8,18 @@
         repo: "https://github.com/wbthomason/packer.nvim"
         dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
+    - name: Creates bin directory if it does not exists
+      ansible.builtin.file:
+        path: ~/.local/bin
+        state: directory
+        mode: "0755"
+
     - name: Download nvim appimage
       ansible.builtin.uri:
         url: https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
         dest: ~/.local/bin/nvim.appimage
         mode: "755"
+        status_code: [200,304]
 
     - name: Copy nvim dotfiles
       ansible.builtin.copy:

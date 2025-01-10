@@ -3,6 +3,21 @@
   hosts: localhost
 
   tasks:
+    - name: Install gcc
+      become: true
+      ansible.builtin.dnf:
+        name: gcc
+
+    - name: Install fuse-libs
+      become: true
+      ansible.builtin.dnf:
+        name: fuse-libs
+
+    - name: Install python3-libdnf5
+      become: true
+      ansible.builtin.dnf:
+        name: python3-libdnf5
+
     - name: Install git
       become: true
       ansible.builtin.dnf:
@@ -23,12 +38,45 @@
       ansible.builtin.dnf:
         name: htop
 
-    - name: Install alacrity
+    - name: Install alacritty
       become: true
       ansible.builtin.dnf:
-        name: alacrity
+        name: alacritty
 
     - name: Install keepassxc
       become: true
       ansible.builtin.dnf:
         name: keepassxc
+
+    - name: Install rofi
+      become: true
+      ansible.builtin.dnf:
+        name: rofi
+
+    - name: Creates zsh directory
+      ansible.builtin.file:
+        path: ~/.zsh
+        state: directory
+        mode: "0755"
+
+    - name: Install zsh
+      become: true
+      ansible.builtin.dnf:
+        name: zsh
+
+    - name: Install zsh dotfile
+      ansible.builtin.copy:
+        src: shell/zshrc
+        dest: ~/.zshrc
+
+    - name: Install zsh pure prompt
+      ansible.builtin.git:
+        repo: "https://github.com/sindresorhus/pure"
+        dest: "~/.zsh/pure"
+
+    # Será preciso fazer logout e depois login para essa alteração ser aplicada.
+    - name: Change default shell
+      become: true
+      ansible.builtin.shell:
+        cmd: chsh -s /bin/zsh
+
