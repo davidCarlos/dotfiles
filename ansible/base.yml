@@ -39,11 +39,6 @@
       ansible.builtin.dnf:
         name: keepassxc
 
-    - name: Install rofi package
-      become: true
-      ansible.builtin.dnf:
-        name: rofi
-
     - name: Install flatpak package
       become: true
       ansible.builtin.dnf:
