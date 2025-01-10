@@ -43,3 +43,8 @@
       become: true
       ansible.builtin.dnf:
         name: rofi
+
+    - name: Install flatpak package
+      become: true
+      ansible.builtin.dnf:
+        name: flatpak

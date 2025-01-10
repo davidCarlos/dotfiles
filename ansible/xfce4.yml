@@ -1,0 +1,15 @@
+---
+- name: Customize XFCE4
+  hosts: localhost
+
+  tasks:
+    - name: Customize XFCE4 panel
+      ansible.builtin.copy:
+        src: xfce4/gtk.css
+        dest: ~/.config/gtk-3.0/
+
+    - name: Create themes folder
+      ansible.builtin.file:
+        path: ~/.themes/
+        state: directory
+        mode: "0755"
