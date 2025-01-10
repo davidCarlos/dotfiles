@@ -25,3 +25,8 @@
       ansible.builtin.copy:
         src: nvim/
         dest: ~/.config/nvim/
+
+    - name: Install neovim clipboard provider
+      become: true
+      ansible.builtin.pip:
+        name: pynvim

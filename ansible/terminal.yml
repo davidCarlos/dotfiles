@@ -1,0 +1,56 @@
+- name: Install and configure a linux terminal
+  hosts: localhost
+
+  tasks:
+    - name: Install alacritty package
+      become: true
+      ansible.builtin.dnf:
+        name: alacritty
+
+    # https://github.com/ogham/exa
+    - name: Install the exa package
+      become: true
+      ansible.builtin.dnf:
+        name: exa
+        #
+    # https://github.com/sharkdp/bat
+    - name: Install the bat package
+      become: true
+      ansible.builtin.dnf:
+        name: bat
+        
+    - name: Install the fzf package
+      become: true
+      ansible.builtin.dnf:
+        name: fzf
+
+    - name: Creates zsh directory
+      ansible.builtin.file:
+        path: ~/.zsh
+        state: directory
+        mode: "0755"
+
+    - name: Install zsh package
+      become: true
+      ansible.builtin.dnf:
+        name: zsh
+
+    # Será preciso fazer logout e depois login para essa alteração ser aplicada.
+    - name: Change default shell
+      become: true
+      ansible.builtin.shell:
+        cmd: chsh -s /bin/zsh
+
+    - name: install oh-my-zsh
+      ansible.builtin.shell:
+        cmd: rm -rf ~/.oh-my-zsh && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    - name: Copy zsh dotfile
+      ansible.builtin.copy:
+        src: shell/zshrc
+        dest: ~/.zshrc
+
+    - name: Install zsh pure prompt
+      ansible.builtin.git:
+        repo: "https://github.com/sindresorhus/pure"
+        dest: "~/.zsh/pure"

@@ -3,7 +3,7 @@
 #	 vi: foldmarker={,} foldmethod=marker foldlevel=0 tabstop=4 filetype=sh
 # }
 
-# General {
+#"~/.tmux/plugins/tpm" General {
 	# Show which segment fails and its exit code.
 	export TMUX_POWERLINE_DEBUG_MODE_ENABLED="false"
 	# Use patched font symbols.

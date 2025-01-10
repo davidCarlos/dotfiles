@@ -1,0 +1,31 @@
+---
+- name: Install and configure tmux
+  hosts: localhost
+
+  tasks:
+    - name: Install tmux package
+      become: true
+      ansible.builtin.dnf:
+        name: tmux
+
+    - name: Install tpm plugin
+      ansible.builtin.git:
+        repo: "https://github.com/tmux-plugins/tpm"
+        dest: "~/.tmux/plugins/tpm"
+
+    - name: Copy tmux dotfile to the correct path
+      ansible.builtin.copy:
+        src: tmux/tmux.conf
+        dest: ~/.tmux.conf
+
+    - name: Creates tmux-powerline directory
+      ansible.builtin.file:
+        path: ~/.config/tmux-powerline
+        state: directory
+        mode: "0755"
+
+    - name: Copy tmux-powerline config files
+      ansible.builtin.copy:
+        src: tmux/tmux-powerline/
+        dest: ~/.config/tmux-powerline
+        mode: "0755"
