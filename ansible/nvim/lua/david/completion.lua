@@ -22,10 +22,9 @@ cmp.setup({
 	}),
 
 	sources = cmp.config.sources({
+		{ name = "buffer" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" }, -- For ultisnips users.
-	}, {
-		{ name = "buffer" },
 	}),
 })
 --
@@ -54,8 +53,11 @@ cmp.setup.cmdline(":", {
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
-		{ name = "cmdline", option = {
-			ignore_cmds = {},
-		} },
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = {},
+			},
+		},
 	}),
 })

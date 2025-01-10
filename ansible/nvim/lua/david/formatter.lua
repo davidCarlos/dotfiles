@@ -1,50 +1,31 @@
--- Utilities for creating configurations
-local util = require("formatter.util")
+local null_ls = require("null-ls")
 
--- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-require("formatter").setup({
-	-- Enable or disable logging
-	logging = true,
-	-- Set the log level
-	log_level = vim.log.levels.WARN,
-	-- All formatter configurations are opt-in
-	filetype = {
-		-- Formatter configurations for filetype "lua" go here
-		-- and will be executed in order
-		lua = {
-			-- "formatter.filetypes.lua" defines default configurations for the
-			-- "lua" filetype
-			require("formatter.filetypes.lua").stylua,
-		},
-		typescript = {
-			require("formatter.filetypes.typescript").prettier,
-		},
-		typescriptreact = {
-			require("formatter.filetypes.typescriptreact").prettier,
-		},
-		python = {
-			require("formatter.filetypes.python").black,
-		},
-		html = {
-			require("formatter.filetypes.html").prettier,
-		},
-		json = {
-			require("formatter.filetypes.json").prettier,
-		},
-
-		-- Use the special "*" filetype for defining formatter configurations on
-		-- any filetype
-		["*"] = {
-			-- "formatter.filetypes.any" defines default configurations for any
-			-- filetype
-			require("formatter.filetypes.any").remove_trailing_whitespace,
-		},
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.completion.spell,
+		null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.formatting.djlint.with({
+			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
+		}),
+		null_ls.builtins.formatting.prettierd.with({
+			disabled_filetypes = { "jinja.html", "htmldjango", "django" },
+		}),
+		null_ls.builtins.formatting.black,
 	},
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.yaml", "*.json", ".py", "*.ts", "*.tsx", "*.lua", "*.js", "*.go" },
-	callback = function()
-		vim.api.nvim_command("FormatWrite")
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+					-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+		end
 	end,
 })

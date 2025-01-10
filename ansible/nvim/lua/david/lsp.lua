@@ -80,6 +80,7 @@ vim.diagnostic.config({
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist)
 
 -- https://neovim.io/doc/user/lsp.html#lsp-handlers
 -- Show border on documentation float window
@@ -93,7 +94,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "tsserver", "lua_ls", "gopls", "pylsp", "yamlls", "pyright", "stylua" }
+local servers = { "ts_ls", "lua_ls", "gopls", "pylsp", "yamlls", "pyright" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
@@ -113,7 +114,7 @@ require("luasnip.loaders.from_vscode").lazy_load()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-for _, lsp in ipairs({ "tsserver", "lua_ls", "gopls", "yamlls", "pyright" }) do
+for _, lsp in ipairs({ "ts_ls", "lua_ls", "gopls", "yamlls", "pyright" }) do
 	require("lspconfig")[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,

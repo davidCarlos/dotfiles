@@ -42,14 +42,15 @@ vim.keymap.set("v", "yy", '"+y')
 
 -- [[ Fugitive maps ]]
 vim.keymap.set("n", "<leader>G", ":Git ")
-vim.keymap.set("n", "<leader>gs", ":vertical Git<cr>")
+vim.keymap.set("n", "<leader>gs", ":Git<cr>")
 vim.keymap.set("n", "<leader>gc", ":Git commit<cr>")
 vim.keymap.set("n", "<leader>gpl", ":Git pull ")
 vim.keymap.set("n", "gik", ":Git checkout %<cr>")
 vim.keymap.set("n", "gp", ":Git push origin")
 vim.keymap.set("n", "<leader>gl", ":vertical Git log<cr>")
 
-vim.keymap.set("n", "<C-q>", "%", { noremap = true, silent = true })
+-- https://www.vim.org/scripts/script.php?script_id=39
+vim.keymap.set("n", "<C-q>", ":normal %<cr>", { silent = true })
 
 vim.keymap.set("n", "<leader>V", ":SymbolsOutline<cr>")
 
@@ -65,3 +66,6 @@ vim.keymap.set("i", "<leader>x", "<Esc>:m .+1<CR>==gi")
 vim.keymap.set("i", "<leader>z", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("v", "<leader>x", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<leader>z", ":m '<-2<CR>gv=gv")
+
+-- Open current file LSP Symbols
+vim.keymap.set("n", "<leader>S", ":SymbolsOutline<cr>", { silent = true })

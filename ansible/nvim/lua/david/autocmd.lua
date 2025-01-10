@@ -20,12 +20,3 @@ vim.api.nvim_create_autocmd({ "BufNewFile" }, {
 		end
 	end,
 })
-
--- pylsp server does not format automatically on save.
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	pattern = { "*.py" },
-	callback = function()
-		-- https://neovim.io/doc/user/api.html#nvim_exec2()
-		vim.api.nvim_command(":Black")
-	end,
-})

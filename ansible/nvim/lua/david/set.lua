@@ -4,9 +4,8 @@
 vim.g.mapleader = ","
 
 -- colorscheme configuration
-vim.g.gruvbox_italic = 1
-vim.o.termguicolors = true
-vim.cmd([[colorscheme gruvbox]])
+-- vim.g.gruvbox_italic = 1
+-- vim.o.termguicolors = true
 
 -- show relative line numbers
 vim.o.relativenumber = true
@@ -43,7 +42,7 @@ vim.o.foldmethod = "manual"
 -- vim.o.the command line height.
 vim.o.cmdheight = 2
 
-vim.o.colorcolumn = 100
+vim.o.cc = "+1"
 
 -- ttps://github.com/vim/vim/issues/2790
 vim.o.redrawtime = 10000
@@ -64,7 +63,7 @@ vim.o.undofile = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
-vim.o.noswapfile = true
+vim.g.noswapfile = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
