@@ -43,3 +43,29 @@
       become: true
       ansible.builtin.dnf:
         name: flatpak
+        
+    - name: Install Roboto font
+      become: true
+      ansible.builtin.dnf:
+        name: google-roboto-fonts
+
+    - name: Install Fira Sans font
+      become: true
+      ansible.builtin.dnf:
+        name: mozilla-fira-sans-fonts
+
+    - name: Creates custom fonts directory
+      ansible.builtin.file:
+        path: ~/.fonts
+        state: directory
+        mode: "0755"
+
+    - name: Download JetBrainsMono font
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
+        dest: ~/.fonts/
+        remote_src: yes
+
+    - name: Rebuild fonts cache
+      ansible.builtin.shell:
+        cmd: fc-cache -f -v

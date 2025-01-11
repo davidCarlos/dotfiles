@@ -7,6 +7,22 @@
       ansible.builtin.dnf:
         name: alacritty
 
+    - name: Creates alacritty config directory
+      ansible.builtin.file:
+        path: ~/.config/alacritty
+        state: directory
+        mode: "0755"
+
+    - name: Copy alacritty dotfile
+      ansible.builtin.copy:
+        src: shell/alacritty.toml
+        dest: ~/.config/alacritty/
+
+    - name: Copy alacritty theme
+      ansible.builtin.copy:
+        src: shell/alacritty-nord.toml
+        dest: ~/.config/alacritty/
+
     # https://github.com/ogham/exa
     - name: Install the exa package
       become: true
