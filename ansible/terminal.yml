@@ -70,3 +70,8 @@
       ansible.builtin.git:
         repo: "https://github.com/sindresorhus/pure"
         dest: "~/.zsh/pure"
+
+    # used by telescope plugin to search in files
+    - name: Install rippgrep tool
+      ansible.builtin.dnf:
+        name: ripgrep

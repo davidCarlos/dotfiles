@@ -8,8 +8,16 @@
         src: xfce4/gtk.css
         dest: ~/.config/gtk-3.0/
 
+    # Nord Theme: https://www.xfce-look.org/p/1267246/
     - name: Create themes folder
       ansible.builtin.file:
         path: ~/.themes/
+        state: directory
+        mode: "0755"
+
+    # a good icons theme https://www.xfce-look.org/p/1340791
+    - name: Create icons folder
+      ansible.builtin.file:
+        path: ~/.icons/
         state: directory
         mode: "0755"

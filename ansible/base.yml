@@ -69,3 +69,13 @@
     - name: Rebuild fonts cache
       ansible.builtin.shell:
         cmd: fc-cache -f -v
+
+    - name: Download appimaged daemon
+      ansible.builtin.uri:
+        url: https://github.com/probonopd/go-appimage/releases/download/continuous/appimaged-866-x86_64.AppImage
+        dest: ~/.local/bin
+        mode: "755"
+
+    - name: Run appimaged daemon
+      ansible.builtin.shell:
+        cmd: ~/.local/bin/appimaged-866-x86_64.AppImage
