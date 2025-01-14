@@ -29,6 +29,7 @@ export ANDROID_SDK_ROOT=/home/davidcarlos/Android/Sdk/
 export GOPATH=/home/davidcarlos/Projetos/pencillabs/infra
 export WORKON_HOME=$HOME/projects/.virtualenvs
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/
+export PATH=$PATH:/home/davidcarlos/.nvm/
 
 # ALT-c: find directories and hit <enter> to cd directory
 # Ctrl-r: run fzf on shell history

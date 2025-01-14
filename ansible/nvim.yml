@@ -3,9 +3,10 @@
   hosts: localhost
 
   tasks:
-    - name: Install packer
+    - name: Download Packer
       ansible.builtin.git:
         repo: "https://github.com/wbthomason/packer.nvim"
+        depth: 1
         dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
     - name: Creates bin directory if it does not exists
@@ -19,7 +20,7 @@
         url: https://github.com/neovim/neovim/releases/download/v0.10.3/nvim.appimage
         dest: ~/.local/bin/nvim.appimage
         mode: "755"
-        status_code: [200,304]
+        status_code: [200, 304]
 
     - name: Copy nvim dotfiles
       ansible.builtin.copy:
@@ -30,3 +31,23 @@
       become: true
       ansible.builtin.pip:
         name: pynvim
+
+    - name: Creates nvm directory
+      ansible.builtin.file:
+        path: ~/.nvm
+        state: directory
+        mode: "0755"
+
+    - name: Download and install nvm
+      ansible.builtin.shell:
+        cmd: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+    - name: Install nodejs
+      ansible.builtin.shell: |
+        source ~/.zshrc
+        nvm install 22
+
+    - name: Install prettierd
+      ansible.builtin.shell: |
+        source ~/.zshrc
+        npm install -g @fsouza/prettierd
