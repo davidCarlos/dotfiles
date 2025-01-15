@@ -1,0 +1,38 @@
+---
+- name: Install and configure docker engine
+  hosts: localhost
+
+  tasks:
+    - name: Install Docker packages
+      become: true
+      ansible.builtin.shell: |
+        dnf remove docker \
+                docker-client \
+                docker-client-latest \
+                docker-common \
+                docker-latest \
+                docker-latest-logrotate \
+                docker-logrotate \
+                docker-selinux \
+                docker-engine-selinux \
+                docker-engine -y
+        dnf -y install dnf-plugins-core
+        dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+        dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+    - name: Starts Docker service
+      become: true
+      ansible.builtin.systemd_service:
+        state: started
+        name: docker
+
+    - name: Changes Docker socket permission
+      become: true
+      ansible.builtin.file:
+        path: /var/run/docker.sock
+        mode: "0777"
+
+    - name: Install the docker compose plugin
+      become: true
+      ansible.builtin.dnf:
+        name: docker-compose-plugin

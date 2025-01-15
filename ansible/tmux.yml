@@ -29,3 +29,23 @@
         src: tmux/tmux-powerline/
         dest: ~/.config/tmux-powerline
         mode: "0755"
+
+    - name: Install ruby language
+      become: true
+      ansible.builtin.dnf:
+        name: ruby
+
+    - name: Install tmuxinator gem
+      ansible.builtin.shell:
+        cmd: gem install tmuxinator
+
+    - name: Creates ~/.tmuxinator directory
+      ansible.builtin.file:
+        path: ~/.tmuxinator
+        state: directory
+        mode: "0755"
+
+    - name: Copy tmuxinator dotfiles
+      ansible.builtin.copy:
+        src: tmuxinator/
+        dest: ~/.tmuxinator

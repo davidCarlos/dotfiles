@@ -28,7 +28,6 @@
       ansible.builtin.dnf:
         name: curl
 
-
     - name: Install htop package
       become: true
       ansible.builtin.dnf:
@@ -43,7 +42,7 @@
       become: true
       ansible.builtin.dnf:
         name: flatpak
-        
+
     - name: Install Roboto font
       become: true
       ansible.builtin.dnf:
@@ -79,3 +78,9 @@
     - name: Run appimaged daemon
       ansible.builtin.shell:
         cmd: ~/.local/bin/appimaged-866-x86_64.AppImage
+
+    - name: Creates pencillabs projects directory
+      ansible.builtin.file:
+        path: ~/Projetos/pencillabs/
+        state: directory
+        mode: "0755"

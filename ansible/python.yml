@@ -1,0 +1,38 @@
+---
+- name: Install Python packages
+  hosts: localhost
+
+  tasks:
+    # pyenv dependency
+    - name: Install zlib-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: zlib-devel
+
+    # pyenv dependency
+    - name: Install bzip2-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: bzip2-devel
+        #
+    # pyenv dependency
+    - name: Install openssl-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: openssl-devel
+
+    # pyenv dependency
+    - name: Install sqlite-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: sqlite-devel
+
+    - name: Install pipx package
+      become: true
+      ansible.builtin.dnf:
+        name: pipx
+
+    - name: Install Poetry package manager
+      become: true
+      ansible.builtin.shell:
+        cmd: pipx install poetry
