@@ -38,6 +38,11 @@
       ansible.builtin.dnf:
         name: keepassxc
 
+    - name: Install flameshot package
+      become: true
+      ansible.builtin.dnf:
+        name: flameshot
+
     - name: Install flatpak package
       become: true
       ansible.builtin.dnf:
