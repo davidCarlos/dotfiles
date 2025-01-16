@@ -6,7 +6,7 @@
 </figure>
 
 <figure>
-  <img src="screenshots/environment.png" alt="Uma captura do meu editor" />
+  <img src="screenshots/environment2.png" alt="Uma captura do meu editor" />
   <figcaption>Neovim com o tema Nord</figcaption>
 </figure>
 
