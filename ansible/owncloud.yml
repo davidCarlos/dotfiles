@@ -1,0 +1,17 @@
+---
+- name: Install owncloud app client
+  hosts: localhost
+
+  tasks:
+    - name: Add the repository
+      become: true
+      ansible.builtin.shell:
+        cmd: rpm --import https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Fedora_39/repodata/repomd.xml.key
+
+    - name: Install the package
+      become: true
+      ansible.builtin.shell: |
+        dnf config-manager addrepo --from-repofile=https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/Fedora_39/owncloud-client.repo
+        dnf clean all
+        dnf install owncloud-client -y
+        dnf upgrade owncloud-client -y
