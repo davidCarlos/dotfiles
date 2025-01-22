@@ -43,6 +43,11 @@
       ansible.builtin.dnf:
         name: flameshot
 
+    - name: Install Simple Screen Recorder package
+      become: true
+      ansible.builtin.dnf:
+        name: simplescreenrecorder
+
     - name: Install flatpak package
       become: true
       ansible.builtin.dnf:
