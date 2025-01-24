@@ -53,6 +53,10 @@
       ansible.builtin.dnf:
         name: flatpak
 
+    - name: Install apostrophe package
+      ansible.builtin.shell: |
+        flatpak install flathub org.gnome.gitlab.somas.Apostrophe
+
     - name: Install Roboto font
       become: true
       ansible.builtin.dnf:
