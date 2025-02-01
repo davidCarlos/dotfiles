@@ -98,3 +98,15 @@
         path: ~/Projetos/pencillabs/
         state: directory
         mode: "0755"
+
+    # Fedora only
+    - name: Set timezone
+      become: true
+      ansible.builtin.shell:
+        cmd: timedatectl set-timezone America/Sao_Paulo
+
+    # Fedora only
+    - name: Set locale
+      become: true
+      ansible.builtin.shell:
+        cmd: localectl set-locale LANG=pt_BR.UTF-8
