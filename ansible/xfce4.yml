@@ -3,6 +3,11 @@
   hosts: localhost
 
   tasks:
+    - name: Install timer panel plugin
+      become: true
+      ansible.builtin.dnf:
+        name: xfce4-timer-plugin
+
     - name: Customize XFCE4 panel
       ansible.builtin.copy:
         src: xfce4/gtk.css
