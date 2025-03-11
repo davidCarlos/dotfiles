@@ -1,7 +1,7 @@
 # ~/.tmuxinator/infra.yml
 
 name: infra
-root: ~/Projetos/pencillabs/infra/src/core
+root: ~/Projetos/pencillabs/infra/core
 
 windows:
   - vim:

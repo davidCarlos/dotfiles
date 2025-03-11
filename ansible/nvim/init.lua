@@ -66,6 +66,7 @@ require("packer").startup(function(use)
 	})
 
 	use("mattn/emmet-vim")
+	use("leafOfTree/vim-vue-plugin")
 	use("prettier/vim-prettier")
 
 	-- Fuzzy Finder (files, lsp, etc)

@@ -1,18 +1,17 @@
 # ~/.tmuxinator/zipfinancas.yml
 
 name: zip
-root: ~/Projetos/zipfinancas/
+root: ~/Projetos/pessoal/zipfinancas/
 
 windows:
   - vim:
-      root: ~/Projetos/zipfinancas/zip-app/zip
+      root: ~/Projetos/pessoal/zipfinancas/zip-app/zip
       panes:
         - vim
   - app:
-      root: ~/Projetos/zipfinancas/zip-app/zip
+      root: ~/Projetos/pessoal/zipfinancas/zip-app/zip
       layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
       panes:
         - ionic serve
-        - 
         -
-
+        -
