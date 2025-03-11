@@ -5,7 +5,6 @@ term = "alacritty"
 
 [window]
 decorations = "None"
-opacity = 0.9
 
 [font]
 size = 12
