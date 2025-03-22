@@ -9,6 +9,7 @@
 .xfce4-panel {
   font-family: "Fira Sans Medium";
   font-size: 13px;
+  background-color: #2e3440;
 }
 
 .xfce5-panel widget {
@@ -39,4 +40,5 @@
   font-weight: bold;
   padding: 6px 2px 2px 2px;
   box-sizing: content-box;
+  background-color: #2e3440;
 }
