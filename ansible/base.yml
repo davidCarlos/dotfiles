@@ -28,10 +28,11 @@
       ansible.builtin.dnf:
         name: curl
 
-    - name: Install htop package
+    # a better htop version
+    - name: Install btop package
       become: true
       ansible.builtin.dnf:
-        name: htop
+        name: btop
 
     - name: Install keepassxc package
       become: true
