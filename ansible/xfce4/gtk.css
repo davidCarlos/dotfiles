@@ -7,7 +7,7 @@
 /* } */
 
 .xfce4-panel {
-  font-family: "Fira Sans Medium";
+  font-family: "Cantarell Regular";
   font-size: 13px;
   background-color: #2e3440;
 }
@@ -34,7 +34,7 @@
 
 .xfce4-panel widget grid button.flat.toggle:checked {
   all: unset;
-  font-family: "Fira Sans Medium";
+  font-family: "Cantarell Regular";
   font-size: 15px;
   color: #d8dee9;
   font-weight: bold;
