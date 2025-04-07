@@ -9,6 +9,18 @@
       ansible.builtin.dnf:
         name: zlib-devel
 
+    # pyenv dependency (lzma)
+    - name: Install lzma package
+      become: true
+      ansible.builtin.dnf:
+        name: xz-devel
+
+    # pyenv dependency
+    - name: Install lzma package
+      become: true
+      ansible.builtin.dnf:
+        name: libffi-devel
+
     # pyenv dependency
     - name: Install bzip2-devel package
       become: true
@@ -26,6 +38,24 @@
       become: true
       ansible.builtin.dnf:
         name: sqlite-devel
+
+    # pyenv dependency
+    - name: Install ncurses-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: ncurses-devel
+
+    # pyenv dependency
+    - name: Install readline-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: readline-devel
+
+    # pyenv dependency
+    - name: Install tk-devel package
+      become: true
+      ansible.builtin.dnf:
+        name: tk-devel
 
     - name: Install pipx package
       become: true
