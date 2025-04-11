@@ -1,9 +1,14 @@
 local cmp = require("cmp")
+local luasnip = require("luasnip")
+luasnip.config.setup {}
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			luasnip.lsp_expand(args.body)
+			-- vim.fn["vsnip#anonymous"](args.body)
 		end,
 	},
 	window = {
@@ -16,16 +21,18 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<C-e>"] = cmp.mapping.abort(),
 		-- Dependending of the selected language server, function args and brackets will not be added automatically.
-		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		["<CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 		["<C-n>"] = cmp.mapping.select_next_item(),
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 	}),
 
 	sources = cmp.config.sources({
-		{ name = "buffer" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" }, -- For ultisnips users.
+		{ name = "luasnip", option = {show_autosnippets = true} }
 	}),
+	experimental = {
+		ghost_text = true,
+	 },
 })
 --
 -- Set configuration for specific filetype.
@@ -61,3 +68,8 @@ cmp.setup.cmdline(":", {
 		},
 	}),
 })
+
+
+-- require("nvim-autopairs").setup()
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

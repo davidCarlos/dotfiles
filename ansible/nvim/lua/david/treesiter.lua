@@ -17,6 +17,7 @@ require("nvim-treesitter.configs").setup({
 		"json",
 		"markdown",
 		"toml",
+		"vue"
 	},
 
 	highlight = { enable = true },

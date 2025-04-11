@@ -10,7 +10,7 @@ null_ls.setup({
 			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
 		}),
 		null_ls.builtins.formatting.prettierd.with({
-			disabled_filetypes = { "jinja.html", "htmldjango", "django" },
+			disabled_filetypes = { "jinja.html", "htmldjango", "django", "markdown" },
 		}),
 		null_ls.builtins.formatting.black,
 	},

@@ -94,7 +94,7 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "ts_ls", "lua_ls", "pylsp", "yamlls", "pyright" }
+local servers = { "ts_ls", "lua_ls", "pylsp", "yamlls", "pyright", "volar" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
@@ -112,17 +112,42 @@ require("luasnip.loaders.from_vscode").lazy_load()
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-for _, lsp in ipairs({ "ts_ls", "lua_ls", "gopls", "yamlls", "pyright" }) do
-	require("lspconfig")[lsp].setup({
+local lspconfig = require("lspconfig");
+
+for _, lsp in ipairs({ "lua_ls", "gopls", "yamlls", "pyright" }) do
+	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
 
--- :help lspconfig-setup
-require("lspconfig").solargraph.setup({
+-- Vue LSP support
+local mason_registry = require('mason-registry');
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+    '/node_modules/@vue/language-server';
+
+--ts_ls LSP client configuration
+lspconfig.ts_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		plugins = {
+			{
+				name = '@vue/typescript-plugin',
+				location = vue_language_server_path,
+				languages = { 'vue' },
+			},
+		},
+	},
+	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+})
+
+
+
+--solargraph LSP client configuration
+lspconfig.solargraph.setup({
 	settings = {
 		solargraph = {
 			autoformat = true,
@@ -138,7 +163,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").lua_ls.setup({
+lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
@@ -155,6 +180,7 @@ require("lspconfig").lua_ls.setup({
 		},
 	},
 })
+
 
 -- Turn on lsp status information
 require("fidget").setup()

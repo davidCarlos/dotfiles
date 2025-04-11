@@ -2,6 +2,7 @@ vim.notify = require("notify")
 
 vim.notify.setup({
 	timeout = 500,
+	background_colour = "#4c566a"
 })
 
 -- table from lsp severity to vim severity.
