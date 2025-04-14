@@ -1,27 +1,19 @@
-/* .panel { */
-/* 	border-radius: 120px; */
-/* 	border: 1px solid #5e81ac; */
-/* } */
-/* .panel grid { */
-/*     	border-bottom: 1px solid #5e81ac; */
-/* } */
-
 .xfce4-panel {
   font-family: "Cantarell Regular";
   font-size: 13px;
-  background-color: #2e3440;
+  background-color: rgba(46, 52, 64, 0.5);
 }
 
 .xfce5-panel widget {
-  background-color: #2e3440 !important;
+  background-color: rgba(46, 52, 64, 0.5);
 }
 
 .xfce4-panel widget button.flat {
-  background-color: #2e3440;
+  background-color: rgba(46, 52, 64, 0.5);
 }
 
 .xfce4-panel widget button.flat.toggle {
-  background-color: #2e3440;
+  background-color: rgba(46, 52, 64, 0.5);
 }
 
 .xfce4-panel widget grid button.flat.toggle {
@@ -29,7 +21,7 @@
   color: #5e81ac;
   font-size: 16px;
   padding: 6px 2px 2px 2px;
-  background-color: #2e3440;
+  background-color: rgba(46, 52, 64, 0.5);
 }
 
 .xfce4-panel widget grid button.flat.toggle:checked {
@@ -40,5 +32,5 @@
   font-weight: bold;
   padding: 6px 2px 2px 2px;
   box-sizing: content-box;
-  background-color: #2e3440;
+  background-color: rgba(46, 52, 64, 0.5);
 }
