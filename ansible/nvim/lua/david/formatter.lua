@@ -6,6 +6,9 @@ null_ls.setup({
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.diagnostics.djlint.with({
+			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
+		}),
 		null_ls.builtins.formatting.djlint.with({
 			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
 		}),
