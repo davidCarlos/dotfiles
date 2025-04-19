@@ -1,19 +1,30 @@
+@define-color bg_panel_color rgba(0, 0, 0, 1);
+
 .xfce4-panel {
   font-family: "Cantarell Regular";
   font-size: 13px;
-  background-color: rgba(46, 52, 64, 0.5);
+  background-color: @bg_panel_color;
 }
 
-.xfce5-panel widget {
-  background-color: rgba(46, 52, 64, 0.5);
+.xfce4-panel widget {
+  background-color: @bg_panel_color;
 }
 
 .xfce4-panel widget button.flat {
-  background-color: rgba(46, 52, 64, 0.5);
+  background-color: @bg_panel_color;
 }
 
 .xfce4-panel widget button.flat.toggle {
-  background-color: rgba(46, 52, 64, 0.5);
+  background-color: @bg_panel_color;
+}
+
+.tasklist button {
+  background-color: @bg_panel_color;
+}
+
+/* check ~/.themes/Nordic-darker/gtk-3.0/gtk.css */
+.tasklist button:checked {
+  background-color: @BLACK_700;
 }
 
 .xfce4-panel widget grid button.flat.toggle {
@@ -21,16 +32,16 @@
   color: #5e81ac;
   font-size: 16px;
   padding: 6px 2px 2px 2px;
-  background-color: rgba(46, 52, 64, 0.5);
+  background-color: @bg_panel_color;
 }
 
 .xfce4-panel widget grid button.flat.toggle:checked {
   all: unset;
   font-family: "Cantarell Regular";
-  font-size: 15px;
+  font-size: 16px;
   color: #d8dee9;
   font-weight: bold;
   padding: 6px 2px 2px 2px;
   box-sizing: content-box;
-  background-color: rgba(46, 52, 64, 0.5);
+  background-color: @bg_panel_color;
 }
