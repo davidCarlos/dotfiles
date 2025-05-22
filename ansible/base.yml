@@ -28,6 +28,12 @@
       ansible.builtin.dnf:
         name: curl
 
+    # Required by the AppImageLauncher binary
+    - name: Install libgpg-error.so.0
+      become: true
+      ansible.builtin.dnf:
+        name: libgpg-error.so.0
+
     # a better htop version
     - name: Install btop package
       become: true
@@ -84,11 +90,17 @@
       ansible.builtin.shell:
         cmd: fc-cache -f -v
 
-    - name: Download appimaged daemon
+    # Improves the Appimage integration with XFCE4
+    - name: Download AppImageLauncher
       ansible.builtin.uri:
-        url: https://github.com/probonopd/go-appimage/releases/download/continuous/appimaged-866-x86_64.AppImage
+        url: https://github.com/TheAssassin/AppImageLauncher/releases/download/v3.0.0-alpha-4/appimagelauncher_3.0.0-alpha-4-gha253.36951ec_x86_64.rpm
         dest: ~/.local/bin
         mode: "755"
+    - name: Install AppImageLauncher
+      community.general.apt_rpm:
+        pkg:
+          - ~/.local/bin/appimagelauncher_3.0.0-alpha-4-gha253.36951ec_x86_64.rpm
+        state: present
 
     - name: Run appimaged daemon
       ansible.builtin.shell:
