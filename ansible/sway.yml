@@ -3,6 +3,26 @@
   hosts: localhost
 
   tasks:
+    - name: Install sway
+      become: true
+      ansible.builtin.dnf:
+        name: sway
+
+    - name: Install rofi package
+      become: true
+      ansible.builtin.dnf:
+        name: rofi-wayland
+
+    - name: Copy rofi dotfile
+      ansible.builtin.copy:
+        src: rofi/config.rasi
+        dest: ~/.config/rofi/
+
+    - name: Copy rofi theme
+      ansible.builtin.copy:
+        src: rofi/nord.rasi
+        dest: ~/.config/rofi/
+
     - name: Install brightnessctl
       become: true
       ansible.builtin.dnf:
