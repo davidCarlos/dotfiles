@@ -1,0 +1,21 @@
+---
+- name: Customize i3wm
+  hosts: localhost
+
+  tasks:
+    - name: Install brightnessctl
+      become: true
+      ansible.builtin.dnf:
+        name: brightnessctl
+
+    - name: Install nitrogen
+      become: true
+      ansible.builtin.dnf:
+        name: nitrogen
+
+    # for i3exit
+    # https://github.com/djerveren/i3exit
+    - name: Install perl-Gtk3
+      become: true
+      ansible.builtin.dnf:
+        name: perl-Gtk3

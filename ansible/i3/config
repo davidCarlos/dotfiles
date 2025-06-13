@@ -1,45 +1,18 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
-
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-
-# https://github.com/supermarin/YosemiteSanFranciscoFont
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
-
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-
 set $up k
 set $down j
 set $left h
 set $right l
 #set $terminal xterm -fa Hack-10
-set $terminal kitty
+set $terminal alacritty
 set $browser firefox
+set $notes joplin
+set $polybar-config-path ~/Projetos/workflow/dotfiles/ansible/polybar/config
 
 set $i3exit ~/Projetos/workflow/i3-extras/i3-exit
 
-bindsym Mod4+Shift+e exec /usr/bin/python $i3exit
-bindsym Mod4+o exec i3lock-fancy
-bindsym Mod4+Shift+f exec nautilus
+bindsym Mod4+Shift+l exec i3lock
+bindsym Mod4+Shift+e exec $i3exit
+bindsym Mod4+Shift+f exec thunar
 # select an area and take a printscreen. The selection will be possible
 # after the command execution.
 bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
@@ -47,17 +20,19 @@ bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
 # move workspace to monitor
 bindsym Mod4+Shift+m move workspace to output left
 
+#decrease brightness
+bindsym Mod4+Shift+x exec brightnessctl s 10%-
+#increase brightness
+bindsym Mod4+Shift+z exec brightnessctl s +10%
+
 # use Mouse+Mod4 to drag floating windows to their wanted position
 floating_modifier Mod4
 
 focus_follows_mouse no
-workspace_auto_back_and_forth no
+workspace_auto_back_and_forth yes
 font pango:Overpass Regular Nerd Font Complete 10
 #font pango:DejaVu Sans Mono 15
 
-# start a terminal
-#bindsym Mod4+Return exec i3-sensible-terminal
-bindsym Mod4+Return exec $terminal
 
 
 # start a terminal in float mode
@@ -68,40 +43,23 @@ bindsym Mod4+i exec $terminal --title="float-term"
 #exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
 
 assign [title="^code$"] code
-assign [class="^Firefox-esr$" instance="^Navigator$"] web
-assign [instance="^calibre-gui$" class="^libprs500$"] web
-assign [instance="^Slack$" class="^slack$"] slack
+assign [class="^Brave-browser$"] web
+assign [instance="^joplin$" class="^Joplin$"] notes
+assign [instance="^Slack$" class="^slack$"] chats
 
-for_window [class="Nitrogen"] floating enable
-for_window [class="Org.gnome.Nautilus"] floating enable
-for_window [class="Org.gnome.Nautilus"] resize set 640 480
-for_window [class="Slack"] floating enable
-for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
-for_window [instance="^eog$" class="^Eog$"] floating enable
-for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
-for_window  [class="^Gnome-calculator$" instance="^gnome-calculator$"] floating enable
+# for_window [class="Nitrogen"] floating enable
+# for_window [class="Org.gnome.Nautilus"] floating enable
+# for_window [class="Org.gnome.Nautilus"] resize set 640 480
+# for_window [class="Slack"] floating enable
+# for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
+# for_window [instance="^eog$" class="^Eog$"] floating enable
+# for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
+# for_window  [class="^Gnome-calculator$" instance="^gnome-calculator$"] floating enable
 
-# compositor
-exec --no-startup-id compton -Ccf -D 2 -b
-# background image manager
-exec --no-startup-id nitrogen --restore
-# network manager
-exec --no-startup-id nm-applet
-# bluetooth manager
-exec --no-startup-id blueman-applet
-# menus
-exec --no-startup-id dunst
-# brave
-exec --no-startup-id $browser
-# bar
-exec --no-startup-id polybar  i3wm-hdmi
-
-exec --no-startup-id xset +fp /home/davidcarlos/.fonts
-exec --no-startup-id xset fp rehash
 
 # kill focused window
 bindsym Mod4+Shift+q kill
-bindsym Mod4+d exec "rofi -show-icons -show drun -modi drun"
+bindsym Mod4+Return exec "rofi -show-icons -show drun"
 
 workspace_layout default
 
@@ -109,9 +67,9 @@ title_align center
 #for_window [class=".*"] title_format "%class"
 #for_window [class="^.*"] border pixel 2
 #hide_edge_borders smart
-default_border pixel 1
-gaps inner 10
-gaps outer 10
+default_border pixel 4px
+gaps inner 5px
+gaps outer 5px
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -129,12 +87,6 @@ bindsym Mod4+Left focus left
 bindsym Mod4+Down focus down
 bindsym Mod4+Up focus up
 bindsym Mod4+Right focus right
-
-# move focused window
-bindsym Mod4+Shift+$left move left
-bindsym Mod4+Shift+$down move down
-bindsym Mod4+Shift+$up move up
-bindsym Mod4+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
 bindsym Mod4+Shift+Left move left
@@ -186,8 +138,8 @@ workspace slack output eDP-1 HDMI-1
 # switch to workspace
 bindsym Mod4+1 workspace code
 bindsym Mod4+2 workspace web
-bindsym Mod4+3 workspace 3
-bindsym Mod4+4 workspace 4
+bindsym Mod4+3 workspace notes
+bindsym Mod4+4 workspace chats
 bindsym Mod4+5 workspace 5
 bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
@@ -197,8 +149,8 @@ bindsym Mod4+10 workspace 10
 
 bindsym Mod4+Shift+1 move container to workspace code
 bindsym Mod4+Shift+2 move container to workspace web
-bindsym Mod4+Shift+3 move container to workspace 3
-bindsym Mod4+Shift+4 move container to workspace 4
+bindsym Mod4+Shift+3 move container to workspace notes
+bindsym Mod4+Shift+4 move container to workspace chats
 bindsym Mod4+Shift+5 move container to workspace 5
 bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
@@ -254,3 +206,21 @@ client.focused_inactive $unfocused_border     $unfocused_background             
 client.unfocused        $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 client.placeholder      $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 client.urgent           $unfocused_border     $unfocused_border      $unfocused_text         $darkblue         $unfocused_border
+
+# compositor
+exec --no-startup-id picom --backend glx
+# network manager
+exec --no-startup-id nm-applet
+# bluetooth manager
+exec --no-startup-id blueman-applet
+# terminal
+exec --no-startup-id $terminal
+# brave
+exec --no-startup-id $browser
+# notes
+exec --no-startup-id $notes
+# bar
+exec --no-startup-id polybar -c $polybar-config-path i3wm
+# fonts
+exec --no-startup-id xset +fp /home/davidcarlos/.fonts
+exec --no-startup-id xset fp rehash
