@@ -13,6 +13,7 @@ set $i3exit ~/Projetos/workflow/i3-extras/i3-exit
 bindsym Mod4+Shift+l exec i3lock
 bindsym Mod4+Shift+e exec $i3exit
 bindsym Mod4+Shift+f exec thunar
+bindsym Mod4+Shift+p exec flameshot gui
 # select an area and take a printscreen. The selection will be possible
 # after the command execution.
 bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
