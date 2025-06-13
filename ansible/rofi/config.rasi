@@ -1,5 +1,5 @@
 configuration {
-    font: "Fira Sans Medium 12";
+    font: "Adwaita Sans Bold 12";
     line-margin: 10;
 
     display-ssh:    "";

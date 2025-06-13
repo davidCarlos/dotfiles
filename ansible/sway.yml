@@ -1,5 +1,5 @@
 ---
-- name: Customize i3wm
+- name: Customize Sway # https://swaywm.org/
   hosts: localhost
 
   tasks:
@@ -7,11 +7,6 @@
       become: true
       ansible.builtin.dnf:
         name: brightnessctl
-
-    - name: Install nitrogen
-      become: true
-      ansible.builtin.dnf:
-        name: nitrogen
 
     # for i3exit
     # https://github.com/djerveren/i3exit
