@@ -8,6 +8,11 @@
       ansible.builtin.dnf:
         name: sway
 
+    - name: Add clipboard integration for neovim
+      become: true
+      ansible.builtin.dnf:
+        name: wl-clipboard
+
     - name: Install rofi package
       become: true
       ansible.builtin.dnf:
@@ -34,3 +39,15 @@
       become: true
       ansible.builtin.dnf:
         name: perl-Gtk3
+
+    # terminal user interface to manage network connections
+    - name: Install nmtui
+      become: true
+      ansible.builtin.dnf:
+        name: nmtui
+
+    # Wayland bar
+    - name: Install waybar
+      become: true
+      ansible.builtin.dnf:
+        name: waybar

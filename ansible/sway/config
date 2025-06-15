@@ -11,7 +11,7 @@ set $background-image /home/davidcarlos/Imagens/misty_mountains.jpg
 
 set $i3exit ~/Projetos/pessoal/i3exit/i3exit
 
-bindsym Mod4+Shift+l exec i3lock
+bindsym Mod4+Shift+l exec swaylock
 bindsym Mod4+Shift+e exec $i3exit
 bindsym Mod4+Shift+f exec thunar
 bindsym Mod4+Shift+p exec flameshot gui
@@ -36,8 +36,6 @@ workspace_auto_back_and_forth yes
 font pango:Overpass Regular Nerd Font Complete 10
 #font pango:DejaVu Sans Mono 15
 
-
-
 # start a terminal in float mode
 bindsym Mod4+i exec $terminal --title="float-term"
 
@@ -45,19 +43,12 @@ bindsym Mod4+i exec $terminal --title="float-term"
 # Configure touchpad. Pass this to a definitive config file.
 #exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
 
-assign [title="^code$"] code
-assign [class="^Brave-browser$"] web
-assign [instance="^joplin$" class="^Joplin$"] notes
-assign [instance="^Slack$" class="^slack$"] chats
+assign [title="^Alacritty$"] code
+assign [class="^Firefox$"] web
 
-# for_window [class="Nitrogen"] floating enable
-# for_window [class="Org.gnome.Nautilus"] floating enable
-# for_window [class="Org.gnome.Nautilus"] resize set 640 480
-# for_window [class="Slack"] floating enable
-# for_window [instance="^pavucontrol$" class="^Pavucontrol$"] floating enable
-# for_window [instance="^eog$" class="^Eog$"] floating enable
-# for_window [instance="^lxappearance$" class="^Lxappearance$"] floating enable
-# for_window  [class="^Gnome-calculator$" instance="^gnome-calculator$"] floating enable
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
+for_window [app_id="blueman-manager"] border pixel 0, floating enable, fullscreen disable, resize 400 400
+for_window [app_id="i3exit"] border pixel 0, floating enable, fullscreen disable, resize 50 50
 
 
 # kill focused window
@@ -131,9 +122,9 @@ bindsym Mod4+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym Mod4+minus scratchpad show
 
-workspace code output HDMI-1 eDP-1
-workspace web output HDMI-1 eDP-1
-workspace slack output eDP-1 HDMI-1
+workspace code output HDMI-A-1
+workspace web output HDMI-A-1
+workspace slack output HDMI-A-1
 
 # switch to workspace
 bindsym Mod4+1 workspace code
@@ -204,31 +195,20 @@ client.focused_inactive $unfocused_border     $unfocused_background             
 client.unfocused        $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 client.placeholder      $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 
-# compositor
-# exec --no-startup-id picom --backend glx
-# network manager
-exec --no-startup-id nm-applet
-# bluetooth manager
-exec --no-startup-id blueman-applet
-# terminal
-exec --no-startup-id $terminal
-# brave
-exec --no-startup-id $browser
-# notes
-exec --no-startup-id $notes
-# bar
-exec --no-startup-id polybar -c $polybar-config-path i3wm
-# fonts
-exec --no-startup-id xset +fp /home/davidcarlos/.fonts
-exec --no-startup-id xset fp rehash
-exec --no-startup-id swaybg  -i $background-image
 
 bar {
-    position top
+    position bottom
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while date +'%d/%m/%Y %X'; do sleep 1; done
+    # status_command while free -hw | grep -E "Mem|Swap" | awk '/Mem:/ {print $3}'; sleep 1; done
+    font "Adwaita Sans 13px"
+    gaps 5 5
+
+    tray {
+        icon_theme "Reversal"
+    }
 
     colors {
         statusline #ffffff
@@ -244,3 +224,15 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# exec hash dbus-update-activation-environment 2>/dev/null && \
+#      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# network manager
+exec --no-startup-id nm-applet
+# bluetooth manager
+exec --no-startup-id blueman-applet
+# terminal
+exec --no-startup-id $terminal
+# brave
+exec --no-startup-id $browser
