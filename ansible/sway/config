@@ -201,8 +201,8 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%d/%m/%Y %X'; do sleep 1; done
-    # status_command while free -hw | grep -E "Mem|Swap" | awk '/Mem:/ {print $3}'; sleep 1; done
+    status_command while true; do echo "$(date +'%d/%m/%Y %X') \| mem: $(free -hw | grep -E 'Mem|Swap' | awk '/Mem:/ {print $3}')"; sleep 1; done
+    # status_command while true; do echo "free -hw | grep -E 'Mem|Swap'"; done;
     font "Adwaita Sans 13px"
     gaps 5 5
 
@@ -236,3 +236,4 @@ exec --no-startup-id blueman-applet
 exec --no-startup-id $terminal
 # brave
 exec --no-startup-id $browser
+exec swaybg -i ~/.config/sway/wallpaper.jpg
