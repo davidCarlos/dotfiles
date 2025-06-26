@@ -94,11 +94,12 @@ require("mason").setup()
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "ts_ls", "lua_ls", "pylsp", "yamlls", "pyright", "volar" }
+local servers = { "ts_ls", "lua_ls", "pylsp", "yamlls", "pyright", "vue_ls" }
 
 -- Ensure the servers above are installed
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
+	automatic_enable = true
 })
 
 --
@@ -116,19 +117,19 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local lspconfig = require("lspconfig");
 
-for _, lsp in ipairs({ "lua_ls", "gopls", "yamlls", "pyright" }) do
+for _, lsp in ipairs({ "ts_ls", "lua_ls", "gopls", "yamlls", "pyright" }) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
 	})
 end
 
--- Vue LSP support
-local mason_registry = require('mason-registry');
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
-    '/node_modules/@vue/language-server';
+-- -- Vue LSP support
+local vue_language_server_path = vim.fn.stdpath('data') ..
+    "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
 --ts_ls LSP client configuration
+-- https://github.com/vuejs/language-tools/wiki/Neovim
 lspconfig.ts_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -143,7 +144,6 @@ lspconfig.ts_ls.setup({
 	},
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
-
 
 
 --solargraph LSP client configuration
