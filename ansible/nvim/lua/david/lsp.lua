@@ -1,12 +1,6 @@
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-	-- NOTE: Remember that lua is a real programming language, and as such it is possible
-	-- to define small helper and utility functions so you don't have to repeat yourself
-	-- many times.
-	--
-	-- In this case, we create a function that lets us more easily define mappings specific
-	-- for LSP related items. It sets the mode, buffer and description for us each time.
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "LSP: " .. desc
@@ -25,7 +19,7 @@ local on_attach = function(_, bufnr)
 	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 	-- See `:help K` for why this keymap
-	nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+	-- nmap("K", vim.lsp.buf.hover({ border = "rounded" }), "Hover Documentation")
 
 	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -61,68 +55,27 @@ local on_attach = function(_, bufnr)
 	})
 end
 
--- https://www.reddit.com/r/neovim/comments/tkcvlc/how_do_you_tame_lsp_diagnostic_messages/
-vim.diagnostic.config({
-	virtual_text = false,
-	signs = true,
-	float = {
-		border = "rounded",
-		format = function(diagnostic)
-			return string.format(
-				"%s (%s) [%s]",
-				diagnostic.message,
-				diagnostic.source,
-				diagnostic.code or diagnostic.user_data.lsp.code
-			)
-		end,
-	},
-})
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist)
 
--- https://neovim.io/doc/user/lsp.html#lsp-handlers
--- Show border on documentation float window
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	-- Use a sharp border with `FloatBorder` highlights
-	border = "rounded",
-})
-
--- Setup mason so it can manage external tooling
-require("mason").setup()
-
--- Enable the following language servers
--- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "ts_ls", "lua_ls", "pylsp", "yamlls", "pyright", "vue_ls" }
-
--- Ensure the servers above are installed
-require("mason-lspconfig").setup({
-	ensure_installed = servers,
-	automatic_enable = true
-})
-
---
--- https://github.com/neovim/nvim-lspconfig
--- Client Config for LSP Servers
--- For autoformatting, I am using psf/black plugin + autocmd.
--- nvim-cmp setup
-
--- loads rafamadriz/friendly-snippets using luasnip engine
-require("luasnip.loaders.from_vscode").lazy_load()
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-local lspconfig = require("lspconfig");
-
-for _, lsp in ipairs({ "ts_ls", "lua_ls", "gopls", "yamlls", "pyright" }) do
-	lspconfig[lsp].setup({
+-- Enable the following language servers
+-- Feel free to add/remove any LSPs that you want here. They will automatically be installed
+local servers = { "ts_ls", "lua_ls", "yamlls", "pyright", "vue_ls" }
+local setupServers = { "lua_ls", "yamlls", "pyright" }
+for _, lsp in ipairs(setupServers) do
+	vim.lsp.config[lsp] = {
 		on_attach = on_attach,
 		capabilities = capabilities,
-	})
+	}
 end
+
 
 -- -- Vue LSP support
 local vue_language_server_path = vim.fn.stdpath('data') ..
@@ -130,7 +83,7 @@ local vue_language_server_path = vim.fn.stdpath('data') ..
 
 --ts_ls LSP client configuration
 -- https://github.com/vuejs/language-tools/wiki/Neovim
-lspconfig.ts_ls.setup({
+vim.lsp.config.ts_ls = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	init_options = {
@@ -143,11 +96,11 @@ lspconfig.ts_ls.setup({
 		},
 	},
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-})
+}
 
 
 --solargraph LSP client configuration
-lspconfig.solargraph.setup({
+vim.lsp.config.solargraph = {
 	settings = {
 		solargraph = {
 			autoformat = true,
@@ -155,7 +108,7 @@ lspconfig.solargraph.setup({
 		},
 	},
 	on_attach = on_attach,
-})
+}
 
 -- Example custom configuration for lua
 -- Make runtime files discoverable to the server
@@ -163,7 +116,7 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-lspconfig.lua_ls.setup({
+vim.lsp.config.lua_ls = {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
@@ -180,11 +133,34 @@ lspconfig.lua_ls.setup({
 			diagnostics = { disable = { 'missing-fields' } }
 		},
 	},
+}
+
+-- https://www.reddit.com/r/neovim/comments/tkcvlc/how_do_you_tame_lsp_diagnostic_messages/
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	float = {
+		border = "rounded",
+		format = function(diagnostic)
+			return string.format(
+				"%s (%s) [%s]",
+				diagnostic.message,
+				diagnostic.source,
+				diagnostic.code or diagnostic.user_data.lsp.code
+			)
+		end,
+	},
 })
 
 
 -- Turn on lsp status information
 require("fidget").setup()
-
 -- LSP signature hint as you type
 require("lsp_signature").setup()
+require("luasnip.loaders.from_vscode").lazy_load()
+-- Setup mason so it can manage external tooling
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = servers,
+	automatic_enable = true
+})
