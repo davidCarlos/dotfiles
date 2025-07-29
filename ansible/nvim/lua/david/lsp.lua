@@ -66,8 +66,9 @@ require("mason").setup()
 local servers = { "ts_ls", "lua_ls", "yamlls", "pyright", "vtsls", "vue_ls" }
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
-	automatic_enable = true
+	automatic_enable = false
 })
+vim.lsp.enable({ 'lua_ls', 'yamlls', 'pyright' })
 
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -75,7 +76,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local setupServers = { "lua_ls", "yamlls", "pyright", "vtsls", "vue_ls" }
+local setupServers = { "lua_ls", "yamlls", "pyright" }
 for _, lsp in ipairs(setupServers) do
 	vim.lsp.config[lsp] = {
 		on_attach = on_attach,
@@ -83,26 +84,37 @@ for _, lsp in ipairs(setupServers) do
 	}
 end
 
-
--- -- Vue LSP support
+-- Vue LSP support
+-- https://github.com/vuejs/language-tools/wiki/Neovim
 local vue_language_server_path = vim.fn.stdpath('data') ..
     "/mason/packages/vue-language-server/node_modules/@vue/language-server"
-
---ts_ls LSP client configuration
--- https://github.com/vuejs/language-tools/wiki/Neovim
-vim.lsp.config.ts_ls = {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	init_options = {
-		plugins = {
-			{
-				name = '@vue/typescript-plugin',
-				location = vue_language_server_path,
-				languages = { 'vue' },
+local vue_plugin = {
+	name = '@vue/typescript-plugin',
+	location = vue_language_server_path,
+	languages = { 'vue' },
+	configNamespace = 'typescript',
+}
+local vtsls_config = {
+	settings = {
+		vtsls = {
+			tsserver = {
+				globalPlugins = {
+					vue_plugin,
+				},
 			},
 		},
 	},
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.config('vue_ls', {})
+vim.lsp.enable({ 'vtsls', 'vue_ls' })
+
+--ts_ls LSP client configuration
+vim.lsp.config.ts_ls = {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
 }
 
 --solargraph LSP client configuration
