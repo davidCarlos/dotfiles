@@ -117,7 +117,7 @@ vim.lsp.config.ts_ls = {
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
 }
 
---solargraph LSP client configuration
+--Ruby LSP client configuration
 vim.lsp.config.solargraph = {
 	settings = {
 		solargraph = {
@@ -176,18 +176,15 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.djlint.with({
+			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
+		}),
+		null_ls.builtins.formatting.black,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.diagnostics.mypy,
 		null_ls.builtins.diagnostics.djlint.with({
 			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
 		}),
-		null_ls.builtins.formatting.djlint.with({
-			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
-		}),
-		null_ls.builtins.formatting.prettierd.with({
-			disabled_filetypes = { "jinja.html", "htmldjango", "django", "markdown" },
-		}),
-		null_ls.builtins.formatting.black,
 		-- code_actions for python and other languages
 		null_ls.builtins.code_actions.refactoring
 	},
@@ -200,10 +197,24 @@ null_ls.setup({
 				callback = function()
 					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
 					-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
-					vim.lsp.buf.format({ async = false })
+					vim.lsp.buf.format()
 				end,
 			})
 		end
+	end,
+})
+
+-- none-ls prettierd integration changes the cursor position after saving.
+-- Conform formatting fixes this behavior.
+require("conform").setup({
+	formatters_by_ft = {
+		vue = { "prettierd", "prettier", stop_after_first = true },
+	},
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
 	end,
 })
 
