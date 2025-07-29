@@ -61,14 +61,21 @@ vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>d", vim.diagnostic.setqflist)
 
 
+-- Setup mason so it can manage external tooling
+require("mason").setup()
+local servers = { "ts_ls", "lua_ls", "yamlls", "pyright", "vtsls", "vue_ls" }
+require("mason-lspconfig").setup({
+	ensure_installed = servers,
+	automatic_enable = true
+})
+
 -- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Enable the following language servers
 -- Feel free to add/remove any LSPs that you want here. They will automatically be installed
-local servers = { "ts_ls", "lua_ls", "yamlls", "pyright", "vue_ls" }
-local setupServers = { "lua_ls", "yamlls", "pyright" }
+local setupServers = { "lua_ls", "yamlls", "pyright", "vtsls", "vue_ls" }
 for _, lsp in ipairs(setupServers) do
 	vim.lsp.config[lsp] = {
 		on_attach = on_attach,
@@ -97,7 +104,6 @@ vim.lsp.config.ts_ls = {
 	},
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 }
-
 
 --solargraph LSP client configuration
 vim.lsp.config.solargraph = {
@@ -152,15 +158,46 @@ vim.diagnostic.config({
 	},
 })
 
+-- null_ls (none-ls) turns Neovim into a LSP server
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+	sources = {
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.completion.spell,
+		null_ls.builtins.diagnostics.mypy,
+		null_ls.builtins.diagnostics.djlint.with({
+			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
+		}),
+		null_ls.builtins.formatting.djlint.with({
+			filetypes = { "jinja.html", "htmldjango", "django", "jinja" },
+		}),
+		null_ls.builtins.formatting.prettierd.with({
+			disabled_filetypes = { "jinja.html", "htmldjango", "django", "markdown" },
+		}),
+		null_ls.builtins.formatting.black,
+		-- code_actions for python and other languages
+		null_ls.builtins.code_actions.refactoring
+	},
+	on_attach = function(client, bufnr)
+		if client.supports_method("textDocument/formatting") then
+			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = augroup,
+				buffer = bufnr,
+				callback = function()
+					-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+					-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+					vim.lsp.buf.format({ async = false })
+				end,
+			})
+		end
+	end,
+})
+
 
 -- Turn on lsp status information
 require("fidget").setup()
 -- LSP signature hint as you type
 require("lsp_signature").setup()
 require("luasnip.loaders.from_vscode").lazy_load()
--- Setup mason so it can manage external tooling
-require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed = servers,
-	automatic_enable = true
-})

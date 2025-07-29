@@ -2,6 +2,7 @@
 -- See `:help nvim-treesitter`
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
+	ignore_install = { "help" },
 	sync_install = false,
 	auto_install = true,
 	ensure_installed = {
