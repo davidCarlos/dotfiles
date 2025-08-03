@@ -149,6 +149,9 @@ require("packer").startup(function(use)
 
 	use({ "TaDaa/vimade" })
 
+	use({ "nanozuki/tabby.nvim" })
+	use({ "stevearc/conform.nvim" })
+
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")
 	if has_plugins then
