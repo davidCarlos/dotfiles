@@ -224,6 +224,13 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+# https://www.reddit.com/r/swaywm/comments/cu04m2/how_to_enable_tap_to_touch_in_touchpad_in_sway/
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
+
 # exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # exec hash dbus-update-activation-environment 2>/dev/null && \
 #      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
