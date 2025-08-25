@@ -48,7 +48,17 @@ assign [class="^Firefox$"] web
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 for_window [app_id="blueman-manager"] border pixel 0, floating enable, fullscreen disable, resize 400 400
+for_window [app_id="org.gnome.Calculator"] border pixel 0, floating enable, fullscreen disable, resize 300 400
 for_window [app_id="i3exit"] border pixel 0, floating enable, fullscreen disable, resize 50 50
+for_window [app_id="org.pulseaudio.pavucontrol"] border pixel 0, floating enable, fullscreen disable, resize 50 50
+for_window [app_id="com.obsproject.Studio"] border pixel 0, floating enable, fullscreen disable, resize 400 400
+for_window [app_id="it.mijorus.smile"] border pixel 0, floating enable, fullscreen disable, resize 80 80
+# For this to work, we need to create an nmtui.desktop file in the ~/.local/share/applications folder.
+# This file must have an Exec rule with the command: alacritty --class nmtui -e "nmtui"
+for_window [app_id="nmtui"] border pixel 0, floating enable, fullscreen disable, resize 80 80
+# For this to work, we need to create an chatgpt.desktop file in the ~/.local/share/applications folder.
+# This file must have an Exec rule with the command: firefox --class=chatgpt --new-window www.chatgpt.com
+for_window [app_id="chatgpt"] border pixel 0, floating enable, fullscreen disable, resize 80 80
 
 
 # kill focused window
@@ -59,8 +69,8 @@ workspace_layout default
 
 title_align center
 default_border pixel 2px
-gaps inner 5px
-gaps outer 5px
+gaps inner 8px
+gaps outer 3px
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -174,12 +184,12 @@ bindsym Mod4+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-set $focused_text #ffffff
-set $focused_background #333847
-set $focused_indicator #d8dee9
-set $focused_child_border #d8dee9
+set $focused_text #eee8d5
+set $focused_background #0f0f0f
+set $focused_child_border #eee8d5
+set $focused_indicator #eee8d5
 set $focused_child_indicator #333847
-set $focused_border #414658
+set $focused_border #0f0f0f
 
 set $unfocused_text #586074
 set $unfocused_background #414658
@@ -203,18 +213,26 @@ bar {
     # The default just shows the current date and time.
     status_command while true; do echo "$(date +'%d/%m/%Y %X') \| mem: $(free -hw | grep -E 'Mem|Swap' | awk '/Mem:/ {print $3}')"; sleep 1; done
     # status_command while true; do echo "free -hw | grep -E 'Mem|Swap'"; done;
-    font "Adwaita Sans 13px"
+    font "Adwaita Sans Bold 13px"
     gaps 5 5
 
     tray {
         icon_theme "Reversal"
     }
 
+    # nord
+    # colors {
+    #     statusline #ffffff
+    #     background #2e3440
+    #     focused_workspace  #8fbcbb  #8fbcbb #2e3440
+    #     inactive_workspace #4c566a #4c566a #d8dee9
+    # }
+    #solarized
     colors {
-        statusline #ffffff
-        background #2e3440
-        focused_workspace  #8fbcbb  #8fbcbb #2e3440
-        inactive_workspace #4c566a #4c566a #d8dee9
+        statusline #eee8d5
+        background #0f0f0f
+        focused_workspace  #0f0f0f  #0f0f0f #eee8d5
+        inactive_workspace #0f0f0f  #0f0f0f #b58900
     }
 }
 
@@ -224,16 +242,12 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
-# https://www.reddit.com/r/swaywm/comments/cu04m2/how_to_enable_tap_to_touch_in_touchpad_in_sway/
-input "type:touchpad" {
-    dwt enabled
-    tap enabled
-    middle_emulation enabled
-}
-
-# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-# exec hash dbus-update-activation-environment 2>/dev/null && \
-#      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway
+exec systemctl --user restart xdg-desktop-portal
+exec systemctl --user restart xdg-desktop-portal-wlr
+exec systemctl --user restart xdg-desktop-portal-gtk
 
 # network manager
 exec --no-startup-id nm-applet
