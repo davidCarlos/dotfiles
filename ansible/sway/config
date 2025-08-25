@@ -232,7 +232,7 @@ bar {
         statusline #eee8d5
         background #0f0f0f
         focused_workspace  #0f0f0f  #0f0f0f #eee8d5
-        inactive_workspace #0f0f0f  #0f0f0f #b58900
+        inactive_workspace #0f0f0f  #0f0f0f #2e3440
     }
 }
 
