@@ -1,1 +1,2 @@
-vim.cmd([[colorscheme nord]])
+vim.opt.background = 'dark'
+vim.cmd([[colorscheme solarized8]])

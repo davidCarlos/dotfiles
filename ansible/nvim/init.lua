@@ -40,12 +40,19 @@ require("packer").startup(function(use)
 	-- vscode snippets
 	use({ "rafamadriz/friendly-snippets" })
 
-	use({ -- Highlight, edit, and navigate code
+	-- Highlight, edit, and navigate code
+	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
 	})
+
+	-- Better tag matching indicator
+	use({ "andymass/vim-matchup" })
+
+	-- Add a vertical bar to the current cursor position
+	use({ "lukas-reineke/indent-blankline.nvim" })
 
 	use({ -- Additional text objects via treesitter
 		"nvim-treesitter/nvim-treesitter-textobjects",
@@ -54,19 +61,27 @@ require("packer").startup(function(use)
 
 	-- Git related plugins
 	use("tpope/vim-fugitive")
-	use("tpope/vim-rhubarb")
 	use("lewis6991/gitsigns.nvim")
 
-	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
+	-- "gc" to comment visual regions/lines
+	use("numToStr/Comment.nvim")
 
+	-- Detect tabstop and shiftwidth automatically
+	use("tpope/vim-sleuth")
+
+	-- Fancier statusline
 	use({
-		"nvim-lualine/lualine.nvim", -- Fancier statusline
+		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 
+	-- Expanding abreviations
 	use("mattn/emmet-vim")
+
+	-- Syntax and indent plugin for Vue
 	use("leafOfTree/vim-vue-plugin")
+
+	-- Neovim plugin for Prettier code formatter
 	use("prettier/vim-prettier")
 
 	-- Fuzzy Finder (files, lsp, etc)
@@ -74,10 +89,6 @@ require("packer").startup(function(use)
 
 	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
-
-	-- improved tabs
-	use("nvim-tree/nvim-web-devicons")
-	use("kdheepak/tabline.nvim")
 
 	-- improved hover documentation
 	use({ "lewis6991/hover.nvim" })
@@ -87,8 +98,6 @@ require("packer").startup(function(use)
 
 	-- A format runner for Neovim.
 	use({ "mhartington/formatter.nvim" })
-
-	use({ "lukas-reineke/indent-blankline.nvim" })
 
 	-- A tree like view for symbols in Neovim using the Language Server Protocol.
 	-- Supports all your favourite languages.
@@ -142,15 +151,20 @@ require("packer").startup(function(use)
 	use({ "rcarriga/nvim-notify" })
 
 	use({ "nvimtools/none-ls.nvim" })
+	use({ "stevearc/conform.nvim" })
 
 	use({ "ray-x/lsp_signature.nvim" })
 
+	-- colorschemes
 	use({ "shaunsingh/nord.nvim" })
+	use({ "lifepillar/vim-solarized8" })
 
 	use({ "TaDaa/vimade" })
 
-	use({ "nanozuki/tabby.nvim" })
-	use({ "stevearc/conform.nvim" })
+	-- These optional plugins should be loaded directly because of a bug in Packer lazy loading
+	use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
+	use 'nanozuki/tabby.nvim'
+
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")

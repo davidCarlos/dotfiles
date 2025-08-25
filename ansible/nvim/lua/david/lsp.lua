@@ -116,6 +116,7 @@ vim.lsp.config.ts_ls = {
 	capabilities = capabilities,
 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
 }
+vim.lsp.enable({ 'ts_ls' })
 
 --Ruby LSP client configuration
 vim.lsp.config.solargraph = {
