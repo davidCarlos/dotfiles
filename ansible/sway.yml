@@ -40,11 +40,18 @@
       ansible.builtin.dnf:
         name: perl-Gtk3
 
-    # terminal user interface to manage network connections
-    - name: Install nmtui
+    # TUI to  manage network connections
+    # https://wiki.archlinux.org/title/NetworkManager#Using_iwd_as_the_Wi-Fi_backend
+    - name: Install iwd
       become: true
       ansible.builtin.dnf:
-        name: nmtui
+        name: iwd
+    - name: Install impala
+      ansible.builtin.shell:
+        cmd: cargo install impala
+    - name: Install nmtui
+      ansible.builtin.shell:
+        dnf: NetworkManager-tui
 
     # Wayland bar
     - name: Install waybar

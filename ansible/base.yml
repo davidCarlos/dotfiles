@@ -28,6 +28,12 @@
       ansible.builtin.dnf:
         name: curl
 
+    # some other packages are installed with cargo
+    - name: Install rust toolkit
+      become: true
+      ansible.builtin.dnf:
+        name: cargo
+        
     # Required by the AppImageLauncher binary
     - name: Install libgpg-error.so.0
       become: true
