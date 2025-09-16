@@ -2,14 +2,9 @@ set $up k
 set $down j
 set $left h
 set $right l
-#set $terminal xterm -fa Hack-10
 set $terminal alacritty
 set $browser firefox
 set $notes joplin
-set $polybar-config-path ~/Projetos/pessoal/dotfiles/ansible/polybar/config
-set $background-image /home/davidcarlos/Imagens/misty_mountains.jpg
-
-set $i3exit ~/Projetos/pessoal/i3exit/i3exit
 
 bindsym Mod4+Shift+l exec swaylock
 bindsym Mod4+Shift+e exec $i3exit
@@ -33,12 +28,6 @@ floating_modifier Mod4
 
 focus_follows_mouse no
 workspace_auto_back_and_forth yes
-font pango:Overpass Regular Nerd Font Complete 10
-#font pango:DejaVu Sans Mono 15
-
-#
-# Configure touchpad. Pass this to a definitive config file.
-#exec --no-startup-id synclient TapButton1=1 TapButton2=3 TapButton3=2 VertEdgeScroll=0
 
 for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 for_window [app_id="blueman-manager"] border pixel 0, floating enable, fullscreen disable, resize 400 400
@@ -53,7 +42,8 @@ for_window [app_id="nmtui"] border pixel 0, floating enable, fullscreen disable,
 # For this to work, we need to create an chatgpt.desktop file in the ~/.local/share/applications folder.
 # This file must have an Exec rule with the command: firefox --class=chatgpt --new-window www.chatgpt.com
 for_window [app_id="chatgpt"] border pixel 0, floating enable, fullscreen disable, resize 80 80
-
+assign [app_id="org.mozilla.firefox"] web
+assign [app_id="Alacritty"] code
 
 # kill focused window
 bindsym Mod4+Shift+q kill
@@ -62,7 +52,7 @@ bindsym Mod4+Return exec "rofi -show-icons -show drun"
 title_align center
 default_border pixel 2px
 gaps inner 8px
-gaps outer 1px
+gaps outer 0px
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -185,36 +175,6 @@ client.unfocused        $unfocused_border     $unfocused_background             
 client.placeholder      $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 
 
-bar {
-    position bottom
-
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while true; do echo "$(date +'%d/%m/%Y %X') \| mem: $(free -hw | grep -E 'Mem|Swap' | awk '/Mem:/ {print $3}')"; sleep 1; done
-    # status_command while true; do echo "free -hw | grep -E 'Mem|Swap'"; done;
-    font "Adwaita Sans Bold 13px"
-    gaps 5 5
-
-    tray {
-        icon_theme "Reversal"
-    }
-
-    # nord
-    # colors {
-    #     statusline #ffffff
-    #     background #2e3440
-    #     focused_workspace  #8fbcbb  #8fbcbb #2e3440
-    #     inactive_workspace #4c566a #4c566a #d8dee9
-    # }
-    #solarized
-    colors {
-        statusline #eee8d5
-        background #0f0f0f
-        focused_workspace  #0f0f0f  #0f0f0f #eee8d5
-        inactive_workspace #0f0f0f  #0f0f0f #2e3440
-    }
-}
-
 input "type:keyboard" {
     xkb_layout br
     xkb_variant ,nodeadkeys
@@ -228,12 +188,9 @@ exec systemctl --user restart xdg-desktop-portal
 exec systemctl --user restart xdg-desktop-portal-wlr
 exec systemctl --user restart xdg-desktop-portal-gtk
 
-# network manager
-exec --no-startup-id nm-applet
-# bluetooth manager
-exec --no-startup-id blueman-applet
-# terminal
-exec --no-startup-id $terminal
-# brave
-exec --no-startup-id $browser
+exec --no-startup-id waybar 
 exec swaybg -i ~/.config/sway/wallpaper.jpg
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id $terminal
+exec --no-startup-id $browser

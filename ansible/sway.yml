@@ -8,6 +8,11 @@
       ansible.builtin.dnf:
         name: sway
 
+    - name: Install waybar
+      become: true
+      ansible.builtin.dnf:
+        name: waybar
+
     - name: Add clipboard integration for neovim
       become: true
       ansible.builtin.dnf:
@@ -18,10 +23,15 @@
       ansible.builtin.dnf:
         name: rofi-wayland
 
-    - name: Copy rofi dotfile
+    - name: Copy rofi config files
       ansible.builtin.copy:
         src: rofi/config.rasi
         dest: ~/.config/rofi/
+
+    - name: Copy waybar config files
+      ansible.builtin.copy:
+        src: waybar/
+        dest: ~/.config/waybar/
 
     - name: Copy rofi theme
       ansible.builtin.copy:
