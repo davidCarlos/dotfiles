@@ -17,4 +17,4 @@ action = "ToggleFullscreen"
 key = "F11"
 
 [general]
-import = ["~/.config/alacritty/alacritty-solarized.toml"]
+import = ["~/.config/alacritty/alacritty-tokyonight.toml"]

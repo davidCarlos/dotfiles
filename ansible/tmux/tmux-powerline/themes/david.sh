@@ -15,8 +15,8 @@ else
 fi
 
 # See Color formatting section below for details on what colors can be used here.
-TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'235'}
-TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'#b58901'}
+TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'#1a1b26'}
+TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR:-'#1a1b26'}
 # shellcheck disable=SC2034
 TMUX_POWERLINE_SEG_AIR_COLOR=$(air_color)
 
@@ -29,11 +29,8 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
-		"#[$(format inverse)]"
-		" #I"
-		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
-		"#W "
-		"#[$(format regular)]"
+		"#[fg=#bb9af7,bg=$TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR,us=#1a1b26,bold]"
+		" #W "
 	)
 fi
 
@@ -47,10 +44,8 @@ fi
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
-		"#[$(format regular)]"
-		"  #I"
-		"$TMUX_POWERLINE_SEPARATOR_RIGHT_THIN"
-		"#W "
+		"#[fg=#414868,bg=$TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR]"
+		" #W "
 	)
 fi
 
@@ -100,8 +95,7 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"hostname #81a1c1 0"
-		"tmux_session_info #3b4252 #d8dee9"
+		"tmux_session_info #bb9af7 #1a1b26"
 		#"mode_indicator 165 0"
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
@@ -123,10 +117,9 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"mailcount 9 255"
 		#"cpu 240 136"
 		# "tmux_mem_cpu_load 234 136"
-		"battery #81a1c1 0"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
-		"time #81a1c1 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+		"time #bb9af7 0"
 	)
 fi
