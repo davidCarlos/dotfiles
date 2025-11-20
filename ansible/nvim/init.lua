@@ -158,12 +158,29 @@ require("packer").startup(function(use)
 	-- colorschemes
 	use({ "shaunsingh/nord.nvim" })
 	use({ "lifepillar/vim-solarized8" })
+	use({ "folke/tokyonight.nvim" })
 
 	use({ "TaDaa/vimade" })
 
 	-- These optional plugins should be loaded directly because of a bug in Packer lazy loading
 	use 'nvim-tree/nvim-web-devicons' -- OPTIONAL: for file icons
 	use 'nanozuki/tabby.nvim'
+
+	-- llama.cpp LLM integration
+	use({ 'ggml-org/llama.vim' })
+
+	-- IA stuff
+	use {
+		'greggh/claude-code.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim', -- Required for git operations
+		},
+	}
+	use { "zbirenbaum/copilot.lua",
+		requires = {
+			"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+		},
+	}
 
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua

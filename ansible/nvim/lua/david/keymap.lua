@@ -69,3 +69,7 @@ vim.keymap.set("v", "<leader>z", ":m '<-2<CR>gv=gv")
 
 -- Open current file LSP Symbols
 vim.keymap.set("n", "<leader>S", ":SymbolsOutline<cr>", { silent = true })
+
+-- Cloude integration
+vim.keymap.set("n", "<leader>c", ":ClaudeCode<cr>", { silent = true })
+
