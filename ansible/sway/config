@@ -53,6 +53,7 @@ title_align center
 default_border pixel 2px
 gaps inner 8px
 gaps outer 0px
+font pango:Adwaita Sans Regular 10
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -154,17 +155,17 @@ bindsym Mod4+r mode "resize"
 # finds out, if available)
 
 set $focused_text #eee8d5
-set $focused_background #0f0f0f
+set $focused_background #1a1b26
 set $focused_child_border #eee8d5
 set $focused_indicator #eee8d5
 set $focused_child_indicator #333847
-set $focused_border #0f0f0f
+set $focused_border #eee8d5
 
-set $unfocused_text #586074
+set $unfocused_text #0f0f0f
 set $unfocused_background #414658
 set $unfocused_indicator #3B3C52
 set $unfocused_child_border #3B3C52
-set $unfocused_border #414658
+set $unfocused_border #1a1b26
 
 set $transparent #0017202A
 
@@ -192,5 +193,5 @@ exec --no-startup-id waybar
 exec swaybg -i ~/.config/sway/wallpaper.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec --no-startup-id $terminal
-exec --no-startup-id $browser
+exec $terminal
+exec $browser
