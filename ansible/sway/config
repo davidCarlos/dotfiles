@@ -6,14 +6,16 @@ set $terminal alacritty
 set $browser firefox
 set $notes joplin
 
+# ======= BINDS ========= #
+
 bindsym Mod4+Shift+l exec swaylock
 bindsym Mod4+Shift+e exec $i3exit
-bindsym Mod4+Shift+f exec thunar
-bindsym Mod4+Shift+p exec flameshot gui
 
-# select an area and take a printscreen. The selection will be possible
-# after the command execution.
-bindsym --release Mod4+Shift+p exec "/usr/bin/scrot -s -e nautilus -q 100"
+# Yazi is a TUI based file manager -> 
+# gio binary enables to run .desktop files from the command line
+bindsym Mod4+Shift+f exec "gio launch ~/.local/share/applications/yazi.desktop"
+
+bindsym Mod4+Shift+p exec flameshot gui
 
 # move workspace to monitor
 bindsym Mod4+Shift+m move workspace to output left
@@ -23,42 +25,9 @@ bindsym Mod4+Shift+x exec brightnessctl s 10%-
 #increase brightness
 bindsym Mod4+Shift+z exec brightnessctl s +10%
 
-# use Mouse+Mod4 to drag floating windows to their wanted position
-floating_modifier Mod4
-
-focus_follows_mouse no
-workspace_auto_back_and_forth yes
-
-for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
-for_window [app_id="blueman-manager"] border pixel 0, floating enable, fullscreen disable, resize 400 400
-for_window [app_id="org.gnome.Calculator"] border pixel 0, floating enable, fullscreen disable, resize 300 400
-for_window [app_id="i3exit"] border pixel 0, floating enable, fullscreen disable, resize 50 50
-for_window [app_id="org.pulseaudio.pavucontrol"] border pixel 0, floating enable, fullscreen disable, resize 50 50
-for_window [app_id="com.obsproject.Studio"] border pixel 0, floating enable, fullscreen disable, resize 400 400
-for_window [app_id="it.mijorus.smile"] border pixel 0, floating enable, fullscreen disable, resize 80 80
-# For this to work, we need to create an nmtui.desktop file in the ~/.local/share/applications folder.
-# This file must have an Exec rule with the command: alacritty --class nmtui -e "nmtui"
-for_window [app_id="nmtui"] border pixel 0, floating enable, fullscreen disable, resize 80 80
-# For this to work, we need to create an chatgpt.desktop file in the ~/.local/share/applications folder.
-# This file must have an Exec rule with the command: firefox --class=chatgpt --new-window www.chatgpt.com
-for_window [app_id="chatgpt"] border pixel 0, floating enable, fullscreen disable, resize 80 80
-assign [app_id="org.mozilla.firefox"] web
-assign [app_id="Alacritty"] code
-
 # kill focused window
 bindsym Mod4+Shift+q kill
 bindsym Mod4+Return exec "rofi -show-icons -show drun"
-
-title_align center
-default_border pixel 2px
-gaps inner 8px
-gaps outer 0px
-font pango:Adwaita Sans Regular 10
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym Mod4+$left focus left
@@ -132,6 +101,44 @@ bindsym Mod4+Shift+9 move container to workspace 9
 bindsym Mod4+Shift+c reload
 bindsym Mod4+Shift+r restart
 
+bindsym Mod4+r mode "resize"
+
+# ======= WINDOW PLACEMENT ========= #
+
+for_window [app_id="flameshot"] border pixel 2, floating enable, fullscreen disable, move absolute position 0 0
+for_window [app_id="blueman-manager"] border pixel 2, floating enable, fullscreen disable, resize 400 400
+for_window [app_id="org.gnome.Calculator"] border pixel 2, floating enable, fullscreen disable, resize 300 400
+for_window [app_id="org.pulseaudio.pavucontrol"] border pixel 2, floating enable, fullscreen disable, resize 50 50
+for_window [app_id="com.obsproject.Studio"] border pixel 2, floating enable, fullscreen disable, resize 400 400
+for_window [app_id="it.mijorus.smile"] border pixel 2, floating enable, fullscreen disable, resize 80 80
+
+# For this to work, we need to create an nmtui.desktop file in the ~/.local/share/applications folder.
+# This file must have an Exec rule with the command: alacritty --class nmtui -e "nmtui"
+for_window [app_id="nmtui"] border pixel 2, floating enable, fullscreen disable, resize 80 80
+
+# For this to work, we need to create an yazi.desktop file in the ~/.local/share/applications folder.
+# This file must have an Exec rule with the command: alacritty --class yazi -e "yazi"
+for_window [app_id="yazi"] border pixel 2, floating enable, fullscreen disable, resize 160 160
+
+# For this to work, we need to create an chatgpt.desktop file in the ~/.local/share/applications folder.
+# This file must have an Exec rule with the command: firefox --class=chatgpt --new-window www.chatgpt.com
+for_window [app_id="chatgpt"] border pixel 0, floating enable, fullscreen disable, resize 80 80
+assign [app_id="org.mozilla.firefox"] web
+assign [app_id="Alacritty"] code
+
+
+# ======= OTHERS ========= #
+
+# use Mouse+Mod4 to drag floating windows to their wanted position
+floating_modifier Mod4
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+title_align center
+default_border pixel 2px
+gaps inner 8px
+gaps outer 0px
+font pango:Adwaita Sans Regular 10
+
 mode "resize" {
         bindsym $left       resize shrink width 5 px or 5 ppt
         bindsym $down       resize grow height 5 px or 5 ppt
@@ -149,10 +156,8 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym Mod4+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# ======= BORDERS ========= #
 
 set $focused_text #eee8d5
 set $focused_background #1a1b26
@@ -175,12 +180,15 @@ client.focused_inactive $unfocused_border     $unfocused_background             
 client.unfocused        $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 client.placeholder      $unfocused_border     $unfocused_background             $unfocused_text         $unfocused_indicator            $unfocused_border
 
+# ======= KEYBOARD ========= #
 
 input "type:keyboard" {
     xkb_layout br
     xkb_variant ,nodeadkeys
     xkb_options grp:alt_shift_toggle
 }
+
+# ======= COMMANDS ========= #
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 exec hash dbus-update-activation-environment 2>/dev/null && \

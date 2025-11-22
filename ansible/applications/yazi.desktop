@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=yazi
+Comment=TUI based file manager
+Exec=alacritty --class yazi -e yazi /home/davidcarlos 
+Icon=
+Terminal=false
+Type=Application
+Categories=Tools;
