@@ -11,10 +11,11 @@ set $notes joplin
 bindsym Mod4+Shift+l exec swaylock
 bindsym Mod4+Shift+e exec $i3exit
 
-# Yazi is a TUI based file manager -> 
+# Yazi is a TUI based file manager -> https://github.com/sxyazi/yazi
 # gio binary enables to run .desktop files from the command line
 bindsym Mod4+Shift+f exec "gio launch ~/.local/share/applications/yazi.desktop"
 
+# Flameshot is the best screenshot software for Linux
 bindsym Mod4+Shift+p exec flameshot gui
 
 # move workspace to monitor
@@ -22,6 +23,7 @@ bindsym Mod4+Shift+m move workspace to output left
 
 #decrease brightness
 bindsym Mod4+Shift+x exec brightnessctl s 10%-
+
 #increase brightness
 bindsym Mod4+Shift+z exec brightnessctl s +10%
 
@@ -46,7 +48,6 @@ bindsym Mod4+Shift+Left move left
 bindsym Mod4+Shift+Down move down
 bindsym Mod4+Shift+Up move up
 bindsym Mod4+Shift+Right move right
-
 
 # Move next workspace
 bindsym Mod4+n workspace next
@@ -85,7 +86,6 @@ bindsym Mod4+6 workspace 6
 bindsym Mod4+7 workspace 7
 bindsym Mod4+8 workspace 8
 bindsym Mod4+9 workspace 9
-
 bindsym Mod4+Shift+1 move container to workspace code
 bindsym Mod4+Shift+2 move container to workspace web
 bindsym Mod4+Shift+3 move container to workspace notes
@@ -95,12 +95,8 @@ bindsym Mod4+Shift+6 move container to workspace 6
 bindsym Mod4+Shift+7 move container to workspace 7
 bindsym Mod4+Shift+8 move container to workspace 8
 bindsym Mod4+Shift+9 move container to workspace 9
-
-
-# workspace   output HDMI1
 bindsym Mod4+Shift+c reload
 bindsym Mod4+Shift+r restart
-
 bindsym Mod4+r mode "resize"
 
 # ======= WINDOW PLACEMENT ========= #
