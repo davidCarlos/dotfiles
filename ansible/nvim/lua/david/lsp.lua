@@ -114,7 +114,7 @@ vim.lsp.enable({ 'vtsls', 'vue_ls' })
 vim.lsp.config.ts_ls = {
 	on_attach = on_attach,
 	capabilities = capabilities,
-	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact' },
+	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 }
 vim.lsp.enable({ 'ts_ls' })
 
