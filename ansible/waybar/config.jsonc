@@ -1,7 +1,7 @@
 // -*- mode: jsonc -*-
 {
     // "layer": "top", // Waybar at top layer
-    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
@@ -9,15 +9,17 @@
     "modules-left": [
         "sway/workspaces",
     ],
+    "modules-center": [
+        "clock",
+    ],
     "modules-right": [
-        "pulseaudio",
-        "network",
         // "power-profiles-daemon",
         "cpu",
         "memory",
         "battery",
-        "clock",
-        "tray"
+        "pulseaudio",
+        "tray",
+        "custom/power"
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -99,14 +101,15 @@
     "clock": {
         // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "format": "{:%H:%M} 🕝"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "CPU {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "MEM {}%"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -152,7 +155,7 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ",
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
@@ -201,5 +204,10 @@
 			"suspend": "systemctl suspend",
 			"hibernate": "systemctl hibernate"
 		}
-    }
+    },
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
 }
