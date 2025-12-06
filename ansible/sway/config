@@ -3,7 +3,7 @@ set $down j
 set $left h
 set $right l
 set $terminal alacritty
-set $browser firefox
+set $browser google-chrome
 set $notes joplin
 
 # ======= BINDS ========= #
@@ -119,7 +119,7 @@ for_window [app_id="yazi"] border pixel 2, floating enable, fullscreen disable, 
 # For this to work, we need to create an chatgpt.desktop file in the ~/.local/share/applications folder.
 # This file must have an Exec rule with the command: firefox --class=chatgpt --new-window www.chatgpt.com
 for_window [app_id="chatgpt"] border pixel 0, floating enable, fullscreen disable, resize 80 80
-assign [app_id="org.mozilla.firefox"] web
+assign [app_id="google-chrome"] web
 assign [app_id="Alacritty"] code
 
 
@@ -155,20 +155,18 @@ mode "resize" {
 
 # ======= BORDERS ========= #
 
-set $focused_text #eee8d5
+set $focused_text #c0caf5
 set $focused_background #1a1b26
-set $focused_child_border #eee8d5
-set $focused_indicator #eee8d5
+set $focused_child_border #c0caf5
+set $focused_indicator #c0caf5
 set $focused_child_indicator #333847
-set $focused_border #eee8d5
+set $focused_border #c0caf5
 
-set $unfocused_text #0f0f0f
-set $unfocused_background #414658
+set $unfocused_text #7C7F91
+set $unfocused_background #1a1b26
 set $unfocused_indicator #3B3C52
 set $unfocused_child_border #3B3C52
 set $unfocused_border #1a1b26
-
-set $transparent #0017202A
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $focused_border    $focused_background        $focused_text           $focused_indicator   $focused_child_border
@@ -201,7 +199,7 @@ exec systemctl --user restart xdg-desktop-portal-wlr
 exec systemctl --user restart xdg-desktop-portal-gtk
 
 exec --no-startup-id waybar 
-exec swaybg -i ~/.config/sway/wallpaper.jpg
+exec swaybg -i ~/.config/sway/wallpaper.png
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec $terminal
