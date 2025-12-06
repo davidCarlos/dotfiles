@@ -184,6 +184,13 @@ input "type:keyboard" {
     xkb_options grp:alt_shift_toggle
 }
 
+# enable touchpad click
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+    middle_emulation enabled
+}
+
 # ======= COMMANDS ========= #
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
