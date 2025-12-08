@@ -131,8 +131,10 @@ focus_follows_mouse no
 workspace_auto_back_and_forth yes
 title_align center
 default_border pixel 2px
-gaps inner 6
-gaps outer 6
+smart_borders on
+
+# gaps inner 6
+# gaps outer 6
 font pango:40dwaita Sans Regular 10
 
 mode "resize" {
