@@ -133,9 +133,7 @@ title_align center
 default_border pixel 2px
 smart_borders on
 
-# gaps inner 6
-# gaps outer 6
-font pango:40dwaita Sans Regular 10
+font pango:40dwaita Sans SemiBold 10
 
 mode "resize" {
         bindsym $left       resize shrink width 5 px or 5 ppt
@@ -157,7 +155,7 @@ mode "resize" {
 
 # ======= BORDERS ========= #
 
-set $focused_text #c0caf5
+set $focused_text #ffffff
 set $focused_background #1a1b26
 set $focused_child_border #c0caf5
 set $focused_indicator #c0caf5
