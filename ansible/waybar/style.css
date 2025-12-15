@@ -64,9 +64,18 @@ button:hover {
 #workspaces button.focused {
     background-color: transparent;
     color: #ffffff; 
-    font-weight: bold;
     /* box-shadow: inset 0 -3px #bb9af7; */
 }
+
+#workspaces button.focused,
+#clock,
+#cpu, 
+#memory,
+#pulseaudio {
+    font-weight: bold;
+}
+
+
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
