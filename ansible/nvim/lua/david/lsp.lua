@@ -210,6 +210,7 @@ null_ls.setup({
 require("conform").setup({
 	formatters_by_ft = {
 		vue = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
 	},
 })
 vim.api.nvim_create_autocmd("BufWritePre", {

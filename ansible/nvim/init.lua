@@ -171,28 +171,45 @@ require("packer").startup(function(use)
 
 	-- IA stuff
 	use {
-		'greggh/claude-code.nvim',
+		"coder/claudecode.nvim",
 		requires = {
-			'nvim-lua/plenary.nvim', -- Required for git operations
+			"folke/snacks.nvim",
 		},
 	}
-	use { "zbirenbaum/copilot.lua",
-		requires = {
-			"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-		},
+	-- use { "zbirenbaum/copilot.lua",
+	-- 	requires = {
+	-- 		"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+	-- 	},
+	-- }
+	use { 'Exafunction/windsurf.vim' }
+
+	use 'nickjvandyke/opencode.nvim'
+	use {
+		'folke/snacks.nvim',
+		optional = true,
+		config = function()
+			require('snacks').setup({
+				input = {},
+				picker = {
+					actions = {
+						opencode_send = function(...) return require('opencode')
+							.snacks_picker_send(...) end,
+					},
+					win = {
+						input = {
+							keys = {
+								['<a-a>'] = { 'opencode_send', mode = { 'n', 'i' } },
+							},
+						},
+					},
+				},
+				terminal = {},
+			})
+		end,
 	}
-
-
-	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
-	local has_plugins, plugins = pcall(require, "custom.plugins")
-	if has_plugins then
-		plugins(use)
-	end
-
-	if is_bootstrap then
-		require("packer").sync()
-	end
 end)
+
+
 
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
