@@ -82,3 +82,7 @@ vim.g.vim_markdown_folding_disabled = 1
 
 -- set colorcolumn
 vim.cmd([[set colorcolumn=90]])
+
+-- set global window borders
+-- https://github.com/hrsh7th/nvim-cmp/issues/2210
+vim.o.winborder = "rounded"

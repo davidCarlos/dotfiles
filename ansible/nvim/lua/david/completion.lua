@@ -1,18 +1,9 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
-local compare = require('cmp.config.compare')
-luasnip.config.setup {}
-
--- https://github.com/hrsh7th/nvim-cmp/issues/874
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
 
 cmp.setup({
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	window = {
@@ -57,25 +48,11 @@ cmp.setup({
 		{ name = "luasnip", option = { show_autosnippets = true } },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
-		{ name = "buffer" }
-	}),
-	experimental = {
-		ghost_text = true,
-	},
-	sorting = {
-		comparators = {
-			compare.offset,
-			compare.locality,
-			compare.kind,
-			compare.exact,
-			compare.score,
-			compare.recently_used,
-			compare.sort_text,
-			compare.length,
-			compare.order,
-		},
-	},
-})
+	}, {
+
+			{ name = "buffer" }
+		})
+	})
 --
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {
@@ -86,30 +63,34 @@ cmp.setup.filetype("gitcommit", {
 	}),
 })
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
-	}, {
-		{ name = "cmdline" },
-	}),
-	matching = { disallow_symbol_nonprefix_matching = false },
-})
+ -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
 
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({
-		{ name = "path" },
+ -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+-- https://github.com/hrsh7th/nvim-cmp/issues/1454#issuecomment-1439850984
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+	{ name = 'path' },
 	}, {
-		{
-			name = "cmdline",
-			option = {
-				ignore_cmds = {},
-			},
-		},
-	}),
-})
+      { name = 'cmdline' }
+    }),
+    mapping = cmp.mapping.preset.cmdline({
+    ['<Tab>'] = {
+      c = function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-z>', true, true, true), 'ni', true)
+        end
+      end
+    }
+  })
+  })
 
 
 -- Add () after confirming autocomplete with nvim-cmp

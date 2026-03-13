@@ -99,10 +99,6 @@ require("packer").startup(function(use)
 	-- A format runner for Neovim.
 	use({ "mhartington/formatter.nvim" })
 
-	-- A tree like view for symbols in Neovim using the Language Server Protocol.
-	-- Supports all your favourite languages.
-	use({ "simrat39/symbols-outline.nvim" })
-
 	-- treefile explorer writen in lua
 	use({ "nvim-tree/nvim-tree.lua" })
 
@@ -148,16 +144,12 @@ require("packer").startup(function(use)
 	use({ "godlygeek/tabular" })
 	use({ "preservim/vim-markdown" })
 
-	use({ "rcarriga/nvim-notify" })
-
 	use({ "nvimtools/none-ls.nvim" })
 	use({ "stevearc/conform.nvim" })
 
 	use({ "ray-x/lsp_signature.nvim" })
 
 	-- colorschemes
-	use({ "shaunsingh/nord.nvim" })
-	use({ "lifepillar/vim-solarized8" })
 	use({ "folke/tokyonight.nvim" })
 
 	use({ "TaDaa/vimade" })
@@ -170,19 +162,6 @@ require("packer").startup(function(use)
 	use({ 'ggml-org/llama.vim' })
 
 	-- IA stuff
-	use {
-		"coder/claudecode.nvim",
-		requires = {
-			"folke/snacks.nvim",
-		},
-	}
-	-- use { "zbirenbaum/copilot.lua",
-	-- 	requires = {
-	-- 		"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-	-- 	},
-	-- }
-	use { 'Exafunction/windsurf.vim' }
-
 	use 'nickjvandyke/opencode.nvim'
 	use {
 		'folke/snacks.nvim',
