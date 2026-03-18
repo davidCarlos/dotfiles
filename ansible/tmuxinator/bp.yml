@@ -1,0 +1,27 @@
+# ~/.tmuxinator/bp.yml
+
+name: bp
+root: ~/Projetos/pencillabs/brparticipativo
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/brparticipativo/
+      layout: a425,213x50,0,0[213x35,0,0,20,213x14,0,36{106x14,0,36,26,106x14,107,36,29}]
+      panes:
+        - 
+        -
+        -
+  - ej:
+      layout: a425,213x50,0,0[213x35,0,0,20,213x14,0,36{106x14,0,36,26,106x14,107,36,29}]
+      root: ~/Projetos/pencillabs/brparticipativo/ej/ej-application
+      panes:
+        -
+        -
+        -
+  - media-api:
+      layout: a425,213x50,0,0[213x35,0,0,20,213x14,0,36{106x14,0,36,26,106x14,107,36,29}]
+      root: ~/Projetos/pencillabs/brparticipativo/multi-channel-participation
+      panes:
+        -
+        -
+        -
