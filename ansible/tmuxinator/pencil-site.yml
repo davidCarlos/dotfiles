@@ -1,7 +1,7 @@
 # /home/davidcarlos/.tmuxinator/pencil-site.yml
 
 name: pencil-site
-root: ~/Projetos/pencillabs/sites/pencillabs
+root: ~/Projetos/pencillabs/pencillabs/
 
 windows:
   - vim:

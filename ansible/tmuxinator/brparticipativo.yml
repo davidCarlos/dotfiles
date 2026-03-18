@@ -12,11 +12,19 @@ windows:
         -
         -
         -
-  - site:
+  - ej:
       layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
-      root: ~/Projetos/pencillabs/brparticipativo/decidim-ej-site/
+      root: ~/Projetos/pencillabs/brparticipativo/ej/ej-application
       panes:
         - vim
+        -
+        -
+        -
+  - media-api:
+      layout: 1f58,192x46,0,0{124x46,0,0,0,67x46,125,0[67x16,125,0,2,67x18,125,17,3,67x10,125,36,4]}
+      root: ~/Projetos/pencillabs/brparticipativo/multi-channel-participation
+      panes:
+        -
         -
         -
         -
