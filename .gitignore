@@ -2,4 +2,4 @@
 tags
 nvim/plugins/
 .venv
-tmux/plugins
+ansible/tmux/plugins
