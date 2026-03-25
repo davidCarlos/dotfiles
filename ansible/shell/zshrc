@@ -1,6 +1,6 @@
 export ZSH="/home/davidcarlos/.oh-my-zsh"
 
-plugins=(git vi-mode docker fzf)
+plugins=(git vi-mode docker docker-compose fzf)
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
@@ -66,3 +66,6 @@ source ~/.tmux/tmux-powerline/config.sh
 fpath+=($HOME/.zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
+
+# opencode
+export PATH=/home/davidcarlos/.opencode/bin:$PATH

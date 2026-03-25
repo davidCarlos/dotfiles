@@ -30,7 +30,7 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
 		"#[fg=#1a1b26,bg=#bb9af7,us=#1a1b26,bold]"
-		" #W "
+		" #{window_index}:#W "
 	)
 fi
 
@@ -45,7 +45,7 @@ fi
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_FORMAT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_FORMAT=(
 		"#[fg=gray,bg=$TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR]"
-		" #W "
+		" #{window_index}:#W "
 	)
 fi
 
