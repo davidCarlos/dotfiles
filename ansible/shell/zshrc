@@ -1,18 +1,16 @@
 export ZSH="/home/davidcarlos/.oh-my-zsh"
 
-plugins=(git vi-mode docker docker-compose fzf)
+plugins=(git vi-mode docker fzf)
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
-
 alias vim="nvim.appimage"
 alias v="nvim.appimage"
 alias k="kubectl"
-alias gvim="nvim-gtk"
-alias keepass="~/.local/bin/KeePassXC-2.6.4-x86_64.AppImage"
 # https://github.com/sharkdp/bat
 alias cat="bat"
+alias f="fzf --bind 'enter:become(nvim.appimage {})'"
 
 export BAT_THEME=gruvbox-dark
 # Put on /home/davidcarlos/local/bin davidcarlos specific binaries like nvim
@@ -23,15 +21,19 @@ export PATH=$PATH:/home/davidcarlos/.local/go/bin/:/home/davidcarlos/projects/Go
 export PATH=$PATH:/home/davidcarlos/.local/go/bin/:/home/davidcarlos/projects/Go/src/core/bin
 export PATH=$PATH:/home/davidcarlos/projects/learning/datascience/anaconda3/bin
 export PATH=/home/davidcarlos/projects/pencillabs/ej/ej-components/conversations/node_modules/@stencil/core/bin:$PATH
-# for rust packages
-export PATH=$PATH:/home/davidcarlos/.cargo/bin/
-export PATH=$PATH:/home/davidcarlos/.nvm/
+PATH=$PATH:/home/davidcarlos/.cargo/bin/
 
 export ANDROID_HOME=/home/davidcarlos/Android/Sdk/
+export CAPACITOR_ANDROID_STUDIO_PATH=/home/davidcarlos/Projetos/android-studio/bin/studio
+export JAVA_HOME=/home/davidcarlos/Projetos/android-studio/jbr/
 export ANDROID_SDK_ROOT=/home/davidcarlos/Android/Sdk/
 export GOPATH=/home/davidcarlos/Projetos/pencillabs/infra
 export WORKON_HOME=$HOME/projects/.virtualenvs
 export XDG_DATA_DIRS=$XDG_DATA_DIRS:/var/lib/flatpak/exports/share/
+export PATH=$PATH:/home/davidcarlos/.nvm/
+export FZF_DEFAULT_COMMAND="rg --files"
+export FZF_DEFAULT_OPTS="--walker-root=/home/davidcarlos/"
+export OPENCODE_CONFIG="/home/davidcarlos/Projetos/ia/opencode/opencode.json"
 
 # ALT-c: find directories and hit <enter> to cd directory
 # Ctrl-r: run fzf on shell history
@@ -46,7 +48,8 @@ xmodmap -e "keycode 27 = r R r R bar"
 
 # Better replacement for ls -> https://github.com/eza-community/eza
 if [ "$(eza --help)" ]; then
-	alias ls="eza --long --icons --git --sort=modified"
+	alias l="eza --icons --git --sort=modified"
+	alias ll="eza --long --icons --git --sort=modified"
 fi
 
 export NVM_DIR="$HOME/.nvm"
@@ -69,3 +72,19 @@ prompt pure
 
 # opencode
 export PATH=/home/davidcarlos/.opencode/bin:$PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/davidcarlos/Projetos/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/davidcarlos/Projetos/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/davidcarlos/Projetos/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/davidcarlos/Projetos/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
