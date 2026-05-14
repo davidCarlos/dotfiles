@@ -1,30 +1,25 @@
 local theme = {
-	fill = 'TabLineFill',
-	-- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
+	-- fill = 'TabLineFill',
+	fill = "Normal",
 	head = 'TabLine',
-	current_tab = 'TabLineSel',
-	tab = 'TabLine',
-	win = 'TabLine',
-	tail = 'TabLine',
+	current_tab = 'TabLine',
+	tab = 'Normal',
+	win = 'Normal',
+	tail = 'Normal',
 }
 require('tabby').setup({
 	line = function(line)
 		return {
-			{
-				{ '  ', hl = theme.head },
-				line.sep('', theme.head, theme.fill),
-			},
 			line.tabs().foreach(function(tab)
 				local hl = tab.is_current() and theme.current_tab or theme.tab
 				return {
-					line.sep('', hl, theme.fill),
+					line.sep(' ', hl, hl),
 					tab.is_current() and '' or '󰆣',
-					tab.number(),
+					line.sep(' ', hl, hl),
 					tab.name(),
-					tab.close_btn(''),
-					line.sep('', hl, theme.fill),
 					hl = hl,
-					margin = ' ',
+					line.sep(' ', hl, hl),
+					line.sep(' ', hl, theme.fill),
 				}
 			end),
 			hl = theme.fill,

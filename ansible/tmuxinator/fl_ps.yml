@@ -1,0 +1,22 @@
+# ~/.tmuxinator/fl_ps.yml
+
+name: fl_ps
+root: ~/Projetos/pencillabs/fundacaolemann/processoseletivo/
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/fundacaolemann/processoseletivo/processo-seletivo/
+      layout: ebd0,213x50,0,0{154x50,0,0[154x38,0,0,13,154x11,0,39,20],58x50,155,0,19}
+      panes:
+        - source ~/Projetos/virtualenvs/conecta/bin/activate && vim
+        - source ~/Projetos/virtualenvs/processoseletivo/bin/activate
+        - opencode attach http://127.0.0.1:54321
+  - server:
+      root: ~/Projetos/pencillabs/fundacaolemann/processoseletivo/processo-seletivo
+      layout: d05e,213x50,0,0[213x33,0,0,14,213x16,0,34,17]
+      panes:
+        - source ~/Projetos/virtualenvs/processoseletivo/bin/activate
+        - source ~/Projetos/virtualenvs/processoseletivo/bin/activate
+  - others:
+      panes:
+        -

@@ -34,6 +34,7 @@ require("packer").startup(function(use)
 			"hrsh7th/nvim-cmp",
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
+			"tamago324/cmp-zsh"
 		},
 	})
 
@@ -163,6 +164,7 @@ require("packer").startup(function(use)
 
 	-- IA stuff
 	use 'nickjvandyke/opencode.nvim'
+
 	use {
 		'folke/snacks.nvim',
 		optional = true,
@@ -171,8 +173,10 @@ require("packer").startup(function(use)
 				input = {},
 				picker = {
 					actions = {
-						opencode_send = function(...) return require('opencode')
-							.snacks_picker_send(...) end,
+						opencode_send = function(...)
+							return require('opencode')
+							    .snacks_picker_send(...)
+						end,
 					},
 					win = {
 						input = {

@@ -1,17 +1,16 @@
 # /home/davidcarlos/.tmuxinator/pencil-site.yml
 
 name: pencil-site
-root: ~/Projetos/pencillabs/pencillabs/
+root: ~/Projetos/pencillabs/sites/pencillabs/
 
 windows:
   - vim:
-      layout: a425,213x50,0,0[213x35,0,0,20,213x14,0,36{106x14,0,36,26,106x14,107,36,29}]
+      layout: 445e,213x50,0,0{155x50,0,0,63,57x50,156,0,69}
       panes:
-        - source ~/Projetos/virtualenvs/pencil-site/bin/activate && vim
+        - source ~/Projetos/virtualenvs/pencillabs-site/bin/activate && vim
         - 
-        -
   - server:
-      layout: a425,213x50,0,0[213x35,0,0,20,213x14,0,36{106x14,0,36,26,106x14,107,36,29}]
+      layout: 7d6a,213x50,0,0{139x50,0,0,64,73x50,140,0[73x25,140,0,70,73x24,140,26,71]}
       panes:
         - make up
         -

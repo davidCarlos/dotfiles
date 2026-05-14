@@ -1,0 +1,17 @@
+# ~/.tmuxinator/ds_curso.yml
+
+name: ds_curso
+root: "~/Projetos/estudos/datascience/Formação Cientista de Dados: O Curso Completo 2026/"
+
+windows:
+- vim:
+    layout: 7331,213x50,0,0{151x50,0,0,16,61x50,152,0,19}
+    panes:
+      - vim
+      - opencode --port 
+- server:
+    layout: 2482,213x50,0,0{144x50,0,0,21,68x50,145,0[68x25,145,0,78,68x24,145,26,79]}
+    panes:
+      - 
+      - 
+      -

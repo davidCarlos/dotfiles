@@ -1,17 +1,22 @@
 # ~/.tmuxinator/conecta.yml
 
 name: conecta
-root: ~/Projetos/pencillabs/ej/its/ej-application
+root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/ej/its/ej-application
+      root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/plataforma-rede-de-lideres/
+      layout: 7331,213x50,0,0{151x50,0,0,16,61x50,152,0,19}
       panes:
-        - pyenv activate ej-application && vim
-  - ej-server:
-      root: ~/Projetos/pencillabs/ej/its/ej-application
-      layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
+        - source ~/Projetos/virtualenvs/conecta/bin/activate && vim
+        - opencode --port 
+  - server:
+      root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/plataforma-rede-de-lideres/
+      layout: 2482,213x50,0,0{144x50,0,0,21,68x50,145,0[68x25,145,0,78,68x24,145,26,79]}
       panes:
-        - pyenv local 3.8.18 && pyenv activate ej-application
-        - pyenv local 3.8.18 && pyenv activate ej-application
+        - source ~/Projetos/virtualenvs/conecta/bin/activate
+        - source ~/Projetos/virtualenvs/conecta/bin/activate
         -
+  - ssh:
+      panes:
+        - ssh ambientevirtual-vpn

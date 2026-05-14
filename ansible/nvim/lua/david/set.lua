@@ -31,7 +31,7 @@ vim.g.nobackup = true
 vim.g.nowritebackup = true
 
 -- not create swap files
-vim.g.noswapfile = true
+vim.opt.swapfile = false
 
 -- sk for confirm when executes a command operation.
 vim.o.confirm = true
@@ -63,7 +63,6 @@ vim.o.undofile = true
 vim.o.updatetime = 250
 vim.wo.signcolumn = "yes"
 
-vim.g.noswapfile = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 

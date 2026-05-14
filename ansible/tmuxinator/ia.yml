@@ -1,0 +1,9 @@
+# ~/.tmuxinator/ia.yml
+
+name: ia
+root: ~/Projetos/
+
+windows:
+  - opencode:
+      panes:
+        - opencode serve --port 54321
