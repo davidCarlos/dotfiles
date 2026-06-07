@@ -78,10 +78,6 @@ cmp.setup({
 })
 require("cmp_git").setup() ]] --
 
-cmp.setup.filetype('markdown', {
-	sources = {},
-})
-
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
 	mapping = cmp.mapping.preset.cmdline(),
@@ -93,7 +89,7 @@ cmp.setup.cmdline({ '/', '?' }, {
 -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({ { name = "zsh" }, { name = "path" }, { name = "cmdline", option = { ignore_cmds = {} } } })
+	sources = cmp.config.sources({ { name = "cmdline" } })
 })
 
 -- -- Set up lspconfig.

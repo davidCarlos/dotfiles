@@ -58,10 +58,14 @@ export NVM_DIR="$HOME/.nvm"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
-source ~/.config/tmux-powerline/config.sh
+# pyenv configuration
+# PYENV_ROOT=$HOME/.pyenv
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
 
 # zsh prompt: https://github.com/sindresorhus/pure
-fpath+=($HOME/.zsh/pure)
+fpath+=("$(npm root -g)/pure-prompt")
 autoload -U promptinit; promptinit
 prompt pure
 
