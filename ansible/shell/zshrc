@@ -58,12 +58,7 @@ export NVM_DIR="$HOME/.nvm"
 
 [[ $commands[kubectl] ]] && source <(kubectl completion zsh)
 
-# pyenv configuration
-PYENV_ROOT=$HOME/.pyenv
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-source ~/.tmux/tmux-powerline/config.sh
+source ~/.config/tmux-powerline/config.sh
 
 # zsh prompt: https://github.com/sindresorhus/pure
 fpath+=($HOME/.zsh/pure)
