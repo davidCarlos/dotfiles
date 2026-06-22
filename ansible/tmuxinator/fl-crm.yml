@@ -1,0 +1,19 @@
+# ~/.tmuxinator/fl-crm.yml
+
+name: fl-crm
+root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/
+
+windows:
+  - vim:
+      root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/documentacao-tecnica/
+      layout: 7331,213x50,0,0{151x50,0,0,16,61x50,152,0,19}
+      panes:
+        - source ~/Projetos/virtualenvs/crm-docs/bin/activate && vim
+        - opencode --port 
+  - server:
+      root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/documentacao-tecnica/
+      layout: 2482,213x50,0,0{144x50,0,0,21,68x50,145,0[68x25,145,0,78,68x24,145,26,79]}
+      panes:
+        - source ~/Projetos/virtualenvs/crm-docs/bin/activate
+        - source ~/Projetos/virtualenvs/conecta/bin/activate
+        -
