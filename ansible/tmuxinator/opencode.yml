@@ -1,0 +1,11 @@
+# ~/.tmuxinator/opencode.yml
+
+name: opencode
+root: ~/Projetos/pencillabs/
+
+windows:
+  - opencode:
+      layout: 7331,213x50,0,0{151x50,0,0,16,61x50,152,0,19}
+      panes:
+        - opencode serve
+        - 

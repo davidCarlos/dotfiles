@@ -78,6 +78,10 @@ cmp.setup({
 })
 require("cmp_git").setup() ]] --
 
+cmp.setup.filetype('markdown', {
+	sources = {},
+})
+
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline({ '/', '?' }, {
 	mapping = cmp.mapping.preset.cmdline(),
@@ -89,13 +93,5 @@ cmp.setup.cmdline({ '/', '?' }, {
 -- -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({ { name = "cmdline" } })
+	sources = cmp.config.sources({ { name = "zsh" }, { name = "path" }, { name = "cmdline", option = { ignore_cmds = {} } } })
 })
-
--- -- Set up lspconfig.
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- vim.lsp.config('<YOUR_LSP_SERVER>', {
--- 	capabilities = capabilities
--- })
--- vim.lsp.enable('<YOUR_LSP_SERVER>')

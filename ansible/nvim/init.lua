@@ -32,6 +32,7 @@ vim.pack.add({
 	-- treesiter
 	{ src = gh("nvim-treesitter/nvim-treesitter"), version = "main" },
 	-- IA tooling
+	gh("folke/snacks.nvim"),
 	gh("nickjvandyke/opencode.nvim"),
 	-- UI
 	gh("kyazdani42/nvim-web-devicons"),
