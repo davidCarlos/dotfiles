@@ -6,7 +6,7 @@ root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/
 windows:
   - vim:
       root: ~/Projetos/pencillabs/fundacaolemann/ambientevirtual/plataforma-rede-de-lideres/
-      layout: 7331,213x50,0,0{151x50,0,0,16,61x50,152,0,19}
+      layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
       panes:
         - source ~/Projetos/virtualenvs/conecta/bin/activate && vim
         - opencode --port 

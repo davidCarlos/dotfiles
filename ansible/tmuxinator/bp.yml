@@ -5,8 +5,8 @@ root: ~/Projetos/pencillabs/brparticipativo
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/brparticipativo/
-      layout: ad2e,213x50,0,0{160x50,0,0,1,52x50,161,0,13}
+      root: ~/Projetos/pencillabs/brparticipativo/ej/ej-application
+      layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
       panes:
         - 
         -

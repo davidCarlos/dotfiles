@@ -37,7 +37,9 @@ vim.pack.add({
 	-- UI
 	gh("kyazdani42/nvim-web-devicons"),
 	gh("nvim-lualine/lualine.nvim"),
-	gh("nanozuki/tabby.nvim")
+	gh("nanozuki/tabby.nvim"),
+	-- css
+	gh("norcalli/nvim-colorizer.lua")
 })
 
 require("david")
