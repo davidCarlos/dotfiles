@@ -39,7 +39,9 @@ vim.pack.add({
 	gh("nvim-lualine/lualine.nvim"),
 	gh("nanozuki/tabby.nvim"),
 	-- css
-	gh("norcalli/nvim-colorizer.lua")
+	gh("norcalli/nvim-colorizer.lua"),
+	-- html
+	gh("mattn/emmet-vim")
 })
 
 require("david")

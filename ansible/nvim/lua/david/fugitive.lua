@@ -7,3 +7,4 @@ end
 
 vim.keymap.set("n", "<leader>dn", ":lua DiffNameOnly('")
 vim.keymap.set("n", "<leader>gd", ":Gvdiffsplit ")
+vim.keymap.set("n", "<leader>gw", ":Gwrite<cr>")
