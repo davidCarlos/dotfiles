@@ -1,4 +1,4 @@
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require("nvim-treesitter").setup {}
-require("nvim-treesitter").install { 'python' }
+require("nvim-treesitter").install { 'python', 'vue', 'html', 'javascript', 'typescript' }

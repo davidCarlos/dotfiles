@@ -1,6 +1,6 @@
 # ~/.tmuxinator/sgtes.yml
 
-name: conecta
+name: sgtes
 root: ~/Projetos/sgtes/rastreador-de-programas/
 
 windows:
