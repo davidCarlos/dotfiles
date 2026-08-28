@@ -41,7 +41,10 @@ vim.pack.add({
 	-- css
 	gh("norcalli/nvim-colorizer.lua"),
 	-- html
-	gh("mattn/emmet-vim")
+	gh("mattn/emmet-vim"),
+	-- colorscheme
+	{ src = gh("catppuccin/nvim"),                 name = "catppuccin" }
+
 })
 
 require("david")
