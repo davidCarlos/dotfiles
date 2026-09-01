@@ -6,7 +6,7 @@ vim.g.mapleader = ","
 -- colorscheme configuration
 -- vim.g.gruvbox_italic = 1
 -- vim.o.termguicolors = true
-vim.cmd.colorscheme "catppuccin-mocha"
+-- vim.cmd.colorscheme "catppuccin-mocha"
 
 -- show relative line numbers
 vim.o.relativenumber = true
