@@ -39,6 +39,3 @@ end)
 vim.keymap.set("n", "<leader>IF", function()
 	vim.api.nvim_command(":NvimTreeFindFile")
 end)
-
--- change NvimTree background
-vim.api.nvim_command(" :highlight NvimTreeNormal guibg = #232323")
