@@ -13,16 +13,6 @@ windows:
       root: ~/Projetos/pencillabs/ej/ej-application
       layout: 13cd,192x46,0,0[192x23,0,0,14,192x22,0,24{96x22,0,24,15,95x22,97,24,16}]
       panes:
-        - pyenv local 3.9.18 && source .venv/bin/activate && inv docker-up -d
-        - pyenv local 3.9.18 && source .venv/bin/activate && inv docker-attach
+        - eval $(poetry env activate) && inv docker-up -d
+        - eval $(poetry env activate) && inv docker-attach
         -
-  - ej-chatbot:
-      root: ~/Projetos/pencillabs/ej/ej-bot/
-      layout: 9354,192x46,0,0[192x23,0,0,17,192x22,0,24{61x22,0,24,19,61x22,62,24,21,68x22,124,24,22}]
-      panes:
-        -
-        - make run-api
-        - make run-actions
-        - make run-store
-  - others:
-      -

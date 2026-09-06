@@ -7,7 +7,7 @@ windows:
   - vim:
       layout: 445e,213x50,0,0{155x50,0,0,63,57x50,156,0,69}
       panes:
-        - source ~/Projetos/virtualenvs/pencillabs-site/bin/activate && vim
+        - eval $(poetry env activate) && vim
         - 
   - server:
       layout: 7d6a,213x50,0,0{139x50,0,0,64,73x50,140,0[73x25,140,0,70,73x24,140,26,71]}
