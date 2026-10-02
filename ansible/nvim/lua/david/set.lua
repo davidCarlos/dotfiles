@@ -8,6 +8,16 @@ vim.g.mapleader = ","
 vim.o.termguicolors = true
 vim.cmd.colorscheme "catppuccin-mocha"
 
+
+vim.api.nvim_create_autocmd('OptionSet', {
+	callback = function(ev)
+		local match = ev.match
+		if match == 'background' then
+			print(string.format(vim.inspect(ev)))
+		end
+	end
+});
+
 -- show relative line numbers
 vim.o.relativenumber = true
 
