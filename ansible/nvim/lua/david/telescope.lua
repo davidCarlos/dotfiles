@@ -36,5 +36,5 @@ vim.keymap.set("n", "<leader>f", telescope_bultin.git_files, { desc = "Search Gi
 vim.keymap.set("n", "<leader>sh", telescope_bultin.help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sw", telescope_bultin.grep_string, { desc = "[S]earch current [W]ord" })
 vim.keymap.set("n", "<leader>sd", telescope_bultin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-vim.keymap.set("n", "<leader>g", telescope_bultin.live_grep, { desc = "[S]earch by [G]rep" })
+vim.keymap.set("n", "<leader>lg", telescope_bultin.live_grep, { desc = "[S]earch by [G]rep" })
 vim.keymap.set("n", "<leader>gb", telescope_bultin.current_buffer_fuzzy_find)
