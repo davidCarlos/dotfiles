@@ -9,18 +9,17 @@ windows:
       layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
       panes:
         - eval $(poetry env activate) && vim
-        -
-  - ej:
+        - opencode --port 
+  - git:
+      panes:
+        - lazygit
+  - docker:
       layout: 14cc,191x46,0,0[191x26,0,0,2,191x19,0,27{95x19,0,27,18,95x19,96,27,19}]
       root: ~/Projetos/pencillabs/brparticipativo/ej/ej-application
       panes:
         - eval $(poetry env activate) && inv up
         -
         -
-  - media-api:
-      layout: 14cc,191x46,0,0[191x26,0,0,2,191x19,0,27{95x19,0,27,18,95x19,96,27,19}]
-      root: ~/Projetos/pencillabs/brparticipativo/multi-channel-participation
+  - prod:
       panes:
-        -
-        -
-        -
+        - ssh ej-community

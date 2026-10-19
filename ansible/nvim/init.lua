@@ -29,6 +29,7 @@ vim.pack.add({
 	-- git
 	gh("tpope/vim-fugitive"),
 	gh("lewis6991/gitsigns.nvim"),
+	gh("kdheepak/lazygit.nvim"),
 	-- treesiter
 	{ src = gh("nvim-treesitter/nvim-treesitter"), version = "main" },
 	-- IA tooling

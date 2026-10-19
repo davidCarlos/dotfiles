@@ -1,19 +1,26 @@
 # ~/.tmuxinator/fl-crm.yml
 
 name: fl-crm
-root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/
+root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/crm-app/
 
 windows:
   - vim:
-      root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm/crm-app/
       layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
       panes:
         - vim
         - opencode --port 
-  - server:
-      root: ~/Projetos/pencillabs/fundacaolemann/plataforma-crm
+  - git:
+      panes:
+        - lazygit
+  - docker:
       layout: 14cc,191x46,0,0[191x26,0,0,2,191x19,0,27{95x19,0,27,18,95x19,96,27,19}]
       panes:
-        - 
+        - source .venv/bin/activate && inv docker.up
         - 
         -
+  - homolog:
+      panes:
+        - ssh pencil-tools
+  - prod:
+      panes:
+        - ssh pencil-tools
