@@ -5,13 +5,19 @@ root: ~/Projetos/pencillabs/sites/pencillabs/
 
 windows:
   - vim:
-      layout: 445e,213x50,0,0{155x50,0,0,63,57x50,156,0,69}
+      layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
       panes:
         - eval $(poetry env activate) && vim
-        - 
-  - server:
-      layout: 7d6a,213x50,0,0{139x50,0,0,64,73x50,140,0[73x25,140,0,70,73x24,140,26,71]}
+        - opencode --port
+  - git:
       panes:
-        - make up
+        - lazygit
+  - docker:
+      layout: 14cc,191x46,0,0[191x26,0,0,2,191x19,0,27{95x19,0,27,18,95x19,96,27,19}]
+      panes:
+        - eval $(poetry env activate) && inv up && inv logs
         -
         -
+  - prod:
+      panes:
+        - ssh pencillabs-site

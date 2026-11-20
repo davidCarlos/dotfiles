@@ -1,0 +1,19 @@
+# ~/.tmuxinator/fl-chatbot.yml
+
+name: fl-chatbot
+root: ~/Projetos/pessoal/IA/fundacao-lemann-propostas-chatbot/
+
+windows:
+  - vim:
+      layout: b956,213x48,0,0{135x48,0,0,1,77x48,136,0,4}
+      panes:
+        - source .venv/bin/activate && vim
+  - git:
+      panes:
+        - lazygit
+  - docker:
+      layout: 14cc,191x46,0,0[191x26,0,0,2,191x19,0,27{95x19,0,27,18,95x19,96,27,19}]
+      panes:
+        - source .venv/bin/activate
+        - 
+        -
